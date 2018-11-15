@@ -72,4 +72,5 @@ public class CalcJUnitTest {
        assertEquals(3, cl.calAntalLaegterFlatRoof(270));
 
    }
+   
 }   
