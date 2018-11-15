@@ -54,7 +54,7 @@ public class CalcJUnitTest {
        CalcRem cr = new CalcRem();
        assertEquals(4, cr.calcAntalRem(480));
        assertEquals(5, cr.calcAntalRem(510));
-
+       System.out.println("asd");
    }
 
    @Test
