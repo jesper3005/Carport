@@ -32,7 +32,7 @@ public class LogicFacade {
         CalcStern stern = new CalcStern();
         CalcStolper stolper = new CalcStolper();
         //
-        double priceOfOrder;
+        double priceOfOrder = 0;
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Length of carport:");
@@ -71,9 +71,10 @@ public class LogicFacade {
         }
         for (Produkt produkt : stykliste) {
             System.out.println(produkt);
+            priceOfOrder = produkt.getTotalPriceOfOrder();
             
         }
-
+        System.out.println("Total Price: " + priceOfOrder);
     }
 
 }
