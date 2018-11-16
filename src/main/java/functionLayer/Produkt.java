@@ -10,36 +10,88 @@ package functionLayer;
  * @author Jesper
  */
 public class Produkt {
-    
+
     private int id;
     private String produktName;
     private String category;
-    private double antal;
     private double price;
+    private double qty;
+    private double priceLine;
     private double length;
     private double width;
     private double height;
+    private double totalPriceOfOrder;
 
-    public Produkt(int id, String produktName, String category, double antal, double price, double length, double width, double height) {
+    public Produkt(int id, String produktName, String category, double price, double length, double width, double height) {
         this.id = id;
         this.produktName = produktName;
         this.category = category;
-        this.antal = antal;
         this.price = price;
         this.length = length;
         this.width = width;
         this.height = height;
     }
 
-    @Override
-    public String toString() {
-        return "Produkt{" + "id=" + id + ", produktName=" + produktName + ", category=" + category + ", antal=" + antal + ", price=" + price + ", length=" + length + ", width=" + width + ", height=" + height + '}';
+    public Produkt(int id, String produktName, String category, double price, double qty, double priceLine, double length, double width, double height) {
+        this.id = id;
+        this.produktName = produktName;
+        this.category = category;
+        this.price = price;
+        this.qty = qty;
+        this.priceLine = priceLine;
+        this.length = length;
+        this.width = width;
+        this.height = height;
+        this.totalPriceOfOrder = totalPriceOfOrder;
     }
 
-    
+    @Override
+    public String toString() {
+        return "Produkt{" + "id=" + id + ", produktName=" + produktName + ", category=" + category + ", price=" + price + ", qty=" + qty + ", priceLine=" + priceLine + ", length=" + length + ", width=" + width + ", height=" + height + '}';
+    }
 
-    
-    
-    
-    
+    public double getPriceLine() {
+        return this.priceLine = this.price * this.qty;
+    }
+
+    public double getTotalPriceOfOrder() {
+        return this.totalPriceOfOrder += this.priceLine;
+    }
+
+    public void setQty(double qty) {
+        this.qty = qty;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getProduktName() {
+        return produktName;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public double getQty() {
+        return qty;
+    }
+
+    public double getLength() {
+        return length;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
 }
