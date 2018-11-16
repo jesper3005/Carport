@@ -75,8 +75,8 @@ public class CalcJUnitTest {
    @Test
    public void calTagAntalTest(){
        CalcRoof cr = new CalcRoof();
-       assertEquals(1, cr.calcAntal(240, 240), 0);
-       assertEquals(5,cr.calcAntal(570, 600),0);
+       assertEquals(1, cr.calcAntal(2400, 2400), 0);
+       assertEquals(5,cr.calcAntal(5700, 6000),0);
    }
    
    @Test
