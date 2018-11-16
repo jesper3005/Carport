@@ -8,6 +8,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import calculations.CalcLaegter;
 import calculations.CalcRem;
+import calculations.CalcRoof;
+import calculations.CalcStern;
 import calculations.CalcStolper;
 
 /**
@@ -45,31 +47,42 @@ public class CalcJUnitTest {
    @Test
    public void calStolperAntalTest() {
        CalcStolper cs = new CalcStolper();
-       assertEquals(4, cs.calAntalStolper(350));
-       assertEquals(6, cs.calAntalStolper(460));
+       assertEquals(4, cs.calcAntal(350,350),0);
+       assertEquals(6, cs.calcAntal(460,460),0);
    }
 
    @Test
    public void calRemAntalTest() {
        CalcRem cr = new CalcRem();
-       assertEquals(4, cr.calcAntalRem(480));
-       assertEquals(5, cr.calcAntalRem(510));
-
+       assertEquals(4, cr.calcAntal(480,480),0);
+       assertEquals(5, cr.calcAntal(510,510),0);
    }
 
    @Test
    public void calPriceForRim(){
        CalcStolper cs = new CalcStolper();
-       assertEquals(1600,cs.priceStolper(4, 400),0);
+       assertEquals(1600,cs.calcPrice(4, 400),0);
        CalcRem cr = new CalcRem();
-       assertEquals(50000, cs.priceStolper(5, 10000), 0);
+       assertEquals(50000, cs.calcPrice(5, 10000), 0);
    }
 
    @Test
    public void calLaegterAntalTest(){
        CalcLaegter cl = new CalcLaegter();
-       assertEquals(2, cl.calAntalLaegterFlatRoof(240));
-       assertEquals(3, cl.calAntalLaegterFlatRoof(270));
+       assertEquals(8,cl.calcAntal(240, 240),0);
 
    }
+   @Test
+   public void calTagAntalTest(){
+       CalcRoof cr = new CalcRoof();
+       assertEquals(1, cr.calcAntal(240, 240), 0);
+       assertEquals(5,cr.calcAntal(570, 600),0);
+   }
+   
+   @Test
+   public void calSternAntalTest(){
+       CalcStern cs = new CalcStern();
+       assertEquals(2, cs.calcAntal(240,240), 0);
+   }
+   
 }   

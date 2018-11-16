@@ -9,21 +9,22 @@ package calculations;
  *
  * @author Jesper
  */
-public class CalcStolper {
-      public int calAntalStolper(int length) {
-       int antal = 0;
-       if (length <= 450) {
-           antal = 4;
-       } else if (length > 450) {
-           antal = 6;
-       }
-       return antal;
-   }
+public class CalcStolper implements icalculator {
 
+    @Override
+    public double calcAntal(double length, double width) {
+        int antal = 0;
+        if (length <= 450) {
+            antal = 4;
+        } else if (length > 450) {
+            antal = 6;
+        }
+        return antal;
+    }
 
-   // instead of double price we need id from produkt where we get the actual price
-   public double priceStolper(int antal, double price){
-       double total = antal * price;
-       return total;
-   }
+    @Override
+    public double calcPrice(double antal, double price) {
+        double total = antal * price;
+        return total;
+    }
 }
