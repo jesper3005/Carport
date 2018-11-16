@@ -67,12 +67,17 @@ public class LogicFacade {
                 produkt.getPriceLine();
                 stykliste.add(produkt);
             }
+            if (produkt.getCategory().equals("skrue") && produkt.getPrice() == 3600) {
+                produkt.setQty(rem.calcAntal(length, width) * 8);
+                produkt.getPriceLine();
+                stykliste.add(produkt);
+            }
 
         }
         for (Produkt produkt : stykliste) {
             System.out.println(produkt);
-            priceOfOrder = produkt.getTotalPriceOfOrder();
-            
+            priceOfOrder += produkt.getTotalPriceOfOrder();
+
         }
         System.out.println("Total Price: " + priceOfOrder);
     }
