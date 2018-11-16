@@ -69,7 +69,7 @@ public class CalcJUnitTest {
    @Test
    public void calLaegterAntalTest(){
        CalcLaegter cl = new CalcLaegter();
-       assertEquals(8,cl.calcAntal(240, 240),0);
+       assertEquals(8,cl.calcAntal(2400, 2400),0);
 
    }
    @Test

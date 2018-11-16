@@ -25,8 +25,8 @@ public class CalcRem implements icalculator {
     // instead of double price we need id from produkt where we get the actual price
     @Override
     public double calcPrice(double antal, double price) {
-        double total = antal * price;
-        return total;
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
 }

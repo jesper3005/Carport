@@ -11,34 +11,70 @@ import calculations.CalcRem;
 import calculations.CalcRoof;
 import calculations.CalcStern;
 import calculations.CalcStolper;
+import dbAccess.ProduktMapper;
+import java.util.Scanner;
 
 /**
  *
  * @author oerte
  */
 public class LogicFacade {
-    
-    public static ArrayList<Produkt> stykliste = new ArrayList<>();
-    
-    public static void Stykliste(double length, double width){
-        //calculation objekter
+
+    public static void main(String[] args) {
+        ProduktMapper pm = new ProduktMapper();
+        //
+        ArrayList<Produkt> allProduktsFromDatabase = pm.produkts();
+        ArrayList<Produkt> stykliste = new ArrayList<>();
+        //
         CalcLaegter laegter = new CalcLaegter();
         CalcRem rem = new CalcRem();
         CalcRoof roof = new CalcRoof();
         CalcStern stern = new CalcStern();
         CalcStolper stolper = new CalcStolper();
         //
-        laegter.calcAntal(length, width);
-        rem.calcAntal(length, width);
-        roof.calcAntal(length, width);
-        stern.calcAntal(length, width);
-        stolper.calcAntal(length, width);
-        
-        
-        
-        
-        
-    }
-    
+        double priceOfOrder = 0;
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Length of carport:");
+        double length = sc.nextDouble();
+        System.out.println("Width of carport");
+        double width = sc.nextDouble();
+
+        for (Produkt produkt : allProduktsFromDatabase) {
+            if (produkt.getCategory().equals("lægte")) {
+                produkt.setQty(laegter.calcAntal(length, width));
+                produkt.getPriceLine();
+                stykliste.add(produkt);
+            }
+            if (produkt.getCategory().equals("rem") && produkt.getLength() == length) {
+                produkt.setQty(rem.calcAntal(length, width));
+                produkt.getPriceLine();
+                stykliste.add(produkt);
+
+            }
+            if (produkt.getCategory().equals("tagpap") && produkt.getLength() == 8000) {
+                produkt.setQty(roof.calcAntal(length, width));
+                produkt.getPriceLine();
+                stykliste.add(produkt);
+            }
+            if (produkt.getCategory().equals("stern")) {
+                produkt.setQty(stern.calcAntal(length, width));
+                produkt.getPriceLine();
+                stykliste.add(produkt);
+            }
+            if (produkt.getCategory().equals("stolpe") && produkt.getLength() == 3900) {
+                produkt.setQty(stolper.calcAntal(length, width));
+                produkt.getPriceLine();
+                stykliste.add(produkt);
+            }
+
+        }
+        for (Produkt produkt : stykliste) {
+            System.out.println(produkt);
+            priceOfOrder = produkt.getTotalPriceOfOrder();
             
+        }
+        System.out.println("Total Price: " + priceOfOrder);
+    }
+
 }

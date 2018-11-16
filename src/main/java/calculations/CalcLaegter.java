@@ -13,8 +13,8 @@ public class CalcLaegter implements icalculator {
 
     @Override
     public double calcAntal(double length, double width) {
-        length = length / 100; //from cm til meters
-        width = width / 100;
+        length = length / 1000; //from mm til meters
+        width = width / 1000;
         double antalLaegterLength = 0;
         double totalMeterLægter = 0;
         double antal = 0;
