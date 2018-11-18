@@ -16,13 +16,13 @@ import java.util.ArrayList;
  *
  * @author oerte
  */
-public class ProduktMapper {
+public class ProductMapper {
 
-    private final String ALL_PRODUKTS = "SELECT `*` FROM `product` ORDER BY `category`;";
+    private final String ALL_PRODUKTS = "SELECT `*` FROM `product` ORDER BY `length`;";
 
-    public ArrayList<Produkt> produkts() {
+    public ArrayList<Produkt> products() {
         try {
-            ArrayList<Produkt> produktList = new ArrayList<>();
+            ArrayList<Produkt> productList = new ArrayList<>();
             Connection c = Connector.connection();
             String query = ALL_PRODUKTS;
             PreparedStatement pstmt = c.prepareStatement(query);
@@ -37,9 +37,9 @@ public class ProduktMapper {
                 double width = res.getDouble("width");
                 double height = res.getDouble("height");
                 Produkt p = new Produkt(produkt_id, produkt_name, category, price, length, width, height);
-                produktList.add(p);
+                productList.add(p);
             }
-            return produktList;
+            return productList;
         } catch (SQLException | ClassNotFoundException ex) {
             System.out.println(ex.getStackTrace());
         }

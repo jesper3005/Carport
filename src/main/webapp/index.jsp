@@ -20,7 +20,7 @@
             <a class="active" href="/index.jsp">Home</a>
         </header>
         
-        <center><form action="frontcontroller" method="post">
+        <center><form action="FrontController" method="post">
         
         <h2>Vælg hvilken tag type du ønsker</h2>
         
@@ -35,7 +35,7 @@
         </div>
         
         <div class="container">
-            <a href="/carportNormalTag.jsp"><img src="./IMAGES/fladtTag.png" class="image"></a>
+            <a href="/carportFlatTag.jsp"><img src="./IMAGES/fladtTag.png" class="image"></a>
             <div class="overlay overlayFade">
                 <div class="text">
                     <h1>Fladt tag</h1>
