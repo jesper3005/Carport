@@ -4,6 +4,7 @@
     Author     : Jesper
 --%>
 
+<%@page import="functionLayer.LogicFacade"%>
 <%@page import="java.util.List"%>
 <%@page import="functionLayer.Produkt"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -15,7 +16,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <% List<Produkt> productList = (List<Produkt>) session.getAttribute("productList");%>
+        <% List<Produkt> productList = LogicFacade.getAllProduktFromDatabase();%>
         <header>
             <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
             <a href="#Admin">Sign up</a>
@@ -33,8 +34,9 @@
         <h4>Carport bredde:</h4>
         <select name="bredde">
             <% for (Produkt listOfRem : productList) {%>
+            <% System.out.println(listOfRem);%>
             <%if (listOfRem.getCategory().equals("rem")) {%>
-            out.print(<option value="<%=listOfRem.getLength()%>"><%=listOfRem.getLength()%>$</option>);
+            out.print(<option value="<%=listOfRem.getLength()%>"><%=listOfRem.getLength()%> mm</option>);
             <%}
                 }%>
         </select>
@@ -64,7 +66,7 @@
         <select name="Længde">
             <% for (Produkt listOfRem : productList) {%>
             <%if (listOfRem.getCategory().equals("rem")) {%>
-            out.print(<option value="<%=listOfRem.getLength()%>"><%=listOfRem.getLength()%>$</option>);
+            out.print(<option value="<%=listOfRem.getLength()%>"><%=listOfRem.getLength()%> mm</option>);
             <%}
                 }%>
         </select>
