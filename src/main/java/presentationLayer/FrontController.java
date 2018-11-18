@@ -32,23 +32,19 @@ public class FrontController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         try {
             Command action = Command.from(request);
             String view = action.execute(request, response);
             request.getRequestDispatcher("/WEB-INF/" + view + ".jsp").forward(request, response);
         } catch (LoginSampleException ex) {
             request.setAttribute("error", ex.getMessage());
-            String currentSite = (String) request.getParameter("currentSite");
-            String notIndex = "/WEB-INF/";
-            if (currentSite.equals("index")) {
-                notIndex = "";
-            }
-            request.getRequestDispatcher(notIndex + currentSite + ".jsp").forward(request, response);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
+
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

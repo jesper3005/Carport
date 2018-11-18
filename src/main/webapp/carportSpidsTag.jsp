@@ -25,7 +25,7 @@
         
         <br>
         
-        <form action="frontcontroller" method="POST">
+        <form action="FrontController" method="POST">
         
         <h4>Carport bredde:</h4>
         <select name="bredde">
