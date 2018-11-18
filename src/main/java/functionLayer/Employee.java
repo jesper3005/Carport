@@ -11,4 +11,16 @@ package functionLayer;
  */
 public class Employee {
     
+    String firstName, lastName, email, role;
+    int password, id;
+
+    public Employee(String firstName, String lastName, String email, String role, int password, int id) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.role = role;
+        this.password = password;
+        this.id = id;
+    }
+
 }
