@@ -9,7 +9,7 @@ package functionLayer;
  *
  * @author Jesper
  */
-public class Produkt {
+public class Product {
 
     private int id;
     private String produktName;
@@ -22,7 +22,7 @@ public class Produkt {
     private double height;
     private double totalPriceOfOrder;
 
-    public Produkt(int id, String produktName, String category, double price, double length, double width, double height) {
+    public Product(int id, String produktName, String category, double price, double length, double width, double height) {
         this.id = id;
         this.produktName = produktName;
         this.category = category;
@@ -32,7 +32,7 @@ public class Produkt {
         this.height = height;
     }
 
-    public Produkt(int id, String produktName, String category, double price, double qty, double priceLine, double length, double width, double height) {
+    public Product(int id, String produktName, String category, double price, double qty, double priceLine, double length, double width, double height) {
         this.id = id;
         this.produktName = produktName;
         this.category = category;

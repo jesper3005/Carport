@@ -12,6 +12,7 @@ import calculations.CalcRoof;
 import calculations.CalcStern;
 import calculations.CalcStolper;
 import dbAccess.ProductMapper;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -23,8 +24,8 @@ public class LogicFacadePutputWindow {
     public static void main(String[] args) {
         ProductMapper pm = new ProductMapper();
         //
-        ArrayList<Produkt> allProduktsFromDatabase = pm.products();
-        ArrayList<Produkt> stykliste = new ArrayList<>();
+        List<Product> allProduktsFromDatabase = pm.products();
+        List<Product> stykliste = new ArrayList<>();
         //
         CalcLaegter laegter = new CalcLaegter();
         CalcRem rem = new CalcRem();
@@ -40,7 +41,7 @@ public class LogicFacadePutputWindow {
         System.out.println("Width of carport");
         double width = sc.nextDouble();
 
-        for (Produkt produkt : allProduktsFromDatabase) {
+        for (Product produkt : allProduktsFromDatabase) {
             if (produkt.getCategory().equals("lægte")) {
                 produkt.setQty(laegter.calcAntal(length, width));
                 produkt.getPriceLine();
@@ -74,12 +75,12 @@ public class LogicFacadePutputWindow {
             }
 
         }
-        for (Produkt produkt : stykliste) {
+        for (Product produkt : stykliste) {
             System.out.println(produkt);
             priceOfOrder += produkt.getTotalPriceOfOrder();
         }
         
-        for (Produkt produkt : allProduktsFromDatabase) {
+        for (Product produkt : allProduktsFromDatabase) {
             if(produkt.getCategory().equals("rem")){
                 System.out.println(produkt.getLength());
             }
