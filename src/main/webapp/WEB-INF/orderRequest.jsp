@@ -13,6 +13,7 @@
         <title>Order Request</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="./CSS/headerCSS.css">
+        <link rel="stylesheet" href="./CSS/orderRequest.css">
         <link rel="icon" href=""
     </head>
     <body>
@@ -25,11 +26,37 @@
             <a href="#Profile">Login</a> 
             <a class="active" href="/index.jsp">Home</a>
         </header>
+        </br>
+        </br>
+        </br>
 
-        <%for (Product list : stykliste) {
-        out.print(list+"</br>");
-        }%>
-        <%="Total Price: " +totalPriceOfCarport+ " DKK"%>
-        
-    </body>
+        <table class="blueTable">
+            <thead>
+                <tr>
+                    <th>Produkt id</th>
+                    <th>Produkt Navn</th>
+                    <th>Kategori</th>
+                    <th>StykPris</th>
+                    <th>Antal</th>
+                    <th>LinjePris</th>
+                    <th>Længde</th>
+                    <th>Bredde</th>
+                    <th>Højde</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <%for (Product list : stykliste) {%>
+                    <td><%=list.getId()%></td><td><%=list.getProduktName()%></td><td><%=list.getCategory()%></td><td><%=list.getPrice() + " DKK"%></td><td><%=list.getQty()%></td><td><%=list.getPriceLine() + " DKK"%></td><td><%=list.getLength()%></td><td><%=list.getWidth()%></td><td><%=list.getHeight()%></td></tr>
+                    <%}%>
+
+            </tbody>
+        </tr>
+    </table>
+    </br>
+    </br>
+    <%="Total Pris: " + totalPriceOfCarport + " DKK"%>
+
+
+</body>
 </html>
