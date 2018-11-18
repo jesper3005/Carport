@@ -1,19 +1,14 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package calculations;
+package functionLayer;
+
 /**
  *
- * @author oerte
+ * @author Jesper
  */
-public interface icalculator {
-    
-    
-    double calcAntal(double length, double width);
-    double calcPrice(double antal, double price);
-    
+public class Carport {
     
 }

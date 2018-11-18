@@ -5,7 +5,7 @@
  */
 package dbAccess;
 
-import functionLayer.Produkt;
+import functionLayer.Product;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,9 +20,9 @@ public class ProductMapper {
 
     private final String ALL_PRODUKTS = "SELECT `*` FROM `product` ORDER BY `length`;";
 
-    public ArrayList<Produkt> products() {
+    public ArrayList<Product> products() {
         try {
-            ArrayList<Produkt> productList = new ArrayList<>();
+            ArrayList<Product> productList = new ArrayList<>();
             Connection c = Connector.connection();
             String query = ALL_PRODUKTS;
             PreparedStatement pstmt = c.prepareStatement(query);
@@ -36,7 +36,7 @@ public class ProductMapper {
                 double length = res.getDouble("length");
                 double width = res.getDouble("width");
                 double height = res.getDouble("height");
-                Produkt p = new Produkt(produkt_id, produkt_name, category, price, length, width, height);
+                Product p = new Product(produkt_id, produkt_name, category, price, length, width, height);
                 productList.add(p);
             }
             return productList;

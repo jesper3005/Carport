@@ -6,26 +6,22 @@
 package presentationLayer;
 
 import exceptions.LoginSampleException;
-import functionLayer.LogicFacade;
-import functionLayer.Produkt;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+
 
 /**
  *
- * @author oerte
+ * @author Jesper
  */
-public class FlatCarport extends Command{
+public class PointedRoof extends Command{
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
-        List<Produkt> productList = LogicFacade.getAllProduktFromDatabase();
-        HttpSession session = request.getSession();
-        session.setAttribute("productList", productList);
         
-        return "carportFlatTag";
+        
+        return "carportSpidsTag";
     }
     
 }

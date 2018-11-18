@@ -20,7 +20,9 @@ abstract class Command {
 
     private static void initCommands() {
         commands = new HashMap<>();
-        commands.put("FlatCarport", new FlatCarport());
+        commands.put("FlatRoof", new FlatRoof());
+        commands.put("PointedRoof", new PointedRoof());
+        commands.put("OrderRequest", new OrderRequest());
 
     }
 
