@@ -21,6 +21,7 @@ abstract class Command {
     private static void initCommands() {
         commands = new HashMap<>();
         commands.put("FlatCarport", new FlatCarport());
+        commands.put("spidstTag", new SpidstTag());
 
     }
 

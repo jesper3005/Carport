@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="./CSS/headerCSS.css">
         <link rel="icon" href=""
-        <title>Fog</title>
+        
     </head>
     <body>
         <header>
@@ -25,6 +25,35 @@
         
         <h2>Vælg hvilken tag type du ønsker</h2>
         
+        
+        <div class="container">
+            <img src="./IMAGES/spidsTag.jpg" class="image">
+            <div class="overlay overlayFade">
+                <div class="text">
+                    <h1>Spidst tag</h1>
+                    Quick-byg carport med spidst tag
+                </div>
+            </div>
+            <input type="hidden" name="command" value="spidstTag">
+            <input type="submit" value="Spidst Tag">
+        </div>
+        
+        <div class="container">
+            <img src="./IMAGES/fladtTag.png" class="image">
+            <div class="overlay overlayFade">
+                <div class="text">
+                    <h1>Fladt tag</h1>
+                    Quick-byg carport med fladt tag
+                </div>
+            </div>
+            <input type="hidden" name="command" value="fladtTag">
+            <input type="submit" value="Fladt Tag">
+        </div>
+        
+        
+        
+        
+        <!--
         <div class="container">
             <a href="/carportSpidsTag.jsp"><img src="./IMAGES/spidsTag.jpg" class="image"></a>
             <div class="overlay overlayFade">
@@ -43,7 +72,7 @@
                     Quick-byg carport med fladt tag
                 </div>
             </div>
-        </div>
+        </div> -->
         
             </form></center>
     </body>
