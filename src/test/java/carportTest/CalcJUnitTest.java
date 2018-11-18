@@ -8,7 +8,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import calculations.CalcLaegter;
 import calculations.CalcRem;
-import calculations.CalcRoof;
+import calculations.CalcTag;
 import calculations.CalcStern;
 import calculations.CalcStolper;
 
@@ -74,7 +74,7 @@ public class CalcJUnitTest {
    }
    @Test
    public void calTagAntalTest(){
-       CalcRoof cr = new CalcRoof();
+       CalcTag cr = new CalcTag();
        assertEquals(1, cr.calcAntal(2400, 2400), 0);
        assertEquals(5,cr.calcAntal(5700, 6000),0);
    }

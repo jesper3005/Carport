@@ -7,7 +7,7 @@ package functionLayer;
 
 import calculations.CalcLaegter;
 import calculations.CalcRem;
-import calculations.CalcRoof;
+import calculations.CalcTag;
 import calculations.CalcStern;
 import calculations.CalcStolper;
 import dbAccess.ProductMapper;
@@ -41,7 +41,7 @@ public class LogicFacade {
         //Objekter Af Carport part calculations
         CalcLaegter laegter = new CalcLaegter();
         CalcRem rem = new CalcRem();
-        CalcRoof roof = new CalcRoof();
+        CalcTag roof = new CalcTag();
         CalcStern stern = new CalcStern();
         CalcStolper stolper = new CalcStolper();
         // List with all proucts from our product linje. Ordered by length of "rem"

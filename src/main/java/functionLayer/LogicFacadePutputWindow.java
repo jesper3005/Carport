@@ -8,7 +8,7 @@ package functionLayer;
 import java.util.ArrayList;
 import calculations.CalcLaegter;
 import calculations.CalcRem;
-import calculations.CalcRoof;
+import calculations.CalcTag;
 import calculations.CalcStern;
 import calculations.CalcStolper;
 import dbAccess.ProductMapper;
@@ -29,7 +29,7 @@ public class LogicFacadePutputWindow {
         //
         CalcLaegter laegter = new CalcLaegter();
         CalcRem rem = new CalcRem();
-        CalcRoof roof = new CalcRoof();
+        CalcTag roof = new CalcTag();
         CalcStern stern = new CalcStern();
         CalcStolper stolper = new CalcStolper();
         //
