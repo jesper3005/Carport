@@ -12,15 +12,19 @@ package calculations;
 public class CalcLaegter implements icalculator {
 
    @Override
-    public double calcAntal(double length, double width) {
+    public double calcAntal(int length, int width) {
+        double l = length;
+        double w = width;
         double antalLaegterLength = 0;
         double totalMeterLægter = 0;
         double antal = 0;
         //En lægte per 0.5 meter (50 cm)
-        antalLaegterLength = length / 50;//50 cm
+        antalLaegterLength = l / 50;//50 cm
+        System.out.println(antalLaegterLength);
         // Hvad mange meter lægter skal vi brug til hele carportens bredje
-        totalMeterLægter = antalLaegterLength * width;//
-        antal = Math.ceil((totalMeterLægter / 540)+ antalLaegterLength); //
+        totalMeterLægter = (antalLaegterLength * w)/540;//
+        antal = Math.ceil(totalMeterLægter+antalLaegterLength);
+        System.out.println(antal);
         return antal;
     }
 
@@ -28,5 +32,7 @@ public class CalcLaegter implements icalculator {
     public double calcPrice(double antal, double price) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
 
 }

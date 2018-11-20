@@ -23,13 +23,15 @@ public class OrderRequest extends Command {
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
         HttpSession session = request.getSession();
         //length and width from carportFlatRoof or carportPointedRoof jsp page.
-        double laengde = Double.parseDouble(request.getParameter("laengde"));
-        double bredde = Double.parseDouble(request.getParameter("bredde"));
+        int laengde = Integer.parseInt(request.getParameter("laengde"));
+        int bredde = Integer.parseInt(request.getParameter("bredde"));
         //passing length to CarportCalulator in LogicFacade classe
         List<Product> stykliste = LogicFacade.CarportCalculater(laengde, bredde);
         // "stykliste is passed to a metode in LogicFacde, who calculates the total price of the carport
         double totalPriceOfCarport = LogicFacade.totalPriceOfCarport(stykliste);
-        //Set styklisten and totalPriceOfCarport in session
+        //Set styklisten, bredde, længde and totalPriceOfCarport in session
+        session.setAttribute("bredde", bredde);
+        session.setAttribute("laengde", laengde);
         session.setAttribute("stykliste", stykliste);
         session.setAttribute("totalPriceOfCarport", totalPriceOfCarport);
         // Transfer towards orderRequest.jsp

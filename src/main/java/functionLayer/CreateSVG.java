@@ -5,9 +5,6 @@
  */
 package functionLayer;
 
-import java.util.List;
-import javax.servlet.http.HttpSession;
-
 /**
  *
  * @author Jesper
@@ -15,16 +12,16 @@ import javax.servlet.http.HttpSession;
 public class CreateSVG {
 
     private String mySVG = null;
-    
+    private StringBuilder sb = new StringBuilder();
 
-    public CreateSVG(List<Product> stykliste, int width, int height) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("<SVG width=\"600\" height=\"600\">");
+    public CreateSVG(int height) {
+        this.sb
+                = sb.append("<SVG width=\"600\" height=\"600\">");
         //ADD ALL METHODS FOR SVG DRAWING FROM TOP
-        sb.append(createLægter(stykliste, width, height));
-        
+        sb.append(createLægter(height));
+
         sb.append("</SVG>");
-        mySVG = sb.toString();
+        this.mySVG = sb.toString();
 
     }
 
@@ -32,23 +29,19 @@ public class CreateSVG {
         return mySVG;
     }
 
-    private String createLægter(List<Product> stykliste, int width, int height) {
+    private String createLægter(int height) {
         StringBuilder sb = new StringBuilder();
-        int qty = 0;
-        for (Product product : stykliste) {
-            if (product.getCategory().equals("laegte")) {
-                qty = (int) product.getQty() -2;
-            }
-        }
-        
+        int qty = height / 50;
+
         sb.append("<rect x=\"30\" y=\"40\" height=\"5\" width=\"405\" style=\"stroke: #292929; fill:none;\"/>");
         sb.append("<rect x=\"30\" y=\"380\" height=\"5\" width=\"405\" style=\"stroke: #292929; fill:none;\"/>");
         height -= 80;
-        
-        int delta = height / (qty + 1);
-        for (int i = 0; i < qty+1; i++) {
+
+        double delta = height / (qty - 2);
+        for (int i = 0; i < qty; i++) {
+            System.out.println(qty);
+            sb.append("<rect x=\"30\" y=\"" + height + "\" height=\"5\" width=\"405\" style=\"stroke: #292929; fill:none;\"/>");
             height -= delta;
-            sb.append("<rect x=\"30\" y=\""+height+"\" height=\"5\" width=\"405\" style=\"stroke: #292929; fill:none;\"/>");
         }
         return sb.toString();
     }

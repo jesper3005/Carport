@@ -30,9 +30,9 @@ public class Drawing extends Command {
         
         //Carport fra toppen.
         HttpSession session = request.getSession();
-        List<Product> stykliste = (List)session.getAttribute("stykliste");
+        int height = (int) session.getAttribute("laengde");
         
-        CreateSVG cSVG = new CreateSVG(stykliste, 390, 420);
+        CreateSVG cSVG = new CreateSVG(height);
         
        
         

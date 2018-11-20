@@ -12,7 +12,7 @@ package calculations;
 public class CalcStolper implements icalculator {
 
     @Override
-    public double calcAntal(double length, double width) {
+    public double calcAntal(int length, int width) {
         int antal = 0;
         if (length <= 450) {
             antal = 4;

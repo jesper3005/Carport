@@ -12,7 +12,7 @@ package calculations;
 public class CalcRem implements icalculator {
 
     @Override
-    public double calcAntal(double length, double width) {
+    public double calcAntal(int length, int width) {
         int antal = 0;
         if (width >= 510) {
             antal = 5;

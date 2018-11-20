@@ -37,9 +37,9 @@ public class LogicFacadePutputWindow {
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Length of carport:");
-        double length = sc.nextDouble();
+        int length = sc.nextInt();
         System.out.println("Width of carport");
-        double width = sc.nextDouble();
+        int width = sc.nextInt();
 
         for (Product produkt : allProduktsFromDatabase) {
             if (produkt.getCategory().equals("lægte")) {

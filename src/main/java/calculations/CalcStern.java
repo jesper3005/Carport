@@ -12,9 +12,9 @@ package calculations;
 public class CalcStern implements icalculator {
 
     @Override
-    public double calcAntal(double length, double width) {
+    public double calcAntal(int length, int width) {
         double totalLength = ((2 * length) + (2 * width));
-        return Math.ceil(totalLength / 540);
+        return  Math.ceil(totalLength / 540);
     }
 
     @Override

@@ -35,7 +35,7 @@ public class LogicFacade {
         return totalPriceOfCarport;
     }
 
-    public static List<Product> CarportCalculater(double length, double width) {
+    public static List<Product> CarportCalculater(int length, int width) {
         //Objekter Af Carport part calculations
         CalcLaegter laegter = new CalcLaegter();
         CalcRem rem = new CalcRem();

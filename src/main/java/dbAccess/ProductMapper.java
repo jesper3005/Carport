@@ -33,9 +33,9 @@ public class ProductMapper {
                 String produkt_name = res.getString("produkt_name");
                 String category = res.getString("category");
                 double price = res.getDouble("price");
-                double length = res.getDouble("length");
-                double width = res.getDouble("width");
-                double height = res.getDouble("height");
+                int length = res.getInt("length");
+                int width = res.getInt("width");
+                int height = res.getInt("height");
                 Product p = new Product(produkt_id, produkt_name, category, price, length, width, height);
                 productList.add(p);
             }

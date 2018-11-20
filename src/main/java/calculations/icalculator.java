@@ -5,15 +5,15 @@
  * and open the template in the editor.
  */
 package calculations;
+
 /**
  *
  * @author oerte
  */
 public interface icalculator {
-    
-    
-    double calcAntal(double length, double width);
+
+    double calcAntal(int length, int width);
+
     double calcPrice(double antal, double price);
-    
-    
+
 }
