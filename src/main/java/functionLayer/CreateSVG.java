@@ -32,9 +32,9 @@ public class CreateSVG {
     private String createLægter(int height) {
         StringBuilder sb = new StringBuilder();
         int qty = height / 50;
-
+        int lastLægte = height - 40;
         sb.append("<rect x=\"30\" y=\"40\" height=\"5\" width=\"405\" style=\"stroke: #292929; fill:none;\"/>");
-        sb.append("<rect x=\"30\" y=\"380\" height=\"5\" width=\"405\" style=\"stroke: #292929; fill:none;\"/>");
+        sb.append("<rect x=\"30\" y=\""+ lastLægte +"\" height=\"5\" width=\"405\" style=\"stroke: #292929; fill:none;\"/>");
         height -= 80;
 
         double delta = height / (qty - 2);

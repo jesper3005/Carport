@@ -29,10 +29,11 @@ public class Drawing extends Command {
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
         
         //Carport fra toppen.
-        HttpSession session = request.getSession();
-        int height = (int) session.getAttribute("laengde");
+        //HttpSession session = request.getSession();
+        //int height = (int) session.getAttribute("laengde");
         
-        CreateSVG cSVG = new CreateSVG(height);
+        
+        CreateSVG cSVG = new CreateSVG(420);
         
        
         
