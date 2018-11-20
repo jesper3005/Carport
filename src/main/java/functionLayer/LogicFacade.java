@@ -89,6 +89,13 @@ public class LogicFacade {
                 produkt.getPriceLine();
                 stykliste.add(produkt);
             }
+            if (produkt.getId() == 27) {//vinkelbeslag
+                double antalRem;
+                antalRem = (rem.calcAntal(length, width) * 4);//4 vinkelbeslag per rem
+                produkt.setQty(antalRem);
+                produkt.getPriceLine();
+                stykliste.add(produkt);
+            }
 
         }
         return stykliste;
