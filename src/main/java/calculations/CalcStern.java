@@ -9,17 +9,17 @@ package calculations;
  *
  * @author oerte
  */
-public class CalcStern implements icalculator{
+public class CalcStern implements icalculator {
 
     @Override
     public double calcAntal(double length, double width) {
-        double totalMeter = ((2*length)+(2*width))/100;
-        return Math.ceil(totalMeter/5.4);
+        double totalLength = ((2 * length) + (2 * width));
+        return Math.ceil(totalLength / 540);
     }
 
     @Override
     public double calcPrice(double antal, double price) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

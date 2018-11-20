@@ -11,16 +11,16 @@ package calculations;
  */
 public class CalcLaegter implements icalculator {
 
-    @Override
+   @Override
     public double calcAntal(double length, double width) {
-        length = length / 100; //from cm til meters
-        width = width / 100;
         double antalLaegterLength = 0;
         double totalMeterLægter = 0;
         double antal = 0;
-        antalLaegterLength = Math.ceil(length / 0.5);
-        totalMeterLægter = Math.ceil(antalLaegterLength * width);//12 meter
-        antal = Math.ceil(totalMeterLægter / 5.4) + antalLaegterLength; //
+        //En lægte per 0.5 meter (50 cm)
+        antalLaegterLength = length / 50;//50 cm
+        // Hvad mange meter lægter skal vi brug til hele carportens bredje
+        totalMeterLægter = antalLaegterLength * width;//
+        antal = Math.ceil((totalMeterLægter / 540)+ antalLaegterLength); //
         return antal;
     }
 

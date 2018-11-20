@@ -15,10 +15,10 @@ public class CalcTag implements icalculator {
     @Override
     public double calcAntal(double length, double width) {
         double antal = 0; // antal tagpap
-        double m2 = 0; // quadratmeter
-        int TagPap = 8; // hardt codet tagpappe som er 8m lang
-        m2 = (width * length) / 1000000; // omregning fra cm2 til m2//1 m2 = 10000cm2
-        antal = Math.ceil(m2 / TagPap);
+        double cm2 = 0; // quadratmeter
+        int TagPap = 80000; // hardt codet tagpappe som er 8m lang det 80000 cm2
+        cm2 = (width * length);
+        antal = Math.ceil(cm2 / TagPap);
         return antal;
     }
 

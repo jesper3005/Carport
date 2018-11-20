@@ -69,14 +69,14 @@ public class CalcJUnitTest {
    @Test
    public void calLaegterAntalTest(){
        CalcLaegter cl = new CalcLaegter();
-       assertEquals(8,cl.calcAntal(2400, 2400),0);
+       assertEquals(7,cl.calcAntal(240, 240),0);
 
    }
    @Test
    public void calTagAntalTest(){
        CalcTag cr = new CalcTag();
-       assertEquals(1, cr.calcAntal(2400, 2400), 0);
-       assertEquals(5,cr.calcAntal(5700, 6000),0);
+       assertEquals(1, cr.calcAntal(240, 240), 0);
+       assertEquals(5,cr.calcAntal(570, 600),0);
    }
    
    @Test

@@ -36,8 +36,6 @@ public class LogicFacade {
     }
 
     public static List<Product> CarportCalculater(double length, double width) {
-        // Mapper who returns all products from our product line
-        ProductMapper pm = new ProductMapper();
         //Objekter Af Carport part calculations
         CalcLaegter laegter = new CalcLaegter();
         CalcRem rem = new CalcRem();
@@ -45,7 +43,7 @@ public class LogicFacade {
         CalcStern stern = new CalcStern();
         CalcStolper stolper = new CalcStolper();
         // List with all proucts from our product linje. Ordered by length of "rem"
-        List<Product> allProduktsFromDatabase = pm.products();
+        List<Product> allProduktsFromDatabase = getAllProductsFromDatabase();
         // List included everything needed to build the requestet carport
         List<Product> stykliste = new ArrayList<>();
 
@@ -61,23 +59,33 @@ public class LogicFacade {
                 stykliste.add(produkt);
 
             }
-            if (produkt.getCategory().equals("tagpap") && produkt.getLength() == 8000) {
+            if (produkt.getCategory().equals("tagpap") && produkt.getLength() == 800) {
                 produkt.setQty(roof.calcAntal(length, width));
                 produkt.getPriceLine();
                 stykliste.add(produkt);
             }
-            if (produkt.getCategory().equals("stern")) {
+            if (produkt.getCategory().equals("stern") && produkt.getId() == 42) {
                 produkt.setQty(stern.calcAntal(length, width));
                 produkt.getPriceLine();
                 stykliste.add(produkt);
             }
-            if (produkt.getCategory().equals("stolpe") && produkt.getLength() == 3900) {
+            if (produkt.getCategory().equals("stolpe") && produkt.getLength() == 390) {
                 produkt.setQty(stolper.calcAntal(length, width));
                 produkt.getPriceLine();
                 stykliste.add(produkt);
             }
-            if (produkt.getCategory().equals("skrue") && produkt.getPrice() == 3600) {
-                produkt.setQty(rem.calcAntal(length, width) * 8);
+            if (produkt.getCategory().equals("skrue") && produkt.getId() == 32) {
+                double antalRem, antalStern;
+                antalRem = (rem.calcAntal(length, width) * 8);
+                antalStern = (stern.calcAntal(length, width) * 6);//per stern 6 skruer
+                produkt.setQty(antalRem + antalStern);
+                produkt.getPriceLine();
+                stykliste.add(produkt);
+            }
+            if (produkt.getCategory().equals("søm") && produkt.getId() == 36) {
+                double antalLægte;
+                antalLægte = (laegter.calcAntal(length, width) * 4);//4 søm per lægte
+                produkt.setQty(antalLægte);
                 produkt.getPriceLine();
                 stykliste.add(produkt);
             }

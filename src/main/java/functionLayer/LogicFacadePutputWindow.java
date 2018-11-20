@@ -47,28 +47,38 @@ public class LogicFacadePutputWindow {
                 produkt.getPriceLine();
                 stykliste.add(produkt);
             }
+        }
+        for (Product produkt : allProduktsFromDatabase) {
             if (produkt.getCategory().equals("rem") && produkt.getLength() == length) {
                 produkt.setQty(rem.calcAntal(length, width));
                 produkt.getPriceLine();
                 stykliste.add(produkt);
 
             }
-            if (produkt.getCategory().equals("tagpap") && produkt.getLength() == 8000) {
+        }
+        for (Product produkt : allProduktsFromDatabase) {
+            if (produkt.getCategory().equals("tagpap") && produkt.getLength() == 800) {
                 produkt.setQty(roof.calcAntal(length, width));
                 produkt.getPriceLine();
                 stykliste.add(produkt);
             }
-            if (produkt.getCategory().equals("stern")) {
+        }
+        for (Product produkt : allProduktsFromDatabase) {
+            if (produkt.getId() == 42); {
                 produkt.setQty(stern.calcAntal(length, width));
                 produkt.getPriceLine();
                 stykliste.add(produkt);
             }
-            if (produkt.getCategory().equals("stolpe") && produkt.getLength() == 3900) {
+        }
+        for (Product produkt : allProduktsFromDatabase) {
+            if (produkt.getCategory().equals("stolpe") && produkt.getLength() == 390) {
                 produkt.setQty(stolper.calcAntal(length, width));
                 produkt.getPriceLine();
                 stykliste.add(produkt);
             }
-            if (produkt.getCategory().equals("skrue") && produkt.getPrice() == 3600) {
+        }
+        for (Product produkt : allProduktsFromDatabase) {
+            if (produkt.getCategory().equals("skrue") && produkt.getPrice() == 36) {
                 produkt.setQty(rem.calcAntal(length, width) * 8);
                 produkt.getPriceLine();
                 stykliste.add(produkt);
@@ -79,9 +89,9 @@ public class LogicFacadePutputWindow {
             System.out.println(produkt);
             priceOfOrder += produkt.getTotalPriceOfOrder();
         }
-        
+
         for (Product produkt : allProduktsFromDatabase) {
-            if(produkt.getCategory().equals("rem")){
+            if (produkt.getCategory().equals("rem")) {
                 System.out.println(produkt.getLength());
             }
         }
