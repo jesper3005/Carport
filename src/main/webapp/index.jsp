@@ -19,14 +19,15 @@
             <a href="#Admin">Sign up</a>
             <a href="#Profile">Login</a> 
             <a class="active" href="/index.jsp">Home</a>
+            
+            
+            
         </header>
 
     <center>
         <form action="FrontController" method="post">
 
             <h2>Vælg hvilken tag type du ønsker</h2>
-
-
             <div class="container">
                 <img src="./IMAGES/spidsTag.jpg" class="image">
                 <div class="overlay overlayFade">
@@ -54,6 +55,8 @@
             </div>
         </form>
     </center>
+    
+    
 
 
 

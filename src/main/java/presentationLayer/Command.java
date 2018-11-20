@@ -23,6 +23,7 @@ abstract class Command {
         commands.put("FlatRoof", new FlatRoof());
         commands.put("PointedRoof", new PointedRoof());
         commands.put("OrderRequest", new OrderRequest());
+        commands.put("drawing", new Drawing());
 
     }
 

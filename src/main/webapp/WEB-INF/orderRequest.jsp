@@ -56,7 +56,11 @@
     </br>
     </br>
     <%="Total Pris: " + totalPriceOfCarport + " DKK"%>
-
+    
+                <form action="FrontController" method="post"> 
+                <input type="hidden" name="command" value="drawing">
+                <input type="submit" value="se tegning">
+            </form>
 
 </body>
 </html>

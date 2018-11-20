@@ -22,6 +22,7 @@
             <a href="#Admin">Sign up</a>
             <a href="#Profile">Login</a> 
             <a class="active" href="/index.jsp">Home</a>
+            
         </header>
 
     <center><h1>Carport med fladt tag</h1></center>
