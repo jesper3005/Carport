@@ -28,6 +28,7 @@ public class Drawing extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
         
+<<<<<<< HEAD
         //Carport fra toppen.
         //HttpSession session = request.getSession();
         //int height = (int) session.getAttribute("laengde");
@@ -36,35 +37,25 @@ public class Drawing extends Command {
         CreateSVG cSVG = new CreateSVG(420);
         
        
+=======
+        HttpSession session = request.getSession();
+        int length = (int) session.getAttribute("laengde");
+        int width = (int) session.getAttribute("bredde");
+>>>>>>> d54826f3861be3c6f510ffc8adfaa48669ed4ac1
         
+        //Carport fra toppen.
+        CreateSVG cSVG = new CreateSVG(length, width);
         request.setAttribute("drawing", cSVG.getMySVG());
         
         
-        
-//        double laegterAntal = -2; //-2 fordi vi ved hvor den første og sidste skal ligge
-//        for (Product product : stykliste) {
-//            if(product.getCategory().equals("laegte")) {
-//               laegterAntal = product.getQty();
-//            }
-//        }
-//        
-//        int width = 390; //Request
-//        int height = 420; //Request
-//        
-//        int resternedeLaegterPlads = height - 80;
-//        resternedeLaegterPlads /= (laegterAntal + 1);
-//        
-//        StringBuilder sb = new StringBuilder();
+        //Carport fra siden.
         
         
-    
         
-        
-        //String drawing = "<rect x=\"30\" y=\"40\" height=\"5\" width=\"405\" style=\"stroke: #292929; fill:none;\"/>";
         
         
        
-        //request.setAttribute("drawing", fundament);
+        
         
         return "svgTest";
     }
