@@ -16,7 +16,7 @@
         <link rel="icon" href=""
     </head>
     <body>
-        <% List<Product> productList = (List<Product>) session.getAttribute("productList");%>
+        <% List<Product> orderByLengthRemList = (List<Product>) session.getAttribute("orderByLengthRemList");%>
         <header>
             <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
             <a href="#SignUp">Sign up</a>
@@ -35,7 +35,7 @@
 
         <h4>Carport bredde:</h4>
         <select name="bredde">
-            <% for (Product listOfRem : productList) {%>
+            <% for (Product listOfRem : orderByLengthRemList) {%>
             <%if (listOfRem.getCategory().equals("rem")) {%>
             out.print(<option value="<%=listOfRem.getLength()%>"><%=listOfRem.getLength()%> cm</option>);
             <%}
@@ -46,7 +46,7 @@
 
         <h4>Carport længde:</h4>
         <select name="laengde">
-            <% for (Product listOfRem : productList) {%>
+            <% for (Product listOfRem : orderByLengthRemList) {%>
             <%if (listOfRem.getCategory().equals("rem")) {%>
             out.print(<option value="<%=listOfRem.getLength()%>"><%=listOfRem.getLength()%> cm</option>);
             <%}

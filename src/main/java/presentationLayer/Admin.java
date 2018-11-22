@@ -24,7 +24,7 @@ public class Admin extends Command {
         HttpSession session = request.getSession();
         ProductMapper pm = new ProductMapper();
         List<Product> allProducts = pm.allProducts();
-        session.setAttribute("allProdukt", allProducts);
+        session.setAttribute("allProduct", allProducts);
         return "admin";
     }
 

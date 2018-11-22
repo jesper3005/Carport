@@ -23,6 +23,15 @@ public class Product {
     private double width;
     private double height;
     private double totalPriceOfOrder;
+
+    
+    //constructoren is used in ProductMapper orderByLengthRem()
+    public Product(String category, double length) {
+        this.category = category;
+        this.length = length;
+    }
+    
+    
     
     public Product(int id, String produktName, String category, double price, double length, double width, double height) {
         this.id = id;

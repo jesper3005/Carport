@@ -8,6 +8,8 @@ package presentationLayer;
 import exceptions.LoginSampleException;
 import functionLayer.LogicFacade;
 import functionLayer.Product;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,6 +29,13 @@ public class OrderRequest extends Command {
         double bredde = Double.parseDouble(request.getParameter("bredde"));
         //passing length to CarportCalulator in LogicFacade classe
         List<Product> stykliste = LogicFacade.CarportCalculater(laengde, bredde);
+        Collections.sort(stykliste, new Comparator<Product>(){
+            @Override
+            public int compare(Product t, Product t1) {
+               return (int) (t.getPriceLine()-t1.getPriceLine());
+            }
+            
+             });
         // "stykliste is passed to a metode in LogicFacde, who calculates the total price of the carport
         double totalPriceOfCarport = LogicFacade.totalPriceOfCarport(stykliste);
         //Set styklisten, bredde, længde and totalPriceOfCarport in session

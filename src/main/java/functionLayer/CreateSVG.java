@@ -36,7 +36,6 @@ public class CreateSVG {
 
     private String createLægter(int length, int width) {
         StringBuilder sb = new StringBuilder();
-        
 
         //Calculates the quantity of current material
         double qty = Math.ceil(length / 50);
