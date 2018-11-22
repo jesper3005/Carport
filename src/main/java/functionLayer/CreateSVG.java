@@ -15,12 +15,15 @@ public class CreateSVG {
     private StringBuilder sb = new StringBuilder();
 
     public CreateSVG(int length, int width) {
-        this.sb = sb.append("<SVG width=\"800\" height=\"800\">");
+        int width1 = length + 200;
+        int height1 = width +100;
+        this.sb = sb.append("<SVG width=\""+ width1 +"\" height=\"" + height1 + "\">");
         //ADD ALL METHODS FOR SVG DRAWING FROM TOP
         sb.append(createRemme(length, width));
         sb.append(createLægter(length, width));
         sb.append(createStolper(length, width));
-        sb.append(createText(length, width));
+        sb.append(createLenghtText(length, width));
+        sb.append(createWidthText(length, width));
         
         sb.append("</SVG>");
         this.mySVG = sb.toString();
@@ -33,13 +36,7 @@ public class CreateSVG {
 
     private String createLægter(int length, int width) {
         StringBuilder sb = new StringBuilder();
-<<<<<<< HEAD
-        int qty = height / 50;
-        int lastLægte = height - 40;
-        sb.append("<rect x=\"30\" y=\"40\" height=\"5\" width=\"405\" style=\"stroke: #292929; fill:none;\"/>");
-        sb.append("<rect x=\"30\" y=\""+ lastLægte +"\" height=\"5\" width=\"405\" style=\"stroke: #292929; fill:none;\"/>");
-        height -= 80;
-=======
+        
         //Calculates the quantity of current material
         double qty = Math.ceil(length / 50);
         qty -= 2;
@@ -49,7 +46,7 @@ public class CreateSVG {
 
         sb.append("<rect x=\"30\" y=\"40\" height=\"5\" width=\"" + width +"\" style=\"stroke: #292929; fill:none;\"/>");
         sb.append("<rect x=\"30\" y=\"" + lastLægte + "\" height=\"5\" width=\""+ width +"\" style=\"stroke: #292929; fill:none;\"/>");
->>>>>>> d54826f3861be3c6f510ffc8adfaa48669ed4ac1
+
 
         length -= 80;
         double delta = length / (qty + 1); //68
@@ -107,15 +104,30 @@ public class CreateSVG {
         
     }
         
-        private String createText(int length, int width) {
+        private String createLenghtText(int length, int width) {
             StringBuilder sb = new StringBuilder();
-            int x1 = length + 5;
-            int x = length + 10;
+            int x1 = width + 70;
+            int x = width + 80;
             int y = length / 2;
             
             sb.append("<line x1=\""+ x1 + "\" y1=\"0\" x2=\""+ x1 +"\" y2=\""+ length +"\" style=\"stroke:rgb(255,0,0);stroke-width:2\" />");
             sb.append("<text x=\"" + x +"\" y=\""+ y +"\" fill=\"red\">" + length + " cm" + "</text>");
             
+            
+            return sb.toString();
+        }
+        
+        private String createWidthText(int length, int width) {
+            StringBuilder sb = new StringBuilder();
+            int y = length + 15;
+            int x = width + 40;
+            int xText = (width / 2) + 40;
+            int yText = length + 35;
+            
+            // y1 og y2 skal være det samme, bestemmer hvor langt nede den skal ligge
+            // x1 er hvor linjen skal starte og x2 er hvor linjen skal slutte
+            sb.append("<line x1=\"40\" y1=\""+ y +"\" x2=\""+ x +"\" y2=\"" + y +"\" style=\"stroke:rgb(255,0,0);stroke-width:2\"/>");
+            sb.append("<text x=\"" + xText +"\" y=\""+ yText +"\" fill=\"red\">" + width + " cm" + "</text>");
             
             return sb.toString();
         }

@@ -8,6 +8,7 @@ package presentationLayer;
 import exceptions.LoginSampleException;
 import functionLayer.CreateSVG;
 import functionLayer.Product;
+import functionLayer.SVGSideView;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,28 +29,23 @@ public class Drawing extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
         
-<<<<<<< HEAD
         //Carport fra toppen.
         //HttpSession session = request.getSession();
         //int height = (int) session.getAttribute("laengde");
-        
-        
-        CreateSVG cSVG = new CreateSVG(420);
-        
-       
-=======
+
         HttpSession session = request.getSession();
         int length = (int) session.getAttribute("laengde");
         int width = (int) session.getAttribute("bredde");
->>>>>>> d54826f3861be3c6f510ffc8adfaa48669ed4ac1
+
         
         //Carport fra toppen.
         CreateSVG cSVG = new CreateSVG(length, width);
-        request.setAttribute("drawing", cSVG.getMySVG());
+        request.setAttribute("drawingTop", cSVG.getMySVG());
         
         
         //Carport fra siden.
-        
+        SVGSideView sSVG = new SVGSideView(length, 310);
+        request.setAttribute("drawingSide", sSVG.getMySVG());
         
         
         
