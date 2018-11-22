@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author oerte
  */
-public class AddProdukt extends Command {
+public class AddProduct extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {

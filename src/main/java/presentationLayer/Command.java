@@ -25,7 +25,8 @@ abstract class Command {
         commands.put("OrderRequest", new OrderRequest());
         commands.put("drawing", new Drawing());
         commands.put("Admin", new Admin());
-        commands.put("AddProdukt", new AddProdukt());
+        commands.put("AddProduct", new AddProduct());
+        commands.put("DeleteProduct", new DeleteProduct());
 
     }
 

@@ -19,9 +19,10 @@ import java.util.List;
  */
 public class ProductMapper {
 
-    private final String ALL_PRODUCTS = "SELECT `*` FROM `product` ORDER BY `length`;";
+    private final String ALL_PRODUCTS = "SELECT `*` FROM `product` ORDER BY `category`;";
     private final String ADD_PRODUCT = "INSERT INTO `product`(`produkt_name`,`category`,`price`,`length`,`width`,`height`)VALUES(?,?,?,?,?,?);";
     private final String DELETE_PRODUCT = "DELETE FROM `product` WHERE produkt_id=?;";
+    private final String ALL_REM_BY_LENGTH = "SELECT `category`,`length` FROM `product` ORDER BY `length`;";
 
     public List<Product> allProducts() {
         try {
@@ -53,7 +54,6 @@ public class ProductMapper {
 
     public void addProducts(String produkt_name, String category, double price, double length, double width, double height) {
         try {
-            System.out.println("addProduct");
             Connection c = Connector.connection();
             String query = ADD_PRODUCT;
             PreparedStatement pstmt = c.prepareStatement(query);
@@ -78,7 +78,6 @@ public class ProductMapper {
             Connection c = Connector.connection();
             String query = DELETE_PRODUCT;
             PreparedStatement pstmt = c.prepareStatement(query);
-            ResultSet res = pstmt.executeQuery();
 
             pstmt.setInt(1, id);
 
@@ -86,9 +85,30 @@ public class ProductMapper {
             pstmt.close();
 
         } catch (SQLException | ClassNotFoundException ex) {
-            System.out.println(ex.getStackTrace());
+            System.out.println(ex.getMessage());
         }
 
+    }
+    
+    public List<Product> orderByLengthRem() {
+        try {
+            List<Product> productList = new ArrayList<>();
+            Connection c = Connector.connection();
+            String query = ALL_REM_BY_LENGTH;
+            PreparedStatement pstmt = c.prepareStatement(query);
+            ResultSet res = pstmt.executeQuery();
+
+            while (res.next()) {
+                String category = res.getString("category");
+                double length = res.getDouble("length");
+                Product p = new Product(category, length);
+                productList.add(p);
+            }
+            return productList;
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getStackTrace());
+        }
+        return null;
     }
 
 }

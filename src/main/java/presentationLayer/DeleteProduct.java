@@ -17,16 +17,20 @@ import javax.servlet.http.HttpSession;
  *
  * @author oerte
  */
-public class FlatRoof extends Command{
+public class DeleteProduct extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
-        ProductMapper pm = new ProductMapper();
-        List<Product> orderByLengthRemList = pm.orderByLengthRem();
         HttpSession session = request.getSession();
-        session.setAttribute("orderByLengthRemList", orderByLengthRemList);
-        
-        return "carportFlatRoof";
+        ProductMapper pm = new ProductMapper();
+        int product_id = Integer.parseInt(request.getParameter("product_id"));
+        System.out.println("Hallo"+product_id);
+        pm.deleteProduct(product_id);
+        List<Product> allProducts = pm.allProducts();
+        session.setAttribute("allProduct", allProducts);
+        return "admin";
     }
+
+    
     
 }
