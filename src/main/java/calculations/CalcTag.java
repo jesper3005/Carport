@@ -13,7 +13,7 @@ public class CalcTag implements icalculator {
 
     // flat tag lavede med tagpap
     @Override
-    public double calcAntal(int length, int width) {
+    public double calcAntal(double length, double width) {
         double antal = 0; // antal tagpap
         double cm2 = 0; // quadratmeter
         int TagPap = 80000; // hardt codet tagpappe som er 8m lang det 80000 cm2
@@ -22,9 +22,5 @@ public class CalcTag implements icalculator {
         return antal;
     }
 
-    @Override
-    public double calcPrice(double antal, double price) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 }

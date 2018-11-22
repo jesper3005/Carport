@@ -24,6 +24,8 @@ abstract class Command {
         commands.put("PointedRoof", new PointedRoof());
         commands.put("OrderRequest", new OrderRequest());
         commands.put("drawing", new Drawing());
+        commands.put("Admin", new Admin());
+        commands.put("AddProdukt", new AddProdukt());
 
     }
 

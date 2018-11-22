@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -18,13 +19,15 @@ import java.util.ArrayList;
  */
 public class ProductMapper {
 
-    private final String ALL_PRODUKTS = "SELECT `*` FROM `product` ORDER BY `length`;";
+    private final String ALL_PRODUCTS = "SELECT `*` FROM `product` ORDER BY `length`;";
+    private final String ADD_PRODUCT = "INSERT INTO `product`(`produkt_name`,`category`,`price`,`length`,`width`,`height`)VALUES(?,?,?,?,?,?);";
+    private final String DELETE_PRODUCT = "DELETE FROM `product` WHERE produkt_id=?;";
 
-    public ArrayList<Product> products() {
+    public List<Product> allProducts() {
         try {
-            ArrayList<Product> productList = new ArrayList<>();
+            List<Product> productList = new ArrayList<>();
             Connection c = Connector.connection();
-            String query = ALL_PRODUKTS;
+            String query = ALL_PRODUCTS;
             PreparedStatement pstmt = c.prepareStatement(query);
             ResultSet res = pstmt.executeQuery();
 
@@ -33,9 +36,9 @@ public class ProductMapper {
                 String produkt_name = res.getString("produkt_name");
                 String category = res.getString("category");
                 double price = res.getDouble("price");
-                int length = res.getInt("length");
-                int width = res.getInt("width");
-                int height = res.getInt("height");
+                double length = res.getDouble("length");
+                double width = res.getDouble("width");
+                double height = res.getDouble("height");
                 Product p = new Product(produkt_id, produkt_name, category, price, length, width, height);
                 productList.add(p);
             }
@@ -44,6 +47,48 @@ public class ProductMapper {
             System.out.println(ex.getStackTrace());
         }
         return null;
+    }
+
+    
+
+    public void addProducts(String produkt_name, String category, double price, double length, double width, double height) {
+        try {
+            System.out.println("addProduct");
+            Connection c = Connector.connection();
+            String query = ADD_PRODUCT;
+            PreparedStatement pstmt = c.prepareStatement(query);
+
+            pstmt.setString(1, produkt_name);
+            pstmt.setString(2, category);
+            pstmt.setDouble(3, price);
+            pstmt.setDouble(4, length);
+            pstmt.setDouble(5, width);
+            pstmt.setDouble(6, height);
+
+            pstmt.executeUpdate();
+            pstmt.close();
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public void deleteProduct(int id) {
+        try {
+            Connection c = Connector.connection();
+            String query = DELETE_PRODUCT;
+            PreparedStatement pstmt = c.prepareStatement(query);
+            ResultSet res = pstmt.executeQuery();
+
+            pstmt.setInt(1, id);
+
+            pstmt.executeUpdate();
+            pstmt.close();
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getStackTrace());
+        }
+
     }
 
 }

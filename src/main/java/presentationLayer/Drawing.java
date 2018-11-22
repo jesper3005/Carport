@@ -7,9 +7,7 @@ package presentationLayer;
 
 import exceptions.LoginSampleException;
 import functionLayer.CreateSVG;
-import functionLayer.Product;
 import functionLayer.SVGSideView;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -46,11 +44,6 @@ public class Drawing extends Command {
         //Carport fra siden.
         SVGSideView sSVG = new SVGSideView(length, 310);
         request.setAttribute("drawingSide", sSVG.getMySVG());
-        
-        
-        
-        
-       
         
         
         return "svgTest";

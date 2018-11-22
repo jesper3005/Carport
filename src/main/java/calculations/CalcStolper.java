@@ -12,7 +12,7 @@ package calculations;
 public class CalcStolper implements icalculator {
 
     @Override
-    public double calcAntal(int length, int width) {
+    public double calcAntal(double length, double width) {
         int antal = 0;
         if (length <= 450) {
             antal = 4;
@@ -22,9 +22,4 @@ public class CalcStolper implements icalculator {
         return antal;
     }
 
-    @Override
-    public double calcPrice(double antal, double price) {
-        double total = antal * price;
-        return total;
-    }
 }

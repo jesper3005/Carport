@@ -12,8 +12,8 @@ package calculations;
  */
 public interface icalculator {
 
-    double calcAntal(int length, int width);
+    double calcAntal(double length, double width);
 
-    double calcPrice(double antal, double price);
+    
 
 }

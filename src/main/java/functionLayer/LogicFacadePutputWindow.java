@@ -24,7 +24,7 @@ public class LogicFacadePutputWindow {
     public static void main(String[] args) {
         ProductMapper pm = new ProductMapper();
         //
-        List<Product> allProduktsFromDatabase = pm.products();
+        List<Product> allProduktsFromDatabase = pm.allProducts();
         List<Product> stykliste = new ArrayList<>();
         //
         CalcLaegter laegter = new CalcLaegter();
