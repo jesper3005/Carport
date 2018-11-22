@@ -11,6 +11,7 @@ import calculations.CalcTag;
 import calculations.CalcStern;
 import calculations.CalcStolper;
 import dbAccess.ProductMapper;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,22 +21,28 @@ import java.util.List;
  */
 public class LogicFacade {
 
-    public static ProductMapper pm = new ProductMapper();
+    public static double roundDoubleToTwoDecimalPoints(double value) {
+        DecimalFormat df2 = new DecimalFormat(".##");
+        return Double.parseDouble(df2.format(value));
+
+    }
 
     public static List<Product> getAllProductsFromDatabase() {
-        List<Product> produktList = pm.products();
+        ProductMapper pm = new ProductMapper();
+        List<Product> produktList = pm.allProducts();
         return produktList;
     }
+    
 
     public static double totalPriceOfCarport(List<Product> stykliste) {
         double totalPriceOfCarport = 0;
         for (Product produkt : stykliste) {
             totalPriceOfCarport += produkt.getTotalPriceOfOrder();
         }
-        return totalPriceOfCarport;
+        return roundDoubleToTwoDecimalPoints(totalPriceOfCarport);
     }
 
-    public static List<Product> CarportCalculater(int length, int width) {
+    public static List<Product> CarportCalculater(double length, double width) {
         //Objekter Af Carport part calculations
         CalcLaegter laegter = new CalcLaegter();
         CalcRem rem = new CalcRem();

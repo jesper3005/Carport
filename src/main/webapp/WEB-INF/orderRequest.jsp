@@ -22,9 +22,10 @@
 
         <header>
             <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
-            <a href="#Admin">Sign up</a>
-            <a href="#Profile">Login</a> 
+            <a href="#SignUp">Sign up</a>
+            <a href="#Login">Login</a> 
             <a class="active" href="/index.jsp">Home</a>
+            <a class="active" href=http://localhost:8084//FrontController?command=Admin>Admin</a>
         </header>
         </br>
         </br>

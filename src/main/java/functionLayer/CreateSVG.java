@@ -31,17 +31,20 @@ public class CreateSVG {
 
     private String createLægter(int height) {
         StringBuilder sb = new StringBuilder();
-        int qty = height / 50;
+        double h = height;
+        double antalLægter = Math.ceil((h/50))-2;
+        System.out.println(antalLægter);
+                
 
         sb.append("<rect x=\"30\" y=\"40\" height=\"5\" width=\"405\" style=\"stroke: #292929; fill:none;\"/>");
-        sb.append("<rect x=\"30\" y=\"380\" height=\"5\" width=\"405\" style=\"stroke: #292929; fill:none;\"/>");
-        height -= 80;
+        sb.append("<rect x=\"30\" y=\""+(h-40)+"\" height=\"5\" width=\"405\" style=\"stroke: #292929; fill:none;\"/>");
+        h -= 40;
 
-        double delta = height / (qty - 2);
-        for (int i = 0; i < qty; i++) {
-            System.out.println(qty);
-            sb.append("<rect x=\"30\" y=\"" + height + "\" height=\"5\" width=\"405\" style=\"stroke: #292929; fill:none;\"/>");
-            height -= delta;
+        double delta = (h-80)/antalLægter; //afstand mellem lægterne
+        for (double i = 0; i < antalLægter; i++) {
+            h -= delta;
+            sb.append("<rect x=\"30\" y=\"" + h + "\" height=\"5\" width=\"405\" style=\"stroke: #292929; fill:none;\"/>");
+            
         }
         return sb.toString();
     }

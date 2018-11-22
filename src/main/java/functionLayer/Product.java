@@ -5,6 +5,8 @@
  */
 package functionLayer;
 
+import java.text.DecimalFormat;
+
 /**
  *
  * @author Jesper
@@ -17,12 +19,12 @@ public class Product {
     private double price;
     private double qty;
     private double priceLine;
-    private int length;
-    private int width;
-    private int height;
+    private double length;
+    private double width;
+    private double height;
     private double totalPriceOfOrder;
-
-    public Product(int id, String produktName, String category, double price, int length, int width, int height) {
+    
+    public Product(int id, String produktName, String category, double price, double length, double width, double height) {
         this.id = id;
         this.produktName = produktName;
         this.category = category;
@@ -32,7 +34,7 @@ public class Product {
         this.height = height;
     }
 
-    public Product(int id, String produktName, String category, double price, double qty, double priceLine, int length, int width, int height) {
+    public Product(int id, String produktName, String category, double price, double qty, double priceLine, double length, double width, double height) {
         this.id = id;
         this.produktName = produktName;
         this.category = category;
@@ -51,7 +53,7 @@ public class Product {
     }
 
     public double getPriceLine() {
-        return this.priceLine = this.price * this.qty;
+        return LogicFacade.roundDoubleToTwoDecimalPoints(this.priceLine = this.price * this.qty);
     }
 
     public double getTotalPriceOfOrder() {
@@ -82,15 +84,15 @@ public class Product {
         return qty;
     }
 
-    public int getLength() {
+    public double getLength() {
         return length;
     }
 
-    public int getWidth() {
+    public double getWidth() {
         return width;
     }
 
-    public int getHeight() {
+    public double getHeight() {
         return height;
     }
 

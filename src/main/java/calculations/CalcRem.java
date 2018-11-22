@@ -12,7 +12,7 @@ package calculations;
 public class CalcRem implements icalculator {
 
     @Override
-    public double calcAntal(int length, int width) {
+    public double calcAntal(double length, double width) {
         int antal = 0;
         if (width >= 510) {
             antal = 5;
@@ -22,11 +22,5 @@ public class CalcRem implements icalculator {
         return antal;
     }
 
-    // instead of double price we need id from produkt where we get the actual price
-    @Override
-    public double calcPrice(double antal, double price) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-
-    }
 
 }

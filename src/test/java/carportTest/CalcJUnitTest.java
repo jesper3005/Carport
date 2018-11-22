@@ -11,6 +11,7 @@ import calculations.CalcRem;
 import calculations.CalcTag;
 import calculations.CalcStern;
 import calculations.CalcStolper;
+import functionLayer.LogicFacade;
 
 /**
  *
@@ -58,20 +59,7 @@ public class CalcJUnitTest {
        assertEquals(5, cr.calcAntal(510,510),0);
    }
 
-   @Test
-   public void calPriceForRim(){
-       CalcStolper cs = new CalcStolper();
-       assertEquals(1600,cs.calcPrice(4, 400),0);
-       CalcRem cr = new CalcRem();
-       assertEquals(50000, cs.calcPrice(5, 10000), 0);
-   }
-
-   @Test
-   public void calLaegterAntalTest(){
-       CalcLaegter cl = new CalcLaegter();
-       assertEquals(7,cl.calcAntal(240, 240),0);
-
-   }
+   
    @Test
    public void calTagAntalTest(){
        CalcTag cr = new CalcTag();
@@ -84,5 +72,7 @@ public class CalcJUnitTest {
        CalcStern cs = new CalcStern();
        assertEquals(2, cs.calcAntal(240,240), 0);
    }
+   
+   
    
 }   
