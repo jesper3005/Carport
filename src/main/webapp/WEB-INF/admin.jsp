@@ -23,53 +23,70 @@
         <a class="active" href="/index.jsp">Home</a>
         <a class="active" href=http://localhost:8084//FrontController?command=Admin>Admin</a>
     </header>
+    </br>
+    </br>
     <body>
         <%List<Product> allProduct = (List) session.getAttribute("allProduct");%>
-        <div id="table">
-            <table class="blueTable">
-                <thead>
-                    <tr>
-                        <th>Produkt Navn</th>
-                        <th>Kategori</th>
-                        <th>StykPris</th>
-                        <th>Længde</th>
-                        <th>Bredde</th>
-                        <th>Højde</th>
-                        <th>Slet Produkt</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <% for (Product list : allProduct) {%>
-                        <td><%=list.getProduktName()%></td><td><%=list.getCategory()%></td><td><%=list.getPrice() + " DKK"%></td><td><%=list.getLength()%></td>
-                        <td><%=list.getWidth()%></td><td><%=list.getHeight()%></td>
-                        <td><%out.println("<a href=\"http://localhost:8084//FrontController?command=DeleteProduct&product_id=" + list.getId() + "\")>");%>Slet</td>
-                    </tr>
-                    <%}%>
+    <td>
+        <form action="FrontController" method="POST" />
+        <input type="hidden" name="command" value="UpdateProduct"/>
 
-                </tbody>
+    </td>
+    <div id="table">
+        <table class="blueTable">
+            <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>Produkt Navn</th>
+                    <th>Kategori</th>
+                    <th>StykPris</th>
+                    <th>Længde</th>
+                    <th>Bredde</th>
+                    <th>Højde</th>
+                    <th>Slet Produkt</th>
                 </tr>
-            </table>
-        </div>
-    </form>
-    <form name="AddProduct" action="FrontController" method="POST">
-        <input type="hidden" name="command" value="AddProduct">
-        <h1>Tilføj en nye produkt til produktlinjen:</h1>
-        <h4>Produkt Navn</h4>
-        <input type="text" name="produkt_name">
-        <h4>Produkt Kategori</h4>
-        <input type="text" name="category">
-        <h4>Stykpris</h4>
-        <input type="text" name="price">
-        <h4>Længde</h4>
-        <input type="text" name="length">
-        <h4>Bredde</h4>
-        <input type="text" name="width">
-        <h4>højde</h4>
-        <input type="text" name="height">
-        </br>
-        </br>
-        <input type="submit" value="AddProduct">
-    </form>
+            </thead>
+            <tbody>
+                <tr>
+                    <% for (Product list : allProduct) {%>
+                    <td><input type="checkbox" name="Select" value="<%=list.getId()%>"></td><td><%=list.getProduktName()%></td><td><%=list.getCategory()%></td><td><%=list.getPrice() + " DKK"%></td><td><%=list.getLength()%></td>
+                    <td><%=list.getWidth()%></td><td><%=list.getHeight()%></td>
+                    <td><%out.println("<a href=\"http://localhost:8084//FrontController?command=UpdateProduct&product_id=" + list.getId() + "\")>");%>Slet</td>
+                </tr>
+                <%}%>
+
+            </tbody>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <input type="text" name="search" placeholder="Search.."> 
+    </div>     
+    <input type = "submit" name="action" value = "Slet" >
+    <input type = "submit" name="action" value = "Update" >
+    <input type = "submit" name="action" value = "Search" >
+</form>
+
+</br>
+</br>
+<form name="AddProduct" action="FrontController" method="POST">
+    <input type="hidden" name="command" value="AddProduct">
+    <h1>Tilføj en nye produkt til produktlinjen:</h1>
+    <h4>Produkt Navn</h4>
+    <input type="text" name="produkt_name">
+    <h4>Produkt Kategori</h4>
+    <input type="text" name="category">
+    <h4>Stykpris</h4>
+    <input id="number" type="number" name="price">
+    <h4>Længde</h4>
+    <input id="number" type="number" name="length">
+    <h4>Bredde</h4>
+    <input id="number" type="number" name="width">
+    <h4>højde</h4>
+    <input id="number" type="number" name="height">
+    </br>
+    </br>
+    <input type="submit" value="AddProduct">
+</form>
 </body>
 </html>

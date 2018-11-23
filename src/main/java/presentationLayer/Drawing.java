@@ -30,8 +30,8 @@ public class Drawing extends Command {
         //HttpSession session = request.getSession();
         //int height = (int) session.getAttribute("laengde");
         HttpSession session = request.getSession();
-        int length = (int) session.getAttribute("laengde");
-        int width = (int) session.getAttribute("bredde");
+        double length = (double) session.getAttribute("laengde");
+        double width = (double) session.getAttribute("bredde");
 
         //Carport fra toppen.
         CreateSVG cSVG = new CreateSVG(length, width);
