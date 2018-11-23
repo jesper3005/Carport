@@ -34,9 +34,9 @@ public class UpdateProduct extends Command {
                 for (int i = 0; i < id.length; i++) {
                     pm.deleteProduct(id[i]);
                 }
+
             } catch (Exception e) {
                 e.getMessage();
-
             }
         } else if ("Update".equals(action)) {
             try {
@@ -47,6 +47,9 @@ public class UpdateProduct extends Command {
             } catch (Exception e) {
                 e.getMessage();
             }
+        } else {
+            int product_id = Integer.parseInt(request.getParameter("product_id"));
+            pm.deleteProduct(product_id);
         }
         List<Product> allProducts = pm.allProducts();
         session.setAttribute("allProduct", allProducts);
