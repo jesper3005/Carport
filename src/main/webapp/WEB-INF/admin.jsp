@@ -82,7 +82,7 @@
     <input id="number" type="number" name="length">
     <h4>Bredde</h4>
     <input id="number" type="number" name="width">
-    <h4>højde</h4>
+    <h4>Højde</h4>
     <input id="number" type="number" name="height">
     </br>
     </br>
