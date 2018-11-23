@@ -18,10 +18,7 @@ import javax.servlet.http.HttpSession;
  */
 public class Drawing extends Command {
 
-    public String carport(int length, int width, int height) {
 
-        return "";
-    }
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
@@ -30,8 +27,8 @@ public class Drawing extends Command {
         //HttpSession session = request.getSession();
         //int height = (int) session.getAttribute("laengde");
         HttpSession session = request.getSession();
-        int length = (int) session.getAttribute("laengde");
-        int width = (int) session.getAttribute("bredde");
+        double length = (double) session.getAttribute("laengde");
+        double width = (double) session.getAttribute("bredde");
 
         //Carport fra toppen.
         CreateSVG cSVG = new CreateSVG(length, width);
@@ -40,12 +37,7 @@ public class Drawing extends Command {
         //Carport fra siden.
         SVGSideView sSVG = new SVGSideView(length, 310);
         request.setAttribute("drawingSide", sSVG.getMySVG());
-<<<<<<< HEAD
-        
-        
-=======
 
->>>>>>> fbdd9d80c24b4e16bed0f8229b31cd656253dfc8
         return "svgTest";
     }
 

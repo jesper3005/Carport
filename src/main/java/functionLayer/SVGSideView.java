@@ -14,9 +14,9 @@ public class SVGSideView {
     private String mySVG = null;
     private StringBuilder sb = new StringBuilder();
     
-    public SVGSideView(int length, int height) {
-        int width1 = length + 200;
-        int height1 = height + 100;
+    public SVGSideView(double length, double height) {
+        double width1 = length + 200;
+        double height1 = height + 100;
         this.sb = sb.append("<SVG width=\"" + width1 +"\" height=\""+ height1 +"\">");
         //ADD ALL METHODS FOR SVG DRAWING FROM TOP
         sb.append(createRem(length, height));
@@ -38,7 +38,7 @@ public class SVGSideView {
         return sb.toString();
     }
     
-    public String createRem(int length, int height) {
+    public String createRem(double length, double height) {
         StringBuilder sb = new StringBuilder();
         
         
