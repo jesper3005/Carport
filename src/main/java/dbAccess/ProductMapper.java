@@ -22,6 +22,7 @@ public class ProductMapper {
     private final String ALL_PRODUCTS = "SELECT `*` FROM `product` ORDER BY `category`;";
     private final String ADD_PRODUCT = "INSERT INTO `product`(`produkt_name`,`category`,`price`,`length`,`width`,`height`)VALUES(?,?,?,?,?,?);";
     private final String DELETE_PRODUCT = "DELETE FROM `product` WHERE produkt_id=?;";
+   // private final String Update_PRODUCT = "SELECT `*` FROM `product` WHERE produkt_id=?;";
     private final String ALL_REM_BY_LENGTH = "SELECT `category`,`length` FROM `product` ORDER BY `length`;";
 
     public List<Product> allProducts() {
@@ -50,8 +51,6 @@ public class ProductMapper {
         return null;
     }
 
-    
-
     public void addProducts(String produkt_name, String category, double price, double length, double width, double height) {
         try {
             Connection c = Connector.connection();
@@ -72,6 +71,40 @@ public class ProductMapper {
             System.out.println(ex.getMessage());
         }
     }
+    
+
+//    public static List<Product> updateProduct(List<Integer> produkt_id) {
+//        String Update_PRODUCT = "SELECT `*` FROM `product` WHERE produkt_id=?;";
+//        List<Product> list = new ArrayList<>();
+//        try {
+//            Product p = null;
+//            Connection c = Connector.connection();
+//            String query = Update_PRODUCT;
+//            PreparedStatement pstmt = c.prepareStatement(query);
+//            
+//            for (int i = 0; i < produkt_id.size(); i++) {
+//            pstmt.setInt(1, produkt_id.get(i));
+//            ResultSet res = pstmt.executeQuery();
+//
+//            while (res.next()) {
+//                String produkt_name = res.getString("produkt_name");
+//                String category = res.getString("category");
+//                double price = res.getDouble("price");
+//                double length = res.getDouble("length");
+//                double width = res.getDouble("width");
+//                double height = res.getDouble("height");
+//                p = new Product(produkt_id.get(i), produkt_name, category, price, length, width, height);
+//                list.add(p);
+//            }
+//            }
+//            return list;
+//
+//        } catch (SQLException | ClassNotFoundException ex) {
+//            System.out.println(ex.getMessage());
+//        }
+//        return null;
+//
+//    }
 
     public void deleteProduct(int id) {
         try {
@@ -89,7 +122,7 @@ public class ProductMapper {
         }
 
     }
-    
+
     public List<Product> orderByLengthRem() {
         try {
             List<Product> productList = new ArrayList<>();
