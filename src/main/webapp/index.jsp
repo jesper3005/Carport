@@ -14,25 +14,20 @@
         <link rel="icon" href=""
     </head>
     <body>
+        
         <header>
             <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
             <a href="#SignUp">Sign up</a>
             <a href="#Login">Login</a> 
             <a class="active" href="/index.jsp">Home</a>
             <a class="active" href=http://localhost:8084//FrontController?command=Admin>Admin</a>
-
-
             <!-- <input type='submit' value="Log Out">-->
-
-
         </header>
-
+        
     <center>
         <form action="FrontController" method="post">
-
             <h2>Vælg hvilken tag type du ønsker</h2>
-            <div class="container">
-                <img src="./IMAGES/spidsTag.jpg" class="image">
+            <div class="container">                
                 <div class="overlay overlayFade">
                     <div class="text">
                         <h1>Spidst tag</h1>
@@ -40,13 +35,12 @@
                     </div>
                 </div>
                 <input type="hidden" name="command" value="PointedRoof">
-                <input type="submit" value="Spidst Tag">
+                <input type="image" src="./IMAGES/spidsTag.jpg" class="image" value="Spidst Tag">
             </div>
-        </form>
-
+        </form></center>
+    <center>
         <form action="FrontController" method="post">
             <div class="container">
-                <img src="./IMAGES/fladtTag.png" class="image">
                 <div class="overlay overlayFade">
                     <div class="text">
                         <h1>Fladt tag</h1>
@@ -54,7 +48,7 @@
                     </div>
                 </div>
                 <input type="hidden" name="command" value="FlatRoof">
-                <input type="submit" value="Fladt tag">
+                <input type="image" src="./IMAGES/fladtTag.png" class="image" value="Fladt tag">
             </div>
         </form>
     </center>

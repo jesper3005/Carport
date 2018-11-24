@@ -12,6 +12,7 @@ import calculations.CalcStern;
 import calculations.CalcStolper;
 import dbAccess.ProductMapper;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +38,8 @@ public class LogicFacade {
 }
 
     public static double roundDoubleToTwoDecimalPoints(double value) {
-        DecimalFormat df2 = new DecimalFormat(".##");
+        
+        DecimalFormat df2 = new DecimalFormat(",##");
         return Double.parseDouble(df2.format(value));
 
     }

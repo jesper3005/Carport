@@ -54,10 +54,7 @@ public class CreateSVG {
             System.out.println(qty);
             sb.append("<rect x=\"30\" y=\"" + y + "\" height=\"5\" width=\"" + width + "\" style=\"stroke: #292929; fill:none;\"/>");
             y += delta;
-<<<<<<< HEAD
 
-=======
->>>>>>> fbdd9d80c24b4e16bed0f8229b31cd656253dfc8
         }
         return sb.toString();
     }
