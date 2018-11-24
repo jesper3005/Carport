@@ -18,10 +18,7 @@ import javax.servlet.http.HttpSession;
  */
 public class Drawing extends Command {
 
-    public String carport(int length, int width, int height) {
 
-        return "";
-    }
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
