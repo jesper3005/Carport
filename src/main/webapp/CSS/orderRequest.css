@@ -9,16 +9,17 @@ and open the template in the editor.
 */
 
 table.blueTable {
-  font-family: "Arial Black", Gadget, sans-serif;
-  border: 1px solid #1C6EA4;
+  font-family: 'Alegreya Sans', sans-serif;
+  border: 3px solid #1C6EA4;
   background-color: #EEEEEE;
-  width: 100%;
+  width: 65%;
   text-align: left;
   border-collapse: collapse;
+  
 }
 table.blueTable td, table.blueTable th {
   border: 2px solid #AAAAAA;
-  padding: 4px 2px;
+  padding: 6px 6px;
 }
 table.blueTable tbody td {
   font-size: 13px;
@@ -26,8 +27,8 @@ table.blueTable tbody td {
 table.blueTable tr:nth-child(even) {
   background: #D0E4F5;
 }
-table.blueTable td:nth-child(even) {
-  background: #D0E4F5;
+table.blueTable td:nth-child(uneven) {
+  background: #c9c9c9;
 }
 table.blueTable thead {
   background: #1C6EA4;
@@ -48,7 +49,7 @@ table.blueTable thead th:first-child {
 }
 
 table.blueTable tfoot td {
-  font-size: 13px;
+  font-size: 10px;
 }
 table.blueTable tfoot .links {
   text-align: right;
@@ -61,3 +62,12 @@ table.blueTable tfoot .links a{
   border-radius: 5px;
 }
 
+
+
+
+.search {
+    position: relative;
+    right: 10px;
+    
+    
+}

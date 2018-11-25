@@ -4,10 +4,7 @@
     background-color: #00000;
 }
 
-#posistionLeft {
 
-
-}
 
 header {
     width: 100%;
@@ -66,7 +63,7 @@ select#soflow-color {
 }
 
 body {
-    background-color: #eaeaea;
+    background-color: #fffcfc;
 }
 
 /*Styling of images*/

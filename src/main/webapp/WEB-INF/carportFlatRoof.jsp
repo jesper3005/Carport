@@ -75,7 +75,7 @@
         <br>
         <div class="control-group">
             <h1>Vælg tag type</h1>
-        <h4>Tag</h4>
+        <h4>Tag type</h4>
         <div class="select">
         <select name="Tag">
             <option value="1">Vælg tag</option>
@@ -84,6 +84,15 @@
         </select>
             <div class="select__arrowTag"></div>
         </div>
+        <h4>Tag hældning</h4>
+        <div class="select">
+            <select name="Hældning" disabled="disabled">
+                <option>Vælg hældning</option>
+            </select>
+            <div class="select__arrowTag"></div>
+        </div>
+        
+        
         </div>
 
         <br>

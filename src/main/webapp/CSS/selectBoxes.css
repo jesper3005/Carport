@@ -32,7 +32,7 @@ h1 {
   text-align: left;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   padding: 30px;
-  width: 230px;
+  width: 15.1%;
   height: 310px;
   margin: 10px;
 }
@@ -136,7 +136,7 @@ h1 {
   text-align: start;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   padding: 30px;
-  width: 850px;
+  width: 55.9%;
   height: 980px;
   margin: 10px;
 }
@@ -200,7 +200,43 @@ button[name=request] {
   text-align: center;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   padding: 30px;
-  width: 850px;
-  height: 180px;
+  width: 55%;
+  height: 20%;
   margin: 10px;
+}
+
+.containerAdmin {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    font-family: 'Alegreya Sans', sans-serif;
+}
+
+.control-groupAdmin {
+  display: inline-block;
+  vertical-align: top;
+  background: #FFFFFF;
+  text-align: left;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 20%;
+  height: 40%;
+  margin: 10px;
+}
+
+.selectFormAdmin input {
+  display: inline-block;
+  width: 90%;
+  cursor: pointer;
+  padding: 10px 15px;
+  outline: 0;
+  border: 0;
+  border-radius: 0;
+  background: #e6e6e6;
+  color: #7b7b7b;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
