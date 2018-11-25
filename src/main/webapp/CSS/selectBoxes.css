@@ -240,3 +240,37 @@ button[name=request] {
   -webkit-appearance: none;
   -moz-appearance: none;
 }
+
+.containerDrawing {
+   width: 100%;
+   height: 100%;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: center;
+   font-family: 'Alegreya Sans', sans-serif; 
+}
+
+.control-groupSVGTop {
+  display: inline-block;
+  vertical-align: top;
+  background: #FFFFFF;
+  text-align: left;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 30%;
+  height: 40%;
+  margin: 10px;
+}
+
+.control-groupSVGSide {
+  display: inline-block;
+  vertical-align: top;
+  background: #FFFFFF;
+  text-align: left;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 20%;
+  height: 20%;
+  margin: 10px;
+}

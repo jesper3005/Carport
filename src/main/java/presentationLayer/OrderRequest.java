@@ -6,8 +6,10 @@
 package presentationLayer;
 
 import exceptions.LoginSampleException;
+import functionLayer.CreateSVG;
 import functionLayer.LogicFacade;
 import functionLayer.Product;
+import functionLayer.SVGSideView;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -43,6 +45,20 @@ public class OrderRequest extends Command {
         session.setAttribute("laengde", laengde);
         session.setAttribute("stykliste", stykliste);
         session.setAttribute("totalPriceOfCarport", totalPriceOfCarport);
+        
+        //Inserting svg of the carport
+        double length = (double) session.getAttribute("laengde");
+        double width = (double) session.getAttribute("bredde");
+        int height = 310;
+        
+        //Carport fra toppen.
+        CreateSVG cSVG = new CreateSVG(length, width);
+        request.setAttribute("drawingTop", cSVG.getMySVG());
+
+        //Carport fra siden.
+        SVGSideView sSVG = new SVGSideView(length, height);
+        request.setAttribute("drawingSide", sSVG.getMySVG());
+        
         // Transfer towards orderRequest.jsp
         return "orderRequest";
     }

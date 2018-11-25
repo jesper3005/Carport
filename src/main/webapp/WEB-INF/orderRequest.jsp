@@ -14,6 +14,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="./CSS/headerCSS.css">
         <link rel="stylesheet" href="./CSS/orderRequest.css">
+        <link rel="stylesheet" href="./CSS/selectBoxes.css">
         <link rel="icon" href=""
     </head>
     <body>
@@ -27,10 +28,38 @@
             <a class="active" href="/index.jsp">Home</a>
             <a class="active" href=http://localhost:8084//FrontController?command=Admin>Admin</a>
         </header>
-        </br>
-        </br>
-        </br>
-
+        
+        <div class="container">
+            <div class="control-groupText">
+            <h1 class="title">Her er en skitse af din carport !</h1>
+            Der er en skitse fra oven og en fra siden.
+            <br>
+            <br>
+            Du kan altid gå tilbage hvis du har brug for at lave en ændring
+            <br>
+            Nedenunder billederne kan du indtaste dine oplysninger og indsende en forespørgelse.
+            <br>
+            <br>    
+            Vi har eksperter på plads til at håndtere din forespørgelse og sikre 
+            <br>
+            at du får lige den carport du ønsker dig.
+            <br>
+            <br>
+            Ved bestilling medfølger standardbyggevejledning,
+            <br>
+            samt en stykliste af produkter som der skal bruges.
+            
+        </div>
+        </div>
+        <div class="containerDrawing">
+            <div class="control-groupSVGTop">
+                <%= request.getAttribute("drawingTop") %>
+            </div>
+            <div class="control-groupSVGSide">
+                <%= request.getAttribute("drawingSide") %>
+            </div>
+        </div>
+            
         <table class="blueTable">
             <thead>
                 <tr>

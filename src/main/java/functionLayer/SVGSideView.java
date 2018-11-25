@@ -19,8 +19,8 @@ public class SVGSideView {
         double height1 = height + 100;
         this.sb = sb.append("<SVG width=\"" + width1 +"\" height=\""+ height1 +"\">");
         //ADD ALL METHODS FOR SVG DRAWING FROM TOP
-        sb.append(createRem(length, height));
-        
+        sb.append(createRem(length));
+        sb.append(createStolper(height, height));
         sb.append("</SVG>");
         this.mySVG = sb.toString();
     }
@@ -29,16 +29,18 @@ public class SVGSideView {
         return mySVG;
     }
     
-    public String createStolper(double lenght, double height) {
+    public String createStolper(double length, double height) {
         StringBuilder sb = new StringBuilder();
-        height = 310;
+        double x = length - 40;
         
+        sb.append("<rect x=\"40\" y=\"0\" height=\"" + height + "\" width=\"10\" style=\"stroke: #292929; fill:none;\"/>");
+        sb.append("<rect x=\"" + x + "\" y=\"0\" height=\"" + height + "\" width=\"10\" style=\"stroke: #292929; fill:none;\"/>");
         
         
         return sb.toString();
     }
     
-    public String createRem(double length, double height) {
+    public String createRem(double length) {
         StringBuilder sb = new StringBuilder();
         
         

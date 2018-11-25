@@ -17,12 +17,6 @@
         <%= request.getAttribute("drawingTop") %>
         <%= request.getAttribute("drawingSide") %>
  
-        <svg width="600" height="600">
-            <!--Taget-->
-            <rect x="30" y="60" height="10" width="420" style="stroke: #292929; fill:none; stroke-width: 2;"/>
-            <!--Stolper-->
-            <rect x="40" y="60" height="250" width="10" style="stroke: #292929; fill:none;"/>
-            <rect x="430" y="60" height="250" width="10" style="stroke: #292929; fill:none;"/>
-        </svg>
+        
     </body>
 </html>

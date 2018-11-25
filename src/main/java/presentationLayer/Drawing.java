@@ -29,13 +29,14 @@ public class Drawing extends Command {
         HttpSession session = request.getSession();
         double length = (double) session.getAttribute("laengde");
         double width = (double) session.getAttribute("bredde");
+        int height = 310;
 
         //Carport fra toppen.
         CreateSVG cSVG = new CreateSVG(length, width);
         request.setAttribute("drawingTop", cSVG.getMySVG());
 
         //Carport fra siden.
-        SVGSideView sSVG = new SVGSideView(length, 310);
+        SVGSideView sSVG = new SVGSideView(length, height);
         request.setAttribute("drawingSide", sSVG.getMySVG());
 
         return "svgTest";
