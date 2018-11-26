@@ -8,10 +8,11 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import calculations.CalcLaegter;
 import calculations.CalcRem;
-import calculations.CalcTag;
+import calculations.CalcRoof;
 import calculations.CalcStern;
 import calculations.CalcStolper;
 import functionLayer.LogicFacade;
+import functionLayer.Product;
 
 /**
  *
@@ -44,33 +45,60 @@ public class CalcJUnitTest {
     // @Test
     // public void hello() {}
     
-    
+   
    @Test
    public void calStolperAntalTest() {
+       //Arrange
+       Product p;
        CalcStolper cs = new CalcStolper();
-       assertEquals(4, cs.calcAntal(350,350),0);
-       assertEquals(6, cs.calcAntal(460,460),0);
+       //Act
+       p = cs.calcAntal(240, 240);
+       double actual = p.getQty();
+       double expected = 4;
+       
+       //Assert
+       assertEquals(expected, actual,0.005);
+       
    }
 
    @Test
    public void calRemAntalTest() {
+       //Arrange
+       Product p;
        CalcRem cr = new CalcRem();
-       assertEquals(4, cr.calcAntal(480,480),0);
-       assertEquals(5, cr.calcAntal(510,510),0);
+       //Act
+       p = cr.calcAntal(480, 480);
+       double actual = p.getQty();
+       double expected = 4;
+       //Assert
+       assertEquals(expected, actual,0.05);
    }
 
    
-   @Test
-   public void calTagAntalTest(){
-       CalcTag cr = new CalcTag();
-       assertEquals(1, cr.calcAntal(240, 240), 0);
-       assertEquals(5,cr.calcAntal(570, 600),0);
-   }
+//   @Test
+//   public void calTagAntalTest(){
+//       //Arrange
+//       Product p;
+//       CalcTag ct = new CalcTag();
+//       //Act
+//       p = ct.calcAntal(570, 600, "Tagpap");
+//       double actual = p.getQty();
+//       double expected = 8;
+//       //Assert
+//       assertEquals(expected,actual,0.05);
+//   }
    
    @Test
    public void calSternAntalTest(){
+       //Arrange
+       Product p;
        CalcStern cs = new CalcStern();
-       assertEquals(2, cs.calcAntal(240,240), 0);
+       //Act
+       p = cs.calcAntalOverbrædt(240, 240);
+       double actual = p.getQty();
+       double expected = 2;
+       //Assert
+       assertEquals(expected,actual,0.005);
    }
    
    

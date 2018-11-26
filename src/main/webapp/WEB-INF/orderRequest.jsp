@@ -77,7 +77,7 @@
             <tbody>
                 <tr>
                     <%for (Product list : stykliste) {%>
-                    <td><%=list.getId()%></td><td><%=list.getProduktName()%></td><td><%=list.getCategory()%></td><td><%=list.getPrice() + " DKK"%></td><td><%=list.getQty()%></td><td><%=list.getPriceLine() + " DKK"%></td><td><%=list.getLength()%></td><td><%=list.getWidth()%></td><td><%=list.getHeight()%></td></tr>
+                    <td><%=list.getId()%></td><td><%=list.getProductName()%></td><td><%=list.getCategory()%></td><td><%=list.getPrice() + " DKK"%></td><td><%=list.getQty()%></td><td><%=list.getPriceLine() + " DKK"%></td><td><%=list.getLength()%></td><td><%=list.getWidth()%></td><td><%=list.getHeight()%></td></tr>
                     <%}%>
 
             </tbody>
