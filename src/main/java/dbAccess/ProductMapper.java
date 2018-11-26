@@ -20,12 +20,12 @@ import java.util.List;
 public class ProductMapper {
 
     private final String ALL_PRODUCTS = "SELECT `*` FROM `product` ORDER BY `category`;";
-    private final String ADD_PRODUCT = "INSERT INTO `product`(`produkt_name`,`category`,`price`,`length`,`width`,`height`)VALUES(?,?,?,?,?,?);";
-    private final String DELETE_PRODUCT = "DELETE FROM `product` WHERE produkt_id=?;";
+    private final String ADD_PRODUCT = "INSERT INTO `product`(`product_name`,`category`,`price`,`length`,`width`,`height`)VALUES(?,?,?,?,?,?);";
+    private final String DELETE_PRODUCT = "DELETE FROM `product` WHERE product_id=?;";
    // private final String Update_PRODUCT = "SELECT `*` FROM `product` WHERE produkt_id=?;";
-    private final String Update_Price = "UPDATE `product` SET `price`=? WHERE produkt_id=?;";
+    private final String Update_Price = "UPDATE `product` SET `price`=? WHERE product_id=?;";
     private final String ALL_REM_BY_LENGTH = "SELECT `category`,`length` FROM `product` ORDER BY `length`;";
-    private final String SEARCH_IN_Product_TABLE = "SELECT * FROM product WHERE CONCAT(produkt_name, '', category, '',length,'',width,'',height,'') LIKE ?;";
+    private final String SEARCH_IN_Product_TABLE = "SELECT * FROM product WHERE CONCAT(product_name, '', category, '',length,'',width,'',height,'') LIKE ?;";
     
     
     public List<Product> allProducts() {
@@ -37,14 +37,14 @@ public class ProductMapper {
             ResultSet res = pstmt.executeQuery();
 
             while (res.next()) {
-                int produkt_id = res.getInt("produkt_id");
-                String produkt_name = res.getString("produkt_name");
+                int product_id = res.getInt("product_id");
+                String product_name = res.getString("product_name");
                 String category = res.getString("category");
                 double price = res.getDouble("price");
                 double length = res.getDouble("length");
                 double width = res.getDouble("width");
                 double height = res.getDouble("height");
-                Product p = new Product(produkt_id, produkt_name, category, price, length, width, height);
+                Product p = new Product(product_id, product_name, category, price, length, width, height);
                 productList.add(p);
             }
             return productList;
@@ -54,13 +54,13 @@ public class ProductMapper {
         return null;
     }
 
-    public void addProducts(String produkt_name, String category, double price, double length, double width, double height) {
+    public void addProducts(String product_name, String category, double price, double length, double width, double height) {
         try {
             Connection c = Connector.connection();
             String query = ADD_PRODUCT;
             PreparedStatement pstmt = c.prepareStatement(query);
 
-            pstmt.setString(1, produkt_name);
+            pstmt.setString(1, product_name);
             pstmt.setString(2, category);
             pstmt.setDouble(3, price);
             pstmt.setDouble(4, length);
@@ -147,14 +147,14 @@ public class ProductMapper {
         return null;
     }
     
-    public void updatePrice(int produkt_id, double price) {
+    public void updatePrice(int product_id, double price) {
        try {
            Connection c = Connector.connection();
            String query = Update_Price;
            PreparedStatement pstmt = c.prepareStatement(query);
 
            pstmt.setDouble(1, price);
-           pstmt.setInt(2, produkt_id);
+           pstmt.setInt(2, product_id);
 
            pstmt.executeUpdate();
            pstmt.close();
@@ -178,14 +178,14 @@ public class ProductMapper {
                ResultSet res = pstmt.executeQuery();
 
                while (res.next()) {
-                   int produkt_id = res.getInt("produkt_id");
-                   String produkt_name = res.getString("produkt_name");
+                   int product_id = res.getInt("product_id");
+                   String product_name = res.getString("product_name");
                    String category = res.getString("category");
                    double price = res.getDouble("price");
                    double length = res.getDouble("length");
                    double width = res.getDouble("width");
                    double height = res.getDouble("height");
-                   p = new Product(produkt_id, produkt_name, category, price, length, width, height);
+                   p = new Product(product_id, product_name, category, price, length, width, height);
                    list.add(p);
                }
 

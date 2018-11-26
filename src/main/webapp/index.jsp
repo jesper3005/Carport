@@ -24,9 +24,9 @@
             <!-- <input type='submit' value="Log Out">-->
         </header>
         <div class="test">   
+        <h1>Vælg hvilken tag type du ønsker</h1>
     <center>
         <form action="FrontController" method="post">
-            <h2>Vælg hvilken tag type du ønsker</h2>
             <div class="container">                
                 <div class="overlay overlayFade">
                     <div class="text">

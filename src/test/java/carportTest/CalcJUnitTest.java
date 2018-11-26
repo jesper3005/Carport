@@ -54,23 +54,46 @@ public class CalcJUnitTest {
 
    @Test
    public void calRemAntalTest() {
+       //Arrange
        CalcRem cr = new CalcRem();
-       assertEquals(4, cr.calcAntal(480,480),0);
-       assertEquals(5, cr.calcAntal(510,510),0);
+       
+       //Act
+       double expected, actual;
+       expected = 4;
+       actual = cr.calcAntal(480, 480);
+       
+       //Assert
+       assertEquals(expected, actual,0);
    }
 
    
    @Test
    public void calTagAntalTest(){
+       //Arrange
        CalcTag cr = new CalcTag();
-       assertEquals(1, cr.calcAntal(240, 240), 0);
-       assertEquals(5,cr.calcAntal(570, 600),0);
+       
+       //Act
+       double expected, actual;
+       expected = 1;
+       actual = cr.calcAntal(240, 240);
+       
+       //Assert
+       assertEquals(expected, actual, 0);
+       
    }
    
    @Test
    public void calSternAntalTest(){
+       //Arrange
        CalcStern cs = new CalcStern();
-       assertEquals(2, cs.calcAntal(240,240), 0);
+       
+       //Act
+       double expected, actual;
+       expected = 2;
+       actual = cs.calcAntal(240, 240);
+       
+       //Assert
+       assertEquals(expected, actual, 0);
    }
    
    

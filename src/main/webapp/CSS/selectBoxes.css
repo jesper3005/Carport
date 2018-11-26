@@ -20,10 +20,10 @@ and open the template in the editor.
 }
 
 h1 {
-    font-family: 'Alegreya Sans', sans-serif;
-    font-weight: 300;
-    font-size: 30px;
-    margin-top: 0;
+  font-family: 'Alegreya Sans', sans-serif;
+  font-weight: 300;
+  font-size: 30px;
+  margin-top: 0;
 }
 .control-group {
   display: inline-block;

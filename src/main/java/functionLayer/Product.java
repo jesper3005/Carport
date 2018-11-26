@@ -14,7 +14,7 @@ import java.text.DecimalFormat;
 public class Product {
 
     private int id;
-    private String produktName;
+    private String productName;
     private String category;
     private double price;
     private double qty;
@@ -33,9 +33,9 @@ public class Product {
     
     
     
-    public Product(int id, String produktName, String category, double price, double length, double width, double height) {
+    public Product(int id, String productName, String category, double price, double length, double width, double height) {
         this.id = id;
-        this.produktName = produktName;
+        this.productName = productName;
         this.category = category;
         this.price = price;
         this.length = length;
@@ -43,9 +43,9 @@ public class Product {
         this.height = height;
     }
 
-    public Product(int id, String produktName, String category, double price, double qty, double priceLine, double length, double width, double height) {
+    public Product(int id, String productName, String category, double price, double qty, double priceLine, double length, double width, double height) {
         this.id = id;
-        this.produktName = produktName;
+        this.productName = productName;
         this.category = category;
         this.price = price;
         this.qty = qty;
@@ -58,12 +58,12 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Produkt{" + "id=" + id + ", produktName=" + produktName + ", category=" + category + ", price=" + price + ", qty=" + qty + ", priceLine=" + priceLine + ", length=" + length + ", width=" + width + ", height=" + height + '}';
+        return "Product{" + "id=" + id + ", productName=" + productName + ", category=" + category + ", price=" + price + ", qty=" + qty + ", priceLine=" + priceLine + ", length=" + length + ", width=" + width + ", height=" + height + '}';
     }
 
     public double getPriceLine() {
-        //return LogicFacade.roundDoubleToTwoDecimalPoints(this.priceLine = this.price * this.qty);
-        return this.priceLine;
+        return LogicFacade.roundDoubleToTwoDecimalPoints(this.priceLine = this.price * this.qty);
+        //return this.priceLine;
     }
 
     public double getTotalPriceOfOrder() {
@@ -79,7 +79,7 @@ public class Product {
     }
 
     public String getProduktName() {
-        return produktName;
+        return productName;
     }
 
     public String getCategory() {
