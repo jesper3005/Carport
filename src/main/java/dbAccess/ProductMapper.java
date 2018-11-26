@@ -23,8 +23,11 @@ public class ProductMapper {
     private final String ADD_PRODUCT = "INSERT INTO `product`(`produkt_name`,`category`,`price`,`length`,`width`,`height`)VALUES(?,?,?,?,?,?);";
     private final String DELETE_PRODUCT = "DELETE FROM `product` WHERE produkt_id=?;";
    // private final String Update_PRODUCT = "SELECT `*` FROM `product` WHERE produkt_id=?;";
+    private final String Update_Price = "UPDATE `product` SET `price`=? WHERE produkt_id=?;";
     private final String ALL_REM_BY_LENGTH = "SELECT `category`,`length` FROM `product` ORDER BY `length`;";
-
+    private final String SEARCH_IN_Product_TABLE = "SELECT * FROM product WHERE CONCAT(produkt_name, '', category, '',length,'',width,'',height,'') LIKE ?;";
+    
+    
     public List<Product> allProducts() {
         try {
             List<Product> productList = new ArrayList<>();
@@ -143,5 +146,55 @@ public class ProductMapper {
         }
         return null;
     }
+    
+    public void updatePrice(int produkt_id, double price) {
+       try {
+           Connection c = Connector.connection();
+           String query = Update_Price;
+           PreparedStatement pstmt = c.prepareStatement(query);
 
+           pstmt.setDouble(1, price);
+           pstmt.setInt(2, produkt_id);
+
+           pstmt.executeUpdate();
+           pstmt.close();
+
+       } catch (SQLException | ClassNotFoundException ex) {
+           System.out.println(ex.getMessage());
+       }
+   }
+    
+    public List<Product> searchInProductTable(String value) {
+       System.out.println(SEARCH_IN_Product_TABLE);
+       List<Product> list = new ArrayList<>();
+       try {
+           Product p = null;
+           Connection c = Connector.connection();
+           String query = SEARCH_IN_Product_TABLE;
+           PreparedStatement pstmt = c.prepareStatement(query);
+
+
+               pstmt.setString(1, value);
+               ResultSet res = pstmt.executeQuery();
+
+               while (res.next()) {
+                   int produkt_id = res.getInt("produkt_id");
+                   String produkt_name = res.getString("produkt_name");
+                   String category = res.getString("category");
+                   double price = res.getDouble("price");
+                   double length = res.getDouble("length");
+                   double width = res.getDouble("width");
+                   double height = res.getDouble("height");
+                   p = new Product(produkt_id, produkt_name, category, price, length, width, height);
+                   list.add(p);
+               }
+
+           return list;
+
+       } catch (SQLException | ClassNotFoundException ex) {
+           System.out.println(ex.getMessage());
+       }
+       return list;
+   }
+    
 }

@@ -78,8 +78,8 @@
         <h4>Tag type</h4>
         <div class="select">
         <select name="Tag">
-            <option value="1">Vælg tag</option>
-            <option value="2">Plasttrapezplader</option>
+            <option value="1">Plasttrapezplader</option>
+            <option value="2">Trapeztag</option>
 
         </select>
             <div class="select__arrowTag"></div>

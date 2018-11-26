@@ -77,7 +77,6 @@
         <table class="table-fill">
             <thead>
                 <tr>
-                    <th>Select</th>
                     <th>Produkt Navn</th>
                     <th>Kategori</th>
                     <th>StykPris</th>
@@ -87,14 +86,23 @@
                     <th>Slet Produkt</th>
                 </tr>
             </thead>
+            
             <tbody class="table-hover">
                 <tr>
-                    <% for (Product list : allProduct) {%>
-                    <td class="text-left"><input type="checkbox" name="Select" value="<%=list.getId()%>"></td><td><%=list.getProduktName()%></td><td><%=list.getCategory()%></td><td><%=list.getPrice() + " DKK"%></td><td><%=list.getLength()%></td>
-                    <td class="text-left"><%=list.getWidth()%></td><td><%=list.getHeight()%></td>
-                    <td class="text-left"><%out.println("<a href=\"http://localhost:8084//FrontController?command=UpdateProduct&product_id=" + list.getId() + "\")>");%>Slet</td>
+                   <% for (Product list : allProduct) {%>
+                <form action="FrontController" method="POST">
+                    <input type="hidden" name="command" value="UpdateProduct"/>
+                    <input type='hidden' name='id' value='<%=list.getId()%>'/>
+                    <td><%=list.getProduktName()%></td>
+                    <td><%=list.getCategory()%></td>
+                    <td><input id="number" type="number" name="price" placeholder="<%=list.getPrice()%> DKK" step="0.01"> <input type = "submit" name="action" value = "Update"> </td>
+                    <td><%=list.getLength()%></td>
+                    <td><%=list.getWidth()%></td>
+                    <td><%=list.getHeight()%></td>
+                </form>
+                <td><%out.println("<a href=\"http://localhost:8084//FrontController?command=UpdateProduct&product_id=" + list.getId() + "\")>");%>Slet</td>
                 </tr>
-                <%}%>
+           <%}%>
 
             </tbody>
             </tr>

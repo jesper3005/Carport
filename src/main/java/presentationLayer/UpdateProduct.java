@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -20,40 +20,29 @@ import javax.servlet.http.HttpSession;
  */
 public class UpdateProduct extends Command {
 
-    @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
-        HttpSession session = request.getSession();
-        ProductMapper pm = new ProductMapper();
-        String action = request.getParameter("action");
-        System.out.println(action);
-        if ("Slet".equals(action)) {
-            try {
+@Override
+   String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
+       HttpSession session = request.getSession();
+       ProductMapper pm = new ProductMapper();
+       String action = request.getParameter("action");
+       System.out.println(action);
+       if ("Update".equals(action)) {
 
-                String[] selectProduct_id = request.getParameterValues("Select");
-                int[] id = LogicFacade.StringArrayToIntArray(selectProduct_id);
-                for (int i = 0; i < id.length; i++) {
-                    pm.deleteProduct(id[i]);
-                }
-
-            } catch (Exception e) {
-                e.getMessage();
-            }
-        } else if ("Update".equals(action)) {
-            try {
-                String[] selectProduct_id = request.getParameterValues("Select");
-                int[] idArray = LogicFacade.StringArrayToIntArray(selectProduct_id);
-                session.setAttribute("Update", idArray);
-                return "update";
-            } catch (Exception e) {
-                e.getMessage();
-            }
-        } else {
-            int product_id = Integer.parseInt(request.getParameter("product_id"));
-            pm.deleteProduct(product_id);
-        }
-        List<Product> allProducts = pm.allProducts();
-        session.setAttribute("allProduct", allProducts);
-        return "admin";
-    }
+           double price = Double.parseDouble(request.getParameter("price"));
+           System.out.println(price);
+           int id = Integer.parseInt(request.getParameter("id"));
+           System.out.println(id + "hallo");
+           pm.updatePrice(id, price);
+       } else {
+           int product_id = Integer.parseInt(request.getParameter("product_id"));
+           System.out.println(product_id);
+           pm.deleteProduct(product_id);
+       }
+       List<Product> allProducts = pm.allProducts();
+       session.setAttribute("allProduct", allProducts);
+       return "admin";
+   }
+   
+   
 
 }

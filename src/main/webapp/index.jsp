@@ -23,7 +23,7 @@
             <a class="active" href=http://localhost:8084//FrontController?command=Admin>Admin</a>
             <!-- <input type='submit' value="Log Out">-->
         </header>
-        
+        <div class="test">   
     <center>
         <form action="FrontController" method="post">
             <h2>Vælg hvilken tag type du ønsker</h2>
@@ -52,7 +52,7 @@
             </div>
         </form>
     </center>
-
+        </div>
 
 
 

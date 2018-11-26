@@ -37,8 +37,7 @@ public class LogicFacade {
         return arrayOfInteger;
 }
 
-    public static double roundDoubleToTwoDecimalPoints(double value) {
-        
+    public static double roundDoubleToTwoDecimalPoints(double value) {        
         DecimalFormat df2 = new DecimalFormat(",##");
         return Double.parseDouble(df2.format(value));
 
