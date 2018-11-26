@@ -19,6 +19,7 @@ and open the template in the editor.
     font-family: 'Alegreya Sans', sans-serif;
 }
 
+/*Styling of h1 tags*/
 h1 {
   font-family: 'Alegreya Sans', sans-serif;
   font-weight: 300;
@@ -33,15 +34,16 @@ h1 {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   padding: 30px;
   width: 15.1%;
-  height: 80%;
+  height: 100%;
   margin: 10px;
+  align-items: center;
 }
 
 .control {
   display: block;
   position: relative;
-  padding-left: 30px;
-  margin-bottom: 15px;
+  padding-left: 5%;
+  margin-bottom: 5%;
   cursor: pointer;
 }
 
@@ -84,6 +86,7 @@ h1 {
   opacity: 0.5;
   pointer-events: none;
 }
+
 .select__arrow {
   position: absolute;
   top: 75px;
@@ -95,6 +98,7 @@ h1 {
   border-width: 8px 5px 0 5px;
   border-color: #7b7b7b transparent transparent transparent;
 }
+
 .select select:hover ~ .select__arrow,
 .select select:focus ~ .select__arrow {
   border-top-color: #000;
@@ -137,7 +141,7 @@ h1 {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   padding: 30px;
   width: 55.9%;
-  height: 80%;
+  height: 100%;
   margin: 10px;
 }
 
@@ -151,7 +155,7 @@ h1 {
 .selectForm input {
   display: inline-block;
   width: 95%;
-  cursor: pointer;
+  cursor: auto;
   padding: 10px 15px;
   outline: 0;
   border: 0;
@@ -165,10 +169,10 @@ h1 {
 
 
 
-textarea{
+textarea {
   display: inline-block;
   width: 95%;
-  cursor: pointer;
+  cursor: auto;
   padding: 10px 15px;
   outline: 0;
   border: 0;
@@ -178,7 +182,7 @@ textarea{
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  height: 200px;
+  height: 230px;
 }
 
 button[name=request] {
@@ -190,6 +194,8 @@ button[name=request] {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: 'Alegreya Sans', sans-serif;
+    
 }
 
 /*Styling of top box with text*/

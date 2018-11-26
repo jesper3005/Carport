@@ -35,7 +35,7 @@ header a {
 
 /*Styling of images*/
 
-.container {
+.containerPic {
     position: relative;
     width: 400px;
     height: 400px;
@@ -55,7 +55,7 @@ header a {
     pointer-events: none;
 }
 
-.container:hover .overlay{
+.containerPic:hover .overlay{
     opacity: 1;
 }
 
@@ -77,7 +77,7 @@ header a {
     background-color: #39598cab;
 }
 
-.container:hover .overlayFade{
+.containerPic:hover .overlayFade{
     width: 100%;
 }
 

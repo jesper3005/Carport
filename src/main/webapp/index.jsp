@@ -11,6 +11,7 @@
         <title>Fog</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="./CSS/headerCSS.css">
+        <link rel="stylesheet" href="./CSS/selectBoxes.css">
         <link rel="icon" href=""
     </head>
     <body>
@@ -23,11 +24,26 @@
             <a class="active" href=http://localhost:8084//FrontController?command=Admin>Admin</a>
             <!-- <input type='submit' value="Log Out">-->
         </header>
-        <div class="test">   
-        <h1>Vælg hvilken tag type du ønsker</h1>
+        <div class="test">
+            <br>
+            
+        <div class="container">
+            <div class="control-groupText">
+                <h1 class="title">Velkommen til Quick-byg carport med fladt tag !</h1>
+                <text>Med et specialudviklet computerprogram kan vi lynhurtigt beregne prisen og udskrive en skitsetegning på en carport  </text>
+                <br>
+                <text>indenfor vores standardprogram, der tilpasses dine specifikke ønsker.</text>
+                <br>
+                <br>
+                Tilbud og skitsetegning kan ses på næste side når målene er udfyldt
+                <br>
+                <br>
+                Ved bestilling medfølger standardbyggevejledning.
+        </div>
+
     <center>
         <form action="FrontController" method="post">
-            <div class="container">                
+            <div class="containerPic">                
                 <div class="overlay overlayFade">
                     <div class="text">
                         <h1>Spidst tag</h1>

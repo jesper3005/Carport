@@ -13,7 +13,7 @@
         <title>Fladt Tag</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="./CSS/headerCSS.css">
-        <link rel="stylesheet" href="./CSS/selectBoxes.css"
+        <link rel="stylesheet" href="./CSS/selectBoxes.css">
         <link rel="icon" href=""
     </head>
     <body>
@@ -134,8 +134,8 @@
             
             <textarea name="comment" form="usrform"></textarea>
             <input type="hidden" name="command" value="OrderRequest">
-            <button type="submit" name="request">Send forspørgelse</button>
             </div>
+            <button type="submit" name="request">Send forspørgelse</button>
         </div>
         </div>
     </form>    
