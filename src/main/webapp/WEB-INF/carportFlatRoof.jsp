@@ -23,7 +23,7 @@
             <a href="#SignUp">Sign up</a>
             <a href="#Login">Login</a> 
             <a class="active" href="/index.jsp">Home</a>
-            <a class="active" href=http://localhost:8084//FrontController?command=Admin>Admin</a>
+            <a class="active" href=http:/FrontController?command=Admin>Admin</a>
             
         </header>
         <div class="container">
@@ -119,7 +119,7 @@
             <div class="selectForm">
                 <h1 class="title">Udfyld formularen og send en forspørgelse</h1>
             <h4>Navn</h4>
-            <input type="text" name="navn" placeholder="Dit fulde navn">
+            <input type="text" name="navn" placeholder="Dit fulde navn" >
             <h4>Addresse</h4>
             <input type="text" name="addresse" placeholder="Din fulde addresse">
             <h4>Postnummer</h4>

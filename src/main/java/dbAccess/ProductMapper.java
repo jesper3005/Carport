@@ -127,28 +127,28 @@ public class ProductMapper {
             System.out.println(ex.getMessage());
         }
     }
-
+    
     public List<Product> searchInProductTable(String value) {
-        System.out.println(SEARCH_IN_Product_TABLE);
         List<Product> list = new ArrayList<>();
         try {
-            Product p = null;
+            Product p;
             Connection c = Connector.connection();
             String query = SEARCH_IN_Product_TABLE;
             PreparedStatement pstmt = c.prepareStatement(query);
 
             pstmt.setString(1, value);
-            ResultSet res = pstmt.executeQuery();
 
+            ResultSet res = pstmt.executeQuery();
             while (res.next()) {
-                int produkt_id = res.getInt("product_id");
-                String produkt_name = res.getString("product_name");
+                System.out.println(SEARCH_IN_Product_TABLE);
+                int product_id = res.getInt("product_id");
+                String product_name = res.getString("product_name");
                 String category = res.getString("category");
                 double price = res.getDouble("price");
                 double length = res.getDouble("length");
                 double width = res.getDouble("width");
                 double height = res.getDouble("height");
-                p = new Product(produkt_id, produkt_name, category, price, length, width, height);
+                p = new Product(product_id, product_name, category, price, length, width, height);
                 list.add(p);
             }
 

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : admin
-    Created on : 21-Nov-2018, 18:17:47
+    Document   : searchResult
+    Created on : 27-Nov-2018, 21:55:39
     Author     : oerte
 --%>
 
@@ -18,6 +18,7 @@
         <link rel="stylesheet" href="./CSS/tableDesign.css">
         <link rel="icon" href=""
     </head>
+
     <header>
         <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
         <a href="#SignUp">Sign up</a>
@@ -25,39 +26,10 @@
         <a class="active" href="/index.jsp">Home</a>
         <a class="active" href=http:/FrontController?command=Admin>Admin</a>
     </header>
-
     <body>
-        <%List<Product> allProduct = (List) session.getAttribute("allProduct");%>
+        <% List<Product> searchList = (List) session.getAttribute("searchList"); %>
 
-        <div class="containerAdmin">
-            <div class="control-groupAdmin">
-                <div class="selectFormAdmin">
-                    <form name="AddProduct" action="FrontController" method="POST">
-                        <input type="hidden" name="command" value="AddProduct">
-                        <h1>Tilføj et nyt produkt</h1>
-                        <h4>Produkt Navn</h4>
-                        <input type="text" name="produkt_name" required>
-                        <h4>Produkt Kategori</h4>
-                        <input type="text" name="category">
-                        <h4>Stykpris</h4>
-                        <input id="number" type="number" name="price" required >
-                        <h4>Længde</h4>
-                        <input id="number" type="number" name="length" required >
-                        <h4>Bredde</h4>
-                        <input id="number" type="number" name="width" required >
-                        <h4>Højde</h4>
-                        <input id="number" type="number" name="height" required >
-                        </br>
-                        </br>
-                        <input type="submit" value="AddProduct">
-                    </form>
-                </div>
-            </div>
-        </div>
-
-
-
-        <div class="containerTable">
+       <div class="containerTable">
             <div class="control-groupTable">
                 <div class="search">
                     <div>
@@ -88,7 +60,7 @@
 
                     <tbody class="table-hover">
                         <tr>
-                            <% for (Product list : allProduct) {%>
+                            <% for (Product list : searchList) {%>
                     <form action="FrontController" method="POST">
                         <input type="hidden" name="command" value="UpdateProduct"/>
                         <input type='hidden' name='id' value='<%=list.getId()%>'/>
@@ -108,9 +80,5 @@
                 </table>
             </div>
         </div>
-
-        </br>
-        </br>
-
     </body>
 </html>
