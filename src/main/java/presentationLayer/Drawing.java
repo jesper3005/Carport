@@ -6,8 +6,8 @@
 package presentationLayer;
 
 import exceptions.LoginSampleException;
-import functionLayer.CreateSVG;
-import functionLayer.SVGSideView;
+import functionLayer.SVGTop;
+import functionLayer.SVGSide;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -29,14 +29,14 @@ public class Drawing extends Command {
         HttpSession session = request.getSession();
         double length = (double) session.getAttribute("laengde");
         double width = (double) session.getAttribute("bredde");
-        int height = 310;
+        int height = 210;
 
         //Carport fra toppen.
-        CreateSVG cSVG = new CreateSVG(length, width);
+        SVGTop cSVG = new SVGTop(length, width);
         request.setAttribute("drawingTop", cSVG.getMySVG());
 
         //Carport fra siden.
-        SVGSideView sSVG = new SVGSideView(length, height);
+        SVGSide sSVG = new SVGSide(length, height);
         request.setAttribute("drawingSide", sSVG.getMySVG());
 
         return "svgTest";

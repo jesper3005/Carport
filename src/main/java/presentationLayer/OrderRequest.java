@@ -6,10 +6,11 @@
 package presentationLayer;
 
 import exceptions.LoginSampleException;
-import functionLayer.CreateSVG;
+import functionLayer.SVGTop;
 import functionLayer.LogicFacade;
 import functionLayer.Product;
-import functionLayer.SVGSideView;
+import functionLayer.SVGSide;
+import functionLayer.SVGTopTest;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -53,11 +54,14 @@ public class OrderRequest extends Command {
         int height = 310;
 
         //Carport fra toppen.
-        CreateSVG cSVG = new CreateSVG(length, width);
+        SVGTop cSVG = new SVGTop(length, width);
         request.setAttribute("drawingTop", cSVG.getMySVG());
+        
+//        SVGTopTest testSVG = new SVGTopTest(length, width);
+//        request.setAttribute("drawingTop", testSVG.getMySVG());
 
         //Carport fra siden.
-        SVGSideView sSVG = new SVGSideView(length, height);
+        SVGSide sSVG = new SVGSide(length, height);
         request.setAttribute("drawingSide", sSVG.getMySVG());
 
         // Transfer towards orderRequest.jsp

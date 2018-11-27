@@ -9,13 +9,13 @@ package functionLayer;
  *
  * @author Jesper
  */
-public class SVGSideView {
+public class SVGSide {
     
     private String mySVG = null;
     private StringBuilder sb = new StringBuilder();
     
-    public SVGSideView(double length, double height) {
-        double width1 = length + 200;
+    public SVGSide(double length, double height) {
+        double width1 = length + 100;
         double height1 = height + 100;
         this.sb = sb.append("<SVG width=\"" + width1 +"\" height=\""+ height1 +"\">");
         //ADD ALL METHODS FOR SVG DRAWING FROM TOP
@@ -31,7 +31,7 @@ public class SVGSideView {
     
     public String createStolper(double length, double height) {
         StringBuilder sb = new StringBuilder();
-        double x = length - 40;
+        double x = length - 60;
         
         sb.append("<rect x=\"40\" y=\"0\" height=\"" + height + "\" width=\"10\" style=\"stroke: #292929; fill:none;\"/>");
         sb.append("<rect x=\"" + x + "\" y=\"0\" height=\"" + height + "\" width=\"10\" style=\"stroke: #292929; fill:none;\"/>");

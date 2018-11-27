@@ -11,7 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -26,6 +25,7 @@ public class ProductMapper {
     private final String Update_Price = "UPDATE `product` SET `price`=? WHERE product_id=?;";
     private final String ALL_REM_BY_LENGTH = "SELECT `category`,`length` FROM `product` ORDER BY `length`;";
     private final String SEARCH_IN_Product_TABLE = "SELECT * FROM product WHERE CONCAT(product_name, '', category, '',length,'',width,'',height,'') LIKE ?;";
+    // private final String Update_PRODUCT = "SELECT `*` FROM `product` WHERE produkt_id=?;";
 
     public List<Product> allProducts() {
         try {
@@ -36,14 +36,14 @@ public class ProductMapper {
             ResultSet res = pstmt.executeQuery();
 
             while (res.next()) {
-                int produkt_id = res.getInt("product_id");
-                String produkt_name = res.getString("product_name");
+                int product_id = res.getInt("product_id");
+                String product_name = res.getString("product_name");
                 String category = res.getString("category");
                 double price = res.getDouble("price");
                 double length = res.getDouble("length");
                 double width = res.getDouble("width");
                 double height = res.getDouble("height");
-                Product p = new Product(produkt_id, produkt_name, category, price, length, width, height);
+                Product p = new Product(product_id, product_name, category, price, length, width, height);
                 productList.add(p);
             }
             return productList;
@@ -53,13 +53,13 @@ public class ProductMapper {
         return null;
     }
 
-    public void addProducts(String produkt_name, String category, double price, double length, double width, double height) {
+    public void addProducts(String product_name, String category, double price, double length, double width, double height) {
         try {
             Connection c = Connector.connection();
             String query = ADD_PRODUCT;
             PreparedStatement pstmt = c.prepareStatement(query);
 
-            pstmt.setString(1, produkt_name);
+            pstmt.setString(1, product_name);
             pstmt.setString(2, category);
             pstmt.setDouble(3, price);
             pstmt.setDouble(4, length);
@@ -142,14 +142,14 @@ public class ProductMapper {
             ResultSet res = pstmt.executeQuery();
 
             while (res.next()) {
-                int produkt_id = res.getInt("product_id");
-                String produkt_name = res.getString("product_name");
+                int product_id = res.getInt("product_id");
+                String product_name = res.getString("product_name");
                 String category = res.getString("category");
                 double price = res.getDouble("price");
                 double length = res.getDouble("length");
                 double width = res.getDouble("width");
                 double height = res.getDouble("height");
-                p = new Product(produkt_id, produkt_name, category, price, length, width, height);
+                p = new Product(product_id, product_name, category, price, length, width, height);
                 list.add(p);
             }
 
@@ -160,6 +160,7 @@ public class ProductMapper {
         }
         return list;
     }
+
 }
 // public static List<Product> updateProduct(List<Integer> produkt_id) {
 //        String Update_PRODUCT = "SELECT `*` FROM `product` WHERE produkt_id=?;";

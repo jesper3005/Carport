@@ -27,7 +27,7 @@
     </header>
     
     <body>
-        <%List<Product> allProduct = (List) session.getAttribute("allProduct");%>
+    <%List<Product> allProduct = (List) session.getAttribute("allProduct");%>
     
     <div class="containerAdmin">
         <div class="control-groupAdmin">
@@ -54,7 +54,15 @@
             </div>
         </div>
     </div>
-        
+    
+        <div class="containerAdmin">
+        <div class="control-groupAdmin">
+            <div class="selectFormAdmin">
+                <h4>Hej</h4>
+                <input id="number" type="number" name="hallo">
+            </div>
+        </div>    
+            </div>
         
         
     <div class="containerTable">
