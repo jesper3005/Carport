@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package calculations;
+package functionLayer.calculation;
 
 import functionLayer.LogicFacade;
 import functionLayer.Product;
@@ -19,10 +19,7 @@ public class CalcLaegter {
     private Product p;
     private double antal;
 
-    public CalcLaegter() {
-        this.antal = antal;
-    }
-    
+  
     
 
     public Product calcAntal(double length, double width) {
@@ -34,10 +31,10 @@ public class CalcLaegter {
             antalLaegterLength = length / 50;//50 cm
             // Hvad mange meter lægter skal vi brug til hele carportens bredje
             totalMeterLægter = (antalLaegterLength * width) / 540;//
-            this.antal = Math.ceil(totalMeterLægter + antalLaegterLength);
+            antal = Math.ceil(totalMeterLægter + antalLaegterLength);
             for (Product product : productList) {
                 if (product.getCategory().equals("lægte")) {
-                    p = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), this.antal, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
+                    p = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), antal, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
 
                 }
             }
@@ -45,20 +42,12 @@ public class CalcLaegter {
         } catch (NumberFormatException e) {
             e.getMessage();
         }
-        return null;
+        return null; 
 
     }
+    
+   
+    
 
-//    //6 søm per lægte
-//    public Product calcAntalSøm() {
-//        this.antal *= 6;
-//        for (Product product : productList) {
-//            if (product.getId() == 35) {
-//                p = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), this.antal, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
-//
-//            }
-//        }
-//        return p;
-//    }
-
+    
 }
