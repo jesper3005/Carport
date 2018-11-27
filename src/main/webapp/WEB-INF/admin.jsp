@@ -101,7 +101,7 @@
                 <form action="FrontController" method="POST">
                     <input type="hidden" name="command" value="UpdateProduct"/>
                     <input type='hidden' name='id' value='<%=list.getId()%>'/>
-                    <td><%=list.getProduktName()%></td>
+                    <td><%=list.getProductName()%></td>
                     <td><%=list.getCategory()%></td>
                     <td><input id="number" type="number" name="price" placeholder="<%=list.getPrice()%> DKK" step="0.01"> <input type = "submit" name="action" value = "Update"> </td>
                     <td><%=list.getLength()%></td>

@@ -78,9 +78,9 @@
         <h4>Tag type</h4>
         <div class="select">
         <select name="Tag">
-            <option value="1">Plasttrapezplader</option>
-            <option value="2">Trapeztag</option>
-
+            <option value="Tagpap">Tagpap</option>
+            <option value="Trapeztag PVC Glasklar">Trapeztag PVC Glasklar</option>
+            <option value="Trapeztag Boelgeplade">Trapeztag Boelgeplade</option>
         </select>
             <div class="select__arrowTag"></div>
         </div>
