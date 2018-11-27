@@ -75,18 +75,18 @@ public class CalcJUnitTest {
    }
 
    
-//   @Test
-//   public void calTagAntalTest(){
-//       //Arrange
-//       Product p;
-//       CalcTag ct = new CalcTag();
-//       //Act
-//       p = ct.calcAntal(570, 600, "Tagpap");
-//       double actual = p.getQty();
-//       double expected = 8;
-//       //Assert
-//       assertEquals(expected,actual,0.05);
-//   }
+   @Test
+   public void calTagAntalTest(){
+       //Arrange
+       Product p;
+       CalcRoof ct = new CalcRoof();
+       //Act
+       p = ct.calcAntal(570, 600, "Tagpap");
+       double actual = p.getQty();
+       double expected = 8;
+       //Assert
+       assertEquals(expected,actual,0.05);
+   }
    
    @Test
    public void calSternAntalTest(){
