@@ -19,7 +19,7 @@
             <a href="#SignUp">Sign up</a>
             <a href="#Login">Login</a> 
             <a class="active" href="/index.jsp">Home</a>
-            <a class="active" href=http://localhost:8084//FrontController?command=Admin>Admin</a>
+            <a class="active" href=http:/FrontController?command=Admin>Admin</a>
         </header>
 
     <center><h1>Carport med rejsning</h1></center>

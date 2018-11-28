@@ -6,11 +6,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import calculations.CalcLaegter;
-import calculations.CalcRem;
-import calculations.CalcRoof;
-import calculations.CalcStern;
-import calculations.CalcStolper;
+import functionLayer.calculation.CalcLaegter;
+import functionLayer.calculation.CalcRem;
+import functionLayer.calculation.CalcRoof;
+import functionLayer.calculation.CalcStern;
+import functionLayer.calculation.CalcStolper;
 import functionLayer.LogicFacade;
 import functionLayer.Product;
 

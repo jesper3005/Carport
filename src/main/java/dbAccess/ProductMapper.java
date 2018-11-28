@@ -130,17 +130,16 @@ public class ProductMapper {
     }
 
     public List<Product> searchInProductTable(String value) {
-        System.out.println(SEARCH_IN_Product_TABLE);
         List<Product> list = new ArrayList<>();
+        String query = SEARCH_IN_Product_TABLE;
         try {
-            Product p = null;
+            Product p;
             Connection c = Connector.connection();
-            String query = SEARCH_IN_Product_TABLE;
             PreparedStatement pstmt = c.prepareStatement(query);
 
             pstmt.setString(1, value);
-            ResultSet res = pstmt.executeQuery();
 
+            ResultSet res = pstmt.executeQuery();
             while (res.next()) {
                 int product_id = res.getInt("product_id");
                 String product_name = res.getString("product_name");
