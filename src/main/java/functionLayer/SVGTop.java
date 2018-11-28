@@ -49,10 +49,10 @@ public class SVGTop {
         double qty = Math.ceil(length / 50);
         //Minus 2 because we will always place the two first the same place, 40 cm in from each side.
         qty -= 2;
-        //We create a variable to store where the last and first lægte will be placed.
-        double lastLægte = length - 40;
-        double firstLægte = 40;
-        //+ 25 because we dont get the length of the lapth only the width of the carport.
+        //We create a variable to store where the first and last lægte will be placed.
+        double firstLægte = 40 + startPosY;
+        double lastLægte = length - (40 + remWidth);
+        //+ 25 thats the length of the lapths
         width += 25;
         //The two first laphts 
         sb.append("<rect x=\"30\" y=\"" + firstLægte + "\" height=\"" + lægteWidth +"\" width=\"" + width + "\" style=\"stroke: #292929; fill:none;\"/>");

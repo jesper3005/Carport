@@ -62,9 +62,11 @@ public class Product {
     }
 
     public double getPriceLine() {
-        return LogicFacade.roundDoubleToTwoDecimalPoints(this.priceLine = this.price * this.qty);
-        //return this.priceLine = this.price * this.qty;
+        //return LogicFacade.roundDoubleToTwoDecimalPoints(this.priceLine = this.price * this.qty);
+        return this.priceLine;
+
         //return this.priceLine;
+
     }
 
     public double getTotalPriceOfOrder() {
