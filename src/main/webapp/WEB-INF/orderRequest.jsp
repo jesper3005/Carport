@@ -51,46 +51,64 @@
             
         </div>
         </div>
-        <div class="containerDrawing">
-            <div class="control-groupSVGTop">
-                <%= request.getAttribute("drawingTop") %>
-            </div>
-            <div class="control-groupSVGSide">
-                <%= request.getAttribute("drawingSide") %>
-            </div>
-        </div>
+        
+    <div class="drawings">
+        <center><select name="test" id="mySelect" onchange="myFunction()">
+            <option>Vælg en skitse du vil se</option>
+            <option value="top">Top</option>
+            <option value="side">Side</option>
             
-        <table class="blueTable">
-            <thead>
-                <tr>
-                    <th>Produkt id</th>
-                    <th>Produkt Navn</th>
-                    <th>Kategori</th>
-                    <th>StykPris</th>
-                    <th>Antal</th>
-                    <th>LinjePris</th>
-                    <th>Længde</th>
-                    <th>Bredde</th>
-                    <th>Højde</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <%for (Product list : stykliste) {%>
-                    <td><%=list.getId()%></td><td><%=list.getProductName()%></td><td><%=list.getCategory()%></td><td><%=list.getPrice() + " DKK"%></td><td><%=list.getQty()%></td><td><%=list.getPriceLine() + " DKK"%></td><td><%=list.getLength()%></td><td><%=list.getWidth()%></td><td><%=list.getHeight()%></td></tr>
-                    <%}%>
+        </select>
+            <p id="demo"></p>
+    </div></center>
+        
+        <script>
+            function myFunction() {
+                var top = '${drawingTop}';
+                var side = '${drawingSide}';
+                var x = document.getElementById("mySelect").value;
+                if(x == "top") {
+                    document.getElementById("demo").innerHTML = top;
+                } else {
+                    document.getElementById("demo").innerHTML = side;
+                }
 
-            </tbody>
-        </tr>
-    </table>
-    </br>
-    </br>
-    <%="Total Pris: " + totalPriceOfCarport + " DKK"%>
+            }
+        </script>
+        
+    <form>
+        <div class="container">
+            <div class="control-groupForm">
+            <div class="selectForm">
+                <h1 class="title">Udfyld formularen og send en forspørgelse</h1>
+            <h4>Navn</h4>
+            <input type="text" name="navn" placeholder="Dit fulde navn" >
+            <h4>Addresse</h4>
+            <input type="text" name="addresse" placeholder="Din fulde addresse">
+            <h4>Postnummer</h4>
+            <input type="text" name="postnummer" placeholder="2300">
+            <h4>By</h4>
+            <input type="text" name="by">
+            <h4>Telefon</h4>
+            <input type="text" name="telefon">
+            <h4>Email-addresse</h4>
+            <input type="text" name="email">
+            <h4>Evt. bemærkninger</h4>
+            
+            <textarea name="comment" form="usrform"></textarea>
+            <input type="hidden" name="command" value="OrderRequest">
+            </div>
+            <button type="submit" name="request">Send forspørgelse</button>
+        </div>
+        </div>
+    </div>
+    </form>
+        
+        <br>
     
-                <form action="FrontController" method="post"> 
-                <input type="hidden" name="command" value="drawing">
-                <input type="submit" value="se tegning">
-            </form>
+        
+          
+
 
 </body>
 </html>

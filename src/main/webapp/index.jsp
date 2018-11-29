@@ -28,7 +28,7 @@
             
         <div class="containerTextIndex">
             <div class="control-groupTextIndex">
-                <h1 class="title">Velkommen til Quick-byg carport med fladt tag !</h1>
+                <h1 class="title">Velkommen til Fog Quick-byg carport !</h1>
                 <text>Med et specialudviklet computerprogram kan vi lynhurtigt beregne prisen og udskrive en skitsetegning på en carport  </text>
                 <br>
                 <text>indenfor vores standardprogram, der tilpasses dine specifikke ønsker.</text>
