@@ -96,7 +96,7 @@
             <h4>Evt. bemærkninger</h4>
             
             <textarea name="comment" form="usrform"></textarea>
-            <input type="hidden" name="command" value="OrderRequest">
+            <input type="hidden" name="command" value="sendOrder">
             </div>
             <button type="submit" name="request">Send forspørgelse</button>
         </div>
