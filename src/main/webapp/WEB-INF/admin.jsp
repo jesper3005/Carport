@@ -27,7 +27,12 @@
     </header>
     
     <body>
+<<<<<<< HEAD
+=======
+
+>>>>>>> b1e0aab1e0221611464d9f977a36116ce52cd0e6
     <%List<Product> allProduct = (List) session.getAttribute("allProduct");%>
+    
     
     <div class="containerAdmin">
         <div class="control-groupAdmin">
@@ -63,6 +68,7 @@
             </div>
         </div>    
             </div>
+<<<<<<< HEAD
         
         
     <div class="containerTable">
@@ -79,6 +85,18 @@
     <td>
         <form action="FrontController" method="POST" />
         <input type="hidden" name="command" value="UpdateProduct"/>
+=======
+
+
+
+        <div class="containerTable">
+            <div class="control-groupTable">
+                <div class="search">
+                    <div>
+                        <input type="text" id="result" name="search" placeholder="Search.." required="" > 
+                        <input type = "submit" name="action" value = "Search" onclick='javascript:window.open("http:/FrontController?command=SearchResult&result=" + document.getElementById("result").value, "_blank", "scrollbars=2,resizable=1,height=600,width=800");'>
+                    </div>     
+>>>>>>> b1e0aab1e0221611464d9f977a36116ce52cd0e6
 
     </td>
     
@@ -112,9 +130,16 @@
                 </tr>
            <%}%>
 
+<<<<<<< HEAD
             </tbody>
             </tr>
         </table>
+=======
+                    </tbody>
+                    </tr>
+                </table>
+            </div>
+>>>>>>> b1e0aab1e0221611464d9f977a36116ce52cd0e6
         </div>
     </div>
 

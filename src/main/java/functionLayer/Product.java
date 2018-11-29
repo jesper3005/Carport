@@ -31,6 +31,15 @@ public class Product {
         this.length = length;
     }
     
+    public Product(String productName, String category, double price, double length, double width, double height) {
+        this.productName = productName;
+        this.category = category;
+        this.price = price;
+        this.length = length;
+        this.width = width;
+        this.height = height;
+    }
+    
     
     
     public Product(int id, String productName, String category, double price, double length, double width, double height) {
@@ -62,9 +71,11 @@ public class Product {
     }
 
     public double getPriceLine() {
-        return LogicFacade.roundDoubleToTwoDecimalPoints(this.priceLine = this.price * this.qty);
-        //return this.priceLine = this.price * this.qty;
+        //return LogicFacade.roundDoubleToTwoDecimalPoints(this.priceLine = this.price * this.qty);
+        return this.priceLine;
+
         //return this.priceLine;
+
     }
 
     public double getTotalPriceOfOrder() {

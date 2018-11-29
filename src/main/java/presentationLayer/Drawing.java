@@ -32,8 +32,8 @@ public class Drawing extends Command {
         int height = 210;
 
         //Carport fra toppen.
-        SVGTop cSVG = new SVGTop(length, width);
-        request.setAttribute("drawingTop", cSVG.getMySVG());
+        //SVGTop cSVG = new SVGTop(length, width);
+        //request.setAttribute("drawingTop", cSVG.getMySVG());
 
         //Carport fra siden.
         SVGSide sSVG = new SVGSide(length, height);
