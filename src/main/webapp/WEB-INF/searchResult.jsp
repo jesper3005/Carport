@@ -18,7 +18,6 @@
         <link rel="stylesheet" href="./CSS/tableDesign.css">
         <link rel="icon" href=""
     </head>
-
     <header>
         <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
         <a href="#SignUp">Sign up</a>
@@ -28,23 +27,16 @@
     </header>
     <body>
         <% List<Product> searchList = (List) session.getAttribute("searchList"); %>
-
-       <div class="containerTable">
+        <div class="containerTable">
             <div class="control-groupTable">
                 <div class="search">
                     <div>
-
                         <input type="text" id="result" name="search" placeholder="Search.." required="" > 
                         <input type = "submit" name="action" value = "Search" onclick='javascript:window.open("http:/FrontController?command=SearchResult&result=" + document.getElementById("result").value, "_blank", "scrollbars=2,resizable=1,height=600,width=800");'>
-
                     </div>     
-
                 </div>
                 <td>
-
-
                 </td>
-
                 <table class="table-fill">
                     <thead>
                         <tr>
@@ -57,7 +49,6 @@
                             <th>Slet Produkt</th>
                         </tr>
                     </thead>
-
                     <tbody class="table-hover">
                         <tr>
                             <% for (Product list : searchList) {%>
@@ -74,7 +65,6 @@
                     <td><%out.println("<a href=\"http://localhost:8084//FrontController?command=UpdateProduct&product_id=" + list.getId() + "\")>");%>Slet</td>
                     </tr>
                     <%}%>
-
                     </tbody>
                     </tr>
                 </table>

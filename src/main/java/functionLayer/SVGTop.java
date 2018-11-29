@@ -22,7 +22,7 @@ public class SVGTop {
     double stolpeWidth = 10;
     double stolpeHeight = 10;
 
-    public SVGTop(double length, double width) {
+    public SVGTop(double length, double width, double skurLength, double skurWidth) {
         double width1 = length + 100;
         double height1 = width + 100;
         this.sb = sb.append("<SVG width=\"600\" height=\"600\">");
@@ -32,6 +32,7 @@ public class SVGTop {
         sb.append(createStolper(length, width));
         sb.append(createLenghtText(length, width));
         sb.append(createWidthText(length, width));
+        sb.append(createShed(length, skurLength, skurWidth));
 
         sb.append("</SVG>");
         this.mySVG = sb.toString();
@@ -49,10 +50,10 @@ public class SVGTop {
         double qty = Math.ceil(length / 50);
         //Minus 2 because we will always place the two first the same place, 40 cm in from each side.
         qty -= 2;
-        //We create a variable to store where the last and first lægte will be placed.
-        double lastLægte = length - 40;
-        double firstLægte = 40;
-        //+ 25 because we dont get the length of the lapth only the width of the carport.
+        //We create a variable to store where the first and last lægte will be placed.
+        double firstLægte = 40 + startPosY;
+        double lastLægte = length - (40 + remWidth);
+        //+ 25 thats the length of the lapths
         width += 25;
         //The two first laphts 
         sb.append("<rect x=\"30\" y=\"" + firstLægte + "\" height=\"" + lægteWidth +"\" width=\"" + width + "\" style=\"stroke: #292929; fill:none;\"/>");
@@ -154,5 +155,16 @@ public class SVGTop {
 
         return sb.toString();
     }
-
+    
+    private String createShed(double length, double skurLength, double skurWidth) {
+        StringBuilder sb = new StringBuilder();
+        double x = startPosX + remWidth;
+        double y = length - (remWidth + skurLength);
+        double length1 = skurLength;
+        double width = skurWidth;
+        
+        sb.append("<rect x=\"" + x + "\" y=\"" + y +"\" width=\""+ width + "\" height=\"" + length1 + "\" style=\"fill:#a7a5a5db; stroke: #a7a5a5db; fill:1;\" />");
+        
+        return sb.toString();
+    }
 }

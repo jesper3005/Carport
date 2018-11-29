@@ -1,5 +1,5 @@
 
-package carportTest;
+package FunctionLayer;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -43,6 +43,7 @@ public class CalcJUnitTest {
     // @Test
     // public void hello() {}
     
+    //Test negative og grænse værdier
    
    @Test
    public void calStolperAntalTest() {
