@@ -25,6 +25,7 @@ public class ProductMapper {
     private final String Update_Price = "UPDATE `product` SET `price`=? WHERE product_id=?;";
     private final String ALL_REM_BY_LENGTH = "SELECT `category`,`length` FROM `product` ORDER BY `length`;";
     private final String SEARCH_IN_Product_TABLE = "SELECT * FROM product WHERE CONCAT(product_name, '', category, '',length,'',width,'',height,'') LIKE ?;";
+    private final String GET_PRODUCT_BY_ID = "SELECT * FROM `product` WHERE `product_id` = ?;";
     // private final String Update_PRODUCT = "SELECT `*` FROM `product` WHERE produkt_id=?;";
 
     public List<Product> allProducts() {
@@ -53,18 +54,18 @@ public class ProductMapper {
         return null;
     }
 
-    public void addProducts(String product_name, String category, double price, double length, double width, double height) {
+    public Product addProducts(Product product) {
         try {
             Connection c = Connector.connection();
             String query = ADD_PRODUCT;
             PreparedStatement pstmt = c.prepareStatement(query);
 
-            pstmt.setString(1, product_name);
-            pstmt.setString(2, category);
-            pstmt.setDouble(3, price);
-            pstmt.setDouble(4, length);
-            pstmt.setDouble(5, width);
-            pstmt.setDouble(6, height);
+            pstmt.setString(1, product.getProductName());
+            pstmt.setString(2, product.getCategory());
+            pstmt.setDouble(3, product.getPrice());
+            pstmt.setDouble(4, product.getLength());
+            pstmt.setDouble(5, product.getWidth());
+            pstmt.setDouble(6, product.getHeight());
 
             pstmt.executeUpdate();
             pstmt.close();
@@ -72,6 +73,7 @@ public class ProductMapper {
         } catch (SQLException | ClassNotFoundException ex) {
             System.out.println(ex.getMessage());
         }
+        return product;
     }
 
     public void deleteProduct(int id) {
@@ -158,6 +160,36 @@ public class ProductMapper {
             System.out.println(ex.getMessage());
         }
         return list;
+    }
+    
+    public Product getProductByID(int id) {
+            
+            try {
+            Connection c = Connector.connection();
+            String query = GET_PRODUCT_BY_ID;
+            PreparedStatement pstmt = c.prepareStatement(query);
+            pstmt.setInt(1, id);
+            ResultSet res = pstmt.executeQuery();
+            
+            if(res.next()) {
+                int productID = res.getInt("product_id");
+                String productName = res.getString("product_name");
+                String category = res.getString("category");
+                double price = res.getDouble("price");
+                double length = res.getDouble("length");
+                double width = res.getDouble("width");
+                double height = res.getDouble("height");
+                
+                Product product = new Product(productID, productName, category, price, width, price, length, width, height);
+                return product;
+            }
+            
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return null;
+        
     }
 
 }

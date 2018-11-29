@@ -22,7 +22,7 @@ public class SVGTop {
     double stolpeWidth = 10;
     double stolpeHeight = 10;
 
-    public SVGTop(double length, double width) {
+    public SVGTop(double length, double width, double skurLength, double skurWidth) {
         double width1 = length + 100;
         double height1 = width + 100;
         this.sb = sb.append("<SVG width=\"600\" height=\"600\">");
@@ -32,6 +32,7 @@ public class SVGTop {
         sb.append(createStolper(length, width));
         sb.append(createLenghtText(length, width));
         sb.append(createWidthText(length, width));
+        sb.append(createShed(length, skurLength, skurWidth));
 
         sb.append("</SVG>");
         this.mySVG = sb.toString();
@@ -154,5 +155,16 @@ public class SVGTop {
 
         return sb.toString();
     }
-
+    
+    private String createShed(double length, double skurLength, double skurWidth) {
+        StringBuilder sb = new StringBuilder();
+        double x = startPosX + remWidth;
+        double y = length - (remWidth + skurLength);
+        double length1 = skurLength;
+        double width = skurWidth;
+        
+        sb.append("<rect x=\"" + x + "\" y=\"" + y +"\" width=\""+ width + "\" height=\"" + length1 + "\" style=\"fill:#a7a5a5db; stroke: #a7a5a5db; fill:1;\" />");
+        
+        return sb.toString();
+    }
 }

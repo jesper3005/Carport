@@ -27,8 +27,9 @@
     </header>
 
     <body>
-<<<<<<< HEAD
+
     <%List<Product> allProduct = (List) session.getAttribute("allProduct");%>
+    
     
     <div class="containerAdmin">
         <div class="control-groupAdmin">
@@ -64,46 +65,6 @@
             </div>
         </div>    
             </div>
-        
-        
-    <div class="containerTable">
-        <div class="control-groupTable">
-            <div class="search">
-            <div>
-                <input type="text" name="search" placeholder="Search.."> 
-            </div>     
-                <input type = "submit" name="action" value = "Slet" >
-                <input type = "submit" name="action" value = "Update" >
-                <input type = "submit" name="action" value = "Search" >
-            </form>
-=======
-        <%List<Product> allProduct = (List) session.getAttribute("allProduct");%>
-
-        <div class="containerAdmin">
-            <div class="control-groupAdmin">
-                <div class="selectFormAdmin">
-                    <form name="AddProduct" action="FrontController" method="POST">
-                        <input type="hidden" name="command" value="AddProduct">
-                        <h1>Tilføj et nyt produkt</h1>
-                        <h4>Produkt Navn</h4>
-                        <input type="text" name="produkt_name" required>
-                        <h4>Produkt Kategori</h4>
-                        <input type="text" name="category">
-                        <h4>Stykpris</h4>
-                        <input id="number" type="number" name="price" required >
-                        <h4>Længde</h4>
-                        <input id="number" type="number" name="length" required >
-                        <h4>Bredde</h4>
-                        <input id="number" type="number" name="width" required >
-                        <h4>Højde</h4>
-                        <input id="number" type="number" name="height" required >
-                        </br>
-                        </br>
-                        <input type="submit" value="AddProduct">
-                    </form>
-                </div>
-            </div>
-        </div>
 
 
 
@@ -111,10 +72,8 @@
             <div class="control-groupTable">
                 <div class="search">
                     <div>
-
                         <input type="text" id="result" name="search" placeholder="Search.." required="" > 
                         <input type = "submit" name="action" value = "Search" onclick='javascript:window.open("http:/FrontController?command=SearchResult&result=" + document.getElementById("result").value, "_blank", "scrollbars=2,resizable=1,height=600,width=800");'>
-
                     </div>     
 
                 </div>
@@ -156,7 +115,6 @@
                     </tbody>
                     </tr>
                 </table>
->>>>>>> 5543347eefa869d20c49571df0c5e66cf37e228d
             </div>
         </div>
 

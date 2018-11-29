@@ -44,11 +44,11 @@ public class ProductMapperTest {
                 Connector.setConnection(testConnection);
             }            
             //Reset database
-//            try(Statement stmt = testConnection.createStatement()) {
-//                stmt.execute("Drop table if exist product");
-//                stmt.execute("create table product like carport.product");
-//                stmt.execute("INSERT INTO product SELECT * FROM carport.product");
-//            }
+            try(Statement stmt = testConnection.createStatement()) {
+                stmt.execute("DROP TABLE IF EXISTS product;");
+                stmt.execute("CREATE TABLE product LIKE productTest;");
+                stmt.execute("INSERT into product SELECT * from productTest;");
+            }
 
         } catch (ClassNotFoundException | SQLException ex) {
             testConnection = null;
@@ -81,31 +81,47 @@ public class ProductMapperTest {
         assertTrue(product.size() > 2);
     }
     
-//    @Test
-//    public void testDeleteProduct() {
-//        //Arrange
-//        ProductMapper pm = new ProductMapper();
-//        
-//        //Act
-//        pm.deleteProduct(1);
-//       
-//        //Assert
-//        assertNull(USER);
-//        
-//    }
-    
     @Test
     public void testUpdatePrice() {
         //Arrange
         ProductMapper pm = new ProductMapper();
-        
         //Act
-        double price = 200;
-        pm.updatePrice(1, price);
+        double actual = 200.00;
+        pm.updatePrice(1, actual);
+        
+        Product expected = pm.getProductByID(1);
         
         //Assert
-        
+        System.out.println(expected.getPrice());
+        assertEquals(expected.getPrice(), actual, 0);
     }
     
+    @Test
+    public void testAddProduct() {
+        //Arrange
+        ProductMapper pm = new ProductMapper();
+        Product p = new Product("testProduct", "testCategory", 200.0, 200.0, 200.0, 200.0);
+        
+        //Act
+        String expected = "testProduct";
+        Product actual = pm.addProducts(p);
+        
+        //Assert
+        assertEquals(expected, actual.getProductName());
+    }
+    
+    @Test
+    public void testDeleteProduct() {
+        //Arrange
+        ProductMapper pm = new ProductMapper();
+        List<Product> product1 = pm.allProducts();
+        
+        //Act
+        pm.deleteProduct(1);
+        List<Product> product2 = pm.allProducts();
+        
+        //Assert
+        assertTrue(product1.size() > product2.size());        
+    }
     
 }
