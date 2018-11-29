@@ -30,7 +30,10 @@ public class AddProduct extends Command {
         Double length = Double.parseDouble(request.getParameter("length"));
         Double width = Double.parseDouble(request.getParameter("width"));
         Double height = Double.parseDouble(request.getParameter("height"));
-        pm.addProducts(produkt_navn, category, price, length, width, height);
+        
+        Product product = new Product(produkt_navn, category, price, length, width, height);
+        
+        pm.addProducts(product);
         List<Product> allProducts = pm.allProducts();
         session.setAttribute("allProduct", allProducts);
         return "admin";
