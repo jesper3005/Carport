@@ -24,21 +24,20 @@
             <a class="active" href=http://localhost:8084//FrontController?command=Admin>Admin</a>
             <!-- <input type='submit' value="Log Out">-->
         </header>
-        <div class="test">
-            <br>
+
             
-        <div class="container">
-            <div class="control-groupText">
+        <div class="containerTextIndex">
+            <div class="control-groupTextIndex">
                 <h1 class="title">Velkommen til Quick-byg carport med fladt tag !</h1>
                 <text>Med et specialudviklet computerprogram kan vi lynhurtigt beregne prisen og udskrive en skitsetegning på en carport  </text>
                 <br>
                 <text>indenfor vores standardprogram, der tilpasses dine specifikke ønsker.</text>
                 <br>
                 <br>
-                Tilbud og skitsetegning kan ses på næste side når målene er udfyldt
+                Vælg for neden hvilken type carport du ønsker
                 <br>
                 <br>
-                Ved bestilling medfølger standardbyggevejledning.
+                Spidst tag eller fladt tag.
         </div>
 
     <center>
@@ -56,7 +55,7 @@
         </form></center>
     <center>
         <form action="FrontController" method="post">
-            <div class="container">
+            <div class="containerPic">
                 <div class="overlay overlayFade">
                     <div class="text">
                         <h1>Fladt tag</h1>
