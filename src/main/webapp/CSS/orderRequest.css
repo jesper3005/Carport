@@ -100,4 +100,6 @@ table.blueTable tfoot .links a{
     justify-content: center;
     align-items: center;
     margin-top: 5%;
+    text-align: center;
 }
+
