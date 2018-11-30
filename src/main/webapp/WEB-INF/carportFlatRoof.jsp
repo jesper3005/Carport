@@ -116,13 +116,13 @@
 
         <br>
        
-            
-        </div>
-        <div class="carportButton">
+        
+        <div class="control-group">
             <input type="hidden" name="command" value="OrderRequest">            
             <button type="submit" name="request">Byg din carport!</button>
         </div>
     </form>    
+        </div>
 
 </body>
 </html>
