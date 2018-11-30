@@ -17,7 +17,7 @@ public class SVGSide {
     public SVGSide(double length, double height) {
         double width1 = length + 100;
         double height1 = height + 100;
-        this.sb = sb.append("<SVG width=\"" + width1 +"\" height=\""+ height1 +"\">");
+        this.sb = sb.append("<SVG width=\"800\" height=\"500\">");
         //ADD ALL METHODS FOR SVG DRAWING FROM TOP
         sb.append(createRem(length));
         sb.append(createStolper(height, height));

@@ -67,7 +67,37 @@ table.blueTable tfoot .links a{
 
 .search {
     position: relative;
-    right: 10px;
+    right: 10px; 
+}
+
+.drawingTop {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    margin-top: 1%;
     
-    
+    justify-content: center;
+    align-items: center;
+}
+
+.drawingSide {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-top: 1%;
+}
+
+.drawing {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-top: 1%;
+
+}
+
+.carportButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
 }

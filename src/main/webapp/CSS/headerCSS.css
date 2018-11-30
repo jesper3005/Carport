@@ -37,13 +37,15 @@ header a {
 
 .containerPic {
     position: relative;
-    width: 400px;
+    width: 570px;
     height: 400px;
-    display: inline-block;
+    
+    
+    
 }
 
 .image {
-    width: 400px;
+    width: 570px;
     height: 400px;
 }
 
@@ -81,16 +83,6 @@ header a {
     width: 100%;
 }
 
-center {
-    display: inline-block;
-}
 
-.title {
-    text-align: center;
-    margin-top: 2%;
-}
 
-.test {
-    text-align: center;
-}
 
