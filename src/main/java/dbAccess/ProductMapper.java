@@ -131,14 +131,16 @@ public class ProductMapper {
         }
     }
 
+   
     public List<Product> searchInProductTable(String value) {
-        List<Product> list = new ArrayList<>();
-        String query = SEARCH_IN_Product_TABLE;
+        value = "%"+value+"%";
+        System.out.println(SEARCH_IN_Product_TABLE);
         try {
             Product p;
+            List<Product> list = new ArrayList<>();
             Connection c = Connector.connection();
+            String query = SEARCH_IN_Product_TABLE;
             PreparedStatement pstmt = c.prepareStatement(query);
-
             pstmt.setString(1, value);
 
             ResultSet res = pstmt.executeQuery();
@@ -150,7 +152,9 @@ public class ProductMapper {
                 double length = res.getDouble("length");
                 double width = res.getDouble("width");
                 double height = res.getDouble("height");
+                
                 p = new Product(product_id, product_name, category, price, length, width, height);
+               // System.out.println(p);
                 list.add(p);
             }
 
@@ -159,19 +163,19 @@ public class ProductMapper {
         } catch (SQLException | ClassNotFoundException ex) {
             System.out.println(ex.getMessage());
         }
-        return list;
+        return null;
     }
-    
+
     public Product getProductByID(int id) {
-            
-            try {
+
+        try {
             Connection c = Connector.connection();
             String query = GET_PRODUCT_BY_ID;
             PreparedStatement pstmt = c.prepareStatement(query);
             pstmt.setInt(1, id);
             ResultSet res = pstmt.executeQuery();
-            
-            if(res.next()) {
+
+            if (res.next()) {
                 int productID = res.getInt("product_id");
                 String productName = res.getString("product_name");
                 String category = res.getString("category");
@@ -179,17 +183,16 @@ public class ProductMapper {
                 double length = res.getDouble("length");
                 double width = res.getDouble("width");
                 double height = res.getDouble("height");
-                
+
                 Product product = new Product(productID, productName, category, price, width, price, length, width, height);
                 return product;
             }
-            
 
         } catch (SQLException | ClassNotFoundException ex) {
             System.out.println(ex.getMessage());
         }
         return null;
-        
+
     }
 
 }

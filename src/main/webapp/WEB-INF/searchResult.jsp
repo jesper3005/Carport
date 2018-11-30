@@ -1,9 +1,3 @@
-<%-- 
-    Document   : searchResult
-    Created on : 27-Nov-2018, 21:55:39
-    Author     : oerte
---%>
-
 <%@page import="java.util.List"%>
 <%@page import="functionLayer.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -26,17 +20,18 @@
         <a class="active" href=http:/FrontController?command=Admin>Admin</a>
     </header>
     <body>
-        <% List<Product> searchList = (List) session.getAttribute("searchList"); %>
+
+        <%List<Product> allProduct = (List) session.getAttribute("searchList");%>
+
+        
         <div class="containerTable">
             <div class="control-groupTable">
                 <div class="search">
                     <div>
                         <input type="text" id="result" name="search" placeholder="Search.." required="" > 
-                        <input type = "submit" name="action" value = "Search" onclick='javascript:window.open("http:/FrontController?command=SearchResult&result=" + document.getElementById("result").value, "_blank", "scrollbars=2,resizable=1,height=600,width=800");'>
+                        <input type = "submit" name="action" value = "Search" onclick='javascript:window.open("http:/FrontController?command=SearchResult&result=" + document.getElementById("result").value, "_blank", "scrollbars=1,resizable=1,height=600,width=1600");'>
                     </div>     
                 </div>
-                <td>
-                </td>
                 <table class="table-fill">
                     <thead>
                         <tr>
@@ -51,7 +46,7 @@
                     </thead>
                     <tbody class="table-hover">
                         <tr>
-                            <% for (Product list : searchList) {%>
+                            <% for (Product list : allProduct) {%>
                     <form action="FrontController" method="POST">
                         <input type="hidden" name="command" value="UpdateProduct"/>
                         <input type='hidden' name='id' value='<%=list.getId()%>'/>
