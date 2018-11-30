@@ -42,9 +42,6 @@
             
         </div>
         </div>
-   
-  
-            
 
             <form name="FlatRoof" action="FrontController" method="POST">
                 <input type="hidden" name="command" value="OrderRequest">
@@ -101,7 +98,7 @@
                     <br>
                     <div class="control-group">
                         <h1>Vælg mål på skur</h1>
-                        <input type = "checkbox" name = "redskabsskur"  /> Redskabsskur
+                        <input type = "checkbox" name = "redskabsskur"  /> Jeg ønsker redskabskur
                         <h4>Redskabsrum bredde</h4>
                         <div class="select">
                             <select name="skurbredde">
@@ -128,14 +125,14 @@
                     </div>
 
                     <br>
-                </div>
                             
                 <div class="control-group">
                     <input type="hidden" name="command" value="OrderRequest">            
                     <button type="submit" name="request">Byg din carport!</button>
                 </div>
             </form>    
-        </div>
+        
+                </div>
 
     </body>
 </html>

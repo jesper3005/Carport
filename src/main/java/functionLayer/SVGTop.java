@@ -25,7 +25,7 @@ public class SVGTop {
     public SVGTop(double length, double width, double skurLength, double skurWidth) {
         double width1 = length + 100;
         double height1 = width + 100;
-        this.sb = sb.append("<SVG width=\"600\" height=\"600\">");
+        this.sb = sb.append("<SVG width=\"800\" height=\"800\">");
         //ADD ALL METHODS FOR SVG DRAWING FROM TOP
         sb.append(createRemme(length, width));
         sb.append(createLægter(length, width));

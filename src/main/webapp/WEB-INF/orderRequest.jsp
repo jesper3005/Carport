@@ -76,7 +76,7 @@
             }
         </script>
         
-    <form>
+    <form name="sendOrder" action="FrontController" method="POST">
         <div class="container">
             <div class="control-groupForm">
             <div class="selectForm">
