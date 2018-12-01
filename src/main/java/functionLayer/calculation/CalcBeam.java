@@ -12,38 +12,30 @@ import java.util.List;
  *
  * @author Jesper
  */
-public class CalcBattens {
-
-    
+public class CalcBeam {
 
     public Product calcAntal(double length, double width, List allProducts) {
-        Product p = null;
         List<Product> productList = allProducts;
-        double antal;
+        Product p = null;
         try {
-            double antalLaegterLength = 0;
-            double totalMeterLægter = 0;
-            //En lægte per 0.5 meter (50 cm)
-            antalLaegterLength = length / 50;//50 cm
-            // Hvad mange meter lægter skal vi brug til hele carportens bredje
-            totalMeterLægter = (antalLaegterLength * width) / 540;//
-            antal = Math.ceil(totalMeterLægter + antalLaegterLength);
+            int antal = 0;
+            if (width >= 510) {
+                antal = 5;
+            } else {
+                antal = 4;
+            }
             for (Product product : productList) {
-                if (product.getCategory().equals("lægte")) {
+                if (product.getCategory().equals("rem") && product.getLength() == length) {
                     p = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), antal, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
 
                 }
             }
             return p;
-        } catch (NumberFormatException e) {
+        } catch (NullPointerException e) {
             e.getMessage();
         }
-        return null; 
+        return null;
 
     }
-    
-   
-    
 
-    
 }

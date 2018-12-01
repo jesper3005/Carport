@@ -5,7 +5,6 @@
  */
 package functionLayer.calculation;
 
-import functionLayer.LogicFacade;
 import functionLayer.Product;
 import java.util.List;
 
@@ -13,13 +12,12 @@ import java.util.List;
  *
  * @author Jesper
  */
-public class CalcStolper {
+public class CalcPoles {
 
-    private List<Product> productList = LogicFacade.getAllProductsFromDatabase();
-    private Product p;
-
-    public Product calcAntal(double length, double width) {
-
+    public Product calcAntal(double length, double width, List allProducts) {
+        
+        List<Product> productList = allProducts;
+        Product p = null;
         try {
             int antal = 0;
             if (length <= 450) {
@@ -51,7 +49,5 @@ public class CalcStolper {
         }
         return p;
     }
-
-    
 
 }

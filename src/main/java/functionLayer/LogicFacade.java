@@ -19,15 +19,17 @@ public class LogicFacade {
 
     public static List<Product> CarportCalculaterFlatRoof(double length, double width, String roofMaterial) {
         CarportFlatProductListe cfp = new CarportFlatProductListe();
-        List list = cfp.CarportCalculaterFlatRoof(length, width, roofMaterial);
+        List list = cfp.carportCalculaterFlatRoof(length, width, roofMaterial);
         return list;
     }
     
     public static List<Product> CarportCalculaterFlatRoofIncludingShed(double length, double width, double shedLength, double shedWidth, String roofMaterial) {
         CarportFlatProductListe cfp = new CarportFlatProductListe();
-        List list = cfp.CarportCalculaterFlatRoofIncludingShed(length, width, shedLength, shedWidth, roofMaterial);
+        List list = cfp.carportCalculaterFlatRoofIncludingShed(length, width, shedLength, shedWidth, roofMaterial);
         return list;
     }
+    
+   
 
     public static int[] StringArrayToIntArray(String[] s) {
         int[] arrayOfInteger = new int[s.length];

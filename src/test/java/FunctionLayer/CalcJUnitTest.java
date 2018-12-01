@@ -1,16 +1,18 @@
 
 package FunctionLayer;
+import dbAccess.ProductMapper;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import functionLayer.calculation.CalcRem;
+import functionLayer.calculation.CalcBeam;
 import functionLayer.calculation.CalcRoof;
 import functionLayer.calculation.CalcStern;
-import functionLayer.calculation.CalcStolper;
+import functionLayer.calculation.CalcPoles;
 import functionLayer.Product;
+import java.util.List;
 
 /**
  *
@@ -45,13 +47,16 @@ public class CalcJUnitTest {
     
     //Test negative og grænse værdier
    
+    ProductMapper pm = new ProductMapper();
+    List<Product> list = pm.allProducts();
+    
    @Test
    public void calStolperAntalTest() {
        //Arrange
        Product p;
-       CalcStolper cs = new CalcStolper();
+       CalcPoles cs = new CalcPoles();
        //Act
-       p = cs.calcAntal(240, 240);
+       p = cs.calcAntal(240, 240, list);
        double actual = p.getQty();
        double expected = 4;
        
@@ -64,9 +69,9 @@ public class CalcJUnitTest {
    public void calRemAntalTest() {
        //Arrange
        Product p;
-       CalcRem cr = new CalcRem();
+       CalcBeam cr = new CalcBeam();
        //Act
-       p = cr.calcAntal(480, 480);
+       p = cr.calcAntal(480, 480, list);
        double actual = p.getQty();
        double expected = 4;
        //Assert
@@ -80,7 +85,7 @@ public class CalcJUnitTest {
        Product p;
        CalcRoof ct = new CalcRoof();
        //Act
-       p = ct.calcAntal(570, 600, "Tagpap");
+       p = ct.calcAntal(570, 600, "Tagpap", list);
        double actual = p.getQty();
        double expected = 8;
        //Assert
@@ -93,7 +98,7 @@ public class CalcJUnitTest {
        Product p;
        CalcStern cs = new CalcStern();
        //Act
-       p = cs.calcAntalOverbrædt(240, 240);
+       p = cs.calcAntalOverbrædt(240, 240, list);
        double actual = p.getQty();
        double expected = 2;
        //Assert

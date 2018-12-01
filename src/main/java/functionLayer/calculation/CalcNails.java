@@ -5,7 +5,6 @@
  */
 package functionLayer.calculation;
 
-import functionLayer.LogicFacade;
 import functionLayer.Product;
 import java.util.List;
 
@@ -15,13 +14,11 @@ import java.util.List;
  */
 public class CalcNails {
 
-    List<Product> list = LogicFacade.getAllProductsFromDatabase();
-    Product p;
-
-    public Product calcAntal_25mm_Varmforzinket(double qty) {
-
+    public Product calcAntal_25mm_Varmforzinket(double qty, List allProducts) {
+        List<Product> productList = allProducts;
+        Product p = null;
         try {
-            for (Product product : list) {
+            for (Product product : productList) {
                 if (product.getId() == 36) {
                     p = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), qty, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
 
@@ -33,11 +30,12 @@ public class CalcNails {
         return p;
 
     }
-    
-    public Product calcAntal_25mm_Blanke(double qty) {
 
+    public Product calcAntal_25mm_Blanke(double qty, List allProducts) {
+        List<Product> productList = allProducts;
+        Product p = null;
         try {
-            for (Product product : list) {
+            for (Product product : productList) {
                 if (product.getId() == 35) {
                     p = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), qty, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
 
@@ -49,11 +47,12 @@ public class CalcNails {
         return p;
 
     }
-    
-    public Product calcAntal_20mm_Blanke(double qty) {
 
+    public Product calcAntal_20mm_Blanke(double qty, List allProducts) {
+        List<Product> productList = allProducts;
+        Product p = null;
         try {
-            for (Product product : list) {
+            for (Product product : productList) {
                 if (product.getId() == 34) {
                     p = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), qty, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
 

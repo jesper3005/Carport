@@ -6,7 +6,6 @@
 package presentationLayer;
 
 import exceptions.LoginSampleException;
-import functionLayer.SVGTop;
 import functionLayer.LogicFacade;
 import functionLayer.Product;
 import functionLayer.SVGSide;

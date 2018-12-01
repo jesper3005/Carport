@@ -26,10 +26,10 @@ public class AddProduct extends Command {
         //get all parameters from admin.jsp to add a produkt to table ´produkt´ in database
         String produkt_navn = request.getParameter("produkt_name");
         String category = request.getParameter("category");
-        Double price = Double.parseDouble(request.getParameter("price"));
-        Double length = Double.parseDouble(request.getParameter("length"));
-        Double width = Double.parseDouble(request.getParameter("width"));
-        Double height = Double.parseDouble(request.getParameter("height"));
+        double price = Double.parseDouble(request.getParameter("price"));
+        double length = Double.parseDouble(request.getParameter("length"));
+        double width = Double.parseDouble(request.getParameter("width"));
+        double height = Double.parseDouble(request.getParameter("height"));
         
         Product product = new Product(produkt_navn, category, price, length, width, height);
         

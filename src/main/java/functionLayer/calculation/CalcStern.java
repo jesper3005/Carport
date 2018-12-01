@@ -5,7 +5,6 @@
  */
 package functionLayer.calculation;
 
-import functionLayer.LogicFacade;
 import functionLayer.Product;
 import java.util.List;
 
@@ -15,11 +14,9 @@ import java.util.List;
  */
 public class CalcStern {
 
-    private List<Product> productList = LogicFacade.getAllProductsFromDatabase();
-    private Product p;
-
-    public Product calcAntalOverbrædt(double length, double width) {
-
+    public Product calcAntalOverbrædt(double length, double width, List allProducts) {
+        List<Product> productList = allProducts;
+        Product p = null;
         try {
             double totalLength = ((2 * length) + (2 * width));
             //on the front and back we have to deduct the height of each "stern"
@@ -39,8 +36,9 @@ public class CalcStern {
 
     }
 
-    public Product calcAntalMellembrædt(double length, double width) {
-
+    public Product calcAntalMellembrædt(double length, double width, List allProducts) {
+        List<Product> productList = allProducts;
+        Product p = null;
         try {
             double totalLength = ((2 * length) + (2 * width));
             //on the front and back we have to deduct the height of each "stern"
@@ -60,8 +58,9 @@ public class CalcStern {
 
     }
 
-    public Product calcAntalUnderbrædt(double length, double width) {
-
+    public Product calcAntalUnderbrædt(double length, double width, List allProducts) {
+        List<Product> productList = allProducts;
+        Product p = null;
         try {
             double totalLength = ((2 * length) + (2 * width));
             //on the front and back we have to deduct the height of each "stern"
