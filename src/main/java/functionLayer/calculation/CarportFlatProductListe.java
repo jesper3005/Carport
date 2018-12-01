@@ -9,7 +9,7 @@ import functionLayer.calculation.CalcStolper;
 import functionLayer.calculation.CalcStern;
 import functionLayer.calculation.CalcRoof;
 import functionLayer.calculation.CalcRem;
-import functionLayer.calculation.CalcLaegter;
+import functionLayer.calculation.CalcBattens;
 import functionLayer.Product;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +19,7 @@ import java.util.List;
  * @author oerte
  */
 public class CarportFlatProductListe {
-    
-    
+
     public List<Product> CarportCalculaterFlatRoof(double length, double width, String roofMaterial) {
 
         // List included everything needed to build the requestet carport
@@ -28,31 +27,32 @@ public class CarportFlatProductListe {
 
         try {
             //Objekter Af Carport part calculations
-            CalcLaegter laegter = new CalcLaegter();
+            CalcBattens battens = new CalcBattens();
             CalcRem rem = new CalcRem();
             CalcRoof roof = new CalcRoof();
             CalcStern stern = new CalcStern();
             CalcStolper stolper = new CalcStolper();
+            CalcNails nail = new CalcNails();
 
-            stykliste.add(laegter.calcAntal(length, width));
-            //Product laegterTest = laegter.calcAntal(length, width);
-            //soem.calcAntal(laegterTest.getQty())
-            //
-            stykliste.add(rem.calcAntal(length, width));
+            Product pBattens = battens.calcAntal(length, width);//lægter
+            Product pRem = rem.calcAntal(length, width);
+            Product pRoof = roof.calcAntal(length, width, roofMaterial);
+            Product pStolper = stolper.calcAntal(length, width);
+            Product pSternOver = stern.calcAntalOverbrædt(length, width);
+            Product pSternMellem = stern.calcAntalMellembrædt(length, width);
+            Product pSternUnder = stern.calcAntalUnderbrædt(length, width);
             
-            //
-            stykliste.add(roof.calcAntal(length, width, roofMaterial));
-            
-            //
-            stykliste.add(stern.calcAntalOverbrædt(length, width));
-            stykliste.add(stern.calcAntalMellembrædt(length, width));
-            stykliste.add(stern.calcAntalUnderbrædt(length, width));
-            //
-            stykliste.add(stolper.calcAntal(length, width));
-            //
-            
-            
-            
+            //4 nails per battens ('36', 'NKT FIRKANT SØM 1,6X25MM VARMFORZINKET', 'søm', '36', '0', '0', '0')
+            stykliste.add(nail.calcAntal_25mm_Varmforzinket(pStolper.getQty()));
+
+            stykliste.add(pBattens);
+            stykliste.add(pRem);
+            stykliste.add(pRoof);
+            stykliste.add(pSternOver);
+            stykliste.add(pSternMellem);
+            stykliste.add(pSternUnder);
+            stykliste.add(pStolper);
+
             return stykliste;
         } catch (Exception e) {
             e.getMessage();
@@ -60,43 +60,43 @@ public class CarportFlatProductListe {
         return stykliste;
 
     }
-    
+
     public List<Product> CarportCalculaterFlatRoofIncludingShed(double length, double width, double shedLength, double shedWidth, String roofMaterial) {
 
         // List included everything needed to build the requestet carport
         List<Product> stykliste = new ArrayList<>();
 
         try {
-            //Objekter Af Carport part calculations
-            CalcLaegter laegter = new CalcLaegter();
+             //Objekter Af Carport part calculations
+            CalcBattens battens = new CalcBattens();
             CalcRem rem = new CalcRem();
             CalcRoof roof = new CalcRoof();
             CalcStern stern = new CalcStern();
             CalcStolper stolper = new CalcStolper();
             CalcShedSkeletton shedSkeletton = new CalcShedSkeletton();
 
-            stykliste.add(laegter.calcAntal(length, width));
-            //Product laegterTest = laegter.calcAntal(length, width);
-            //soem.calcAntal(laegterTest.getQty())
-            //
-            stykliste.add(rem.calcAntal(length, width));
+            Product pBattens = battens.calcAntal(length, width);
+            Product pRem = rem.calcAntal(length, width);
+            Product pRoof = roof.calcAntal(length, width, roofMaterial);
+            Product pStolper = stolper.calcAntal(length, width);
+            Product pSternOver = stern.calcAntalOverbrædt(length, width);
+            Product pSternMellem = stern.calcAntalMellembrædt(length, width);
+            Product pSternUnder = stern.calcAntalUnderbrædt(length, width);
             
-            //
-            stykliste.add(roof.calcAntal(length, width, roofMaterial));
-            
-            //
-            stykliste.add(stern.calcAntalOverbrædt(length, width));
-            stykliste.add(stern.calcAntalMellembrædt(length, width));
-            stykliste.add(stern.calcAntalUnderbrædt(length, width));
-            //
-            stykliste.add(stolper.calcAntal(length, width));
+            //4 nails per lægte
+
+            stykliste.add(pBattens);
+            stykliste.add(pRem);
+            stykliste.add(pRoof);
+            stykliste.add(pSternOver);
+            stykliste.add(pSternMellem);
+            stykliste.add(pSternUnder);
+            stykliste.add(pStolper);
             //
             stykliste.add(shedSkeletton.calcAntalHorizontal(shedLength, shedWidth));
             stykliste.add(shedSkeletton.calcAntalVerticalFrontAndBack(shedLength, shedWidth));
             stykliste.add(shedSkeletton.calcAntalVerticalLeftAndRight(shedLength, shedWidth));
-            
-            
-            
+
             return stykliste;
         } catch (Exception e) {
             e.getMessage();
