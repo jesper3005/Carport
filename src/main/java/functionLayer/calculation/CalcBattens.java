@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Jesper
  */
-public class CalcLaegter {
+public class CalcBattens {
 
     private List<Product> productList = LogicFacade.getAllProductsFromDatabase();
     private Product p;
