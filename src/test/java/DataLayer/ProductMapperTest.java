@@ -25,14 +25,22 @@ import static org.junit.Assert.*;
  * @author Jesper
  */
 public class ProductMapperTest {
+<<<<<<< HEAD
 //    
 
+=======
+    
+>>>>>>> 3b2443ebfb380514d933e36ef26d2ce45f9babf0
     private static Connection testConnection;
     private static final String USER = "joerg";
     private static final String USERPW = "joerg/3085";
     private static final String DBNAME = "carportTest";
     private static final String HOST = "142.93.173.199";
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 3b2443ebfb380514d933e36ef26d2ce45f9babf0
     @Before
     public void setUp() {
         try {
@@ -43,9 +51,15 @@ public class ProductMapperTest {
                 testConnection = DriverManager.getConnection(url, USER, USERPW);
                 // Make mappers use test 
                 Connector.setConnection(testConnection);
+<<<<<<< HEAD
             }
             //Reset database
             try (Statement stmt = testConnection.createStatement()) {
+=======
+            }            
+            //Reset database
+            try(Statement stmt = testConnection.createStatement()) {
+>>>>>>> 3b2443ebfb380514d933e36ef26d2ce45f9babf0
                 stmt.execute("DROP TABLE IF EXISTS product;");
                 stmt.execute("CREATE TABLE product LIKE productTest;");
                 stmt.execute("INSERT into product SELECT * from productTest;");
@@ -57,21 +71,34 @@ public class ProductMapperTest {
         }
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3b2443ebfb380514d933e36ef26d2ce45f9babf0
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
     // @Test
     // public void hello() {}
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 3b2443ebfb380514d933e36ef26d2ce45f9babf0
     @Test
     public void testSetUpOK() {
         // Just check that we have a connection.
         assertNotNull(testConnection);
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 3b2443ebfb380514d933e36ef26d2ce45f9babf0
     @Test
     public void testGetAllProducts() {
         //Arrange
         ProductMapper pm = new ProductMapper();
+<<<<<<< HEAD
 
         List<Product> product = pm.allProducts();
 
@@ -121,5 +148,57 @@ public class ProductMapperTest {
         //Assert
         assertTrue(product1.size() > product2.size());
     }
+=======
+        
+        
+        List<Product> product = pm.allProducts();
+        
+        //Assert
+        assertTrue(product.size() > 2);
+    }
+   
+//    @Test
+//    public void testUpdatePrice() {
+//        //Arrange
+//        ProductMapper pm = new ProductMapper();
+//        //Act
+//        double actual = 200.00;
+//        pm.updatePrice(1, actual);
+//        
+//        Product expected = pm.getProductByID(1);
+//        
+//        //Assert
+//        System.out.println(expected.getPrice());
+//        assertEquals(expected.getPrice(), actual, 0);
+//    }
+//    
+//    @Test
+//    public void testAddProduct() {
+//        //Arrange
+//        ProductMapper pm = new ProductMapper();
+//        Product p = new Product("testProduct", "testCategory", 200.0, 200.0, 200.0, 200.0);
+//        
+//        //Act
+//        String expected = "testProduct";
+//        Product actual = pm.addProducts(p);
+//        
+//        //Assert
+//        assertEquals(expected, actual.getProductName());
+//    }
+//    
+//    @Test
+//    public void testDeleteProduct() {
+//        //Arrange
+//        ProductMapper pm = new ProductMapper();
+//        List<Product> product1 = pm.allProducts();
+//        
+//        //Act
+//        pm.deleteProduct(1);
+//        List<Product> product2 = pm.allProducts();
+//        
+//        //Assert
+//        assertTrue(product1.size() > product2.size());        
+//}
+>>>>>>> 3b2443ebfb380514d933e36ef26d2ce45f9babf0
 
 }

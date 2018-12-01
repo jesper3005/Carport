@@ -92,12 +92,9 @@ table.blueTable tfoot .links a{
     align-items: center;
     display: flex;
     margin-top: 1%;
+    font-size: 40px;    
 
 }
 
-.carportButton {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 5%;
-}
+
+

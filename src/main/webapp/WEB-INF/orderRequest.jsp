@@ -76,7 +76,7 @@
             }
         </script>
         
-    <form>
+    <form name="sendOrder" action="FrontController" method="POST">
         <div class="container">
             <div class="control-groupForm">
             <div class="selectForm">
@@ -93,8 +93,7 @@
             <input type="text" name="telefon">
             <h4>Email-addresse</h4>
             <input type="text" name="email">
-            <h4>Evt. bemærkninger</h4>
-            
+            <h4>Evt. bemærkninger</h4>            
             <textarea name="comment" form="usrform"></textarea>
             <input type="hidden" name="command" value="sendOrder">
             </div>

@@ -10,6 +10,7 @@ import functionLayer.SVGTop;
 import functionLayer.LogicFacade;
 import functionLayer.Product;
 import functionLayer.SVGSide;
+import functionLayer.SVGTopTest;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -63,19 +64,26 @@ public class OrderRequest extends Command {
         session.setAttribute("stykliste", stykliste);
         session.setAttribute("totalPriceOfCarport", totalPriceOfCarport);
 
-        //Inserting svg of the carport
-        double lengthSVG = (double) session.getAttribute("laengde");
-        double widthSVG = (double) session.getAttribute("bredde");
-        int height = 260;
+        
+        //------------SVG-------------
+        
+        //Rules (Tempoarily)
+        double height = 230;
         double skurLength = 120;
         double skurWidth = 120;
+        
+        //Inserting svg of the carport
+        
+        //Carport fra toppen Test
+        SVGTopTest testSVG = new SVGTopTest(length, width);
+        request.setAttribute("drawingTop", testSVG.getMySVG());
 
         //Carport fra toppen.
-        SVGTop cSVG = new SVGTop(lengthSVG, widthSVG, skurLength, skurWidth);
-        request.setAttribute("drawingTop", cSVG.getMySVG());
+        //SVGTop cSVG = new SVGTop(length, width, skurLength, skurWidth);
+        //request.setAttribute("drawingTop", cSVG.getMySVG());
 
         //Carport fra siden.
-        SVGSide sSVG = new SVGSide(lengthSVG, height);
+        SVGSide sSVG = new SVGSide(length, height);
         request.setAttribute("drawingSide", sSVG.getMySVG());
 
         // Transfer towards orderRequest.jsp
