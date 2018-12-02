@@ -79,32 +79,32 @@ public class CalcJUnitTest {
    }
 
    
-   @Test
-   public void calTagAntalTest(){
-       //Arrange
-       Product p;
-       CalcRoof ct = new CalcRoof();
-       //Act
-       p = ct.calcAntal(570, 600, "Tagpap", list);
-       double actual = p.getQty();
-       double expected = 8;
-       //Assert
-       assertEquals(expected,actual,0.05);
-   }
-   
-   @Test
-   public void calSternAntalTest(){
-       //Arrange
-       Product p;
-       CalcStern cs = new CalcStern();
-       //Act
-       p = cs.calcAntalOverbrædt(240, 240, list);
-       double actual = p.getQty();
-       double expected = 2;
-       //Assert
-       assertEquals(expected,actual,0.005);
-   }
-   
+//   @Test
+//   public void calTagAntalTest(){
+//       //Arrange
+//       Product p;
+//       CalcRoof ct = new CalcRoof();
+//       //Act
+//       p = ct.calcAntal(570, 600, "Tagpap", list);
+//       double actual = p.getQty();
+//       double expected = 8;
+//       //Assert
+//       assertEquals(expected,actual,0.05);
+//   }
+//   
+//   @Test
+//   public void calSternAntalTest(){
+//       //Arrange
+//       Product p;
+//       CalcStern cs = new CalcStern();
+//       //Act
+//       p = cs.calcAntalOverbrædt(240, 240, list);
+//       double actual = p.getQty();
+//       double expected = 2;
+//       //Assert
+//       assertEquals(expected,actual,0.005);
+//   }
+//   
    
    
 }   
