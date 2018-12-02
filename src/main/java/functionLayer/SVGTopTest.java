@@ -20,9 +20,11 @@ public class SVGTopTest {
     double stolpeHeight = 10;
     double startPosXY = 30;
     double lægtePosInd = 40;
+    double shedPlankWidth = 15;
+    double doorWidth = 80;
 
-    public SVGTopTest(double length, double width) {
-        this.sb = sb.append("<SVG width=\"800\" height=\"800\">");
+    public SVGTopTest(double length, double width, double shedLength, double shedWidth, boolean shedCheck) {
+        this.sb = sb.append("<SVG width=\"820\" height=\"820\">");
         //ADD ALL METHODS FOR SVG DRAWING FROM TOP
 
         //Creates carport
@@ -32,6 +34,12 @@ public class SVGTopTest {
         //Creates text and lines
         sb.append(createLengthText(length, width));
         sb.append(createWidthText(length, width));
+        
+        //Creates shed
+        if(shedCheck == true) {
+            sb.append(createShed(length, width, shedLength, shedWidth));   
+        }
+        
         sb.append("</SVG>");
         this.mySVG = sb.toString();
 
@@ -51,7 +59,6 @@ public class SVGTopTest {
     
 
     private String createRemme(double length, double width) {
-        StringBuilder sb = new StringBuilder();
         
         //Decides where the bottom REM goes on y axis.
         double bottomRemY = width + (startPosXY - remWidth);
@@ -77,7 +84,7 @@ public class SVGTopTest {
     }
 
     private String createLægter(double length, double width) {
-        StringBuilder sb = new StringBuilder();
+        
         
         double lægteLength = width + 25;
 
@@ -103,7 +110,7 @@ public class SVGTopTest {
     }
 
     private String createLengthText(double length, double width) {
-        StringBuilder sb = new StringBuilder();
+        
         double lineY = width + startPosXY + 30;
         double startLine = startPosXY - remWidth;
         double lenghtOfLine = length + startPosXY;
@@ -119,7 +126,7 @@ public class SVGTopTest {
     }
 
     private String createWidthText(double length, double width) {
-        StringBuilder sb = new StringBuilder();
+        
 
         double x1 = length + startPosXY + 30;
         double y2 = width + startPosXY;
@@ -128,5 +135,50 @@ public class SVGTopTest {
 
         return sb.toString();
     }
-
+    
+    private String createShed(double length, double width,double shedLength, double shedWidth) {
+        
+        //Amount of planks needed for both lengths 
+        double qtyShedLength = Math.ceil(shedLength / shedPlankWidth);
+        //Side with door
+        double qtyShedWidth = Math.ceil((shedWidth - doorWidth) / shedPlankWidth);
+        //Side no door
+        double qtyBackWidth = Math.ceil(shedWidth / shedPlankWidth);
+        
+        //Creating sides length.
+        //TOP
+        double xTOP = startPosXY + length - remWidth - shedPlankWidth;
+        for (int i = 0; i < qtyShedLength; i++) {
+            sb.append("<rect x=\"" + xTOP + "\" y=\"" + (startPosXY + remWidth) + "\" height=\"5\" width=\"" + shedPlankWidth + "\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+            xTOP -= shedPlankWidth;
+        }
+        
+        //BOT
+        double xBOT = startPosXY + length - remWidth - shedPlankWidth;
+        double y = (startPosXY + remWidth + shedWidth);
+        for (int i = 0; i < qtyShedLength; i++) {
+            sb.append("<rect x=\"" + xBOT + "\" y=\"" + y + "\" height=\"5\" width=\"" + shedPlankWidth + "\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+            xBOT -= shedPlankWidth;
+        }
+        
+        //Right
+        double xRight = startPosXY + length - remWidth - 5;
+        double yRight = startPosXY + remWidth;
+        for (int i = 0; i < qtyBackWidth; i++) {
+            sb.append("<rect x=\"" + xRight + "\" y=\"" + yRight + "\" height=\"" + shedPlankWidth + "\" width=\"5\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+            yRight += shedPlankWidth;
+        }
+        
+        //Left
+        double yLeft = startPosXY + remWidth + 5;
+        double xLeft = startPosXY + length - remWidth - shedLength;
+        for (int i = 0; i < qtyShedWidth; i++) {
+            sb.append("<rect x=\"" + xLeft + "\" y=\"" + yLeft + "\" height=\"" + shedPlankWidth + "\" width=\"5\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+            yLeft += shedPlankWidth;
+        }
+        
+        
+        return sb.toString();
+    }
+    
 }
