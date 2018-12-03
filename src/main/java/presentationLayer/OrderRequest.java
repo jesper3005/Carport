@@ -66,19 +66,9 @@ public class OrderRequest extends Command {
         //------------SVG-------------
         //Rules (Tempoarily)
         double height = 230;
-<<<<<<< HEAD
 
         
-        double skurLength = 120;
-        double skurWidth = 120;
-
-=======
-        double skurLength = 120;
-        double skurWidth = 120;
-
-
         
->>>>>>> 25e5f8deaf55aa0b468f2b3b74ce258949c7943b
         //Inserting svg of the carport
         //Carport fra toppen Test
         SVGTopTest testSVG = new SVGTopTest(length, width, shedLength, shedWidth, shedCheck);

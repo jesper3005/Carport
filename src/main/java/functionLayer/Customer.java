@@ -11,16 +11,17 @@ package functionLayer;
  */
 public class Customer {
     
-    String firstName, lastName, street, town;
-    int password, id, zipCode, phone;
+    int id;
+    String password, firstName, lastName, email, address, town, zipCode, phone;
 
-    public Customer(String firstName, String lastName, String street, String town, int password, int id, int zipCode, int phone) {
+    public Customer(int id, String password, String firstName, String lastName, String email, String address, String town, String zipCode, String phone) {
+        this.id = id;
+        this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.street = street;
+        this.email = email;
+        this.address = address;
         this.town = town;
-        this.password = password;
-        this.id = id;
         this.zipCode = zipCode;
         this.phone = phone;
     }
