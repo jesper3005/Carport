@@ -15,6 +15,9 @@ import java.util.List;
 public class CalcAngleBracket {
 
     public Product calcAntal(double qty, List allProducts) {
+        if(qty <= 0){
+            throw new ArithmeticException("Value has to be larger then 0! CalcAngleBracket");
+        }
         try {
             if (qty <= 0) {
                 qty = 1;

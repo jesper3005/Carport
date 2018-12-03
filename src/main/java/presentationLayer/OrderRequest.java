@@ -66,25 +66,19 @@ public class OrderRequest extends Command {
         //------------SVG-------------
         //Rules (Tempoarily)
         double height = 230;
-<<<<<<< HEAD
         double skurLength = 120;
         double skurWidth = 120;
 
-=======
 
         
->>>>>>> 720becbd38e36ba6474eaf63fad4215d142de36f
         //Inserting svg of the carport
         //Carport fra toppen Test
         SVGTopTest testSVG = new SVGTopTest(length, width, shedLength, shedWidth, shedCheck);
         request.setAttribute("drawingTop", testSVG.getMySVG());
 
-<<<<<<< HEAD
         //Carport fra toppen.
         //SVGTop cSVG = new SVGTop(length, width, skurLength, skurWidth);
         //request.setAttribute("drawingTop", cSVG.getMySVG());
-=======
->>>>>>> 720becbd38e36ba6474eaf63fad4215d142de36f
         //Carport fra siden.
         SVGSide sSVG = new SVGSide(length, height, shedLength, shedWidth, shedCheck);
         request.setAttribute("drawingSide", sSVG.getMySVG());
