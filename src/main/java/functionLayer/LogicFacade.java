@@ -5,6 +5,7 @@
  */
 package functionLayer;
 
+import dbAccess.CustomerMapper;
 import functionLayer.calculation.CarportFlatProductListe;
 import dbAccess.ProductMapper;
 import dbAccess.UserMapper;
@@ -23,6 +24,19 @@ public class LogicFacade {
     public static User login(String email, String password) throws LoginSampleException{
         UserMapper um = new UserMapper();
         return um.getUser(email, password);
+    }
+    
+    public static User createUser(String email, String password, int customerID) {
+        User user = new User(email, password, "customer", customerID);
+        UserMapper um = new UserMapper();
+        um.createUser(user);
+        return user;
+    }
+    
+    public static Customer createCustomer(Customer customer) {        
+        CustomerMapper cm = new CustomerMapper();
+        cm.addCustomer(customer);
+        return customer;
     }
 
     public static List<Product> CarportCalculaterFlatRoof(double length, double width, String roofMaterial) {

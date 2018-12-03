@@ -29,6 +29,7 @@ abstract class Command {
         commands.put("SearchResult", new SearchResult());
         commands.put("sendOrder", new CreateOrder());
         commands.put("toLogin", new toLogin());
+        commands.put("toRegi", new toRegi());
         commands.put(("login"), new Login());
 
     }

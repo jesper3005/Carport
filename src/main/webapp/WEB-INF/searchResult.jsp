@@ -12,14 +12,15 @@
         <link rel="stylesheet" href="./CSS/tableDesign.css">
         <link rel="icon" href=""
     </head>
-    <header>
-        <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
-        <a href="#SignUp">Sign up</a>
-        <a href="#Login">Login</a> 
-        <a class="active" href="/index.jsp">Home</a>
-        <a class="active" href=http:/FrontController?command=Admin>Admin</a>
-    </header>
+    
     <body>
+        <header>
+            <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
+            <a class="active" href="/FrontController?command=toRegi">Sign up</a>
+            <a class="active" href="/FrontController?command=toLogin">Login</a>
+            <a class="active" href="/index.jsp">Home</a>
+            <a class="active" href="/FrontController?command=Admin">Admin</a>
+        </header>
 
         <%List<Product> allProduct = (List) session.getAttribute("searchList");%>
 

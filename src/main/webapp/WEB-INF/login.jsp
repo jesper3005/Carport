@@ -19,11 +19,11 @@
         
         <h1>Login</h1>
         <form name="login" action="FrontController" method="POST"/>
-            <input type="hidden" name="hiddenParam" value="login"/>
-            <input type="text" name="email" placeholder="Email..."/>
-            <input type="password" name="password" placeholder="Password..."/>
-            <input type="hidden" name="command" value="Login">    
-            <button type="submit"> Login </button>
+            <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
+            <a class="active" href="/FrontController?command=toRegi">Sign up</a>
+            <a class="active" href="/FrontController?command=toLogin">Login</a>
+            <a class="active" href="/index.jsp">Home</a>
+            <a class="active" href="/FrontController?command=Admin">Admin</a>
         </form>
         
         

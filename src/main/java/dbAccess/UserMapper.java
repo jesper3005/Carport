@@ -12,26 +12,28 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
  * @author Jesper
  */
 public class UserMapper {
+
+    private final String GET_USER = "SELECT * FROM `user` WHERE email = ? AND password = ?;";
+    private final String CREATE_USER = "INSERT INTO `User`(password, email, role, customer_id) VALUES (?, ?, ?, ?);";
     
-    public final String GET_USER = "SELECT * FROM `user` WHERE email = ? AND password = ?;";
     
-    
-    public User getUser(String email, String password) throws LoginSampleException{
+    public User getUser(String email, String password) throws LoginSampleException {
         try {
             Connection con = Connector.connection();
             String SQL = GET_USER;
-            PreparedStatement ps = con.prepareStatement( SQL );
-            ps.setString( 1, email );
-            ps.setString( 2, password );
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setString(1, email);
+            ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
-            if ( rs.next() ) {
-                int id = rs.getInt( "user_id" );
+            if (rs.next()) {
+                int id = rs.getInt("user_id");
                 String password1 = rs.getString("password");
                 String email1 = rs.getString("email");
                 String role = rs.getString("role");
@@ -41,9 +43,29 @@ public class UserMapper {
             } else {
                 throw new LoginSampleException("could not validate user");
             }
-        } catch ( ClassNotFoundException | SQLException ex ) {
+        } catch (ClassNotFoundException | SQLException ex) {
             System.out.println(ex.getMessage());
         }
         return null;
+    }
+
+    public User createUser(User user) {
+        try {
+            Connection con = Connector.connection();
+            String query = CREATE_USER;
+            PreparedStatement pstmt = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setString(1, user.getPassword());
+            pstmt.setString(2, user.getEmail());
+            pstmt.setString(3, user.getRole());
+            pstmt.setInt(4, user.getCustomerID());
+            pstmt.executeUpdate();
+            pstmt.close();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.out.println(ex.getMessage());
+            System.out.println("Error");
+        }
+        return user;
     }
 }

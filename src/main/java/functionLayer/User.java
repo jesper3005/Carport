@@ -14,9 +14,17 @@ public class User {
     int userID;
     String password, email, role;
     int customerID;
+    
 
     public User(int userID, String password, String email, String role, int customerID) {
         this.userID = userID;
+        this.password = password;
+        this.email = email;
+        this.role = role;
+        this.customerID = customerID;
+    }
+    
+    public User(String password, String email, String role, int customerID) {
         this.password = password;
         this.email = email;
         this.role = role;

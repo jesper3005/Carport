@@ -20,8 +20,8 @@
     <body>
         <header>
             <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
-            <a href="#SignUp">Sign up</a>
-            <a href="#Login">Login</a> 
+            <a class="active" href="/FrontController?command=toRegi">Sign up</a>
+            <a class="active" href="/FrontController?command=toLogin">Login</a>
             <a class="active" href="/index.jsp">Home</a>
             <a class="active" href="/FrontController?command=Admin">Admin</a>
         </header>
