@@ -23,12 +23,13 @@ abstract class Command {
         commands.put("FlatRoof", new FlatRoof());
         commands.put("PointedRoof", new PointedRoof());
         commands.put("OrderRequest", new OrderRequest());
-        commands.put("drawing", new Drawing());
         commands.put("Admin", new Admin());
         commands.put("AddProduct", new AddProduct());
         commands.put("UpdateProduct", new UpdateProduct());
         commands.put("SearchResult", new SearchResult());
         commands.put("sendOrder", new CreateOrder());
+        commands.put("toLogin", new toLogin());
+        commands.put(("login"), new Login());
 
     }
 

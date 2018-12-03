@@ -4,6 +4,7 @@
     Author     : Jesper
 --%>
 
+<%@page import="functionLayer.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,17 +16,26 @@
         <link rel="icon" href=""
     </head>
     <body>
+        <% User user = (User) session.getAttribute("user"); %>
         
+        <%if(user == null) { %>
         <header>
             <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
-            <a href="#SignUp">Sign up</a>
-            <a href="/">Login</a> 
+            <a class="active" href="#SignUp">Sign up</a>
+            <a class="active" href="/FrontController?command=toLogin">Login</a>
             <a class="active" href="/index.jsp">Home</a>
             <a class="active" href="/FrontController?command=Admin">Admin</a>
             <!-- <input type='submit' value="Log Out">-->
         </header>
-
-            
+        <%} else {%> 
+        <header>
+            <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
+            <a class="active" href="/FrontController?command=toLogin">Profile</a>
+            <a class="active" href="/index.jsp">Home</a>
+            <a class="active" href="/FrontController?command=Admin">Admin</a>
+            <!-- <input type='submit' value="Log Out">-->
+        </header>
+        <%}%>
         <div class="containerTextIndex">
             <div class="control-groupTextIndex">
                 <h1 class="title">Velkommen til Fog Quick-byg carport !</h1>
@@ -68,30 +78,8 @@
         </form>
     </center>
         </div>
-    
-
-
-
-    <!--
-    <div class="container">
-        <a href="/carportSpidsTag.jsp"><img src="./IMAGES/spidsTag.jpg" class="image"></a>
-        <div class="overlay overlayFade">
-            <div class="text">
-                <h1>Spidst tag</h1>
-                Quick-byg carport med spidst tag
-            </div>
-        </div>
-    </div>
-    
-    <div class="container">
-        <a href="/carportFlatTag.jsp"><img src="./IMAGES/fladtTag.png" class="image"></a>
-        <div class="overlay overlayFade">
-            <div class="text">
-                <h1>Fladt tag</h1>
-                Quick-byg carport med fladt tag
-            </div>
-        </div>
-    </div> -->
+        
+        
 
 
 </body>

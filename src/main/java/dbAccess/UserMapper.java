@@ -5,6 +5,7 @@
  */
 package dbAccess;
 
+import exceptions.LoginSampleException;
 import functionLayer.Customer;
 import functionLayer.User;
 import java.sql.Connection;
@@ -18,10 +19,10 @@ import java.sql.SQLException;
  */
 public class UserMapper {
     
-    private final String GET_USER = "SELECT * FROM `user` WHERE email = ? AND password = ?;";
+    public final String GET_USER = "SELECT * FROM `user` WHERE email = ? AND password = ?;";
     
     
-    public User getUser(String email, String password) {
+    public User getUser(String email, String password) throws LoginSampleException{
         try {
             Connection con = Connector.connection();
             String SQL = GET_USER;
@@ -37,7 +38,9 @@ public class UserMapper {
                 int customerID = rs.getInt("customer_id");
                 User u = new User(id, password1, email1, role, customerID);
                 return u;
-            } 
+            } else {
+                throw new LoginSampleException("could not validate user");
+            }
         } catch ( ClassNotFoundException | SQLException ex ) {
             System.out.println(ex.getMessage());
         }
