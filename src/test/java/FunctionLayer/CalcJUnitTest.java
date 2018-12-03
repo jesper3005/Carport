@@ -63,7 +63,7 @@ public class CalcJUnitTest {
        assertEquals(expected, actual,0.005);
        
    }
-   @Test (expected = ArithmeticException.class)
+   @Test (expected = IllegalArgumentException.class)
    public void calPoleTest_Minus() {
        //Arrange
        Product p;

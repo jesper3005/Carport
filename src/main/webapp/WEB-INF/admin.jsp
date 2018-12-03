@@ -66,11 +66,14 @@
         <div class="containerTable">
             <div class="control-groupTable">
                 <div class="search">
-                    <div>
-                        <input type="text" id="result" name="search" placeholder="Search.."  > 
-                        <input type = "submit" name="action" value = "Search" onclick='javascript:window.open("http:/FrontController?command=SearchResult&result=" + document.getElementById("result").value, "_blank", "scrollbars=2,resizable=1,height=600,width=800");'>
-                    </div>   
                     <br>
+                    <div>
+                        <form action="FrontController" method="POST">
+                            <input type="hidden" name="command" value="Admin"/>
+                            <input type="text" name="search" placeholder="Search.." > 
+                            <input type = "submit" name="action" value = "Search" >
+                        </form>
+                    </div>   
                     <table class="table-fill">
                         <thead>
                             <tr>

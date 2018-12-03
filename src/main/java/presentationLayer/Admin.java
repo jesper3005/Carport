@@ -23,9 +23,20 @@ public class Admin extends Command {
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
         HttpSession session = request.getSession();
         ProductMapper pm = new ProductMapper();
-        List<Product> allProducts = pm.allProducts();
-        session.setAttribute("allProduct", allProducts);
-        return "admin";
+        String search = search = request.getParameter("search");
+
+        if (search == null) {
+            List<Product> allProducts = pm.allProducts();
+            session.setAttribute("allProduct", allProducts);
+            return "admin";
+        } else {
+
+            System.out.println(search);
+            List<Product> searchList = pm.searchInProductTable(search);
+            session.setAttribute("allProduct", searchList);
+            return "admin";
+        }
+
     }
 
 }
