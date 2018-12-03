@@ -1,4 +1,3 @@
-
 package FunctionLayer;
 import dbAccess.ProductMapper;
 import org.junit.After;
@@ -51,7 +50,7 @@ public class CalcJUnitTest {
     List<Product> list = pm.allProducts();
     
    @Test
-   public void calStolperAntalTest() {
+   public void calPoleTest() {
        //Arrange
        Product p;
        CalcPoles cs = new CalcPoles();
@@ -64,14 +63,41 @@ public class CalcJUnitTest {
        assertEquals(expected, actual,0.005);
        
    }
+   @Test
+   public void calPoleTest_Minus() {
+       //Arrange
+       Product p;
+       CalcPoles cs = new CalcPoles();
+       //Act
+       p = cs.calcAntal(-240,-240, list);
+       double actual = p.getQty();
+       double expected = 4;
+       
+       //Assert
+       assertEquals(expected, actual,0.005);
+       
+   }
 
    @Test
-   public void calRemAntalTest() {
+   public void calBeamTest() {
        //Arrange
        Product p;
        CalcBeam cr = new CalcBeam();
        //Act
        p = cr.calcAntal(480, 480, list);
+       double actual = p.getQty();
+       double expected = 4;
+       //Assert
+       assertEquals(expected, actual,0.05);
+   }
+   
+   @Test
+   public void calBeamTest_Minus() {
+       //Arrange
+       Product p;
+       CalcBeam cr = new CalcBeam();
+       //Act
+       p = cr.calcAntal(-480, -480, list);
        double actual = p.getQty();
        double expected = 4;
        //Assert
@@ -105,6 +131,32 @@ public class CalcJUnitTest {
 //       assertEquals(expected,actual,0.005);
 //   }
 //   
+   @Test
+   public void calRoofTest(){
+       //Arrange
+       Product p;
+       CalcRoof ct = new CalcRoof();
+       //Act
+       p = ct.calcAntal(570, 600, "Tagpap", list);
+       double actual = p.getQty();
+       double expected = 8;
+       //Assert
+       assertEquals(expected,actual,0.05);
+   }
+   
+   @Test
+   public void calSternTest(){
+       //Arrange
+       Product p;
+       CalcStern cs = new CalcStern();
+       //Act
+       p = cs.calcAntalOverbrædt(240, 240, list);
+       double actual = p.getQty();
+       double expected = 2;
+       //Assert
+       assertEquals(expected,actual,0.005);
+   }
+   
    
    
 }   
