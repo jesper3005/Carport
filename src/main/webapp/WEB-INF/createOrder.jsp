@@ -9,9 +9,34 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="./CSS/headerCSS.css">
+        <link rel="stylesheet" href="./CSS/orderCreated.css">
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        
+        <header>
+            <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
+            <a href="#SignUp">Sign up</a>
+            <a href="#Login">Login</a> 
+            <a class="active" href="/index.jsp">Home</a>
+            <a class="active" href="/FrontController?command=Admin">Admin</a>
+        </header>
+        
+        <div class="containerOrderCreated">
+            <div class="control-groupOrderCreated">
+                Tak for din ordre!
+                <br>
+                <br>
+                <img src="./IMAGES/confirmed.svg" height="100px" width="100px">
+                <br>
+                <br>
+                Din ordre bliver behandlet af vores medarbejder snarest muligt.
+                <br>
+                
+            </div>
+        </div>
+        
+        
     </body>
 </html>

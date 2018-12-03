@@ -5,10 +5,21 @@
  */
 package presentationLayer;
 
+import exceptions.LoginSampleException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  *
  * @author Jesper
  */
-public class Login {
+public class Login extends Command {
+
+    @Override
+    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
+        
+        
+        return "../index";
+    }
     
 }
