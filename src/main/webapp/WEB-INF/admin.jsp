@@ -66,7 +66,6 @@
         <div class="containerTable">
             <div class="control-groupTable">
                 <div class="search">
-                    <br>
                     <div>
                         <form action="FrontController" method="POST">
                             <input type="hidden" name="command" value="Admin"/>
