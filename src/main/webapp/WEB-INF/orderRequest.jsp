@@ -74,7 +74,6 @@
             } else {
                 document.getElementById("demo").innerHTML = side;
             }
-
         }
     </script>
 
@@ -100,7 +99,7 @@
                     <h4>Evt. bemærkninger</h4>            
                     <textarea name="comment" form="usrform"></textarea>
                     <input type="hidden" name="command" value="sendOrder">
-
+                    <button type="submit" name="request">Send forspørgelse</button>
                 </div>
             </div>
         </div>
