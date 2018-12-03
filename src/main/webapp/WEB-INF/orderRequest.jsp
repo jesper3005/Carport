@@ -82,19 +82,19 @@
             <div class="selectForm">
                 <h1 class="title">Udfyld formularen og send en forspørgelse</h1>
             <h4>Foravn</h4>
-            <input type="text" name="fornavn" placeholder="fornavn" >
+            <input type="text" name="fornavn" placeholder="fornavn" required="" >
             <h4>Efternavn</h4>
-            <input type="text" name="efternavn" placeholder="efternavn" >
+            <input type="text" name="efternavn" placeholder="efternavn" required="">
             <h4>Addresse</h4>
-            <input type="text" name="addresse" placeholder="din fulde addresse">
+            <input type="text" name="addresse" placeholder="din fulde addresse" required="">
             <h4>Postnummer</h4>
-            <input type="text" name="postnummer" placeholder="2300">
+            <input type="text" name="postnummer" placeholder="2300" required="">
             <h4>By</h4>
-            <input type="text" name="by">
+            <input type="text" name="by" required="">
             <h4>Telefon</h4>
-            <input type="text" name="telefon">
+            <input type="text" name="telefon" required="">
             <h4>Email-addresse</h4>
-            <input type="text" name="email">
+            <input type="text" name="email" required="">
             <h4>Evt. bemærkninger</h4>            
             <textarea name="comment" form="usrform"></textarea>
             <input type="hidden" name="command" value="sendOrder">

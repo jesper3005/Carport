@@ -63,7 +63,7 @@ public class CalcJUnitTest {
        assertEquals(expected, actual,0.005);
        
    }
-   @Test
+   @Test (expected = ArithmeticException.class)
    public void calPoleTest_Minus() {
        //Arrange
        Product p;
@@ -71,7 +71,7 @@ public class CalcJUnitTest {
        //Act
        p = cs.calcAntal(-240,-240, list);
        double actual = p.getQty();
-       double expected = 4;
+       double expected = 0;
        
        //Assert
        assertEquals(expected, actual,0.005);
@@ -91,7 +91,7 @@ public class CalcJUnitTest {
        assertEquals(expected, actual,0.05);
    }
    
-   @Test
+   @Test (expected = ArithmeticException.class)
    public void calBeamTest_Minus() {
        //Arrange
        Product p;
@@ -105,6 +105,7 @@ public class CalcJUnitTest {
    }
 
    
+<<<<<<< HEAD
 //   @Test
 //   public void calTagAntalTest(){
 //       //Arrange
@@ -131,6 +132,8 @@ public class CalcJUnitTest {
 //       assertEquals(expected,actual,0.005);
 //   }
 //   
+=======
+>>>>>>> 25e5f8deaf55aa0b468f2b3b74ce258949c7943b
    @Test
    public void calRoofTest(){
        //Arrange
@@ -143,6 +146,19 @@ public class CalcJUnitTest {
        //Assert
        assertEquals(expected,actual,0.05);
    }
+   
+//   @Test (expected = ArithmeticException.class)
+//   public void calRoofTest_Minus(){
+//       //Arrange
+//       Product p;
+//       CalcRoof ct = new CalcRoof();
+//       //Act
+//       p = ct.calcAntal(-570, 600, "Tagpap", list);
+//       double actual = p.getQty();
+//       double expected = 8;
+//       //Assert
+//       assertEquals(expected,actual,0.05);
+//   }
    
    @Test
    public void calSternTest(){
@@ -157,6 +173,35 @@ public class CalcJUnitTest {
        assertEquals(expected,actual,0.005);
    }
    
+<<<<<<< HEAD
+=======
+//   @Test
+//   public void calTagAntalTest(){
+//       //Arrange
+//       Product p;
+//       CalcRoof ct = new CalcRoof();
+//       //Act
+//       p = ct.calcAntal(570, 600, "Tagpap", list);
+//       double actual = p.getQty();
+//       double expected = 8;
+//       //Assert
+//       assertEquals(expected,actual,0.05);
+//   }
+//   
+//   @Test
+//   public void calSternAntalTest(){
+//       //Arrange
+//       Product p;
+//       CalcStern cs = new CalcStern();
+//       //Act
+//       p = cs.calcAntalOverbrædt(240, 240, list);
+//       double actual = p.getQty();
+//       double expected = 2;
+//       //Assert
+//       assertEquals(expected,actual,0.005);
+//   }
+//   
+>>>>>>> 25e5f8deaf55aa0b468f2b3b74ce258949c7943b
    
    
 }   
