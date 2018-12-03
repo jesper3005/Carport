@@ -27,8 +27,9 @@ public class OrderRequest extends Command {
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
         HttpSession session = request.getSession();
         List<Product> stykliste = null;
-        double shedLength = 0;
-        double shedWidth = 0;
+        boolean shedCheck = false;
+        double shedLength = Double.parseDouble(request.getParameter("skurlaengde"));
+        double shedWidth = Double.parseDouble(request.getParameter("skurbredde"));
         //length and width from carportFlatRoof or carportPointedRoof jsp page.
         double length = Double.parseDouble(request.getParameter("laengde"));
         double width = Double.parseDouble(request.getParameter("bredde"));
@@ -39,8 +40,7 @@ public class OrderRequest extends Command {
         if (redskabsskur == null) {
             stykliste = LogicFacade.CarportCalculaterFlatRoof(length, width, roofMaterial);
         } else {
-            shedLength = Double.parseDouble(request.getParameter("skurlaengde"));
-            shedWidth = Double.parseDouble(request.getParameter("skurbredde"));
+            shedCheck = true;
             stykliste = LogicFacade.CarportCalculaterFlatRoofIncludingShed(length, width, shedLength, shedWidth, roofMaterial);
         }
 
@@ -66,19 +66,27 @@ public class OrderRequest extends Command {
         //------------SVG-------------
         //Rules (Tempoarily)
         double height = 230;
+<<<<<<< HEAD
         double skurLength = 120;
         double skurWidth = 120;
 
+=======
+
+        
+>>>>>>> 720becbd38e36ba6474eaf63fad4215d142de36f
         //Inserting svg of the carport
         //Carport fra toppen Test
-        SVGTopTest testSVG = new SVGTopTest(length, width);
+        SVGTopTest testSVG = new SVGTopTest(length, width, shedLength, shedWidth, shedCheck);
         request.setAttribute("drawingTop", testSVG.getMySVG());
 
+<<<<<<< HEAD
         //Carport fra toppen.
         //SVGTop cSVG = new SVGTop(length, width, skurLength, skurWidth);
         //request.setAttribute("drawingTop", cSVG.getMySVG());
+=======
+>>>>>>> 720becbd38e36ba6474eaf63fad4215d142de36f
         //Carport fra siden.
-        SVGSide sSVG = new SVGSide(length, height);
+        SVGSide sSVG = new SVGSide(length, height, shedLength, shedWidth, shedCheck);
         request.setAttribute("drawingSide", sSVG.getMySVG());
 
         // Transfer towards orderRequest.jsp
