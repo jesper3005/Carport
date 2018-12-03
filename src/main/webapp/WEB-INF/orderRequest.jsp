@@ -18,9 +18,6 @@
         <link rel="icon" href=""
     </head>
     <body>
-        <%List<Product> stykliste = (List) session.getAttribute("stykliste");%>
-        <% double totalPriceOfCarport = (Double) session.getAttribute("totalPriceOfCarport");%>
-
         <header>
             <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
             <a href="#SignUp">Sign up</a>
@@ -50,7 +47,6 @@
                 samt en stykliste af produkter som der skal bruges.
                 <br>
                 <br>
-                <%="Total Pris eksl. moms: " + totalPriceOfCarport + " DKK"%>
             </div>
         </div>
 

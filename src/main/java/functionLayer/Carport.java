@@ -21,15 +21,13 @@ public class Carport {
     private double total_price;
     private boolean status_of_order;
     private int shed_id;
-    private int employee_id;
     private int customer_id;
 
-    public Carport(double carport_length, double carport_width, int roof_id, double total_price, int employee_id, int customer_id) {
+    public Carport(double carport_length, double carport_width, int roof_id, double total_price, int customer_id) {
         this.carport_length = carport_length;
         this.carport_width = carport_width;
         this.roof_id = roof_id;
         this.total_price = total_price;
-        this.employee_id = employee_id;
         this.customer_id = customer_id;
     }
 
@@ -63,10 +61,6 @@ public class Carport {
 
     public int getShed_id() {
         return shed_id;
-    }
-
-    public int getEmployee_id() {
-        return employee_id;
     }
 
     public int getCustomer_id() {

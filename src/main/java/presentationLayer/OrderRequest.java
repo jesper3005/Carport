@@ -6,13 +6,8 @@
 package presentationLayer;
 
 import exceptions.LoginSampleException;
-import functionLayer.LogicFacade;
-import functionLayer.Product;
 import functionLayer.SVGSide;
 import functionLayer.SVGTopTest;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -26,49 +21,34 @@ public class OrderRequest extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
         HttpSession session = request.getSession();
-        List<Product> stykliste = null;
-        boolean shedCheck = false;
+        boolean shedCheck;
+        //length and width from shed from carportFlatRoof or carportPointedRoof jsp page.
         double shedLength = Double.parseDouble(request.getParameter("skurlaengde"));
         double shedWidth = Double.parseDouble(request.getParameter("skurbredde"));
         //length and width from carportFlatRoof or carportPointedRoof jsp page.
         double length = Double.parseDouble(request.getParameter("laengde"));
         double width = Double.parseDouble(request.getParameter("bredde"));
-        // length and widt from carportFlatRoof or carportPointedRoof jsp page.
         String redskabsskur = request.getParameter("redskabsskur");
         // value from roof selector
         String roofMaterial = request.getParameter("Tag");
         if (redskabsskur == null) {
-            stykliste = LogicFacade.CarportCalculaterFlatRoof(length, width, roofMaterial);
+            shedCheck = false;
         } else {
             shedCheck = true;
-            stykliste = LogicFacade.CarportCalculaterFlatRoofIncludingShed(length, width, shedLength, shedWidth, roofMaterial);
         }
 
-        //
-        Collections.sort(stykliste, new Comparator<Product>() {
-            @Override
-            public int compare(Product t, Product t1) {
-                return (int) (t.getPriceLine() - t1.getPriceLine());
-            }
-
-        });
-        //passing length to CarportCalulator in LogicFacade class
-        // "stykliste is passed to a metode in LogicFacde, what calculates the total price of the carport
-        double totalPriceOfCarport = LogicFacade.totalPriceOfCarport(stykliste);
         //Set styklisten, bredde, længde and totalPriceOfCarport in session
+        session.setAttribute("roofMaterial", roofMaterial);
+        session.setAttribute("redskabsskur", redskabsskur);
         session.setAttribute("bredde", width);
         session.setAttribute("laengde", length);
         session.setAttribute("skurbredde", shedWidth);
         session.setAttribute("skurlaengde", shedLength);
-        session.setAttribute("stykliste", stykliste);
-        session.setAttribute("totalPriceOfCarport", totalPriceOfCarport);
 
         //------------SVG-------------
         //Rules (Tempoarily)
         double height = 230;
 
-        
-        
         //Inserting svg of the carport
         //Carport fra toppen Test
         SVGTopTest testSVG = new SVGTopTest(length, width, shedLength, shedWidth, shedCheck);

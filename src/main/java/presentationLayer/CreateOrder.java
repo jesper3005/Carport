@@ -5,9 +5,17 @@
  */
 package presentationLayer;
 
+import dbAccess.CarportMapper;
+import dbAccess.CustomerMapper;
 import exceptions.LoginSampleException;
+import functionLayer.Carport;
+import functionLayer.Customer;
+import functionLayer.LogicFacade;
+import functionLayer.Product;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -17,10 +25,52 @@ public class CreateOrder extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
+        HttpSession session = request.getSession();
+        CustomerMapper cm = new CustomerMapper();
+        CarportMapper carMapper = new CarportMapper();
+        List<Product> stykliste = null;
+        Carport carport;
+        Customer customer;
+        int roof_id = 0;
+        //carport and shed measurments
+        double width = (double) session.getAttribute("bredde");
+        double length = (double) session.getAttribute("laengde");
+        double shedWidth = (double) session.getAttribute("skurbredde");
+        double shedLength = (double) session.getAttribute("skurlaengde");
+        String roofMaterial = (String) session.getAttribute("roofMaterial");
+        String redskabsskur = (String) session.getAttribute("redskabsskur");
         
+        if (redskabsskur == null) {
+            stykliste = LogicFacade.CarportCalculaterFlatRoof(length, width, roofMaterial);
+        } else {
+            stykliste = LogicFacade.CarportCalculaterFlatRoofIncludingShed(length, width, shedLength, shedWidth, roofMaterial);
+        }
         
+        for (Product product : stykliste) {
+            if(product.getCategory().equals("tagpap") || product.getCategory().equals("trapeztag")  ){
+                roof_id = product.getId();
+            }else{
+                roof_id = 0;
+            }
+        }
         
+        double totalPriceOfCarport = LogicFacade.totalPriceOfCarport(stykliste);
+        //Customer information
+        String firstName = request.getParameter("fornavn");
+        String lastName = request.getParameter("efternavn");
+        String addresse = request.getParameter("addresse");
+        String zipCode = request.getParameter("postnummer").trim();
+        String town = request.getParameter("by");
+        String tel = request.getParameter("telefon");
+        String email = request.getParameter("email");
+        String comment = request.getParameter("comment");
+
+        customer = new Customer(firstName, lastName, email, addresse, town, zipCode, tel, comment);
+        cm.addCustomer(customer);
+        //customer = cm.allInfoFromCustomer(customer.getEmail());
+        carport = new Carport(length, width, roof_id, 0, customer.getId());
+        carMapper.addCarport(carport);
         return "createOrder";
     }
-    
+
 }
