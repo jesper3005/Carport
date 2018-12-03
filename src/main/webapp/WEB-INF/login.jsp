@@ -12,6 +12,20 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+            <% String error = (String) request.getAttribute("error"); %>
+            <% if(error != null) { %>
+            <h2><%=error %></h2>
+            <% } %>
+        
+        <h1>Login</h1>
+        <form name="login" action="FrontController" method="POST"/>
+            <input type="hidden" name="hiddenParam" value="login"/>
+            <input type="text" name="email" placeholder="Email..."/>
+            <input type="password" name="password" placeholder="Password..."/>
+            <input type="hidden" name="command" value="Login">    
+            <button type="submit"> Login </button>
+        </form>
+        
+        
     </body>
 </html>

@@ -7,6 +7,8 @@ package functionLayer;
 
 import functionLayer.calculation.CarportFlatProductListe;
 import dbAccess.ProductMapper;
+import dbAccess.UserMapper;
+import exceptions.LoginSampleException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,10 @@ import java.util.List;
 public class LogicFacade {
     
     
+    public static User login(String email, String password) throws LoginSampleException{
+        UserMapper um = new UserMapper();
+        return um.getUser(email, password);
+    }
 
     public static List<Product> CarportCalculaterFlatRoof(double length, double width, String roofMaterial) {
         CarportFlatProductListe cfp = new CarportFlatProductListe();

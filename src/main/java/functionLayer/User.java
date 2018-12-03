@@ -22,6 +22,31 @@ public class User {
         this.role = role;
         this.customerID = customerID;
     }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+    
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public int getCustomerID() {
+        return customerID;
+    }
     
     
     
