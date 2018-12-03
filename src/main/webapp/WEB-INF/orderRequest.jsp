@@ -81,10 +81,12 @@
             <div class="control-groupForm">
             <div class="selectForm">
                 <h1 class="title">Udfyld formularen og send en forspørgelse</h1>
-            <h4>Navn</h4>
-            <input type="text" name="navn" placeholder="Dit fulde navn" >
+            <h4>Foravn</h4>
+            <input type="text" name="fornavn" placeholder="fornavn" >
+            <h4>Efternavn</h4>
+            <input type="text" name="efternavn" placeholder="efternavn" >
             <h4>Addresse</h4>
-            <input type="text" name="addresse" placeholder="Din fulde addresse">
+            <input type="text" name="addresse" placeholder="din fulde addresse">
             <h4>Postnummer</h4>
             <input type="text" name="postnummer" placeholder="2300">
             <h4>By</h4>

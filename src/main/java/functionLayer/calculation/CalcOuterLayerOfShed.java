@@ -5,7 +5,6 @@
  */
 package functionLayer.calculation;
 
-import dbAccess.ProductMapper;
 import functionLayer.Product;
 import java.util.ArrayList;
 import java.util.List;
@@ -85,7 +84,7 @@ public class CalcOuterLayerOfShed {
                 }
                 if (product.getId() == 33) {
                     screws = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), product.getQty(), product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
-
+                    doorList.add(screws);
                 }
 
             }

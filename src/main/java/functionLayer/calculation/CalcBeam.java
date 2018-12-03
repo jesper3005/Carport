@@ -31,7 +31,7 @@ public class CalcBeam {
                 }
             }
             return p;
-        } catch (NullPointerException e) {
+        } catch (Exception e) {
             e.getMessage();
         }
         return null;

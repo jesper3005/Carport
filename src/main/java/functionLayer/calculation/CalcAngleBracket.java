@@ -16,16 +16,19 @@ public class CalcAngleBracket {
 
     public Product calcAntal(double qty, List allProducts) {
         try {
+            if (qty <= 0) {
+                qty = 1;
+            } else {
+                List<Product> productList = allProducts;
+                Product p = null;
+                for (Product product : productList) {
+                    if (product.getId() == 26) {
+                        p = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), qty, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
 
-            List<Product> productList = allProducts;
-            Product p = null;
-            for (Product product : productList) {
-                if (product.getId() == 26) {
-                    p = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), qty, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
-
+                    }
                 }
+                return p;
             }
-            return p;
         } catch (Exception e) {
             e.getMessage();
         }
