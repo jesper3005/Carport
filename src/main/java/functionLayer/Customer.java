@@ -74,6 +74,10 @@ public class Customer {
         return comments;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     
 
 }

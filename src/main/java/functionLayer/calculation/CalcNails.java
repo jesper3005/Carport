@@ -15,6 +15,11 @@ import java.util.List;
 public class CalcNails {
 
     public Product calcAntal_25mm_Varmforzinket(double qty, List allProducts) {
+        
+        if(qty < 0 ){
+            throw new IllegalArgumentException("Value can not be lower than 0. CalcNailsVarmforzinket25mm");
+        }
+        
         List<Product> productList = allProducts;
         Product p = null;
         try {
@@ -32,6 +37,11 @@ public class CalcNails {
     }
 
     public Product calcAntal_25mm_Blanke(double qty, List allProducts) {
+        
+        if(qty <= 0 ){
+            throw new IllegalArgumentException("Value can not be lower than 0. CalcNails25mm");
+        } 
+        
         List<Product> productList = allProducts;
         Product p = null;
         try {
@@ -49,6 +59,11 @@ public class CalcNails {
     }
 
     public Product calcAntal_20mm_Blanke(double qty, List allProducts) {
+        
+        if(qty <= 0 ){
+            throw new IllegalArgumentException("Value can not be lower than 0.. CalcNailsBlanke20mm");
+        }
+        
         List<Product> productList = allProducts;
         Product p = null;
         try {

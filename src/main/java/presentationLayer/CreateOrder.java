@@ -68,13 +68,12 @@ public class CreateOrder extends Command {
         String comment = request.getParameter("comment");
 
         customer = cm.customerId(email);
-        shed = carportMapper.addShed(shed);
-        System.out.println(shed.getShed_id()+" jkdfjydjrs");
+        System.out.println(shed.getShed_id()+" 1");
         
 
         if (email.equals(customer.getEmail())) {
             carport = new Carport(length, width, roof_id, 0,shed.getShed_id(), customer.getId());
-            carportMapper.addCarport(carport);
+            carportMapper.addCarport(carport,shed);
 
         } else {
             Customer newCustomer = new Customer(firstName, lastName, email, addresse, town, zipCode, tel, comment);
@@ -82,7 +81,7 @@ public class CreateOrder extends Command {
             Customer c = cm.customerId(email);
             System.out.println(shed.getShed_id()+" shed id ");
             carport = new Carport(length, width, roof_id, 0, shed.getShed_id(), c.getId());
-            carportMapper.addCarport(carport);
+            carportMapper.addCarport(carport, shed);
 
         }
         return "createOrder";

@@ -6,10 +6,12 @@
 package dbAccess;
 
 import functionLayer.Customer;
+import functionLayer.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -19,6 +21,7 @@ public class CustomerMapper {
 
     private final String ALL_FROM_CUSTOMER_BY_EMAIL = "SELECT `*` FROM `customer` WHERE `email`= ?;";
     private final String ADD_CUSTOMER = "INSERT INTO `customer`(`first_name`,`last_name`,`email`,`street_address`,`town`,`zip_code`,`telephone_number`,`comments`)VALUES(?,?,?,?,?,?,?,?);";
+    private final String CREATE_USER = "INSERT INTO `user`(password, email, role, customer_id) VALUES (?, ?, ?, ?);";
 
     public Customer customerId(String email) {
         try {
@@ -41,7 +44,7 @@ public class CustomerMapper {
                 String comments = res.getString("comments");
                 customer = new Customer(customer_id, first_name, last_name, email_, street_address, town, zipCode, tel, comments);
                 return customer;
-                
+
             }
 
         } catch (SQLException | ClassNotFoundException ex) {
@@ -50,7 +53,8 @@ public class CustomerMapper {
         return null;
     }
 
-    public void addCustomer(Customer customer) {
+    public Customer addCustomer(Customer customer) {
+        int id = 0;
         try {
             Connection c = Connector.connection();
             String query = ADD_CUSTOMER;
@@ -66,11 +70,38 @@ public class CustomerMapper {
             pstmt.setString(8, customer.getComments());
 
             pstmt.executeUpdate();
+            ResultSet ids = pstmt.getGeneratedKeys();
+            ids.next();
+            id = ids.getInt(1);
+            customer.setId(id);
             pstmt.close();
+            return customer;
 
         } catch (SQLException | ClassNotFoundException ex) {
             System.out.println(ex.getMessage() + " addCustomer");
         }
+        return null;
+    }
+
+    public User createUser(User user, Customer customer) {
+        try {
+            Connection con = Connector.connection();
+            String query = CREATE_USER;
+            Customer c = addCustomer(customer);
+            PreparedStatement pstmt = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setString(1, user.getPassword());
+            pstmt.setString(2, user.getEmail());
+            pstmt.setString(3, user.getRole());
+            pstmt.setInt(4, customer.getId());
+            pstmt.executeUpdate();
+            pstmt.close();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.out.println(ex.getMessage());
+            System.out.println("Error");
+        }
+        return user;
     }
 
 }

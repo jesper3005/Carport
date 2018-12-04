@@ -15,6 +15,11 @@ import java.util.List;
 public class CalcStern {
 
     public Product calcAntalOverbrædt(double length, double width, List allProducts) {
+        
+       if(length <= 0 || width <= 0){
+            throw new IllegalArgumentException("Value has to be larger than 0. CalcSternOverbrædt");
+        }
+       
         List<Product> productList = allProducts;
         Product p = null;
         try {
@@ -37,6 +42,11 @@ public class CalcStern {
     }
 
     public Product calcAntalMellembrædt(double length, double width, List allProducts) {
+        
+        if(length <= 0 || width <= 0){
+            throw new IllegalArgumentException("Value has to be larger than 0. CalcSternMellembrædt");
+        }
+        
         List<Product> productList = allProducts;
         Product p = null;
         try {
@@ -59,6 +69,10 @@ public class CalcStern {
     }
 
     public Product calcAntalUnderbrædt(double length, double width, List allProducts) {
+        
+        if(length <= 0 || width <= 0){
+            throw new IllegalArgumentException("Value has to be larger than 0. CalcSternUnderbrædt");
+        }
         List<Product> productList = allProducts;
         Product p = null;
         try {

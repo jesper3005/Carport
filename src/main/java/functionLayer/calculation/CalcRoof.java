@@ -17,10 +17,15 @@ public class CalcRoof {
     private double antalScrews;
 
     public Product calcAntal(double length, double width, String roofMaterial, List allProducts) {
+
+        if (length <= 0 || width <= 0) {
+            throw new IllegalArgumentException("Value has to be larger den 0. CalcRoof class");
+        }
+
         List<Product> productList = allProducts;
         Product p = null;
+        double cm2 = length * width; // quadratcentimeter
         double antal; // antal tagpap
-        double cm2; // quadratmeter
 
         try {
             cm2 = (width * length);

@@ -17,7 +17,7 @@ public class CalcBeam {
     public Product calcAntal(double length, double width, List allProducts) {
         
         if(length <= 0 || width <= 0){
-            throw new ArithmeticException("Value has to be larger than 0. CalcBeam");
+            throw new IllegalArgumentException("Value has to be larger than 0. CalcBeam");
         }
         List<Product> productList = allProducts;
         Product p = null;

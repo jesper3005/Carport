@@ -17,7 +17,7 @@ public class CalcPoles {
     public Product calcAntal(double length, double width, List allProducts) {
         
         if(length <= 0 || width <= 0){
-            throw new IllegalArgumentException("Value has to be larger den o. CalcPoles class");
+            throw new IllegalArgumentException("Value has to be larger den 0. CalcPoles class");
         }
         
         List<Product> productList = allProducts;
