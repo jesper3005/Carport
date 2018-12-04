@@ -25,6 +25,7 @@ public class UserMapper {
     
     
     public User getUser(String email, String password) throws LoginSampleException {
+        User user = null;
         try {
             Connection con = Connector.connection();
             String SQL = GET_USER;
@@ -38,15 +39,15 @@ public class UserMapper {
                 String email1 = rs.getString("email");
                 String role = rs.getString("role");
                 int customerID = rs.getInt("customer_id");
-                User u = new User(id, password1, email1, role, customerID);
-                return u;
+                user = new User(id, password1, email1, role, customerID);
+                return user;
             } else {
                 throw new LoginSampleException("could not validate user");
             }
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        return null;
+        return user;
     }
 
     public User createUser(User user) {
