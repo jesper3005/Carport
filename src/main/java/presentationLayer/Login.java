@@ -8,9 +8,11 @@ package presentationLayer;
 import exceptions.LoginSampleException;
 import functionLayer.LogicFacade;
 import functionLayer.User;
+import java.util.logging.Level;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import logging.DefaultLogger;
 
 /**
  *
@@ -31,6 +33,7 @@ public class Login extends Command {
         } catch(LoginSampleException ex) {
             request.setAttribute("error", "Wrong username or password");
             System.out.println("Login failed");
+            DefaultLogger.getMyLogger().log(Level.WARNING, "Login failed " + email+" : "+password);
             return "login";        
         }
         
