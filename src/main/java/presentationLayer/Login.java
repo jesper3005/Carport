@@ -23,18 +23,18 @@ public class Login extends Command {
         HttpSession session = request.getSession();
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        User user = LogicFacade.login(email, password);
-        if(user == null) {
+        try {
+            User user = LogicFacade.login(email, password);
+            session.setAttribute("user", user);
+            session.setAttribute("role", user.getRole());
+            return "../index";         
+        } catch(LoginSampleException ex) {
             request.setAttribute("error", "Wrong username or password");
             System.out.println("Login failed");
-            return "login";
-        } else {
-            System.out.println("Login succes");
+            return "login";        
         }
-        session.setAttribute("user", user);
-        session.setAttribute("role", user.getRole());
         
-        return "../index";
+        
     }
     
 }

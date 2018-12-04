@@ -47,7 +47,7 @@ public class UserMapper {
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        return user;
+        return null;
     }
 
     public User createUser(User user) {
