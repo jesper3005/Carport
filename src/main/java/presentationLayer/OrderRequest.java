@@ -7,7 +7,7 @@ package presentationLayer;
 
 import exceptions.LoginSampleException;
 import functionLayer.SVGSide;
-import functionLayer.SVGTopTest;
+import functionLayer.SVGTop;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -51,7 +51,7 @@ public class OrderRequest extends Command {
 
         //Inserting svg of the carport
         //Carport fra toppen Test
-        SVGTopTest testSVG = new SVGTopTest(length, width, shedLength, shedWidth, shedCheck);
+        SVGTop testSVG = new SVGTop(length, width, shedLength, shedWidth, shedCheck);
         request.setAttribute("drawingTop", testSVG.getMySVG());
 
         //Carport fra toppen.

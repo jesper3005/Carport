@@ -40,7 +40,7 @@ public class Registration extends Command {
         
         if(password1.equals(password2)) {
             User user;
-            user = LogicFacade.createUser(email, password2, id);
+            user = LogicFacade.createUser(email, password2, 1);
             session.setAttribute("user", user);
         } else {
             throw new LoginSampleException("the two password did not match");
