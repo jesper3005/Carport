@@ -23,7 +23,7 @@ public class Carport {
     private int shed_id;
     private int customer_id;
 
-    public Carport(double carport_length, double carport_width, int roof_id, double total_price, int customer_id) {
+    public Carport(double carport_length, double carport_width, int roof_id, double total_price, int shed_id, int customer_id) {
         this.carport_length = carport_length;
         this.carport_width = carport_width;
         this.roof_id = roof_id;
