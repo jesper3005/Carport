@@ -73,10 +73,11 @@ public class CarportMapperTest {
     @Test
     public void testAddCarport() {
         //Arrange
+        Shed shed = new Shed(200.00, 200.00);
         Carport carport = new Carport(200.0, 200.0, 64, 5000.00, 3, 1);
         //Act
         double expected = 5000.00;
-        Carport actual = LogicFacade.addCarport(carport);
+        Carport actual = LogicFacade.addCarport(carport, shed);
         //Assert
         assertEquals(expected, actual.getTotal_price(), 0);
     }

@@ -41,9 +41,9 @@ public class LogicFacade {
         return customer;
     }
     
-    public static Carport addCarport(Carport carport) {
+    public static Carport addCarport(Carport carport, Shed shed) {
         CarportMapper cm = new CarportMapper();
-        cm.addCarport(carport);
+        cm.addCarport(carport, shed);
         return carport;
     }
     
