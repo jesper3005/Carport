@@ -35,21 +35,21 @@ public class CalcRoof {
                     antal = Math.ceil(cm2 / 80000);
                     p = new Product(39, product.getProductName(), product.getCategory(), product.getPrice(), antal, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
                     //on each side of the carport we add 20 cm to the length or width
-                } else if (roofMaterial.equals("Trapeztag PVC Glasklar") && product.getId() == 73) {
+                } else if (roofMaterial.equals("Trapeztag PVC Glasklar") && product.getId() == 64) {
                     cm2 = ((width + 40) * (length + 40));
                     //20 screws per m2 plus 50 ekstra
                     antalScrews = ((cm2 / 100) * 20) + 50;
                     //length 110 cm * width 61 cm = 6710cm2
                     antal = Math.ceil(cm2 / 6710);
-                    p = new Product(73, product.getProductName(), product.getCategory(), product.getPrice(), antal, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
+                    p = new Product(64, product.getProductName(), product.getCategory(), product.getPrice(), antal, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
                 } //on each side of the carport we add 20 cm to the length or width
-                else if (roofMaterial.equals("Trapeztag Boelgeplade") && product.getId() == 74) {
+                else if (roofMaterial.equals("Trapeztag Boelgeplade") && product.getId() == 65) {
                     cm2 = ((width + 40) * (length + 40));
                     //20 screws per m2 plus 50 ekstra
                     antalScrews = ((cm2 / 100) * 20) + 50;
                     //length 109 cm * width 118 cm = 12862cm2
                     antal = Math.ceil(cm2 / 12862);
-                    p = new Product(74, product.getProductName(), product.getCategory(), product.getPrice(), antal, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
+                    p = new Product(65, product.getProductName(), product.getCategory(), product.getPrice(), antal, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
                 }
 
             }

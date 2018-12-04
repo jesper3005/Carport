@@ -10,17 +10,19 @@ package functionLayer;
  * @author oerte
  */
 public class Shed {
-    
+
     private int shed_id;
     private double shed_length;
     private double shed_width;
     private int shed_facade_id;
 
-    public Shed(int shed_id, double shed_length, double shed_width, int shed_facade_id) {
-        this.shed_id = shed_id;
+    public Shed(double shed_length, double shed_width) {
         this.shed_length = shed_length;
         this.shed_width = shed_width;
-        this.shed_facade_id = shed_facade_id;
+    }
+
+    public void setShed_id(int shed_id) {
+        this.shed_id = shed_id;
     }
 
     public int getShed_id() {
@@ -38,7 +40,5 @@ public class Shed {
     public int getShed_facade_id() {
         return shed_facade_id;
     }
-    
-    
-    
+
 }
