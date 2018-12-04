@@ -5,6 +5,7 @@
  */
 package functionLayer;
 
+import dbAccess.CarportMapper;
 import dbAccess.CustomerMapper;
 import functionLayer.calculation.CarportFlatProductListe;
 import dbAccess.ProductMapper;
@@ -20,6 +21,7 @@ import java.util.List;
  */
 public class LogicFacade {
     
+    // ------------ LOGICFACADE METHODS FOR DATABASE -----------------
     
     public static User login(String email, String password) throws LoginSampleException{
         UserMapper um = new UserMapper();
@@ -38,7 +40,21 @@ public class LogicFacade {
         cm.addCustomer(customer);
         return customer;
     }
-
+    
+    public static Carport addCarport(Carport carport) {
+        CarportMapper cm = new CarportMapper();
+        cm.addCarport(carport);
+        return carport;
+    }
+    
+    public static Shed addShed(Shed shed) {
+        CarportMapper cm = new CarportMapper();
+        cm.addShed(shed);
+        return shed;
+    }
+    
+    // ------- CARPORT CALCULATIONS LOGICFACADE ---------
+    
     public static List<Product> CarportCalculaterFlatRoof(double length, double width, String roofMaterial) {
         CarportFlatProductListe cfp = new CarportFlatProductListe();
         List list = cfp.carportCalculaterFlatRoof(length, width, roofMaterial);

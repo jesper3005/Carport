@@ -5,15 +5,18 @@
  */
 package DataLayer;
 
-import functionLayer.Product;
 import dbAccess.Connector;
-import dbAccess.ProductMapper;
+import functionLayer.Carport;
+import functionLayer.LogicFacade;
+import functionLayer.Shed;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -21,14 +24,14 @@ import static org.junit.Assert.*;
  *
  * @author Jesper
  */
-public class ProductMapperTest {
-
+public class CarportMapperTest {
+    
     private static Connection testConnection;
     private static final String USER = "joerg";
     private static final String USERPW = "joerg/3085";
     private static final String DBNAME = "carportTest";
     private static final String HOST = "142.93.173.199";
-
+    
     @Before
     public void setUp() {
         try {
@@ -42,9 +45,9 @@ public class ProductMapperTest {
             }
             //Reset database
             try (Statement stmt = testConnection.createStatement()) {
-                stmt.execute("DROP TABLE IF EXISTS product;");
-                stmt.execute("CREATE TABLE product LIKE productTest;");
-                stmt.execute("INSERT into product SELECT * from productTest;");
+                stmt.execute("DROP TABLE IF EXISTS carport;");
+                stmt.execute("CREATE TABLE carport LIKE carportTest;");
+                stmt.execute("INSERT into carport SELECT * from carportTest;");
             }
 
         } catch (ClassNotFoundException | SQLException ex) {
@@ -52,68 +55,44 @@ public class ProductMapperTest {
             System.out.println("Could not open connection to database: " + ex.getMessage());
         }
     }
-
-//     TODO add test methods here.
-//     The methods must be annotated with annotation @Test. For example:
     
+
+
+    // TODO add test methods here.
+    // The methods must be annotated with annotation @Test. For example:
+    //
+    // @Test
+    // public void hello() {}
     
     @Test
     public void testSetUpOK() {
         // Just check that we have a connection.
         assertNotNull(testConnection);
     }
-
+    
     @Test
-    public void testGetAllProducts() {
+    public void testAddCarport() {
         //Arrange
-        ProductMapper pm = new ProductMapper();
-
-        List<Product> product = pm.allProducts();
-
-        //Assert
-        assertTrue(product.size() > 2);
-    }
-
-    @Test
-    public void testUpdatePrice() {
-        //Arrange
-        ProductMapper pm = new ProductMapper();
+        Carport carport = new Carport(200.0, 200.0, 64, 5000.00, 3, 1);
         //Act
-        double actual = 200.00;
-        pm.updatePrice(1, actual);
-
-        Product expected = pm.getProductByID(1);
-
+        double expected = 5000.00;
+        Carport actual = LogicFacade.addCarport(carport);
         //Assert
-        assertEquals(expected.getPrice(), actual, 0.5);
+        assertEquals(expected, actual.getTotal_price(), 0);
     }
-
+    
     @Test
-    public void testAddProduct() {
+    public void testAddShed() {
         //Arrange
-        ProductMapper pm = new ProductMapper();
-        Product p = new Product("testProduct", "testCategory", 200.0, 200.0, 200.0, 200.0);
-
+        Shed shed = new Shed(200.00, 250.00);
+        
         //Act
-        String expected = "testProduct";
-        Product actual = pm.addProducts(p);
-
+        double expected = 200.00;
+        Shed actual = LogicFacade.addShed(shed);
+        
         //Assert
-        assertEquals(expected, actual.getProductName());
+        assertEquals(expected, actual.getShed_length(), 0);
     }
-
-    @Test
-    public void testDeleteProduct() {
-        //Arrange
-        ProductMapper pm = new ProductMapper();
-        List<Product> product1 = pm.allProducts();
-
-        //Act
-        pm.deleteProduct(1);
-        List<Product> product2 = pm.allProducts();
-
-        //Assert
-        assertTrue(product1.size() > product2.size());
-    }
-
+    
+    
 }
