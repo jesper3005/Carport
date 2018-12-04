@@ -92,7 +92,7 @@ public class CustomerMapper {
             pstmt.setString(1, user.getPassword());
             pstmt.setString(2, user.getEmail());
             pstmt.setString(3, user.getRole());
-            pstmt.setInt(4, customer.getId());
+            pstmt.setInt(4, c.getId());
             pstmt.executeUpdate();
             pstmt.close();
 
