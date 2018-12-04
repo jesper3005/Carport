@@ -13,27 +13,33 @@ public class SVGTop {
 
     private String mySVG = null;
     private StringBuilder sb = new StringBuilder();
-    
-    double startPosX = 45;
-    double startPosY = 5;
-    
-    double remWidth = 5;
+
+    double remWidth = 10;
     double lægteWidth = 5;
     double stolpeWidth = 10;
     double stolpeHeight = 10;
+    double startPosXY = 30;
+    double lægtePosInd = 40;
+    double shedPlankWidth = 15;
+    double doorWidth = 80;
 
-    public SVGTop(double length, double width, double skurLength, double skurWidth) {
-        double width1 = length + 100;
-        double height1 = width + 100;
-        this.sb = sb.append("<SVG width=\"800\" height=\"800\">");
+    public SVGTop(double length, double width, double shedLength, double shedWidth, boolean shedCheck) {
+        this.sb = sb.append("<SVG width=\"820\" height=\"820\">");
         //ADD ALL METHODS FOR SVG DRAWING FROM TOP
+
+        //Creates carport
         sb.append(createRemme(length, width));
         sb.append(createLægter(length, width));
-        sb.append(createStolper(length, width));
-        sb.append(createLenghtText(length, width));
-        sb.append(createWidthText(length, width));
-        sb.append(createShed(length, skurLength, skurWidth));
 
+        //Creates text and lines
+        sb.append(createLengthText(length, width));
+        sb.append(createWidthText(length, width));
+        
+        //Creates shed
+        if(shedCheck == true) {
+            sb.append(createShed(length, width, shedLength, shedWidth));   
+        }
+        
         sb.append("</SVG>");
         this.mySVG = sb.toString();
 
@@ -42,129 +48,137 @@ public class SVGTop {
     public String getMySVG() {
         return mySVG;
     }
-
-    private String createLægter(double length, double width) {
-        StringBuilder sb = new StringBuilder();
-
-        //Calculates the quantity of current material.
-        double qty = Math.ceil(length / 50);
-        //Minus 2 because we will always place the two first the same place, 40 cm in from each side.
-        qty -= 2;
-        //We create a variable to store where the first and last lægte will be placed.
-        double firstLægte = 40 + startPosY;
-        double lastLægte = length - (40 + remWidth);
-        //+ 25 thats the length of the lapths
-        width += 25;
-        //The two first laphts 
-        sb.append("<rect x=\"30\" y=\"" + firstLægte + "\" height=\"" + lægteWidth +"\" width=\"" + width + "\" style=\"stroke: #292929; fill:none;\"/>");
-        sb.append("<rect x=\"30\" y=\"" + lastLægte + "\" height=\"" + lægteWidth +"\" width=\"" + width + "\" style=\"stroke: #292929; fill:none;\"/>");
-        
-        //We get the remaining space left
-        length -= 80;
-        double delta = length / (qty + 1); //68
-        double lægterPos = delta + firstLægte;
-        for (int i = 0; i < qty; i++) {
-            System.out.println(qty);
-            sb.append("<rect x=\"30\" y=\"" + lægterPos + "\" height=\"" + lægteWidth + "\" width=\"" + width + "\" style=\"stroke: #292929; fill:none;\"/>");
-            lægterPos += delta; 
-
-        }
-        return sb.toString();
-    }
+    
+    /*         Y
+               |
+               |
+         x - - - - - 
+               |
+               |
+    */
+    
 
     private String createRemme(double length, double width) {
-        StringBuilder sb = new StringBuilder();
-        double totalRemWidth = remWidth * 2;
-        double realLength = length - totalRemWidth;
-        double y = startPosY + (remWidth - 5);
-        double x = width + (45 - remWidth);
         
-        //Vertical
-        sb.append("<rect x=\"" + startPosX + "\" y=\"" + y + "\" height=\"" + realLength + "\" width=\""+ remWidth +"\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
-        sb.append("<rect x=\"" + x + "\" y=\"" + y + "\" height=\"" + realLength + "\" width=\"" + remWidth + "\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
-        
-        //Horizontal
-        sb.append("<rect x=\"45\" y=\"0\" height=\"" + remWidth + "\" width=\"" + width + "\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
-        sb.append("<rect x=\"45\" y=\"" + (realLength + remWidth ) + "\" height=\"" + remWidth + "\" width=\"" + width + "\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+        //Decides where the bottom REM goes on y axis.
+        double bottomRemY = width + (startPosXY - remWidth);
+        //Decides where both bottom and top side REM will be placed on the x axis.
+        double remXSides = startPosXY + remWidth;
+        //lengthOfRem decides the actual length of the REMME.
+        double lengthOfRem = length - (remWidth*2); 
 
-        if (width >= 510) {
-            double placering = width / 2;
-            sb.append("<rect x=\"" + (placering + 40) + "\" y=\"0\" height=\"" + realLength + "\" width=\"" + remWidth +"\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
-        }
+        //Side rem top.
+        sb.append("<rect x=\"" + remXSides + "\" y=\"" + startPosXY + "\" height=\"10\" width=\"" + lengthOfRem + "\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+        
+        //Side rem bottom.
+        sb.append("<rect x=\"" + remXSides + "\" y=\"" + bottomRemY + "\" height=\"10\" width=\"" + lengthOfRem + "\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+
+        //Remme front og bag.
+        //x2 decides where the furthest back rem will be placed on the x axis.
+        double x2 = startPosXY + length - remWidth;
+
+        sb.append("<rect x=\"" + startPosXY + "\" y=\"" + startPosXY + "\" height=\"" + width + "\" width=\"" + remWidth + "\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+        sb.append("<rect x=\"" + x2 + "\" y=\"" + startPosXY + "\" height=\"" + width + "\" width=\"" + remWidth + "\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+
         return sb.toString();
     }
 
-    private String createStolper(double length, double width) {
-        StringBuilder sb = new StringBuilder();
-        double y = length - (stolpeWidth + remWidth);
+    private String createLægter(double length, double width) {
         
-        double x1 = remWidth + startPosX;
-        double x2 = width + startPosX - (remWidth + stolpeWidth);
         
-        double y3 = startPosY + (remWidth - 5);
-        
-        double y1 = length / 2;
-        
+        double lægteLength = width + 25;
 
-        if (length <= 450) {
-            //Back stolper
-            sb.append("<rect x=\"" + x1 + "\" y=\"" + y + "\" height=\"" + stolpeHeight + "\" width=\"" + stolpeWidth + "\" style=\"stroke: #292929; fill:1;\"/>");
-            sb.append("<rect x=\"" + x2 + "\" y=\"" + y + "\" height=\"" + stolpeHeight + "\" width=\"" + stolpeWidth + "\" style=\"stroke: #292929; fill:1;\"/>");
-            //Front stolper
-            sb.append("<rect x=\"" + x1 + "\" y=\"" + y3 + "\" height=\"" + stolpeHeight + "\" width=\"" + stolpeWidth + "\" style=\"stroke: #292929; fill:1;\"/>");
-            sb.append("<rect x=\"" + x2 + "\" y=\"" + y3 + "\" height=\"" + stolpeHeight + "\" width=\"" + stolpeWidth + "\" style=\"stroke: #292929; fill:1;\"/>");
-        } else if (length > 450) {
-            //Back Stolper
-            sb.append("<rect x=\"" + x1 + "\" y=\"" + y + "\" height=\"" + stolpeHeight + "\" width=\"" + stolpeWidth + "\" style=\"stroke: #292929; fill:1;\"/>");
-            sb.append("<rect x=\"" + x2 + "\" y=\"" + y + "\" height=\"" + stolpeHeight + "\" width=\"" + stolpeWidth + "\" style=\"stroke: #292929; fill:1;\"/>");
-            //Front stolper
-            sb.append("<rect x=\"" + x1 + "\" y=\"" + y3 + "\" height=\"10\" width=\"10\" style=\"stroke: #292929; fill:1;\"/>");
-            sb.append("<rect x=\"" + x2 + "\" y=\"" + y3 + "\" height=\"10\" width=\"10\" style=\"stroke: #292929; fill:1;\"/>");
-            //The two extra stolper placed in the middle
-            sb.append("<rect x=\""+ x1 + "\" y=\"" + y1 + "\" height=\"10\" width=\"10\" style=\"stroke: #292929; fill:1;\"/>");
-            sb.append("<rect x=\"" + x2 + "\" y=\"" + y1 + "\" height=\"10\" width=\"10\" style=\"stroke: #292929; fill:1;\"/>");
+        double firstLægte = startPosXY + (lægtePosInd - remWidth);
+        double lastLægte = startPosXY + length - lægtePosInd;
+        double y2 = startPosXY - 10;
+        
+        sb.append("<rect x=\"" + firstLægte + "\" y=\"" + y2 + "\" height=\"" + lægteLength + "\" width=\"" + lægteWidth + "\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+        sb.append("<rect x=\"" + lastLægte + "\" y=\"" + y2 + "\" height=\"" + lægteLength + "\" width=\"" + lægteWidth + "\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+        
+        double qty = Math.ceil(length / 50);
+        length -= (lægtePosInd * 2);
+        double delta = length / (qty + 1);
+        double lægtePos = delta + firstLægte;
+        for (int i = 0; i < qty; i++) {
+            System.out.println(qty);
+            sb.append("<rect x=\"" + lægtePos + "\" y=\"" + y2 + "\" height=\"" + lægteLength + "\" width=\"" + lægteWidth + "\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+            lægtePos += delta; 
         }
-
+        
+        
         return sb.toString();
-
     }
 
-    private String createLenghtText(double length, double width) {
-        StringBuilder sb = new StringBuilder();
-        double x1 = width + 70;
-        double x = width + 80;
-        double y = length / 2;
+    private String createLengthText(double length, double width) {
+        
+        double lineY = width + startPosXY + 30;
+        double startLine = startPosXY - remWidth;
+        double lenghtOfLine = length + startPosXY;
 
-        sb.append("<line x1=\"" + x1 + "\" y1=\"0\" x2=\"" + x1 + "\" y2=\"" + length + "\" style=\"stroke:rgb(255,0,0);stroke-width:2\" />");
-        sb.append("<text x=\"" + x + "\" y=\"" + y + "\" fill=\"red\">" + length + " cm" + "</text>");
+        sb.append("<line x1=\"" + startLine + "\" y1=\"" + lineY + "\" x2=\"" + lenghtOfLine + "\" y2=\"" + lineY + "\" style=\"stroke:rgb(255,0,0);stroke-width:2\" />");
 
+        //Minus 50 to get text centered, dividing with 2 will get the middle, but thats where the text will start
+        double textX = (lenghtOfLine / 2) - 50;
+        double textY = lineY + 20;
+
+        sb.append("<text x=\"" + textX + "\" y=\"" + textY + "\" fill=\"red\">" + "Længde: " + width + " cm" + "</text>");
         return sb.toString();
     }
 
     private String createWidthText(double length, double width) {
-        StringBuilder sb = new StringBuilder();
-        double y = length + 15;
-        double x = width + startPosX;
-        double xText = 20 + (width / 2);
-        double yText = length + 40;
+        
 
-        // y1 og y2 skal være det samme, bestemmer hvor langt nede den skal ligge
-        // x1 er hvor linjen skal starte og x2 er hvor linjen skal slutte
-        sb.append("<line x1=\"45\" y1=\"" + y + "\" x2=\"" + x + "\" y2=\"" + y + "\" style=\"stroke:rgb(255,0,0);stroke-width:2\"/>");
-        sb.append("<text x=\"" + xText + "\" y=\"" + yText + "\" fill=\"red\">" + width + " cm" + "</text>");
+        double x1 = length + startPosXY + 30;
+        double y2 = width + startPosXY;
+
+        sb.append("<line x1=\"" + x1 + "\" y1=\"" + startPosXY + "\" x2=\"" + x1 + "\" y2=\"" + y2 + "\" style=\"stroke:rgb(255,0,0);stroke-width:2\" />");
 
         return sb.toString();
     }
     
-    private String createShed(double length, double skurLength, double skurWidth) {
-        StringBuilder sb = new StringBuilder();
-        double x = startPosX + remWidth;
-        double y = length - (remWidth + skurLength);
-        double length1 = skurLength;
-        double width = skurWidth;
+    private String createShed(double length, double width,double shedLength, double shedWidth) {
         
-        sb.append("<rect x=\"" + x + "\" y=\"" + y +"\" width=\""+ width + "\" height=\"" + length1 + "\" style=\"fill:#a7a5a5db; stroke: #a7a5a5db; fill:1;\" />");
+        //Amount of planks needed for both lengths 
+        double qtyShedLength = Math.ceil(shedLength / shedPlankWidth);
+        //Side with door
+        double qtyShedWidth = Math.ceil((shedWidth - doorWidth) / shedPlankWidth);
+        //Side no door
+        double qtyBackWidth = Math.ceil(shedWidth / shedPlankWidth);
+        
+        //Creating sides length.
+        //TOP
+        double xTOP = startPosXY + length - remWidth - shedPlankWidth;
+        for (int i = 0; i < qtyShedLength; i++) {
+            sb.append("<rect x=\"" + xTOP + "\" y=\"" + (startPosXY + remWidth) + "\" height=\"5\" width=\"" + shedPlankWidth + "\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+            xTOP -= shedPlankWidth;
+        }
+        
+        //BOT
+        double xBOT = startPosXY + length - remWidth - shedPlankWidth;
+        double y = (startPosXY + remWidth + shedWidth);
+        for (int i = 0; i < qtyShedLength; i++) {
+            sb.append("<rect x=\"" + xBOT + "\" y=\"" + y + "\" height=\"5\" width=\"" + shedPlankWidth + "\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+            xBOT -= shedPlankWidth;
+        }
+        
+        //Right
+        double xRight = startPosXY + length - remWidth - 5;
+        double yRight = startPosXY + remWidth;
+        for (int i = 0; i < qtyBackWidth; i++) {
+            sb.append("<rect x=\"" + xRight + "\" y=\"" + yRight + "\" height=\"" + shedPlankWidth + "\" width=\"5\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+            yRight += shedPlankWidth;
+        }
+        
+        //Left
+        double yLeft = startPosXY + remWidth + 5;
+        double xLeft = startPosXY + length - remWidth - shedLength;
+        for (int i = 0; i < qtyShedWidth; i++) {
+            sb.append("<rect x=\"" + xLeft + "\" y=\"" + yLeft + "\" height=\"" + shedPlankWidth + "\" width=\"5\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+            yLeft += shedPlankWidth;
+        }
+        
         
         return sb.toString();
     }
+    
 }
