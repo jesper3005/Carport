@@ -5,7 +5,7 @@
  */
 package presentationLayer;
 
-import exceptions.LoginSampleException;
+import exceptions.FogException;
 import functionLayer.SVGSide;
 import functionLayer.SVGTop;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 public class OrderRequest extends Command {
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
+    String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
         HttpSession session = request.getSession();
         boolean shedCheck;
         //length and width from shed from carportFlatRoof or carportPointedRoof jsp page.

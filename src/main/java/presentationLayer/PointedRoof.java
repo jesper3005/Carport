@@ -5,9 +5,13 @@
  */
 package presentationLayer;
 
-import exceptions.LoginSampleException;
+import dbAccess.ProductMapper;
+import exceptions.FogException;
+import functionLayer.Product;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 
@@ -18,8 +22,11 @@ import javax.servlet.http.HttpServletResponse;
 public class PointedRoof extends Command{
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
-        
+    String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
+        ProductMapper pm = new ProductMapper();
+        List<Product> orderByLengthRemList = pm.orderByLengthRem();
+        HttpSession session = request.getSession();
+        session.setAttribute("orderByLengthRemList", orderByLengthRemList);
         
         return "carportPointedRoof";
     }

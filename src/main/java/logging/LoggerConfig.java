@@ -5,7 +5,7 @@
  */
 package logging;
 
-import exceptions.LoginSampleException;
+import exceptions.FogException;
 import java.io.IOException;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
@@ -17,7 +17,7 @@ import java.util.logging.SimpleFormatter;
  */
 public class LoggerConfig {
 
-    public static void setUpLogger() throws LoginSampleException {
+    public static void setUpLogger() throws FogException {
         ConsoleHandler handler = new ConsoleHandler();
         DefaultLogger.getMyLogger().addHandler(handler);
 
@@ -28,7 +28,7 @@ public class LoggerConfig {
                 DefaultLogger.getMyLogger().addHandler(fileHandler);
                 fileHandler.close();
             } catch (IOException | SecurityException ex) {
-                throw new exceptions.LoginSampleException(ex.getMessage());
+                throw new FogException(ex.getMessage());
             }
         }
 

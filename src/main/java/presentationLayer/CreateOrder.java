@@ -7,7 +7,7 @@ package presentationLayer;
 
 import dbAccess.CarportMapper;
 import dbAccess.CustomerMapper;
-import exceptions.LoginSampleException;
+import exceptions.FogException;
 import functionLayer.Carport;
 import functionLayer.Customer;
 import functionLayer.LogicFacade;
@@ -25,7 +25,7 @@ import javax.servlet.http.HttpSession;
 public class CreateOrder extends Command {
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
+    String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
         HttpSession session = request.getSession();
         CustomerMapper cm = new CustomerMapper();
         CarportMapper carportMapper = new CarportMapper();
@@ -33,7 +33,6 @@ public class CreateOrder extends Command {
         Carport carport;
         Customer customer;
         Shed shed = null;
-        int roof_id = 0;
         //carport and shed measurments
         double width = (double) session.getAttribute("bredde");
         double length = (double) session.getAttribute("laengde");
@@ -49,12 +48,6 @@ public class CreateOrder extends Command {
             stykliste = LogicFacade.CarportCalculaterFlatRoofIncludingShed(length, width, shedLength, shedWidth, roofMaterial);
         }
 
-        for (Product product : stykliste) {
-            if (product.getCategory().equals("tagpap") || product.getCategory().equals("trapeztag")) {
-                roof_id = product.getId();
-                System.out.println(roof_id+"  roof_id");
-            } 
-        }
 
         double totalPriceOfCarport = LogicFacade.totalPriceOfCarport(stykliste);
         //Customer information
@@ -72,7 +65,7 @@ public class CreateOrder extends Command {
         
 
         if (email.equals(customer.getEmail())) {
-            carport = new Carport(length, width, roof_id, 0,shed.getShed_id(), customer.getId());
+            carport = new Carport(length, width, 0.0, "FLAT", roofMaterial, 0.0,shed.getShed_id() ,customer.getId());
             carportMapper.addCarport(carport,shed);
 
         } else {
@@ -80,7 +73,8 @@ public class CreateOrder extends Command {
             cm.addCustomer(newCustomer);
             Customer c = cm.customerId(email);
             System.out.println(shed.getShed_id()+" shed id ");
-            carport = new Carport(length, width, roof_id, 0, shed.getShed_id(), c.getId());
+            //  public Carport(double carport_length, double carport_width, double degrees, String roof, String roofMaterial, double total_price, int shed_id, int customer_id) {
+            carport = new Carport(length, width, 0.0, "FLAT", roofMaterial, 0.0,shed.getShed_id() ,customer.getId());
             carportMapper.addCarport(carport, shed);
 
         }
