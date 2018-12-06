@@ -28,8 +28,7 @@ abstract class Command {
         commands.put("UpdateProduct", new UpdateProduct());
         commands.put("SearchResult", new SearchResult());
         commands.put("sendOrder", new CreateOrderFlatRoof());
-        commands.put("toLogin", new toLogin());
-        commands.put("toRegi", new toRegi());
+        commands.put("toNavigator", new Navigator());
         commands.put(("login"), new Login());
 
     }

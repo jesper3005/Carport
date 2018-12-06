@@ -127,7 +127,8 @@
                     <br>
                             
                 <div class="control-group">
-                    <input type="hidden" name="command" value="OrderRequest">            
+                    <input type="hidden" name="command" value="OrderRequest">
+                    <input type="hidden" name="carport" value="flat">
                     <button type="submit" name="request">Byg din carport!</button>
                 </div>
             </form>    

@@ -16,7 +16,7 @@ public class SVGSide {
 
     //-----RULES HERE--------
     double remHeight = 30;
-    double startPosXY = 30;
+    double startPosXY = 200;
     double stolpeGapFraRem = 10;
     double shedPlankWidth = 10;
     double stolpeWidth = 10;
@@ -57,7 +57,6 @@ public class SVGSide {
         return sb.toString();
     }
 
-
     public String createShed(double length, double width, double shedLength, double shedWidth, double height) {
         double qtyShedLength = Math.ceil(shedLength / shedPlankWidth);
         double y = startPosXY + remHeight;
@@ -71,4 +70,17 @@ public class SVGSide {
         return sb.toString();
     }
 
+    public String createPointedRoof(double length, double width) {
+        int degree = 20;
+
+        double sinC = 180 - (2 * degree);
+       
+        //Calculates the length of the hypotenusen
+        double hypo = (width * Math.sin(degree * (Math.PI/180))) / Math.sin(sinC * (Math.PI/180));
+        
+        double lengthOfLægte = (width + hypo + hypo/2) / 0.5 * width;
+        
+        
+        return sb.toString();
+    }
 }
