@@ -181,4 +181,8 @@ public class SVGTop {
         return sb.toString();
     }
     
+    private String createPointedRoof() {
+        return sb.toString();
+    }
+    
 }
