@@ -42,6 +42,33 @@ public class CalcBattens {
 
     }
     
+     public Product calcAntalPointedRoof(double length, double width, double degree, List allProducts) {
+        Product p = null;
+        List<Product> productList = allProducts;
+        double b = CalcPointedRoofTriangle.CalcHypotesen(length, width, degree) + 25;
+        double antal;
+        try {
+            double antalLaegter = 0;
+            double totalMeterLægter = 0;
+            //En lægte per 0.5 meter (50 cm)
+            antalLaegter = ((length / 50) * 2);//50 cm
+            // Hvad mange meter lægter skal vi brug til hele carportens length
+            totalMeterLægter = (antalLaegter * b) / 540;//
+            antal = Math.ceil(totalMeterLægter + antalLaegter + (2 * length));
+            for (Product product : productList) {
+                if (product.getCategory().equals("lægte")) {
+                    p = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), antal, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
+
+                }
+            }
+            return p;
+        } catch (NumberFormatException e) {
+            e.getMessage();
+        }
+        return null; 
+
+    }
+    
    
     
 

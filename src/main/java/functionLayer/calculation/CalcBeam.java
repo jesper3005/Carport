@@ -41,5 +41,32 @@ public class CalcBeam {
         return null;
 
     }
+    
+    
+    
+    public Product calcAntalPointedRoofTOP(double length, double width, List allProducts) {
+        
+        if(length <= 0 || width <= 0){
+            throw new IllegalArgumentException("Value has to be larger than 0. CalcBeam");
+        }
+        
+        List<Product> productList = allProducts;
+        Product p = null;
+        double antal = 0;
+        try {
+            
+            for (Product product : productList) {
+                if (product.getCategory().equals("rem") && product.getLength() == length) {
+                    p = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), antal, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
+
+                }
+            }
+            return p;
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return null;
+
+    }
 
 }

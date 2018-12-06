@@ -66,15 +66,15 @@ public class LogicFacade {
         return list;
     }
 
-    public static List<Product> CarportCalculatorPontedRoof(double length, double width, String roofMaterial) {
+    public static List<Product> CarportCalculatorPointedRoof(double length, double width, double degree, String roofMaterial) {
         CarportPointedRoofListe cfp = new CarportPointedRoofListe();
-        List list = cfp.carportCalculaterPointedRoof(length, width, roofMaterial);
+        List list = cfp.carportCalculaterPointedRoof(length, width, degree, roofMaterial);
         return list;
     }
-    
-    public static List<Product> CarportCalculatorPontedRoofIncludingShed(double length, double width, String roofMaterial) {
+
+    public static List<Product> CarportCalculatorPointedRoofIncludingShed(double length, double width, double degree, String roofMaterial) {
         CarportPointedRoofListe cfp = new CarportPointedRoofListe();
-        List list = cfp.carportCalculaterPointedRoofIncludingShed(length, width, length, width, roofMaterial);
+        List list = cfp.carportCalculaterPointedRoofIncludingShed(length, width, degree, length, width, roofMaterial);
         return list;
     }
 

@@ -85,7 +85,7 @@
                     </div>
                     <h4>Tag hældning</h4>
                     <div class="select">
-                        <select name="Hældning">
+                        <select name="degree">
                             <option>15 grader</option>
                             <option>20 grader</option>
                             <option>25 grader</option>

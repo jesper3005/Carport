@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class ProductMapper {
 
-    private final String ALL_PRODUCTS = "SELECT `*` FROM `product` ORDER BY `category`;";
+    private final String ALL_PRODUCTS = "SELECT `*` FROM `product` ORDER BY `category`,`length` ASC;";
     private final String ADD_PRODUCT = "INSERT INTO `product`(`product_name`,`category`,`price`,`length`,`width`,`height`)VALUES(?,?,?,?,?,?);";
     private final String DELETE_PRODUCT = "DELETE FROM `product` WHERE product_id=?;";
     private final String Update_Price = "UPDATE `product` SET `price`=? WHERE product_id=?;";

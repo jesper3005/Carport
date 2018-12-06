@@ -23,7 +23,7 @@ public class CustomerMapper {
     private final String ADD_CUSTOMER = "INSERT INTO `customer`(`first_name`,`last_name`,`email`,`street_address`,`town`,`zip_code`,`telephone_number`,`comments`)VALUES(?,?,?,?,?,?,?,?);";
     private final String CREATE_USER = "INSERT INTO `user`(password, email, role, customer_id) VALUES (?, ?, ?, ?);";
 
-    public Customer customerId(String email) {
+    public Customer getCustomerByEmail(String email) {
         try {
             Customer customer;
             Connection c = Connector.connection();
