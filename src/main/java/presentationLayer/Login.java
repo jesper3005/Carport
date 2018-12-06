@@ -5,7 +5,7 @@
  */
 package presentationLayer;
 
-import exceptions.LoginSampleException;
+import exceptions.FogException;
 import functionLayer.LogicFacade;
 import functionLayer.User;
 import java.util.logging.Level;
@@ -21,7 +21,7 @@ import logging.DefaultLogger;
 public class Login extends Command {
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
+    String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
         HttpSession session = request.getSession();
         String email = request.getParameter("email");
         String password = request.getParameter("password");
@@ -30,7 +30,7 @@ public class Login extends Command {
             session.setAttribute("user", user);
             session.setAttribute("role", user.getRole());
             return "../index";         
-        } catch(LoginSampleException ex) {
+        } catch(FogException ex) {
             request.setAttribute("error", "Wrong username or password");
             System.out.println("Login failed");
             DefaultLogger.getMyLogger().log(Level.WARNING, "Login failed " + email+" : "+password);

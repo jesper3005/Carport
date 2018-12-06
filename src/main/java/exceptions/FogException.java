@@ -9,9 +9,9 @@ package exceptions;
  *
  * @author oerte
  */
-public class LoginSampleException extends Exception {
+public class FogException extends Exception {
 
-    public LoginSampleException(String msg) {
+    public FogException(String msg) {
         super(msg);
     }
     

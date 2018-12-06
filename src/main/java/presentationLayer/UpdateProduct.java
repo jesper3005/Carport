@@ -6,7 +6,7 @@
 package presentationLayer;
 
 import dbAccess.ProductMapper;
-import exceptions.LoginSampleException;
+import exceptions.FogException;
 import functionLayer.Product;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
 public class UpdateProduct extends Command {
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
+    String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
         HttpSession session = request.getSession();
         ProductMapper pm = new ProductMapper();
         String action = request.getParameter("action");

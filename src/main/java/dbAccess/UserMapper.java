@@ -5,7 +5,7 @@
  */
 package dbAccess;
 
-import exceptions.LoginSampleException;
+import exceptions.FogException;
 import functionLayer.Customer;
 import functionLayer.User;
 import java.sql.Connection;
@@ -24,7 +24,7 @@ public class UserMapper {
     private final String CREATE_USER = "INSERT INTO `user`(password, email, role, customer_id) VALUES (?, ?, ?, ?);";
     
     
-    public User getUser(String email, String password) throws LoginSampleException {
+    public User getUser(String email, String password) throws FogException {
         User user = null;
         try {
             Connection con = Connector.connection();
@@ -42,7 +42,7 @@ public class UserMapper {
                 user = new User(id, password1, email1, role, customerID);
                 return user;
             } else {
-                throw new LoginSampleException("could not validate user");
+                throw new FogException("could not validate user");
             }
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println(ex.getMessage());

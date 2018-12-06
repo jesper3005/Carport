@@ -5,11 +5,11 @@
  */
 package logging;
 
+import exceptions.FogException;
 import java.io.IOException;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.SimpleFormatter;
-import javax.security.auth.login.LoginException;
 
 /**
  *
@@ -17,7 +17,7 @@ import javax.security.auth.login.LoginException;
  */
 public class LoggerConfig {
 
-    public static void setUpLogger() throws LoginException {
+    public static void setUpLogger() throws FogException {
         ConsoleHandler handler = new ConsoleHandler();
         DefaultLogger.getMyLogger().addHandler(handler);
 
@@ -28,7 +28,7 @@ public class LoggerConfig {
                 DefaultLogger.getMyLogger().addHandler(fileHandler);
                 fileHandler.close();
             } catch (IOException | SecurityException ex) {
-                throw new LoginException(ex.getMessage());
+                throw new FogException(ex.getMessage());
             }
         }
 

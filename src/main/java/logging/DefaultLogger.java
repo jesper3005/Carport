@@ -14,9 +14,9 @@ import java.util.logging.Logger;
 public class DefaultLogger {
 
     private static Logger myLogger = Logger.getLogger("");
-//    public static final String LOGFILEPATH = "/var/log/tomcat8/foglogs/loginlog.log";
+    //public static final String LOGFILEPATH = "/var/log/tomcat8/foglogs/loginlog.log";
     public static final String LOGFILEPATH = "C:\\Users\\oerte\\Desktop\\foglogs\\loginlog.log";
-    public static final boolean PRODUCTION = true;
+    public static final boolean PRODUCTION = false;
 
     public static Logger getMyLogger() {
         return myLogger;

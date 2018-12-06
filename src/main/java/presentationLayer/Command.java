@@ -5,7 +5,7 @@
  */
 package presentationLayer;
 
-import exceptions.LoginSampleException;
+import exceptions.FogException;
 import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,6 +43,6 @@ abstract class Command {
     }
 
     abstract String execute(HttpServletRequest request, HttpServletResponse response)
-            throws LoginSampleException;
+            throws FogException;
 
 }

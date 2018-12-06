@@ -6,7 +6,7 @@
 package DataLayer;
 
 import dbAccess.Connector;
-import exceptions.LoginSampleException;
+import exceptions.FogException;
 import functionLayer.LogicFacade;
 import functionLayer.User;
 import java.sql.Connection;
@@ -70,7 +70,7 @@ public class UserMapperTest {
     }
     
     @Test
-    public void testGetUser() throws LoginSampleException {
+    public void testGetUser() throws FogException {
         //Arrange
         
         //Act

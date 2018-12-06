@@ -6,7 +6,7 @@
 package presentationLayer;
 
 import dbAccess.ProductMapper;
-import exceptions.LoginSampleException;
+import exceptions.FogException;
 import functionLayer.Product;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
 public class FlatRoof extends Command{
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
+    String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
         ProductMapper pm = new ProductMapper();
         List<Product> orderByLengthRemList = pm.orderByLengthRem();
         HttpSession session = request.getSession();

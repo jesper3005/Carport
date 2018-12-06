@@ -11,7 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import exceptions.LoginSampleException;
+import exceptions.FogException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.security.auth.login.Configuration;
@@ -44,7 +44,7 @@ public class FrontController extends HttpServlet {
             Command action = Command.from(request);
             String view = action.execute(request, response);
             request.getRequestDispatcher("/WEB-INF/" + view + ".jsp").forward(request, response);
-        } catch (LoginSampleException ex) {
+        } catch (FogException ex) {
             DefaultLogger.getMyLogger().log(Level.WARNING, ex.getMessage());
             request.setAttribute("error", ex.getMessage());
             request.getRequestDispatcher("index.jsp").forward(request, response);

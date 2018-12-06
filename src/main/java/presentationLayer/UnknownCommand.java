@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package presentationLayer;
-import exceptions.LoginSampleException;
+import exceptions.FogException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 public class UnknownCommand extends Command {
 
     @Override
-    String execute( HttpServletRequest request, HttpServletResponse response ) throws LoginSampleException {
+    String execute( HttpServletRequest request, HttpServletResponse response ) throws FogException {
         String msg = "Unknown command. Contact IT";
-        throw new LoginSampleException( msg );
+        throw new FogException( msg );
     }
 }
