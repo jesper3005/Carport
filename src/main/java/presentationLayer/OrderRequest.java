@@ -22,6 +22,7 @@ public class OrderRequest extends Command {
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
         HttpSession session = request.getSession();
         boolean shedCheck;
+        boolean pointedRoof;
         //length and width from shed from carportFlatRoof or carportPointedRoof jsp page.
         double shedLength = Double.parseDouble(request.getParameter("skurlaengde"));
         double shedWidth = Double.parseDouble(request.getParameter("skurbredde"));
@@ -31,6 +32,7 @@ public class OrderRequest extends Command {
         String redskabsskur = request.getParameter("redskabsskur");
         // value from roof selector
         String roofMaterial = request.getParameter("Tag");
+        
         if (redskabsskur == null) {
             shedCheck = false;
         } else {

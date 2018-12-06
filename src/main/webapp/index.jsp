@@ -21,8 +21,8 @@
         <%if(user == null) { %>
         <header>
             <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
-            <a class="active" href="/FrontController?command=toRegi">Sign up</a>
-            <a class="active" href="/FrontController?command=toLogin">Login</a>
+            <a class="active" href="/FrontController?command=toLogin&site=registration">Sign up</a>
+            <a class="active" href="/FrontController?command=toLogin&site=login">Login</a>
             <a class="active" href="/index.jsp">Home</a>
             <a class="active" href="/FrontController?command=Admin">Admin</a>
             <!-- <input type='submit' value="Log Out">-->
