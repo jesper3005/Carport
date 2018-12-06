@@ -67,6 +67,7 @@ public class FrontController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (LoginException ex) {
+            System.out.println(ex.getMessage());
             Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -85,6 +86,7 @@ public class FrontController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (LoginException ex) {
+            System.out.println(ex.getMessage());
             Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
