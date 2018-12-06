@@ -22,6 +22,12 @@ public class OrderRequest extends Command {
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
         HttpSession session = request.getSession();
         boolean shedCheck;
+        
+        //Check site
+        String checkSite = request.getParameter("carport");
+        
+        String degreeStr = request.getParameter("degree");
+        double degree = Double.parseDouble(degreeStr.substring(0, 2));
         //length and width from shed from carportFlatRoof or carportPointedRoof jsp page.
         double shedLength = Double.parseDouble(request.getParameter("skurlaengde"));
         double shedWidth = Double.parseDouble(request.getParameter("skurbredde"));
@@ -44,6 +50,7 @@ public class OrderRequest extends Command {
         session.setAttribute("laengde", length);
         session.setAttribute("skurbredde", shedWidth);
         session.setAttribute("skurlaengde", shedLength);
+        session.setAttribute("degree", degree);
 
         //------------SVG-------------
         //Rules (Tempoarily)
@@ -62,6 +69,9 @@ public class OrderRequest extends Command {
         request.setAttribute("drawingSide", sSVG.getMySVG());
 
         // Transfer towards orderRequest.jsp
+//        if(checkSite.equals("flat")){
+//            
+//        }
         return "orderRequest";
     }
 

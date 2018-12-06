@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Jesper
  */
-public class CreateOrder extends Command {
+public class CreateOrderFlatRoof extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
@@ -60,21 +60,21 @@ public class CreateOrder extends Command {
         String email = request.getParameter("email");
         String comment = request.getParameter("comment");
 
-        customer = cm.customerId(email);
-        System.out.println(shed.getShed_id()+" 1");
+        
+        customer = cm.getCustomerByEmail(email);
         
 
-        if (email.equals(customer.getEmail())) {
+        if (customer != null && email.equals(customer.getEmail()) ) {
             carport = new Carport(length, width, 0.0, "FLAT", roofMaterial, 0.0,shed.getShed_id() ,customer.getId());
             carportMapper.addCarport(carport,shed);
 
         } else {
             Customer newCustomer = new Customer(firstName, lastName, email, addresse, town, zipCode, tel, comment);
             cm.addCustomer(newCustomer);
-            Customer c = cm.customerId(email);
+            Customer c = cm.getCustomerByEmail(email);
             System.out.println(shed.getShed_id()+" shed id ");
             //  public Carport(double carport_length, double carport_width, double degrees, String roof, String roofMaterial, double total_price, int shed_id, int customer_id) {
-            carport = new Carport(length, width, 0.0, "FLAT", roofMaterial, 0.0,shed.getShed_id() ,customer.getId());
+            carport = new Carport(length, width, 0.0, "FLAT", roofMaterial, 0.0,shed.getShed_id() ,c.getId());
             carportMapper.addCarport(carport, shed);
 
         }

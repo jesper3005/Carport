@@ -19,7 +19,7 @@ import java.sql.Statement;
  */
 public class CarportMapper {
 
-    private final String ADD_Carport = "INSERT INTO `carport`(`carport_length`,`carport_width`,`roof`,`roof_material_id`,`total_price`,`shed_id`,`customer_id`)VALUES(?,?,?,?,?,?,?);";
+    private final String ADD_Carport = "INSERT INTO `carport`(`carport_length`,`carport_width`,`roof`,`roof_material`,`total_price`,`shed_id`,`customer_id`)VALUES(?,?,?,?,?,?,?);";
     private final String ADD_SHED = "INSERT INTO `shed` (shed_length, shed_width) VALUES (?,?)";
 
     public void addCarport(Carport carport, Shed shed) {

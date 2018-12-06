@@ -8,7 +8,6 @@ package functionLayer.calculation;
 import dbAccess.ProductMapper;
 import functionLayer.Product;
 import java.util.ArrayList;
-import static java.util.Collections.list;
 import java.util.List;
 
 /**
@@ -16,7 +15,7 @@ import java.util.List;
  * @author oerte
  */
 public class CarportPointedRoofListe {
-    
+
     private ProductMapper pm = new ProductMapper();
     private List<Product> list = pm.allProducts();
     private CalcBattens battens = new CalcBattens();
@@ -28,7 +27,8 @@ public class CarportPointedRoofListe {
     private CalcScrew screw = new CalcScrew();//skrue
     private CalcOuterLayerOfShed shedOuterLayer = new CalcOuterLayerOfShed();
     private CalcShedSkeletton shed_InnerLayer = new CalcShedSkeletton();
-    
+    private CalcLøsholt løsholdt = new CalcLøsholt();
+    private CalcFrontAndBackBeklædning arealTriangleBackAndFront = new CalcFrontAndBackBeklædning();
 
     private Product pBattens;
     private Product pBeam;
@@ -38,17 +38,21 @@ public class CarportPointedRoofListe {
     private Product pSternUnder;
     private Product pshed_innerLayer;
     private Product pOuterLayer;
-    
-    public List<Product> carportCalculaterPointedRoof(double length, double width, String roofMaterial) {
+    private Product pLøsholdt;
+    private Product pArealTriangleBackAndFront;
+
+    public List<Product> carportCalculaterPointedRoof(double length, double width, double degree, String roofMaterial) {
 
         // List included everything needed to build the requestet carport
         List<Product> stykliste = new ArrayList<>();
 
         try {
             //Objekter Af Carport part calculations
-            pBattens = battens.calcAntal(length, width, list);//lægter
             pBeam = beam.calcAntal(length, width, list);
             pPoles = poles.calcAntal(length, width, list);
+            pBattens = battens.calcAntalPointedRoof(length, width, degree, list);
+            pLøsholdt = løsholdt.calcAntalPointedRoof(length, width, degree, list);
+            pArealTriangleBackAndFront = arealTriangleBackAndFront.calcAntal(length, width, degree, list);
 
             //20 screws per m2 of roof plus 50 ekstra
             //stykliste.add(screw.calcAntal_3X25MM(roof.calcAntalScrews(), list));
@@ -65,15 +69,14 @@ public class CarportPointedRoofListe {
             stykliste.add(angleBracket.calcAntal(antal, list));
             //6 screws per angle bracket ('33', 'NKT SPUN+ SKRUE UHJ 3,5X30MM TORX ELFORZINKET', 'skrue', '36', '0', '0', '0')
             stykliste.add(screw.calcAntal_3komma5X30MM(antal, list));
-            
-            
 
-            stykliste.add(pBattens);
             stykliste.add(pBeam);
-            stykliste.add(pSternOver);
-            stykliste.add(pSternMellem);
-            stykliste.add(pSternUnder);
             stykliste.add(pPoles);
+            stykliste.add(pBattens);
+            stykliste.add(pLøsholdt);
+            stykliste.add(pArealTriangleBackAndFront);
+            stykliste.add(beam.calcAntalPointedRoofTOP(length, width, list));
+            
 
             return stykliste;
         } catch (Exception e) {
@@ -82,8 +85,8 @@ public class CarportPointedRoofListe {
         return stykliste;
 
     }
-    
-     public List<Product> carportCalculaterPointedRoofIncludingShed(double length, double width, double shedLength, double shedWidth, String roofMaterial) {
+
+    public List<Product> carportCalculaterPointedRoofIncludingShed(double length, double width, double degree, double shedLength, double shedWidth, String roofMaterial) {
 
         // List included everything needed to build the requestet carport
         List<Product> stykliste = new ArrayList<>();
@@ -91,12 +94,11 @@ public class CarportPointedRoofListe {
         try {
             //Objekter Af Carport part calculations
 
-            pBattens = battens.calcAntal(length, width, list);//lægter
             pBeam = beam.calcAntal(length, width, list);
             pPoles = poles.calcAntal(length, width, list);
-            pSternOver = stern.calcAntalOverbrædt(length, width, list);
-            pSternMellem = stern.calcAntalMellembrædt(length, width, list);
-            pSternUnder = stern.calcAntalUnderbrædt(length, width, list);
+            pBattens = battens.calcAntalPointedRoof(length, width, degree, list);
+            pLøsholdt = løsholdt.calcAntalPointedRoof(length, width, degree, list);
+            pArealTriangleBackAndFront = arealTriangleBackAndFront.calcAntal(length, width, degree, list);
 
             //20 screws per m2 of roof plus 50 ekstra
             //stykliste.add(screw.calcAntal_3X25MM(roof.calcAntalScrews(), list));
@@ -113,19 +115,19 @@ public class CarportPointedRoofListe {
             stykliste.add(angleBracket.calcAntal(antal, list));
             //6 screws per angle bracket ('33', 'NKT SPUN+ SKRUE UHJ 3,5X30MM TORX ELFORZINKET', 'skrue', '36', '0', '0', '0')
             stykliste.add(screw.calcAntal_3komma5X30MM(antal, list));
-            
+
             //add all from doorList to styklist
             List<Product> doorList = shedOuterLayer.calcAntalDoor(list);
             for (Product product : doorList) {
                 stykliste.add(product);
             }
 
-            stykliste.add(pBattens);
             stykliste.add(pBeam);
-            stykliste.add(pSternOver);
-            stykliste.add(pSternMellem);
-            stykliste.add(pSternUnder);
             stykliste.add(pPoles);
+            stykliste.add(pBattens);
+            stykliste.add(pLøsholdt);
+            stykliste.add(pArealTriangleBackAndFront);
+            stykliste.add(beam.calcAntalPointedRoofTOP(length, width, list));
             //
             stykliste.add(shed_InnerLayer.calcAntalHorizontal(shedLength, shedWidth, list));
             stykliste.add(shed_InnerLayer.calcAntalVerticalFrontAndBack(shedLength, shedWidth, list));
@@ -140,5 +142,5 @@ public class CarportPointedRoofListe {
         return stykliste;
 
     }
-    
+
 }
