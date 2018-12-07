@@ -38,20 +38,13 @@ abstract class Command {
         commands.put("AddProduct", new AddProduct());
         commands.put("UpdateProduct", new UpdateProduct());
         commands.put("SearchResult", new SearchResult());
-<<<<<<< HEAD
-        commands.put("sendOrder", new CreateOrderFlatRoof());
-        commands.put("toLogin", new toLogin());
-        commands.put("toRegi", new toRegi());
-        commands.put("login", new Login());
-=======
-        commands.put("manageOrders", new manageOrders());
+        commands.put("manageOrders", new ManageOrders());
         
         //Navigator for hyperlinks
         commands.put("toNavigator", new Navigator());
         
         //Login
         commands.put(("login"), new Login());
->>>>>>> 38892a290fd4cd84550d7f2846333bd0a508f610
 
     }
 

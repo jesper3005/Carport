@@ -53,6 +53,18 @@ public class LogicFacade {
         return shed;
     }
 
+    public static List<Carport> getOrdresFromCarportByEnum(String enumValue) {
+        CarportMapper cm = new CarportMapper();
+        List<Carport> carportList = cm.getCarportByStatus(enumValue);
+        return carportList;
+    }
+    
+    public static List<Carport> getALLOrdresFromCarport() {
+        CarportMapper cm = new CarportMapper();
+        List<Carport> carportList = cm.getAllCarportOrder();
+        return carportList;
+    }
+
     // ------- CARPORT CALCULATIONS LOGICFACADE ---------
     public static List<Product> CarportCalculaterFlatRoof(double length, double width, String roofMaterial) {
         CarportFlatProductListe cfp = new CarportFlatProductListe();
@@ -113,5 +125,4 @@ public class LogicFacade {
 //        }
 //        return roundDoubleToTwoDecimalPoints(totalPriceOfCarport);
 //    }
-
 }
