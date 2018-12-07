@@ -27,7 +27,8 @@ public class CarportMapper {
     private final String GET_ORDER_BY_STATUS = "SELECT * FROM `carport` WHERE `status_of_order` = ?;";
     private final String GET_ALL_ORDERS = "SELECT * FROM `carport`;";
     private final String GET_SHED_BY_ID = "SELECT * FROM `shed` WHERE `shed_id` = ?;";
-
+    
+    
     public void addCarport(Carport carport, Shed shed) {
         System.out.println(" addCarport in carportMapper");
         try {
@@ -163,4 +164,8 @@ public class CarportMapper {
         }
         return null;
     }
+    
+    
+    
+    
 }

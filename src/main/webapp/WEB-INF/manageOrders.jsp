@@ -3,7 +3,6 @@
     Created on : 07-12-2018, 00:02:50
     Author     : Jesper
 --%>
-
 <%@page import="functionLayer.Carport"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -14,7 +13,6 @@
         <link rel="stylesheet" href="./CSS/headerCSS.css">
         <link rel="stylesheet" href="./CSS/selectBoxes.css">
         <link rel="stylesheet" href="./CSS/tableDesign.css">
-
         <title>JSP Page</title>
     </head>
     <body>
@@ -29,7 +27,6 @@
             <a class="active" href="/FrontController?command=manageOrders"></a>
             <!-- <input type='submit' value="Log Out">-->
         </header>
-
         <!-- -----------------Display orders------------------------------------>
         <form action="FrontController" method="POST">
             <input type="hidden" name="command" value="manageOrders">
@@ -84,7 +81,5 @@
             </tbody>
         </tr>
     </table>
-
-
 </body>
 </html>
