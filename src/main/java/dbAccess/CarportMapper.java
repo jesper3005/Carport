@@ -19,10 +19,11 @@ import java.sql.Statement;
  */
 public class CarportMapper {
 
-    private final String ADD_Carport = "INSERT INTO `carport`(`carport_length`,`carport_width`,`roof`,`roof_material`,`total_price`,`shed_id`,`customer_id`)VALUES(?,?,?,?,?,?,?);";
+    private final String ADD_Carport = "INSERT INTO `carport`(`carport_length`,`carport_width`,`degrees`,`roof`,`roof_material`,`total_price`,`shed_id`,`customer_id`)VALUES(?,?,?,?,?,?,?,?);";
     private final String ADD_SHED = "INSERT INTO `shed` (shed_length, shed_width) VALUES (?,?)";
 
     public void addCarport(Carport carport, Shed shed) {
+         System.out.println(" addCarport in carportMapper");
         try {
             Connection c = Connector.connection();
             String query = ADD_Carport;
@@ -31,23 +32,25 @@ public class CarportMapper {
             
             pstmt.setDouble(1, carport.getCarport_length());
             pstmt.setDouble(2, carport.getCarport_width());
-            pstmt.setString(3, carport.getRoof());
-            pstmt.setString(4, carport.getRoofMaterial());
-            pstmt.setDouble(5, carport.getTotal_price());
-            pstmt.setInt(6, s.getShed_id());
-            pstmt.setInt(7, carport.getCustomer_id());
+            pstmt.setDouble(3, carport.getDegrees());
+            pstmt.setString(4, carport.getRoof());
+            pstmt.setString(5, carport.getRoofMaterial());
+            pstmt.setDouble(6, carport.getTotal_price());
+            pstmt.setInt(7, s.getShed_id());
+            pstmt.setInt(8, carport.getCustomer_id());
             
 
             pstmt.executeUpdate();
             pstmt.close();
 
         } catch (SQLException | ClassNotFoundException ex) {
-            System.out.println(ex.getMessage() + " addCarport");
+            System.out.println(ex.getMessage() + " addCarport in carportMapper");
         }
     }
 
     public Shed addShed(Shed shed) {
         int id = 0;
+         System.out.println(" addShed in carportMapper");
         try {
             Connection c = Connector.connection();
             String query = ADD_SHED;
@@ -66,7 +69,7 @@ public class CarportMapper {
             return shed;
 
         } catch (SQLException | ClassNotFoundException ex) {
-            System.out.println(ex.getMessage() + " addShed");
+            System.out.println(ex.getMessage() + " addShed in carportMapper");
         }
         return null;
     }

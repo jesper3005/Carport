@@ -30,7 +30,7 @@ abstract class Command {
         commands.put("sendOrder", new CreateOrderFlatRoof());
         commands.put("toLogin", new toLogin());
         commands.put("toRegi", new toRegi());
-        commands.put(("login"), new Login());
+        commands.put("login", new Login());
 
     }
 

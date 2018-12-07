@@ -106,12 +106,12 @@ public class LogicFacade {
         return produktList;
     }
 
-    public static double totalPriceOfCarport(List<Product> stykliste) {
-        double totalPriceOfCarport = 0;
-        for (Product produkt : stykliste) {
-            totalPriceOfCarport += produkt.getTotalPriceOfOrder();
-        }
-        return roundDoubleToTwoDecimalPoints(totalPriceOfCarport);
-    }
+//    public static double totalPriceOfCarport(List<Product> stykliste) {
+//        double totalPriceOfCarport = 0;
+//        for (Product produkt : stykliste) {
+//            totalPriceOfCarport += produkt.getTotalPriceOfOrder();
+//        }
+//        return roundDoubleToTwoDecimalPoints(totalPriceOfCarport);
+//    }
 
 }

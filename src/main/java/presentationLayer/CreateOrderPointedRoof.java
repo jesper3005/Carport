@@ -51,6 +51,7 @@ public class CreateOrderPointedRoof extends Command {
         }
 
         //double totalPriceOfCarport = LogicFacade.totalPriceOfCarport(stykliste);
+        
         //Customer information
         String firstName = request.getParameter("fornavn");
         String lastName = request.getParameter("efternavn");
@@ -64,16 +65,16 @@ public class CreateOrderPointedRoof extends Command {
         customer = cm.getCustomerByEmail(email);
 
         if (customer != null && email.equals(customer.getEmail())) {
-            carport = new Carport(length, width, 0.0, "PEAK", roofMaterial, 0.0, shed.getShed_id(), customer.getId());
+            carport = new Carport(length, width, degree, "PEAK", roofMaterial, 0.0, shed.getShed_id(), customer.getId());
             carportMapper.addCarport(carport, shed);
 
         } else {
             Customer newCustomer = new Customer(firstName, lastName, email, addresse, town, zipCode, tel, comment);
             cm.addCustomer(newCustomer);
             Customer c = cm.getCustomerByEmail(email);
-            System.out.println(shed.getShed_id() + " shed id ");
+            System.out.println(shed.getShed_id() + " shed id " + " else");
             //  public Carport(double carport_length, double carport_width, double degrees, String roof, String roofMaterial, double total_price, int shed_id, int customer_id) {
-            carport = new Carport(length, width, 0.0, "PEAK", roofMaterial, 0.0, shed.getShed_id(), c.getId());
+            carport = new Carport(length, width, degree, "PEAK", roofMaterial, 0.0, shed.getShed_id(), c.getId());
             carportMapper.addCarport(carport, shed);
 
         }

@@ -49,7 +49,7 @@ public class CreateOrderFlatRoof extends Command {
         }
 
 
-        double totalPriceOfCarport = LogicFacade.totalPriceOfCarport(stykliste);
+       // double totalPriceOfCarport = LogicFacade.totalPriceOfCarport(stykliste);
         //Customer information
         String firstName = request.getParameter("fornavn");
         String lastName = request.getParameter("efternavn");

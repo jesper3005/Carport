@@ -37,6 +37,7 @@ public class OrderRequest extends Command {
         String redskabsskur = request.getParameter("redskabsskur");
         // value from roof selector
         String roofMaterial = request.getParameter("Tag");
+        
         if (redskabsskur == null) {
             shedCheck = false;
         } else {
