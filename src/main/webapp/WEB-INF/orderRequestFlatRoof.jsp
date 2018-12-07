@@ -74,6 +74,7 @@
     </script>
 
     <form name="sendOrder" action="FrontController" method="POST">
+        <input type="hidden" name="command" value="sendOrderFlat">
         <div class="container">
             <div class="control-groupForm">
                 <div class="selectForm">
@@ -94,7 +95,7 @@
                     <input type="text" name="email" required="">
                     <h4>Evt. bemærkninger</h4>            
                     <textarea name="comment" form="usrform"></textarea>
-                    <input type="hidden" name="command" value="sendOrder">
+                    
                     <button type="submit" name="request">Send forspørgelse</button>
                 </div>
             </div>

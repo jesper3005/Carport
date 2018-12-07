@@ -20,15 +20,30 @@ abstract class Command {
 
     private static void initCommands() {
         commands = new HashMap<>();
-        commands.put("FlatRoof", new FlatRoof());
-        commands.put("PointedRoof", new PointedRoof());
-        commands.put("OrderRequest", new OrderRequest());
+        
+        //The two carport creation site
+        commands.put("flatRoof", new FlatRoof());
+        commands.put("pointedRoof", new PointedRoof());
+        
+        //See order and request the order site
+        commands.put("orderRequestFlat", new OrderRequestFlatRoof());
+        commands.put("orderRequestPointed", new OrderRequestPointedRoof());
+        
+        //Send order request site
+        commands.put("sendOrderFlat", new CreateOrderFlatRoof());
+        commands.put("sendOrderPointed", new CreateOrderPointedRoof());
+        
+        //Admin
         commands.put("Admin", new Admin());
         commands.put("AddProduct", new AddProduct());
         commands.put("UpdateProduct", new UpdateProduct());
         commands.put("SearchResult", new SearchResult());
-        commands.put("sendOrder", new CreateOrderFlatRoof());
+        commands.put("manageOrders", new manageOrders());
+        
+        //Navigator for hyperlinks
         commands.put("toNavigator", new Navigator());
+        
+        //Login
         commands.put(("login"), new Login());
 
     }

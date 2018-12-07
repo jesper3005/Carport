@@ -77,6 +77,6 @@ public class CreateOrderPointedRoof extends Command {
             carportMapper.addCarport(carport, shed);
 
         }
-        return "createOrder";
+        return "orderComplete";
     }
 }

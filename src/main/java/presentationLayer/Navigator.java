@@ -24,6 +24,7 @@ public class Navigator extends Command {
                 return "login";
             case "registration":
                 return "registration";
+            
         }
             
         

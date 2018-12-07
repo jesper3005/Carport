@@ -21,10 +21,11 @@
         <%if(user == null) { %>
         <header>
             <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
-            <a class="active" href="/FrontController?command=toLogin&site=registration">Sign up</a>
-            <a class="active" href="/FrontController?command=toLogin&site=login">Login</a>
+            <a class="active" href="/FrontController?command=toNavigator&site=registration">Sign up</a>
+            <a class="active" href="/FrontController?command=toNavigator&site=login">Login</a>
             <a class="active" href="/index.jsp">Home</a>
             <a class="active" href="/FrontController?command=Admin">Admin</a>
+            <a class="active" href="/FrontController?command=manageOrders"></a>
             <!-- <input type='submit' value="Log Out">-->
         </header>
         <%} else {%> 
@@ -59,12 +60,12 @@
                         Quick-byg carport med spidst tag
                     </div>
                 </div>
-                <input type="hidden" name="command" value="PointedRoof">
+                <input type="hidden" name="command" value="pointedRoof">
                 <input type="image" src="./IMAGES/spidsTag.jpg" class="image" value="Spidst Tag">
             </div>
         </form></center>
     <center>
-        <form action="FrontController" method="post">
+        <form name="Flat Tag" action="FrontController" method="post">
             <div class="containerPic">
                 <div class="overlay overlayFade">
                     <div class="text">
@@ -72,8 +73,8 @@
                         Quick-byg carport med fladt tag
                     </div>
                 </div>
-                <input type="hidden" name="command" value="FlatRoof">
-                <input type="image" src="./IMAGES/fladtTag.png" class="image" value="Fladt tag">
+                <input type="hidden" name="command" value="flatRoof">
+                <input type="image" src="./IMAGES/fladtTag.png" class="image" value="FladtTag">
             </div>
         </form>
     </center>

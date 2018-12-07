@@ -65,7 +65,7 @@ public class CreateOrderFlatRoof extends Command {
         
 
         if (customer != null && email.equals(customer.getEmail()) ) {
-            carport = new Carport(length, width, 0.0, "FLAT", roofMaterial, 0.0,shed.getShed_id() ,customer.getId());
+            carport = new Carport(length, width, 0.0, "FLAT", roofMaterial, 0.0, shed.getShed_id() ,customer.getId());
             carportMapper.addCarport(carport,shed);
 
         } else {
@@ -78,7 +78,7 @@ public class CreateOrderFlatRoof extends Command {
             carportMapper.addCarport(carport, shed);
 
         }
-        return "createOrder";
+        return "orderComplete";
     }
 
 }
