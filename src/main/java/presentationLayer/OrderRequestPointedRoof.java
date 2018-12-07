@@ -80,10 +80,7 @@ public class OrderRequestPointedRoof extends Command{
         SVGSide sSVG = new SVGSide(length, height, shedLength, shedWidth, shedCheck);
         request.setAttribute("drawingSide", sSVG.getMySVG());
 
-        // Transfer towards orderRequest.jsp
-//        if(checkSite.equals("flat")){
-//            
-//        }
+
         return "orderRequestPointedRoof";
     }        
         
