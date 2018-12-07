@@ -36,6 +36,7 @@ public class ManageOrders extends Command {
             }
 
         } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
         return "manageOrders";
     }
