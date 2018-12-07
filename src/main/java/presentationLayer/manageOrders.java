@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Jesper
  */
-public class ManageOrders extends Command {
+public class manageOrders extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
@@ -36,6 +36,7 @@ public class ManageOrders extends Command {
             }
 
         } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
         return "manageOrders";
     }
