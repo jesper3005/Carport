@@ -13,11 +13,25 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Jesper
  */
-public class toLogin extends Command {
+public class Navigator extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
+        String site = request.getParameter("site");
+        
+        switch(site) {
+            case "login": 
+                return "login";
+            case "registration":
+                return "registration";
+            
+        }
+            
+        
+        
+        
         return "login";
+        
     }
     
 }

@@ -6,12 +6,15 @@
 package dbAccess;
 
 import functionLayer.Carport;
+import functionLayer.Product;
 import functionLayer.Shed;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -21,7 +24,9 @@ public class CarportMapper {
 
     private final String ADD_Carport = "INSERT INTO `carport`(`carport_length`,`carport_width`,`degrees`,`roof`,`roof_material`,`total_price`,`shed_id`,`customer_id`)VALUES(?,?,?,?,?,?,?,?);";
     private final String ADD_SHED = "INSERT INTO `shed` (shed_length, shed_width) VALUES (?,?)";
-
+    private final String GET_ORDER_BY_STATUS = "SELECT * FROM `carport` WHERE `status_of_order` = ?;";
+    
+    
     public void addCarport(Carport carport, Shed shed) {
          System.out.println(" addCarport in carportMapper");
         try {
@@ -70,6 +75,37 @@ public class CarportMapper {
 
         } catch (SQLException | ClassNotFoundException ex) {
             System.out.println(ex.getMessage() + " addShed in carportMapper");
+        }
+        return null;
+    }
+    
+    public List<Carport> getCarportByStatus(int enumValue) {
+            try {
+            List<Carport> carportList = new ArrayList<>();
+            Connection c = Connector.connection();
+            String query = GET_ORDER_BY_STATUS;
+            PreparedStatement pstmt = c.prepareStatement(query);
+            ResultSet res = pstmt.executeQuery();
+
+            while (res.next()) {
+                int carport_id = res.getInt("carport_id");
+                String date = res.getString("date");
+                String carportLength = res.getString("carport_length");
+                double carportWidth = res.getDouble("carport_width");
+                double degrees = res.getDouble("degrees");
+                String roofType = res.getString("roof");
+                String roofMaterial = res.getString("roof_material");
+                double totalPrice = res.getDouble("total_price");
+                int shedID = res.getInt("shed_id");
+                int customerID = res.getInt("customer_id");
+                int userId = res.getInt("user_id");
+                //Carport carport = new Carport(carport_id, date, carportLength, carportWidth, degrees, roofType, roofMaterial, totalPrice, true, shedID, customerID, userId);
+                //Product p = new Product(product_id, product_name, category, price, length, width, height);
+                //productList.add(p);
+            }
+            return carportList;
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getStackTrace());
         }
         return null;
     }

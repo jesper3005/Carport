@@ -44,7 +44,7 @@
         </div>
 
         <form name="FlatRoof" action="FrontController" method="POST">
-            <input type="hidden" name="command" value="OrderRequest">
+            <input type="hidden" name="command" value="orderRequestPointed">
             <div class="container">
                 <div class="control-group">
                     <h1>Vælg dine mål</h1>
@@ -131,7 +131,6 @@
                 <br>
 
                 <div class="control-group">
-                    <input type="hidden" name="command" value="OrderRequest">            
                     <button type="submit" name="request">Byg din carport!</button>
                 </div>
         </form>    
