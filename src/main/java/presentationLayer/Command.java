@@ -38,7 +38,7 @@ abstract class Command {
         commands.put("AddProduct", new AddProduct());
         commands.put("UpdateProduct", new UpdateProduct());
         commands.put("SearchResult", new SearchResult());
-        commands.put("manageOrders", new ManageOrders());
+        commands.put("manageOrders", new SeeOrder());
         
         //Navigator for hyperlinks
         commands.put("toNavigator", new Navigator());

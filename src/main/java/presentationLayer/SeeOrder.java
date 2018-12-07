@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Jesper
  */
-public class ManageOrders extends Command {
+public class SeeOrder extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
