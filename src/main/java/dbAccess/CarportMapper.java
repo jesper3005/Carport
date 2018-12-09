@@ -28,6 +28,7 @@ public class CarportMapper {
     private final String GET_ORDER_BY_STATUS = "SELECT * FROM `carport` WHERE `status_of_order` = ?;";
     private final String GET_ALL_ORDERS = "SELECT * FROM `carport`;";
     private final String GET_SHED_BY_ID = "SELECT * FROM `shed` WHERE `shed_id` = ?;";
+    private final String UPDATE_ORDER_STATUS = "UPDATE `carport` SET `status_of_order` = ? WHERE `carport_id` = ?;";
     
     public void addCarport(Carport carport, Shed shed) {
          System.out.println(" addCarport in carportMapper");
@@ -82,7 +83,6 @@ public class CarportMapper {
     }
     
     public Shed getShedById(int shed_id) {
-
        try {
            Connection c = Connector.connection();
            String query = GET_SHED_BY_ID;
@@ -166,7 +166,23 @@ public class CarportMapper {
        return null;
    }
     
-    
+    public void updateOrderStatus(String status, int id) {
+        try {
+            Connection c = Connector.connection();
+            String query = UPDATE_ORDER_STATUS;
+            PreparedStatement pstmt = c.prepareStatement(query);
+
+            pstmt.setString(1, status);
+            pstmt.setInt(2, id);
+
+            pstmt.executeUpdate();
+            pstmt.close();
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+    }
     
     
 }

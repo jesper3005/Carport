@@ -27,7 +27,8 @@
             <a class="active" href="/FrontController?command=manageOrders"></a>
             <!-- <input type='submit' value="Log Out">-->
         </header>
-        <!-- -----------------Display orders------------------------------------>
+        
+        <!-- -----------------SECTION 1: Choose what order to view------------------------------------>
         <form action="FrontController" method="POST">
             <input type="hidden" name="command" value="manageOrders">
             <div class="container">
@@ -44,13 +45,15 @@
             </div>
         </form>
         
+        <!-- -----------------SECTION 2.0: Display orders------------------------------------>
+        <form action="FrontController" method="POST">
         <% for (Carport list : allOrders) {%>
         <div class="container">
             <div class="control-group">
                 <% if(list.getRoof().equals("FLAT")) { %>
                 <h4>CARPORT MED FLADT TAG | Odre ID: <%=list.getId()%> | Oprettet: <%=list.getDate()%></h4>
                 <% } else { %>
-                <h4>Carport med spidst tag | Odre ID: <%=list.getId()%> | Oprettet: <%=list.getDate()%></h4>
+                <h4>CARPORT MED SPIDST TAG | Odre ID: <%=list.getId()%> | Oprettet: <%=list.getDate()%></h4>
                 <%}%>
                 <h4>Carport beskrivelse:</h4>
                 <text>Længde: <%=list.getCarport_length()%>cm</text>
@@ -81,8 +84,9 @@
                 <br>
                 <br>
                 
+    <!-- -----------------SECTION 2.1: Product list for order------------------------------------>
                 
-                <button class="collapsible" type="submit">Se styklisten</button>
+                <button class="collapsible">Se styklisten</button>
                 <div class="content">
                     <table class="">
                         <thead>
@@ -105,28 +109,31 @@
                 </div>
                 
                 
-                
+    <!-- -----------------SECTION 2.2: Update order status------------------------------------>           
                 
                 
                 <div class="control-groupManageOrders">
                     <h4>Ændre status på odren</h4>
                     <br>
-                    <input type="checkbox" name="approved" value="approved"> Godkendt
+                    <input type="checkbox" name="status" value="approved"> Godkendt
                     <br>
                     <br>
-                    <input type="checkbox" name="approved" value="approved"> Betalt
+                    <input type="checkbox" name="status" value="paid"> Betalt
                     <br>
                     <br>
-                    <input type="checkbox" name="approved" value="approved"> Annuler
+                    <input type="checkbox" name="status" value="cancelled"> Annuler
                     <br>
                     <br>
+                    <input type="hidden" name="id" value="<%= list.getId() %>">
+                    <input type="hidden" name="command" value="updateOrderStatus">
                     <button type="submit" name="updateStatus">Opdater order status</button>
                 </div>
             </div>
                 
         </div>
         <%}%>
-        
+    
+    </form>
    
             
     <script>

@@ -64,6 +64,11 @@ public class LogicFacade {
        List<Carport> carportList = cm.getAllCarportOrder();
        return carportList;
    }
+   
+   public static void updateOrderStatus(String status, int id) {
+       CarportMapper cm = new CarportMapper();
+       cm.updateOrderStatus(status, id);
+   }
 
     // ------- CARPORT CALCULATIONS LOGICFACADE ---------
     public static List<Product> CarportCalculaterFlatRoof(double length, double width, String roofMaterial) {
