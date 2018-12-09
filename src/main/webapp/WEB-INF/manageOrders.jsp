@@ -3,6 +3,9 @@
     Created on : 07-12-2018, 00:02:50
     Author     : Jesper
 --%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="functionLayer.Product"%>
+<%@page import="functionLayer.LogicFacade"%>
 <%@page import="functionLayer.Carport"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -27,11 +30,11 @@
             <a class="active" href="/FrontController?command=manageOrders"></a>
             <!-- <input type='submit' value="Log Out">-->
         </header>
-        
+
         <!-- -----------------SECTION 1: Choose what order to view------------------------------------>
         <form action="FrontController" method="POST">
-        <input type="hidden" name="command" value="manageOrders">
-        <div class="container">
+            <input type="hidden" name="command" value="manageOrders">
+            <div class="container">
                 <div class="control-group">
                     <select name="selectOrder">
                         <option value="allOrdre">Alle Ordre</option>
@@ -44,14 +47,14 @@
                 </div>
             </div>
         </form>
-        
+
         <!-- -----------------SECTION 2.0: Display orders------------------------------------>
         <% for (Carport list : allOrders) {%>
         <div class="container">
             <div class="control-group">
-                <% if(list.getRoof().equals("FLAT")) { %>
+                <% if (list.getRoof().equals("FLAT")) {%>
                 <h4>CARPORT MED FLADT TAG | Odre ID: <%=list.getId()%> | Oprettet: <%=list.getDate()%></h4>
-                <% } else { %>
+                <% } else {%>
                 <h4>CARPORT MED SPIDST TAG | Odre ID: <%=list.getId()%> | Oprettet: <%=list.getDate()%></h4>
                 <%}%>
                 <h4>Carport beskrivelse:</h4>
@@ -61,7 +64,7 @@
                 <text>Bredde: <%=list.getCarport_width()%>cm</text>
                 <br>
                 <br>
-                <text>Bredde: <%=list.getDegrees() %></text>
+                <text>Grader: <%=list.getDegrees()%></text>
                 <br>
                 <br>
                 <text>Tag materiale: <%=list.getRoofMaterial()%></text>
@@ -82,74 +85,76 @@
                 <text>Kunde id: <%=list.getCustomer_id()%></text>
                 <br>
                 <br>
-                
-    <!-- -----------------SECTION 2.1: Product list for order------------------------------------>
-                
-                <button class="collapsible">Se styklisten</button>
-                <div class="content">
-                    <table class="">
-                        <thead>
-                            <tr>
-                                <th>Produkt id</th>
-                                <th>Produkt Navn</th>
-                                <th>Kategori</th>
-                                <th>StykPris</th>
-                                <th>Antal</th>
-                                <th>LinjePris</th>
-                                <th>Længde</th>
-                                <th>Bredde</th>
-                                <th>Højde</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            
-                        </tbody>
-                    </table>
-                </div>
-                
-                
-    <!-- -----------------SECTION 2.2: Update order status------------------------------------>           
-                
-                
-        <form action="FrontController" method="POST">
-                <div class="control-groupManageOrders">
-                    <h4>Ændre status på odren</h4>
-                    <br>
-                    <input type="checkbox" name="status" value="approved"> Godkendt
-                    <br>
-                    <br>
-                    <input type="checkbox" name="status" value="paid"> Betalt
-                    <br>
-                    <br>
-                    <input type="checkbox" name="status" value="cancelled"> Annuler
-                    <br>
-                    <br>
-                    <input type="hidden" name="id" value="<%= list.getId() %>">
-                    <input type="hidden" name="command" value="updateOrderStatus">
-                    <button type="submit" name="updateStatus">Opdater order status</button>
-                    </form>
-                </div>
+
+                <!-- -----------------SECTION 2.1: Product list for order------------------------------------>
+                    <%List<Product> stykliste = (List)session.getAttribute("productList"); %>
+
+                    <div class="content">
+                        <table class="">
+                            <thead>
+                                <tr>
+                                    <th>Produkt id</th>
+                                    <th>Produkt Navn</th>
+                                    <th>Kategori</th>
+                                    <th>StykPris</th>
+                                    <th>Antal</th>
+                                    <th>LinjePris</th>
+                                    <th>Længde</th>
+                                    <th>Bredde</th>
+                                    <th>Højde</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button class="collapsible">Se styklisten</button>
+                </form>
+                <!-- -----------------SECTION 2.2: Update order status------------------------------------>           
+
+
+                <form action="FrontController" method="POST">
+                    <div class="control-groupManageOrders">
+                        <h4>Ændre status på odren</h4>
+                        <br>
+                        <input type="checkbox" name="status" value="approved"> Godkendt
+                        <br>
+                        <br>
+                        <input type="checkbox" name="status" value="paid"> Betalt
+                        <br>
+                        <br>
+                        <input type="checkbox" name="status" value="cancelled"> Annuler
+                        <br>
+                        <br>
+                        <input type="hidden" name="id" value="<%= list.getId()%>">
+                        <input type="hidden" name="command" value="updateOrderStatus">
+                        <button type="submit" name="updateStatus">Opdater order status</button>
+                </form>
             </div>
-                
         </div>
-        <%}%>
-    
-   
-            
+
+    </div>
+    <%}%>
+
+
+
     <script>
         var coll = document.getElementsByClassName("collapsible");
         var i;
 
         for (i = 0; i < coll.length; i++) {
-          coll[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            var content = this.nextElementSibling;
-            if (content.style.display === "block") {
-              content.style.display = "none";
-            } else {
-              content.style.display = "block";
-            }
-          });
+            coll[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
         }
     </script>           
 

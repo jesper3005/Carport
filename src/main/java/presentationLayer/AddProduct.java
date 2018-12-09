@@ -7,6 +7,7 @@ package presentationLayer;
 
 import dbAccess.ProductMapper;
 import exceptions.FogException;
+import functionLayer.LogicFacade;
 import functionLayer.Product;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +25,6 @@ public class AddProduct extends Command {
 
         try {
             HttpSession session = request.getSession();
-            ProductMapper pm = new ProductMapper();
             //get all parameters from admin.jsp to add a produkt to table ´produkt´ in database
             String produkt_navn = request.getParameter("produkt_name");
             String category = request.getParameter("category");
@@ -35,8 +35,8 @@ public class AddProduct extends Command {
 
             Product product = new Product(produkt_navn, category, price, length, width, height);
 
-            pm.addProducts(product);
-            List<Product> allProducts = pm.allProducts();
+            LogicFacade.addProduct(product);
+            List<Product> allProducts = LogicFacade.allProductsFromDatabase();
             session.setAttribute("allProduct", allProducts);
             return "admin";
             

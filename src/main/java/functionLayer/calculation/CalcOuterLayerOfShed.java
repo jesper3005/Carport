@@ -40,7 +40,7 @@ public class CalcOuterLayerOfShed {
             antalOfPlanks = Math.ceil(((((length * 2) + (width * 2)) - doorWidth) / widthOfPlanks) + doorTop);
 
             for (Product product : productList) {
-                if (product.getId() == 61) {
+                if (product.getId() == 65) {
                     p = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), antalOfPlanks, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
 
                 }
@@ -72,11 +72,11 @@ public class CalcOuterLayerOfShed {
 
         try {
             for (Product product : list) {
-                if (product.getId() == 88) {
+                if (product.getId() == 81) {
                     handtag = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), 1, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
                     doorList.add(handtag);
                 }
-                if (product.getId() == 78) {
+                if (product.getId() == 82) {
                     haengsel = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), 1, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
                     doorList.add(haengsel);
                 }

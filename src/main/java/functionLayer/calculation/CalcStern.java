@@ -31,7 +31,7 @@ public class CalcStern {
             totalLength -= (4 * 3);
             double antal = Math.ceil(totalLength / 540);
             for (Product product : productList) {
-                if (product.getId() == 42) {
+                if (product.getId() == 41) {
                     p = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), antal, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
 
                 }
@@ -61,7 +61,7 @@ public class CalcStern {
             totalLength -= (4 * 3);
             double antal = Math.ceil(totalLength / 540);
             for (Product product : productList) {
-                if (product.getId() == 43) {
+                if (product.getId() == 42) {
                     p = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), antal, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
 
                 }
@@ -91,7 +91,7 @@ public class CalcStern {
             totalLength -= (4 * 3);
             double antal = Math.ceil(totalLength / 540);
             for (Product product : productList) {
-                if (product.getId() == 44) {
+                if (product.getId() == 43) {
                     p = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), antal, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
 
                 }

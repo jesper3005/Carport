@@ -21,6 +21,4 @@ public class DefaultLogger {
     public static Logger getMyLogger() {
         return myLogger;
     }
-
 }
-

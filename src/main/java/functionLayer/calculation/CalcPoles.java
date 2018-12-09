@@ -34,19 +34,19 @@ public class CalcPoles {
             }
             for (Product product : productList) {
                 if (product.getCategory().equals("stolpe") && length < 300) {
-                    p = new Product(31, product.getProductName(), product.getCategory(), product.getPrice(), antal, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
-
-                }
-                if (product.getCategory().equals("stolpe") && length < 450 && length >= 300) {
                     p = new Product(30, product.getProductName(), product.getCategory(), product.getPrice(), antal, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
 
                 }
-                if (product.getCategory().equals("stolpe") && length < 660 && length >= 450) {
+                if (product.getCategory().equals("stolpe") && length < 450 && length >= 300) {
                     p = new Product(29, product.getProductName(), product.getCategory(), product.getPrice(), antal, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
 
                 }
-                if (product.getCategory().equals("stolpe") && length <= 750 && length >= 660) {
+                if (product.getCategory().equals("stolpe") && length < 660 && length >= 450) {
                     p = new Product(28, product.getProductName(), product.getCategory(), product.getPrice(), antal, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
+
+                }
+                if (product.getCategory().equals("stolpe") && length <= 750 && length >= 660) {
+                    p = new Product(27, product.getProductName(), product.getCategory(), product.getPrice(), antal, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
 
                 }
             }

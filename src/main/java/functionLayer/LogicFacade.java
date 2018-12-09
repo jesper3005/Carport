@@ -34,6 +34,19 @@ public class LogicFacade {
         return user;
     }
 
+    public static Customer getCustomerByEmail(String email) {
+        CustomerMapper cm = new CustomerMapper();
+        Customer customer = cm.getCustomerByEmail(email);
+        return customer;
+
+    }
+    
+    public static void addCustomer(Customer customer) {
+        CustomerMapper cm = new CustomerMapper();
+        cm.addCustomer(customer);
+
+    }
+
     public static Customer createCustomer(Customer customer) {
         CustomerMapper cm = new CustomerMapper();
         cm.addCustomer(customer);
@@ -51,24 +64,46 @@ public class LogicFacade {
         cm.addShed(shed);
         return shed;
     }
-    
+
     public static List<Carport> getOrdresFromCarportByEnum(String enumValue) {
-       CarportMapper cm = new CarportMapper();
-       List<Carport> carportList = cm.getCarportByStatus(enumValue);
-       return carportList;
-   }
+        CarportMapper cm = new CarportMapper();
+        List<Carport> carportList = cm.getCarportByStatus(enumValue);
+        return carportList;
+    }
 
-   public static List<Carport> getALLOrdresFromCarport() {
-       CarportMapper cm = new CarportMapper();
-       List<Carport> carportList = cm.getAllCarportOrder();
-       return carportList;
-   }
-   
-   public static void updateOrderStatus(String status, int id) {
-       CarportMapper cm = new CarportMapper();
-       cm.updateOrderStatus(status, id);
-   }
+    public static List<Carport> getALLOrdresFromCarport() {
+        CarportMapper cm = new CarportMapper();
+        List<Carport> carportList = cm.getAllCarportOrder();
+        return carportList;
+    }
 
+    public static void updateOrderStatus(String status, int id) {
+        CarportMapper cm = new CarportMapper();
+        cm.updateOrderStatus(status, id);
+    }
+
+    public static void addProduct(Product product) {
+        ProductMapper pm = new ProductMapper();
+        pm.addProducts(product);
+    }
+
+    public static List<Product> allProductsFromDatabase() {
+        ProductMapper pm = new ProductMapper();
+        List<Product> allProducts = pm.allProducts();
+        return allProducts;
+    }
+
+    public static List<Product> searchInDatabaseProductTable(String value) {
+        ProductMapper pm = new ProductMapper();
+        List<Product> searchList = pm.searchInProductTable(value);
+        return searchList;
+    }
+    
+    public static List<Product> remOrderedByLength(){
+        ProductMapper pm = new ProductMapper();
+        List<Product> remList = pm.orderByLengthRem();
+        return remList;
+    }
 
     // ------- CARPORT CALCULATIONS LOGICFACADE ---------
     public static List<Product> CarportCalculaterFlatRoof(double length, double width, String roofMaterial) {
@@ -89,12 +124,11 @@ public class LogicFacade {
         return list;
     }
 
-    public static List<Product> CarportCalculatorPointedRoofIncludingShed(double length, double width, double degree, String roofMaterial) {
+    public static List<Product> CarportCalculatorPointedRoofIncludingShed(double length, double width, double degree, double shedLength, double shedWidth, String roofMaterial) {
         CarportPointedRoofListe cfp = new CarportPointedRoofListe();
         List list = cfp.carportCalculaterPointedRoofIncludingShed(length, width, degree, length, width, roofMaterial);
         return list;
     }
-
 
     public static double roundDoubleToTwoDecimalPoints(double value) {
         DecimalFormat df2 = new DecimalFormat(".##");
@@ -115,7 +149,7 @@ public class LogicFacade {
         }
         return roundDoubleToTwoDecimalPoints(totalPriceOfCarport);
     }
-    
+
 //    public static int[] StringArrayToIntArray(String[] s) {
 //        int[] arrayOfInteger = new int[s.length];
 //        for (int i = 0; i < s.length; i++) {

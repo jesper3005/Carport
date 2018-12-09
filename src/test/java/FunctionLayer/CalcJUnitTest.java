@@ -13,6 +13,8 @@ import functionLayer.calculation.CalcStern;
 import functionLayer.calculation.CalcPoles;
 import functionLayer.Product;
 import functionLayer.calculation.CalcNails;
+import functionLayer.calculation.CalcOuterLayerOfShed;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -48,6 +50,7 @@ public class CalcJUnitTest {
     //Test negative og grænse værdier
     ProductMapper pm = new ProductMapper();
     List<Product> list = pm.allProducts();
+    List<Product> nullList = new ArrayList<>();
 
     @Test
     public void calPoleTest() {
@@ -92,6 +95,19 @@ public class CalcJUnitTest {
         assertEquals(expected, actual, 0.05);
     }
 
+//    @Test(expected = NullPointerException.class)
+//    public void calBeamEmptyList(){
+//        //Arrange
+//        CalcBeam cr = new CalcBeam();
+//        Product actuals;
+//        Product expected;
+//        //Act
+//        actuals = cr.calcAntal(480, 480, nullList);
+//        expected = cr.calcAntal(480, 480, list);
+//        //Assert
+//        assertEquals(expected, actuals);
+//    }
+//     
     @Test(expected = IllegalArgumentException.class)
     public void calBeamTest_Minus() {
         //Arrange
@@ -156,7 +172,7 @@ public class CalcJUnitTest {
         //Assert
         assertEquals(expected, actual, 0.005);
     }
-    
+
     @Test
     public void calSternMellemTest() {
         //Arrange
@@ -182,7 +198,7 @@ public class CalcJUnitTest {
         //Assert
         assertEquals(expected, actual, 0.005);
     }
-    
+
     @Test
     public void calSternUnderbrædtTest() {
         //Arrange
@@ -208,17 +224,40 @@ public class CalcJUnitTest {
         //Assert
         assertEquals(expected, actual, 0.005);
     }
+
+    @Test
+    public void calcNailsTest() {
+        //Arrange
+        Product p;
+        CalcNails cn = new CalcNails();
+        //Act
+        p = cn.calcAntal_25mm_Varmforzinket(20, list);
+        double actual = p.getQty();
+        double expected = 20;
+        //Assert
+        assertEquals(expected, actual, 0.5);
+    }
+    @Test (expected = IllegalArgumentException.class)
+    public void calcNailsTest_Minus() {
+        //Arrange
+        Product p;
+        CalcNails cn = new CalcNails();
+        //Act
+        p = cn.calcAntal_25mm_Varmforzinket(-20, list);
+        double actual = p.getQty();
+        double expected = 20;
+        //Assert
+        assertEquals(expected, actual, 0.5);
+    }
     
-//    @Test(expected = IllegalArgumentException.class)
-//    public void calNailsTest(){
+//    @Test
+//    public void calcOuterLayer(){
 //        //Arrange
 //        Product p;
-//        CalcNails cn = new CalcNails();
+//        CalcOuterLayerOfShed colos = new CalcOuterLayerOfShed();
 //        //Act
-//        p = cn.calcAntal_25mm_Varmforzinket(20, list);
-//        double actual = p.getQty();
+//        p = colos.calAntal(0, 0, list);
 //        //Assert
-//        assertEquals()
 //        
 //    }
 

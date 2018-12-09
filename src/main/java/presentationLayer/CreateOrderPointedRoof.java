@@ -5,8 +5,6 @@
  */
 package presentationLayer;
 
-import dbAccess.CarportMapper;
-import dbAccess.CustomerMapper;
 import exceptions.FogException;
 import functionLayer.Carport;
 import functionLayer.Customer;
@@ -29,8 +27,6 @@ public class CreateOrderPointedRoof extends Command {
 
         try {
             HttpSession session = request.getSession();
-            CustomerMapper cm = new CustomerMapper();
-            CarportMapper carportMapper = new CarportMapper();
             List<Product> stykliste = null;
             Carport carport;
             Customer customer;
@@ -48,7 +44,7 @@ public class CreateOrderPointedRoof extends Command {
                 stykliste = LogicFacade.CarportCalculatorPointedRoof(length, width, degree, roofMaterial);
             } else {
                 shed = new Shed(shedLength, shedWidth);
-                stykliste = LogicFacade.CarportCalculatorPointedRoofIncludingShed(length, width, degree, roofMaterial);
+                stykliste = LogicFacade.CarportCalculatorPointedRoofIncludingShed(length, width, degree, shedLength, shedWidth, roofMaterial);
             }
 
             //double totalPriceOfCarport = LogicFacade.totalPriceOfCarport(stykliste);
@@ -62,20 +58,20 @@ public class CreateOrderPointedRoof extends Command {
             String email = request.getParameter("email");
             String comment = request.getParameter("comment");
 
-            customer = cm.getCustomerByEmail(email);
+            customer = LogicFacade.getCustomerByEmail(email);
 
             if (customer != null && email.equals(customer.getEmail())) {
                 carport = new Carport(length, width, degree, "PEAK", roofMaterial, 0.0, shed.getShed_id(), customer.getId());
-                carportMapper.addCarport(carport, shed);
+                LogicFacade.addCarport(carport, shed);
 
             } else {
                 Customer newCustomer = new Customer(firstName, lastName, email, addresse, town, zipCode, tel, comment);
-                cm.addCustomer(newCustomer);
-                Customer c = cm.getCustomerByEmail(email);
+                LogicFacade.addCustomer(newCustomer);
+                Customer c = LogicFacade.getCustomerByEmail(email);
                 System.out.println(shed.getShed_id() + " shed id " + " else");
                 //  public Carport(double carport_length, double carport_width, double degrees, String roof, String roofMaterial, double total_price, int shed_id, int customer_id) {
                 carport = new Carport(length, width, degree, "PEAK", roofMaterial, 0.0, shed.getShed_id(), c.getId());
-                carportMapper.addCarport(carport, shed);
+                LogicFacade.addCarport(carport, shed);
 
             }
             return "orderComplete";

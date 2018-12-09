@@ -36,16 +36,16 @@
                     <%for (Product list : stykliste) {%>
                     <td><%=list.getId()%></td><td><%=list.getProductName()%></td><td><%=list.getCategory()%></td><td><%=list.getPrice() + " DKK"%></td><td><%=list.getQty()%></td><td><%=list.getPriceLine() + " DKK"%></td><td><%=list.getLength()%></td><td><%=list.getWidth()%></td><td><%=list.getHeight()%></td></tr>
                     <%}%>
+                </tr>
             </tbody>
-        </tr>
-    </table>
-    </br>
-    </br>
-    <%="Total Pris: " + totalPriceOfCarport + " DKK"%>
+        </table>
+        </br>
+        </br>
+        <%="Total Pris: " + totalPriceOfCarport + " DKK"%>
 
-    <form action="FrontController" method="post"> 
-        <input type="hidden" name="command" value="drawing">
-        <input type="submit" value="se tegning">
-    </form>
-</body>
+        <form action="FrontController" method="post"> 
+            <input type="hidden" name="command" value="drawing">
+            <input type="submit" value="se tegning">
+        </form>
+    </body>
 </html>

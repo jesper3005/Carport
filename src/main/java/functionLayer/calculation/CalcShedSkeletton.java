@@ -92,7 +92,7 @@ public class CalcShedSkeletton {
         try {
             antal = Math.ceil((((length * 2) + (width * 2)) - doorWidth) / 50); // horizontal planks with 50 cm space in between
             for (Product product : productList) {
-                if (product.getId() == 4) {
+                if (product.getId() == 37) {
                     p = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), antal, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
                 }
             }

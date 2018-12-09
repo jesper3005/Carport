@@ -21,8 +21,7 @@ public class UserMapper {
 
     private final String GET_USER = "SELECT * FROM `user` WHERE email = ? AND password = ?;";
     private final String CREATE_USER = "INSERT INTO `user`(password, email, role, customer_id) VALUES (?, ?, ?, ?);";
-    
-    
+
     public User getUser(String email, String password) throws FogException {
         User user = null;
         try {
@@ -61,7 +60,8 @@ public class UserMapper {
             pstmt.executeUpdate();
             pstmt.close();
 
-        } catch (SQLException | ClassNotFoundException ex) {
+        } catch (Exception ex) {
+            ex.printStackTrace();
             System.out.println(ex.getMessage());
             System.out.println("Error");
         }

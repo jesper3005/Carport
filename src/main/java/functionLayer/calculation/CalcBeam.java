@@ -19,24 +19,25 @@ public class CalcBeam {
         if (length <= 0 || width <= 0) {
             throw new IllegalArgumentException();
         }
-        if (allProducts == null) {
-            throw new NullPointerException();
-        }
 
         List<Product> productList = allProducts;
         Product p = null;
         try {
-            int antal = 0;
-            if (width >= 510) {
-                antal = 5;
-            } else {
-                antal = 4;
-            }
-            for (Product product : productList) {
-                if (product.getCategory().equals("rem") && product.getLength() == length) {
-                    p = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), antal, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
-
+            if (allProducts != null) {
+                int antal = 0;
+                if (width >= 510) {
+                    antal = 5;
+                } else {
+                    antal = 4;
                 }
+                for (Product product : productList) {
+                    if (product.getCategory().equals("rem") && product.getLength() == length) {
+                        p = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), antal, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
+
+                    }
+                }
+            }else{
+                throw new NullPointerException();
             }
             return p;
         } catch (Exception e) {

@@ -7,6 +7,7 @@ package presentationLayer;
 
 import dbAccess.ProductMapper;
 import exceptions.FogException;
+import functionLayer.LogicFacade;
 import functionLayer.Product;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -24,15 +25,14 @@ public class Admin extends Command {
 
         try {
             HttpSession session = request.getSession();
-            ProductMapper pm = new ProductMapper();
             String search = search = request.getParameter("search");
 
             if (search == null) {
-                List<Product> allProducts = pm.allProducts();
+                List<Product> allProducts = LogicFacade.allProductsFromDatabase();
                 session.setAttribute("allProduct", allProducts);
                 return "admin";
             } else {
-                List<Product> searchList = pm.searchInProductTable(search);
+                List<Product> searchList = LogicFacade.searchInDatabaseProductTable(search);
                 session.setAttribute("allProduct", searchList);
                 return "admin";
             }
