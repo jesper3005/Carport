@@ -52,6 +52,23 @@ public class LogicFacade {
         cm.addShed(shed);
         return shed;
     }
+    
+    public static List<Carport> getOrdresFromCarportByEnum(String enumValue) {
+       CarportMapper cm = new CarportMapper();
+       List<Carport> carportList = cm.getCarportByStatus(enumValue);
+       return carportList;
+   }
+
+   public static List<Carport> getALLOrdresFromCarport() {
+       CarportMapper cm = new CarportMapper();
+       List<Carport> carportList = cm.getAllCarportOrder();
+       return carportList;
+   }
+   
+   public static void updateOrderStatus(String status, int id) {
+       CarportMapper cm = new CarportMapper();
+       cm.updateOrderStatus(status, id);
+   }
 
     // ------- CARPORT CALCULATIONS LOGICFACADE ---------
     public static List<Product> CarportCalculaterFlatRoof(double length, double width, String roofMaterial) {

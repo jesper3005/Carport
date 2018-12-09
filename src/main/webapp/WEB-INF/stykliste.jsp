@@ -20,7 +20,7 @@
         <%List<Product> stykliste = (List) session.getAttribute("stykliste");%>
         <% double totalPriceOfCarport = (Double) session.getAttribute("totalPriceOfCarport");%>
         
-        <table class="blueTable">
+        <table class="table-fill">
             <thead>
                 <tr>
                     <th>Produkt id</th>

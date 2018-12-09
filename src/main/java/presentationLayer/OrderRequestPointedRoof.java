@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> aa5b5875f7a1ddb150c28683833cc155773c39c1
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -6,17 +9,9 @@
  */
 package presentationLayer;
 
-import dbAccess.CarportMapper;
-import dbAccess.CustomerMapper;
 import exceptions.FogException;
-import functionLayer.Carport;
-import functionLayer.Customer;
-import functionLayer.LogicFacade;
-import functionLayer.Product;
 import functionLayer.SVGSide;
 import functionLayer.SVGTop;
-import functionLayer.Shed;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -81,10 +76,7 @@ public class OrderRequestPointedRoof extends Command{
         SVGSide sSVG = new SVGSide(length, height, shedLength, shedWidth, shedCheck);
         request.setAttribute("drawingSide", sSVG.getMySVG());
 
-        // Transfer towards orderRequest.jsp
-//        if(checkSite.equals("flat")){
-//            
-//        }
+
         return "orderRequestPointedRoof";
     }        
         
