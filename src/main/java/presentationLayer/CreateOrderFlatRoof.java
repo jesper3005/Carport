@@ -50,7 +50,7 @@ public class CreateOrderFlatRoof extends Command {
                 stykliste = LogicFacade.CarportCalculaterFlatRoofIncludingShed(length, width, shedLength, shedWidth, roofMaterial);
             }
 
-            // double totalPriceOfCarport = LogicFacade.totalPriceOfCarport(stykliste);
+            //double totalPriceOfCarport = LogicFacade.totalPriceOfCarport(stykliste);
             //Customer information
             String firstName = request.getParameter("fornavn");
             String lastName = request.getParameter("efternavn");

@@ -7,6 +7,7 @@ package presentationLayer;
 
 import dbAccess.ProductMapper;
 import exceptions.FogException;
+import functionLayer.LogicFacade;
 import functionLayer.Product;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -30,10 +31,10 @@ public class UpdateProduct extends Command {
 
                 double price = Double.parseDouble(request.getParameter("price"));
                 int id = Integer.parseInt(request.getParameter("id"));
-                pm.updatePrice(id, price);
+                LogicFacade.updatePrice(id, price);
             } else {
                 int product_id = Integer.parseInt(request.getParameter("product_id"));
-                pm.deleteProduct(product_id);
+                LogicFacade.deleteProduct(product_id);
             }
             List<Product> allProducts = pm.allProducts();
             session.setAttribute("allProduct", allProducts);

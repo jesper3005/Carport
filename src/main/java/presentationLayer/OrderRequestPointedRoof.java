@@ -6,8 +6,12 @@
 package presentationLayer;
 
 import exceptions.FogException;
+import functionLayer.LogicFacade;
+import functionLayer.Product;
 import functionLayer.SVGSide;
 import functionLayer.SVGTop;
+import functionLayer.Shed;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -24,7 +28,11 @@ public class OrderRequestPointedRoof extends Command {
         try {
             HttpSession session = request.getSession();
             boolean shedCheck;
-
+            boolean roofCheck = true;
+            
+            List<Product> stykliste = null;
+            Shed shed = null;
+            
             String degreeStr = request.getParameter("degree");
             double degree = Double.parseDouble(degreeStr.substring(0, 2));
             //length and width from shed from carportFlatRoof or carportPointedRoof jsp page.
@@ -42,7 +50,19 @@ public class OrderRequestPointedRoof extends Command {
             } else {
                 shedCheck = true;
             }
-
+            
+            
+            if (redskabsskur == null) {
+                stykliste = LogicFacade.CarportCalculaterFlatRoof(length, width, roofMaterial);
+            } else {
+                shed = new Shed(shedLength, shedWidth);
+                stykliste = LogicFacade.CarportCalculaterFlatRoofIncludingShed(length, width, shedLength, shedWidth, roofMaterial);
+            }
+            
+            double totalPriceOfCarport = LogicFacade.totalPriceOfCarport(stykliste);
+            session.setAttribute("totalPrice", totalPriceOfCarport);
+            
+            
             //Set styklisten, bredde, længde and totalPriceOfCarport in session
             session.setAttribute("roofMaterial", roofMaterial);
             session.setAttribute("redskabsskur", redskabsskur);
