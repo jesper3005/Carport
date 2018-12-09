@@ -28,7 +28,6 @@ public class UpdateProduct extends Command {
             ProductMapper pm = new ProductMapper();
             String action = request.getParameter("action");
             if ("Update".equals(action)) {
-
                 double price = Double.parseDouble(request.getParameter("price"));
                 int id = Integer.parseInt(request.getParameter("id"));
                 LogicFacade.updatePrice(id, price);
@@ -36,6 +35,7 @@ public class UpdateProduct extends Command {
                 int product_id = Integer.parseInt(request.getParameter("product_id"));
                 LogicFacade.deleteProduct(product_id);
             }
+            
             List<Product> allProducts = pm.allProducts();
             session.setAttribute("allProduct", allProducts);
             return "admin";

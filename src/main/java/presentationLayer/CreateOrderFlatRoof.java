@@ -6,7 +6,6 @@
 package presentationLayer;
 
 import dbAccess.CarportMapper;
-import dbAccess.CustomerMapper;
 import exceptions.FogException;
 import functionLayer.Carport;
 import functionLayer.Customer;
@@ -65,15 +64,15 @@ public class CreateOrderFlatRoof extends Command {
             if (customer != null && email.equals(customer.getEmail())) {
                 carport = new Carport(length, width, 0.0, "FLAT", roofMaterial, 0.0, shed.getShed_id(), customer.getId());
                 carportMapper.addCarport(carport, shed);
+                System.out.println(carport.toString() + "test1");
 
             } else {
                 Customer newCustomer = new Customer(firstName, lastName, email, addresse, town, zipCode, tel, comment);
                 LogicFacade.addCustomer(newCustomer);
                 Customer c = LogicFacade.getCustomerByEmail(email);
-                System.out.println(shed.getShed_id() + " shed id ");
-                //  public Carport(double carport_length, double carport_width, double degrees, String roof, String roofMaterial, double total_price, int shed_id, int customer_id) {
                 carport = new Carport(length, width, 0.0, "FLAT", roofMaterial, 0.0, shed.getShed_id(), c.getId());
                 carportMapper.addCarport(carport, shed);
+                System.out.println(carport.toString() + "test2");
 
             }
             return "orderComplete";
