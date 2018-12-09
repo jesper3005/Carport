@@ -28,10 +28,8 @@ public class CarportMapper {
     private final String GET_ALL_ORDERS = "SELECT * FROM `carport`;";
     private final String GET_SHED_BY_ID = "SELECT * FROM `shed` WHERE `shed_id` = ?;";
     private final String UPDATE_ORDER_STATUS = "UPDATE `carport` SET `status_of_order` = ? WHERE `carport_id` = ?;";
-    
-    
+
     public void addCarport(Carport carport, Shed shed) {
-        System.out.println(" addCarport in carportMapper");
         try {
             Connection c = Connector.connection();
             String query = ADD_Carport;
@@ -56,7 +54,6 @@ public class CarportMapper {
     }
 
     public Shed getShedById(int shed_id) {
-
         try {
             Connection c = Connector.connection();
             String query = GET_SHED_BY_ID;
@@ -70,8 +67,8 @@ public class CarportMapper {
                 Shed shed = new Shed(shedLength, shedWidth);
                 return shed;
             }
-        } catch (Exception e) {
-            e.getMessage();
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.getMessage();
         }
         return null;
     }
@@ -101,8 +98,7 @@ public class CarportMapper {
         }
         return null;
     }
-    
-    
+
     public List<Carport> getCarportByStatus(String enumValue) {
         try {
             List<Carport> carportList = new ArrayList<>();
@@ -131,7 +127,7 @@ public class CarportMapper {
             }
             return carportList;
         } catch (SQLException | ClassNotFoundException ex) {
-            System.out.println(ex.getStackTrace());
+            System.out.println(ex.getMessage());
         }
         return null;
     }
@@ -162,11 +158,11 @@ public class CarportMapper {
             }
             return carportList;
         } catch (SQLException | ClassNotFoundException ex) {
-            System.out.println(ex.getStackTrace());
+            System.out.println(ex.getMessage());
         }
         return null;
     }
-    
+
     public void updateOrderStatus(String status, int id) {
         try {
             Connection c = Connector.connection();
@@ -184,6 +180,5 @@ public class CarportMapper {
         }
 
     }
-    
-    
+
 }

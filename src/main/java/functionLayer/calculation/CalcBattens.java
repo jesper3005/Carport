@@ -14,9 +14,15 @@ import java.util.List;
  */
 public class CalcBattens {
 
-    
-
     public Product calcAntal(double length, double width, List allProducts) {
+
+       if (length <= 0 || width <= 0) {
+            throw new IllegalArgumentException();
+        }
+        if (allProducts == null) {
+            throw new NullPointerException();
+        }
+
         Product p = null;
         List<Product> productList = allProducts;
         double antal;
@@ -35,19 +41,27 @@ public class CalcBattens {
                 }
             }
             return p;
-        } catch (NumberFormatException e) {
+        } catch (Exception e) {
             e.getMessage();
+            return p = new Product();
         }
-        return null; 
 
     }
-    
-     public Product calcAntalPointedRoof(double length, double width, double degree, List allProducts) {
+
+    public Product calcAntalPointedRoof(double length, double width, double degree, List allProducts) {
+
+        if (length <= 0 || width <= 0) {
+            throw new IllegalArgumentException();
+        }
+        if (allProducts == null) {
+            throw new NullPointerException();
+        }
+
         Product p = null;
         List<Product> productList = allProducts;
-        double b = CalcPointedRoofTriangle.CalcHypotesen(length, width, degree) + 25;
         double antal;
         try {
+            double b = CalcPointedRoofTriangle.CalcHypotesen(length, width, degree) + 25;
             double antalLaegter = 0;
             double totalMeterLægter = 0;
             //En lægte per 0.5 meter (50 cm)
@@ -62,15 +76,11 @@ public class CalcBattens {
                 }
             }
             return p;
-        } catch (NumberFormatException e) {
+        } catch (Exception e) {
             e.getMessage();
+            return p = new Product();
         }
-        return null; 
 
     }
-    
-   
-    
 
-    
 }

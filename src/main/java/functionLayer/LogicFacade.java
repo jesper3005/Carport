@@ -13,7 +13,6 @@ import dbAccess.UserMapper;
 import exceptions.FogException;
 import functionLayer.calculation.CarportPointedRoofListe;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -96,24 +95,9 @@ public class LogicFacade {
         return list;
     }
 
-    public static int[] StringArrayToIntArray(String[] s) {
-        int[] arrayOfInteger = new int[s.length];
-        for (int i = 0; i < s.length; i++) {
-            arrayOfInteger[i] = Integer.parseInt(s[i]);
-        }
-        return arrayOfInteger;
-    }
-
-    public static List<Integer> StringListToIntList(List<String> s) {
-        List<Integer> arrayOfInteger = new ArrayList<>();
-        for (String string : s) {
-            arrayOfInteger.add(Integer.valueOf(string));
-        }
-        return arrayOfInteger;
-    }
 
     public static double roundDoubleToTwoDecimalPoints(double value) {
-        DecimalFormat df2 = new DecimalFormat(",##");
+        DecimalFormat df2 = new DecimalFormat(".##");
         return Double.parseDouble(df2.format(value));
 
     }
@@ -124,11 +108,27 @@ public class LogicFacade {
         return produktList;
     }
 
-//    public static double totalPriceOfCarport(List<Product> stykliste) {
-//        double totalPriceOfCarport = 0;
-//        for (Product produkt : stykliste) {
-//            totalPriceOfCarport += produkt.getTotalPriceOfOrder();
+    public static double totalPriceOfCarport(List<Product> stykliste) {
+        double totalPriceOfCarport = 0;
+        for (Product produkt : stykliste) {
+            totalPriceOfCarport += produkt.getTotalPriceOfOrder();
+        }
+        return roundDoubleToTwoDecimalPoints(totalPriceOfCarport);
+    }
+    
+//    public static int[] StringArrayToIntArray(String[] s) {
+//        int[] arrayOfInteger = new int[s.length];
+//        for (int i = 0; i < s.length; i++) {
+//            arrayOfInteger[i] = Integer.parseInt(s[i]);
 //        }
-//        return roundDoubleToTwoDecimalPoints(totalPriceOfCarport);
+//        return arrayOfInteger;
+//    }
+//
+//    public static List<Integer> StringListToIntList(List<String> s) {
+//        List<Integer> arrayOfInteger = new ArrayList<>();
+//        for (String string : s) {
+//            arrayOfInteger.add(Integer.valueOf(string));
+//        }
+//        return arrayOfInteger;
 //    }
 }

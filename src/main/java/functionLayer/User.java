@@ -11,9 +11,8 @@ package functionLayer;
  */
 public class User {
     
-    int userID;
+    int userID, customerID;
     String password, email, role;
-    int customerID;
     
 
     public User(int userID, String password, String email, String role, int customerID) {

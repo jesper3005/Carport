@@ -16,6 +16,13 @@ public class CalcScrew {
 
     public Product calcAntal_3X25MM(double qyt, List allProducts) {
 
+        if (qyt <= 0) {
+            throw new IllegalArgumentException();
+        }
+        if (allProducts == null) {
+            throw new NullPointerException();
+        }
+
         List<Product> productList = allProducts;
         Product p = null;
 
@@ -26,14 +33,21 @@ public class CalcScrew {
 
                 }
             }
-
+            return p;
         } catch (Exception e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
+            return p = new Product();
         }
-        return p;
     }
 
     public Product calcAntal_8X120MM_50STK_Pakke(double qyt, List allProducts) {
+
+        if (qyt <= 0) {
+            throw new IllegalArgumentException();
+        }
+        if (allProducts == null) {
+            throw new NullPointerException();
+        }
 
         List<Product> productList = allProducts;
         Product p = null;
@@ -45,14 +59,21 @@ public class CalcScrew {
 
                 }
             }
-
+            return p;
         } catch (Exception e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
+            return p = new Product();
         }
-        return p;
     }
 
     public Product calcAntal_3komma5X30MM(double qyt, List allProducts) {
+
+        if (qyt <= 0) {
+            throw new IllegalArgumentException();
+        }
+        if (allProducts == null) {
+            throw new NullPointerException();
+        }
 
         List<Product> productList = allProducts;
         Product p = null;
@@ -64,11 +85,11 @@ public class CalcScrew {
 
                 }
             }
-
+            return p;
         } catch (Exception e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
+            return p = new Product();
         }
-        return p;
     }
 
 }

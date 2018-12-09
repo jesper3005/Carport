@@ -19,7 +19,10 @@ public class CalcRoof {
     public Product calcAntal(double length, double width, String roofMaterial, List allProducts) {
 
         if (length <= 0 || width <= 0) {
-            throw new IllegalArgumentException("Value has to be larger den 0. CalcRoof class");
+            throw new IllegalArgumentException();
+        }
+        if (allProducts == null || roofMaterial == null || roofMaterial.equals("")) {
+            throw new NullPointerException();
         }
 
         List<Product> productList = allProducts;
@@ -59,25 +62,30 @@ public class CalcRoof {
 
             }
             return p;
-        } catch (NumberFormatException e) {
-            e.getMessage();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return p = new Product();
+
         }
-        return p;
     }
 
     public Product calcAntalPointedRoof(double length, double width, double degree, String roofMaterial, List allProducts) {
 
         if (length <= 0 || width <= 0) {
-            throw new IllegalArgumentException("Value has to be larger den 0. CalcRoof class");
+            throw new IllegalArgumentException();
         }
+        if (allProducts == null || roofMaterial == null || roofMaterial.equals("")) {
+            throw new NullPointerException();
+        }
+
         width = CalcPointedRoofTriangle.CalcHypotesen(length, width, degree);
         List<Product> productList = allProducts;
         Product p = null;
         double tagstenCm2;
-        double roofCm2 = (length * width) * 2; // quadratcentimeter
         double antal; // antal tagpap
 
         try {
+            double roofCm2 = (length * width) * 2; // quadratcentimeter
             roofCm2 = (width * length);
             for (Product product : productList) {
                 if (roofMaterial.equals("Tagpap") && product.getCategory().equals("tagpap") && (width % 60) == 0) {
@@ -98,10 +106,11 @@ public class CalcRoof {
 
             }
             return p;
-        } catch (NumberFormatException e) {
-            e.getMessage();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return p = new Product();
+
         }
-        return p;
     }
 
     public int calcAntalScrews() {

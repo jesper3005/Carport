@@ -48,7 +48,7 @@ public class CustomerMapper {
             }
 
         } catch (SQLException | ClassNotFoundException ex) {
-            System.out.println(ex.getMessage() + " customerId");
+            System.out.println(ex.getMessage() + " getCustomerByEmail");
         }
         return null;
     }
@@ -96,8 +96,7 @@ public class CustomerMapper {
             pstmt.executeUpdate();
             pstmt.close();
 
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (SQLException | ClassNotFoundException ex) {
             System.out.println(ex.getMessage());
             System.out.println("Error");
         }

@@ -12,14 +12,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Stykliste</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        
         <%List<Product> stykliste = (List) session.getAttribute("stykliste");%>
         <% double totalPriceOfCarport = (Double) session.getAttribute("totalPriceOfCarport");%>
-        
         <table class="table-fill">
             <thead>
                 <tr>
@@ -39,17 +36,16 @@
                     <%for (Product list : stykliste) {%>
                     <td><%=list.getId()%></td><td><%=list.getProductName()%></td><td><%=list.getCategory()%></td><td><%=list.getPrice() + " DKK"%></td><td><%=list.getQty()%></td><td><%=list.getPriceLine() + " DKK"%></td><td><%=list.getLength()%></td><td><%=list.getWidth()%></td><td><%=list.getHeight()%></td></tr>
                     <%}%>
-
             </tbody>
         </tr>
     </table>
     </br>
     </br>
     <%="Total Pris: " + totalPriceOfCarport + " DKK"%>
-    
-                <form action="FrontController" method="post"> 
-                <input type="hidden" name="command" value="drawing">
-                <input type="submit" value="se tegning">
-            </form>
-    </body>
+
+    <form action="FrontController" method="post"> 
+        <input type="hidden" name="command" value="drawing">
+        <input type="submit" value="se tegning">
+    </form>
+</body>
 </html>

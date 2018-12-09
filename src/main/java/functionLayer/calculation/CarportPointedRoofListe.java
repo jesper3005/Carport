@@ -43,6 +43,13 @@ public class CarportPointedRoofListe {
 
     public List<Product> carportCalculaterPointedRoof(double length, double width, double degree, String roofMaterial) {
 
+        if (length <= 0 || width <= 0 || degree <= 0) {
+            throw new IllegalArgumentException();
+        }
+        if (roofMaterial == null || roofMaterial.equals("")) {
+            throw new NullPointerException();
+        }
+
         // List included everything needed to build the requestet carport
         List<Product> stykliste = new ArrayList<>();
 
@@ -76,17 +83,23 @@ public class CarportPointedRoofListe {
             stykliste.add(pLøsholdt);
             stykliste.add(pArealTriangleBackAndFront);
             stykliste.add(beam.calcAntalPointedRoofTOP(length, width, list));
-            
 
             return stykliste;
         } catch (Exception e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
         }
-        return stykliste;
+        return null;
 
     }
 
     public List<Product> carportCalculaterPointedRoofIncludingShed(double length, double width, double degree, double shedLength, double shedWidth, String roofMaterial) {
+        
+        if (length <= 0 || width <= 0 || degree <= 0 || shedLength <= 0 || shedWidth <= 0) {
+            throw new IllegalArgumentException();
+        }
+        if (roofMaterial == null || roofMaterial.equals("")) {
+            throw new NullPointerException();
+        }
 
         // List included everything needed to build the requestet carport
         List<Product> stykliste = new ArrayList<>();
@@ -137,9 +150,10 @@ public class CarportPointedRoofListe {
 
             return stykliste;
         } catch (Exception e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
+
         }
-        return stykliste;
+        return null;
 
     }
 

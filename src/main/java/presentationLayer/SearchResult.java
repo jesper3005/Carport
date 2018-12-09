@@ -21,15 +21,21 @@ public class SearchResult extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
-        ProductMapper pm = new ProductMapper();
-        HttpSession session = request.getSession();
-        String result = request.getParameter("result");
-        System.out.println(result);
-        List<Product> searchList = pm.searchInProductTable(result);
-        session.setAttribute("searchList", searchList);
-        
-        return "searchResult";
+
+        try {
+            ProductMapper pm = new ProductMapper();
+            HttpSession session = request.getSession();
+            String result = request.getParameter("result");
+            System.out.println(result);
+            List<Product> searchList = pm.searchInProductTable(result);
+            session.setAttribute("searchList", searchList);
+
+            return "searchResult";
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return "searchResult";
+        }
+
     }
 
-  
 }

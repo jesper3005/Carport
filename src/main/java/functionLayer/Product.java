@@ -5,8 +5,6 @@
  */
 package functionLayer;
 
-import java.text.DecimalFormat;
-
 /**
  *
  * @author Jesper
@@ -24,13 +22,18 @@ public class Product {
     private double height;
     private double totalPriceOfOrder;
 
-    
+    //default constructor
+    public Product() {
+        this(0, "default", "default", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+    }
+
     //constructoren is used in ProductMapper orderByLengthRem()
     public Product(String category, double length) {
         this.category = category;
         this.length = length;
     }
-    
+
+    //constructor is used in AddProduct PresentaionLayer
     public Product(String productName, String category, double price, double length, double width, double height) {
         this.productName = productName;
         this.category = category;
@@ -39,9 +42,8 @@ public class Product {
         this.width = width;
         this.height = height;
     }
-    
-    
-    
+
+    //constructor is used in ProductMapper in  dbAccess pack. in method allProducts
     public Product(int id, String productName, String category, double price, double length, double width, double height) {
         this.id = id;
         this.productName = productName;
@@ -52,6 +54,7 @@ public class Product {
         this.height = height;
     }
 
+    //constructor is used in ProductMapper in method getProductById and in functionLayer.calculation for passing a product through a method
     public Product(int id, String productName, String category, double price, double qty, double priceLine, double length, double width, double height) {
         this.id = id;
         this.productName = productName;
@@ -71,11 +74,8 @@ public class Product {
     }
 
     public double getPriceLine() {
-        //return LogicFacade.roundDoubleToTwoDecimalPoints(this.priceLine = this.price * this.qty);
-        return this.priceLine;
-
+        return LogicFacade.roundDoubleToTwoDecimalPoints(this.priceLine = this.price * this.qty);
         //return this.priceLine;
-
     }
 
     public double getTotalPriceOfOrder() {

@@ -15,11 +15,14 @@ import java.util.List;
 public class CalcStern {
 
     public Product calcAntalOverbrædt(double length, double width, List allProducts) {
-        
-       if(length <= 0 || width <= 0){
-            throw new IllegalArgumentException("Value has to be larger than 0. CalcSternOverbrædt");
+
+        if (length <= 0 || width <= 0) {
+            throw new IllegalArgumentException();
         }
-       
+        if (allProducts == null) {
+            throw new NullPointerException();
+        }
+
         List<Product> productList = allProducts;
         Product p = null;
         try {
@@ -35,18 +38,21 @@ public class CalcStern {
             }
             return p;
         } catch (Exception e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
+            return p = new Product();
         }
-        return p;
 
     }
 
     public Product calcAntalMellembrædt(double length, double width, List allProducts) {
-        
-        if(length <= 0 || width <= 0){
-            throw new IllegalArgumentException("Value has to be larger than 0. CalcSternMellembrædt");
+
+        if (length <= 0 || width <= 0) {
+            throw new IllegalArgumentException();
         }
-        
+        if (allProducts == null) {
+            throw new NullPointerException();
+        }
+
         List<Product> productList = allProducts;
         Product p = null;
         try {
@@ -62,17 +68,21 @@ public class CalcStern {
             }
             return p;
         } catch (NumberFormatException e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
+            return p = new Product();
         }
-        return null;
 
     }
 
     public Product calcAntalUnderbrædt(double length, double width, List allProducts) {
-        
-        if(length <= 0 || width <= 0){
-            throw new IllegalArgumentException("Value has to be larger than 0. CalcSternUnderbrædt");
+
+        if (length <= 0 || width <= 0) {
+            throw new IllegalArgumentException();
         }
+        if (allProducts == null) {
+            throw new NullPointerException();
+        }
+
         List<Product> productList = allProducts;
         Product p = null;
         try {
@@ -88,9 +98,9 @@ public class CalcStern {
             }
             return p;
         } catch (NumberFormatException e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
+            return p = new Product();
         }
-        return null;
 
     }
 

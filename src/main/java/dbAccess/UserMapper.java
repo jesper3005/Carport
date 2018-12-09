@@ -6,7 +6,6 @@
 package dbAccess;
 
 import exceptions.FogException;
-import functionLayer.Customer;
 import functionLayer.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -62,8 +61,7 @@ public class UserMapper {
             pstmt.executeUpdate();
             pstmt.close();
 
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (SQLException | ClassNotFoundException ex) {
             System.out.println(ex.getMessage());
             System.out.println("Error");
         }

@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Fladt Tag</title>
+        <title>Spids Tag</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="./CSS/headerCSS.css">
         <link rel="stylesheet" href="./CSS/selectBoxes.css">
@@ -39,10 +39,8 @@
                 <br>
                 <br>
                 Ved bestilling medfølger standardbyggevejledning.
-
             </div>
         </div>
-
         <form name="FlatRoof" action="FrontController" method="POST">
             <input type="hidden" name="command" value="orderRequestPointed">
             <div class="container">
@@ -55,7 +53,7 @@
                             <%if (listOfRem.getCategory().equals("rem")) {%>
                             out.print(<option value="<%=listOfRem.getLength()%>"><%=listOfRem.getLength()%> cm</option>);
                             <%}
-                                    }%>
+                                }%>
                         </select>
                         <div class="select__arrow"></div>
                     </div>
@@ -67,7 +65,7 @@
                             <%if (listOfRem.getCategory().equals("rem")) {%>
                             out.print(<option value="<%=listOfRem.getLength()%>"><%=listOfRem.getLength()%> cm</option>);
                             <%}
-                                    }%>
+                                }%>
                         </select>
                         <div class="select__arrow"></div>
                     </div>
@@ -95,10 +93,7 @@
                         </select>
                         <div class="select__arrowTag"></div>
                     </div>
-
-
                 </div>
-
                 <br>
                 <div class="control-group">
                     <h1>Vælg mål på skur</h1>
@@ -110,8 +105,7 @@
                             <%if (listOfRem.getCategory().equals("beklædning")) {%>
                             out.print(<option  value="<%=listOfRem.getLength()%>" ><%=listOfRem.getLength()%> cm</option>);
                             <%}
-                                    }%>
-
+                                }%>
                         </select>
                         <div class="select__arrowSkur"></div>
                         <br>
@@ -122,20 +116,16 @@
                             <%if (listOfRem.getCategory().equals("beklædning")) {%>
                             out.print(<option value="<%=listOfRem.getLength()%>"><%=listOfRem.getLength()%> cm</option>);
                             <%}
-                                    }%>
+                                }%>
                         </select>
                         <div class="select__arrowSkur"></div>
                     </div>
                 </div>
-
                 <br>
-
                 <div class="control-group">
                     <button type="submit" name="request">Byg din carport!</button>
                 </div>
         </form>    
-
     </div>
-
 </body>
 </html>

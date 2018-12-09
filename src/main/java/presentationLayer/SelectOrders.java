@@ -21,11 +21,11 @@ public class SelectOrders extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
-        HttpSession session = request.getSession();
-        List<Carport> allOrders;
-        String enumValue = request.getParameter("selectOrder");
 
         try {
+            HttpSession session = request.getSession();
+            List<Carport> allOrders;
+            String enumValue = request.getParameter("selectOrder");
             if (enumValue == null || enumValue.equals("allOrdre")) {
                 allOrders = LogicFacade.getALLOrdresFromCarport();
                 session.setAttribute("allOrders", allOrders);
@@ -34,11 +34,11 @@ public class SelectOrders extends Command {
                 allOrders = LogicFacade.getOrdresFromCarportByEnum(enumValue);
                 session.setAttribute("allOrders", allOrders);
             }
-
+            return "manageOrders";
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return "manageOrders";
         }
-        return "manageOrders";
     }
 
 }

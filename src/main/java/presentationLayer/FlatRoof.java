@@ -17,16 +17,23 @@ import javax.servlet.http.HttpSession;
  *
  * @author oerte
  */
-public class FlatRoof extends Command{
+public class FlatRoof extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
-        ProductMapper pm = new ProductMapper();
-        List<Product> orderByLengthRemList = pm.orderByLengthRem();
-        HttpSession session = request.getSession();
-        session.setAttribute("orderByLengthRemList", orderByLengthRemList);
-        
-        return "carportFlatRoof";
+
+        try {
+            ProductMapper pm = new ProductMapper();
+            List<Product> orderByLengthRemList = pm.orderByLengthRem();
+            HttpSession session = request.getSession();
+            session.setAttribute("orderByLengthRemList", orderByLengthRemList);
+
+            return "carportFlatRoof";
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return "carportFlatRoof";
+        }
     }
-    
+
 }

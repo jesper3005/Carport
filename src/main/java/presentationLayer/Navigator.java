@@ -17,21 +17,23 @@ public class Navigator extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
-        String site = request.getParameter("site");
-        
-        switch(site) {
-            case "login": 
-                return "login";
-            case "registration":
-                return "registration";
-            
+
+        try {
+            String site = request.getParameter("site");
+
+            switch (site) {
+                case "login":
+                    return "login";
+                case "registration":
+                    return "registration";
+
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
-            
-        
-        
-        
+
         return "login";
-        
+
     }
-    
+
 }

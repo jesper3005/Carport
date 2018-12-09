@@ -15,11 +15,14 @@ import java.util.List;
 public class CalcNails {
 
     public Product calcAntal_25mm_Varmforzinket(double qty, List allProducts) {
-        
-        if(qty < 0 ){
-            throw new IllegalArgumentException("Value can not be lower than 0. CalcNailsVarmforzinket25mm");
+
+        if (qty <= 0) {
+            throw new IllegalArgumentException();
         }
-        
+        if (allProducts == null) {
+            throw new NullPointerException();
+        }
+
         List<Product> productList = allProducts;
         Product p = null;
         try {
@@ -31,17 +34,22 @@ public class CalcNails {
             }
             return p;
         } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return p = new Product();
+
         }
-        return p;
 
     }
 
     public Product calcAntal_25mm_Blanke(double qty, List allProducts) {
-        
-        if(qty <= 0 ){
-            throw new IllegalArgumentException("Value can not be lower than 0. CalcNails25mm");
-        } 
-        
+
+        if (qty <= 0) {
+            throw new IllegalArgumentException();
+        }
+        if (allProducts == null) {
+            throw new NullPointerException();
+        }
+
         List<Product> productList = allProducts;
         Product p = null;
         try {
@@ -53,17 +61,22 @@ public class CalcNails {
             }
             return p;
         } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return p = new Product();
+
         }
-        return p;
 
     }
 
     public Product calcAntal_20mm_Blanke(double qty, List allProducts) {
-        
-        if(qty <= 0 ){
-            throw new IllegalArgumentException("Value can not be lower than 0.. CalcNailsBlanke20mm");
+
+        if (qty <= 0) {
+            throw new IllegalArgumentException();
         }
-        
+        if (allProducts == null) {
+            throw new NullPointerException();
+        }
+
         List<Product> productList = allProducts;
         Product p = null;
         try {
@@ -75,8 +88,10 @@ public class CalcNails {
             }
             return p;
         } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return p = new Product();
+
         }
-        return p;
 
     }
 

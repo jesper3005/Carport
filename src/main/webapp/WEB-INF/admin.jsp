@@ -26,10 +26,7 @@
         <a class="active" href=http://localhost:8084//FrontController?command=Admin>Admin</a>
     </header>
     <body>
-
         <%List<Product> allProduct = (List) session.getAttribute("allProduct");%>
-
-
         <div class="containerAdmin">
             <div class="control-groupAdmin">
                 <div class="selectFormAdmin">

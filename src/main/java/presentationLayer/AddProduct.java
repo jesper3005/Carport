@@ -21,22 +21,30 @@ public class AddProduct extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
-        HttpSession session = request.getSession();
-        ProductMapper pm = new ProductMapper();
-        //get all parameters from admin.jsp to add a produkt to table ´produkt´ in database
-        String produkt_navn = request.getParameter("produkt_name");
-        String category = request.getParameter("category");
-        double price = Double.parseDouble(request.getParameter("price"));
-        double length = Double.parseDouble(request.getParameter("length"));
-        double width = Double.parseDouble(request.getParameter("width"));
-        double height = Double.parseDouble(request.getParameter("height"));
-        
-        Product product = new Product(produkt_navn, category, price, length, width, height);
-        
-        pm.addProducts(product);
-        List<Product> allProducts = pm.allProducts();
-        session.setAttribute("allProduct", allProducts);
-        return "admin";
+
+        try {
+            HttpSession session = request.getSession();
+            ProductMapper pm = new ProductMapper();
+            //get all parameters from admin.jsp to add a produkt to table ´produkt´ in database
+            String produkt_navn = request.getParameter("produkt_name");
+            String category = request.getParameter("category");
+            double price = Double.parseDouble(request.getParameter("price"));
+            double length = Double.parseDouble(request.getParameter("length"));
+            double width = Double.parseDouble(request.getParameter("width"));
+            double height = Double.parseDouble(request.getParameter("height"));
+
+            Product product = new Product(produkt_navn, category, price, length, width, height);
+
+            pm.addProducts(product);
+            List<Product> allProducts = pm.allProducts();
+            session.setAttribute("allProduct", allProducts);
+            return "admin";
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return "admin";
+        }
+
     }
 
 }

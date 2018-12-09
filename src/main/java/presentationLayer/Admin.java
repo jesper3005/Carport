@@ -21,19 +21,23 @@ public class Admin extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
-        HttpSession session = request.getSession();
-        ProductMapper pm = new ProductMapper();
-        String search = search = request.getParameter("search");
 
-        if (search == null) {
-            List<Product> allProducts = pm.allProducts();
-            session.setAttribute("allProduct", allProducts);
-            return "admin";
-        } else {
+        try {
+            HttpSession session = request.getSession();
+            ProductMapper pm = new ProductMapper();
+            String search = search = request.getParameter("search");
 
-            System.out.println(search);
-            List<Product> searchList = pm.searchInProductTable(search);
-            session.setAttribute("allProduct", searchList);
+            if (search == null) {
+                List<Product> allProducts = pm.allProducts();
+                session.setAttribute("allProduct", allProducts);
+                return "admin";
+            } else {
+                List<Product> searchList = pm.searchInProductTable(search);
+                session.setAttribute("allProduct", searchList);
+                return "admin";
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
             return "admin";
         }
 

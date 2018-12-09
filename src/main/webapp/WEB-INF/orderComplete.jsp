@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="./CSS/headerCSS.css">
         <link rel="stylesheet" href="./CSS/orderCreated.css">
-        <title>JSP Page</title>
+        <title>Tak for dit køb</title>
     </head>
     <body>
         

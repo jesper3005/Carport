@@ -15,27 +15,31 @@ import java.util.List;
 public class CalcAngleBracket {
 
     public Product calcAntal(double qty, List allProducts) {
-        if(qty <= 0){
-            throw new ArithmeticException("Value has to be larger then 0! CalcAngleBracket");
-        }
-        try {
-            if (qty <= 0) {
-                qty = 1;
-            } else {
-                List<Product> productList = allProducts;
-                Product p = null;
-                for (Product product : productList) {
-                    if (product.getId() == 26) {
-                        p = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), qty, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
 
-                    }
-                }
-                return p;
-            }
-        } catch (Exception e) {
-            e.getMessage();
+       if (qty <= 0) {
+            throw new IllegalArgumentException();
         }
-        return null;
+        if (allProducts == null) {
+            throw new NullPointerException();
+        }
+
+        Product p = null;
+
+        try {
+            List<Product> productList = allProducts;
+            for (Product product : productList) {
+                if (product.getId() == 26) {
+                    p = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), qty, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
+
+                }
+            }
+            return p;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return p = new Product();
+
+        }
+
     }
 
 }
