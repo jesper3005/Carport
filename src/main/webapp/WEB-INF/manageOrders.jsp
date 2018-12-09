@@ -30,8 +30,8 @@
         
         <!-- -----------------SECTION 1: Choose what order to view------------------------------------>
         <form action="FrontController" method="POST">
-            <input type="hidden" name="command" value="manageOrders">
-            <div class="container">
+        <input type="hidden" name="command" value="manageOrders">
+        <div class="container">
                 <div class="control-group">
                     <select name="selectOrder">
                         <option value="allOrdre">Alle Ordre</option>
@@ -46,7 +46,6 @@
         </form>
         
         <!-- -----------------SECTION 2.0: Display orders------------------------------------>
-        <form action="FrontController" method="POST">
         <% for (Carport list : allOrders) {%>
         <div class="container">
             <div class="control-group">
@@ -112,6 +111,7 @@
     <!-- -----------------SECTION 2.2: Update order status------------------------------------>           
                 
                 
+        <form action="FrontController" method="POST">
                 <div class="control-groupManageOrders">
                     <h4>Ændre status på odren</h4>
                     <br>
@@ -127,13 +127,13 @@
                     <input type="hidden" name="id" value="<%= list.getId() %>">
                     <input type="hidden" name="command" value="updateOrderStatus">
                     <button type="submit" name="updateStatus">Opdater order status</button>
+                    </form>
                 </div>
             </div>
                 
         </div>
         <%}%>
     
-    </form>
    
             
     <script>
