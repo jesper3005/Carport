@@ -50,7 +50,7 @@ public class UserMapper {
         return null;
     }
 
-    public User createUser(User user) {
+    public void createUser(User user) {
         try {
             Connection con = Connector.connection();
             String query = CREATE_USER;
@@ -67,6 +67,5 @@ public class UserMapper {
             System.out.println(ex.getMessage());
             System.out.println("Error");
         }
-        return user;
     }
 }

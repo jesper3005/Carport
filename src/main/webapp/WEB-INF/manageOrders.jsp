@@ -111,7 +111,7 @@
     <!-- -----------------SECTION 2.2: Update order status------------------------------------>           
                 
                 
-        <form action="FrontController" method="POST">
+        <form name="updateOrderStatus" action="FrontController" method="POST">
                 <div class="control-groupManageOrders">
                     <h4>Ændre status på odren</h4>
                     <br>
