@@ -6,7 +6,6 @@
 package dbAccess;
 
 import functionLayer.Carport;
-import functionLayer.Product;
 import functionLayer.Shed;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,14 +29,15 @@ public class CarportMapper {
     private final String GET_SHED_BY_ID = "SELECT * FROM `shed` WHERE `shed_id` = ?;";
     private final String UPDATE_ORDER_STATUS = "UPDATE `carport` SET `status_of_order` = ? WHERE `carport_id` = ?;";
     
+    
     public void addCarport(Carport carport, Shed shed) {
-         System.out.println(" addCarport in carportMapper");
+        System.out.println(" addCarport in carportMapper");
         try {
             Connection c = Connector.connection();
             String query = ADD_Carport;
             PreparedStatement pstmt = c.prepareStatement(query);
             Shed s = addShed(shed);
-            
+
             pstmt.setDouble(1, carport.getCarport_length());
             pstmt.setDouble(2, carport.getCarport_width());
             pstmt.setDouble(3, carport.getDegrees());
@@ -46,7 +46,6 @@ public class CarportMapper {
             pstmt.setDouble(6, carport.getTotal_price());
             pstmt.setInt(7, s.getShed_id());
             pstmt.setInt(8, carport.getCustomer_id());
-            
 
             pstmt.executeUpdate();
             pstmt.close();
@@ -56,9 +55,30 @@ public class CarportMapper {
         }
     }
 
+    public Shed getShedById(int shed_id) {
+
+        try {
+            Connection c = Connector.connection();
+            String query = GET_SHED_BY_ID;
+            PreparedStatement pstmt = c.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setInt(1, shed_id);
+            ResultSet res = pstmt.executeQuery();
+
+            if (res.next()) {
+                double shedLength = res.getDouble("shed_length");
+                double shedWidth = res.getDouble("shed_width");
+                Shed shed = new Shed(shedLength, shedWidth);
+                return shed;
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return null;
+    }
+
     public Shed addShed(Shed shed) {
         int id = 0;
-         System.out.println(" addShed in carportMapper");
+        System.out.println(" addShed in carportMapper");
         try {
             Connection c = Connector.connection();
             String query = ADD_SHED;
@@ -82,89 +102,70 @@ public class CarportMapper {
         return null;
     }
     
-    public Shed getShedById(int shed_id) {
-       try {
-           Connection c = Connector.connection();
-           String query = GET_SHED_BY_ID;
-           PreparedStatement pstmt = c.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-           pstmt.setInt(1, shed_id);
-           ResultSet res = pstmt.executeQuery();
-
-           if (res.next()) {
-               double shedLength = res.getDouble("shed_length");
-               double shedWidth = res.getDouble("shed_width");
-               Shed shed = new Shed(shedLength, shedWidth);
-               return shed;
-           }
-       } catch (Exception e) {
-           e.getMessage();
-       }
-       return null;
-   }
     
     public List<Carport> getCarportByStatus(String enumValue) {
-       try {
-           List<Carport> carportList = new ArrayList<>();
-           Connection c = Connector.connection();
-           String query = GET_ORDER_BY_STATUS;
-           PreparedStatement pstmt = c.prepareStatement(query);
-           pstmt.setString(1, enumValue);
-           ResultSet res = pstmt.executeQuery();
+        try {
+            List<Carport> carportList = new ArrayList<>();
+            Connection c = Connector.connection();
+            String query = GET_ORDER_BY_STATUS;
+            PreparedStatement pstmt = c.prepareStatement(query);
+            pstmt.setString(1, enumValue);
+            ResultSet res = pstmt.executeQuery();
 
-           while (res.next()) {
-               int carport_id = res.getInt("carport_id");
-               Date date = res.getDate("date");
-               double carportLength = res.getDouble("carport_length");
-               double carportWidth = res.getDouble("carport_width");
-               double degrees = res.getDouble("degrees");
-               String roofType = res.getString("roof");
-               String roofMaterial = res.getString("roof_material");
-               double totalPrice = res.getDouble("total_price");
-               String orderStatus = res.getString("status_of_order");
-               int shedID = res.getInt("shed_id");
-               Shed shed = getShedById(shedID);
-               int customerID = res.getInt("customer_id");
-               int userID = res.getInt("user_id");
-               Carport carport = new Carport(carport_id, date, carportLength, carportWidth, degrees, roofType, roofMaterial, totalPrice, orderStatus, shedID, customerID, shed);
-               carportList.add(carport);
-           }
-           return carportList;
-       } catch (SQLException | ClassNotFoundException ex) {
-           System.out.println(ex.getStackTrace());
-       }
-       return null;
-   }
-    
+            while (res.next()) {
+                int carport_id = res.getInt("carport_id");
+                Date date = res.getDate("date");
+                double carportLength = res.getDouble("carport_length");
+                double carportWidth = res.getDouble("carport_width");
+                double degrees = res.getDouble("degrees");
+                String roofType = res.getString("roof");
+                String roofMaterial = res.getString("roof_material");
+                double totalPrice = res.getDouble("total_price");
+                String orderStatus = res.getString("status_of_order");
+                int shedID = res.getInt("shed_id");
+                Shed shed = getShedById(shedID);
+                int customerID = res.getInt("customer_id");
+                int userID = res.getInt("user_id");
+                Carport carport = new Carport(carport_id, date, carportLength, carportWidth, degrees, roofType, roofMaterial, totalPrice, orderStatus, shedID, customerID, shed);
+                carportList.add(carport);
+            }
+            return carportList;
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getStackTrace());
+        }
+        return null;
+    }
+
     public List<Carport> getAllCarportOrder() {
-       try {
-           List<Carport> carportList = new ArrayList<>();
-           Connection c = Connector.connection();
-           String query = GET_ALL_ORDERS;
-           PreparedStatement pstmt = c.prepareStatement(query);
-           ResultSet res = pstmt.executeQuery();
-           while (res.next()) {
-               int carport_id = res.getInt("carport_id");
-               Date date = res.getDate("date");
-               double carportLength = res.getDouble("carport_length");
-               double carportWidth = res.getDouble("carport_width");
-               double degrees = res.getDouble("degrees");
-               String roofType = res.getString("roof");
-               String roofMaterial = res.getString("roof_material");
-               double totalPrice = res.getDouble("total_price");
-               String orderStatus = res.getString("status_of_order");
-               int shedID = res.getInt("shed_id");
-               Shed shed = getShedById(shedID);
-               int customerID = res.getInt("customer_id");
-               int userID = res.getInt("user_id");
-               Carport carport = new Carport(carport_id, date, carportLength, carportWidth, degrees, roofType, roofMaterial, totalPrice, orderStatus, shedID, customerID, shed);
-               carportList.add(carport);
-           }
-           return carportList;
-       } catch (SQLException | ClassNotFoundException ex) {
-           System.out.println(ex.getStackTrace());
-       }
-       return null;
-   }
+        try {
+            List<Carport> carportList = new ArrayList<>();
+            Connection c = Connector.connection();
+            String query = GET_ALL_ORDERS;
+            PreparedStatement pstmt = c.prepareStatement(query);
+            ResultSet res = pstmt.executeQuery();
+            while (res.next()) {
+                int carport_id = res.getInt("carport_id");
+                Date date = res.getDate("date");
+                double carportLength = res.getDouble("carport_length");
+                double carportWidth = res.getDouble("carport_width");
+                double degrees = res.getDouble("degrees");
+                String roofType = res.getString("roof");
+                String roofMaterial = res.getString("roof_material");
+                double totalPrice = res.getDouble("total_price");
+                String orderStatus = res.getString("status_of_order");
+                int shedID = res.getInt("shed_id");
+                Shed shed = getShedById(shedID);
+                int customerID = res.getInt("customer_id");
+                int userID = res.getInt("user_id");
+                Carport carport = new Carport(carport_id, date, carportLength, carportWidth, degrees, roofType, roofMaterial, totalPrice, orderStatus, shedID, customerID, shed);
+                carportList.add(carport);
+            }
+            return carportList;
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getStackTrace());
+        }
+        return null;
+    }
     
     public void updateOrderStatus(String status, int id) {
         try {

@@ -23,10 +23,6 @@ public class OrderRequestPointedRoof extends Command{
         HttpSession session = request.getSession();
         boolean shedCheck;
         
-        //Check site
-        String checkSite = request.getParameter("carport");
-        request.setAttribute("checkSite", checkSite);
-        
         
         String degreeStr = request.getParameter("degree");
         double degree = Double.parseDouble(degreeStr.substring(0, 2));
@@ -71,7 +67,6 @@ public class OrderRequestPointedRoof extends Command{
         //Carport fra siden.
         SVGSide sSVG = new SVGSide(length, height, shedLength, shedWidth, shedCheck);
         request.setAttribute("drawingSide", sSVG.getMySVG());
-
 
         return "orderRequestPointedRoof";
     }        

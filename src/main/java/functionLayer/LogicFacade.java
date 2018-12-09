@@ -70,6 +70,7 @@ public class LogicFacade {
        cm.updateOrderStatus(status, id);
    }
 
+
     // ------- CARPORT CALCULATIONS LOGICFACADE ---------
     public static List<Product> CarportCalculaterFlatRoof(double length, double width, String roofMaterial) {
         CarportFlatProductListe cfp = new CarportFlatProductListe();
@@ -130,5 +131,4 @@ public class LogicFacade {
 //        }
 //        return roundDoubleToTwoDecimalPoints(totalPriceOfCarport);
 //    }
-
 }

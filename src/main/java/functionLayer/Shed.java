@@ -21,6 +21,12 @@ public class Shed {
         this.shed_width = shed_width;
     }
 
+    @Override
+    public String toString() {
+        return "Shed{" + "shed_length=" + shed_length + ", shed_width=" + shed_width + '}';
+    }
+    
+
     public void setShed_id(int shed_id) {
         this.shed_id = shed_id;
     }

@@ -25,7 +25,11 @@
             <a class="active" href="/FrontController?command=toNavigator&site=login">Login</a>
             <a class="active" href="/index.jsp">Home</a>
             <a class="active" href="/FrontController?command=Admin">Admin</a>
+<<<<<<< HEAD
             <a class="active" href="/FrontController?command=manageOrders">Se odre</a>
+=======
+            <a class="active" href="/FrontController?command=manageOrders">Se Ordre</a>
+>>>>>>> c4ffcd03df610cd8d4989f88c1645bd5fd611f90
             <!-- <input type='submit' value="Log Out">-->
         </header>
         <%} else {%> 
