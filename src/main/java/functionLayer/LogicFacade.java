@@ -104,6 +104,17 @@ public class LogicFacade {
         List<Product> remList = pm.orderByLengthRem();
         return remList;
     }
+   
+   public static void updatePrice(int id, double price) {
+       ProductMapper pm = new ProductMapper();
+       pm.updatePrice(id, price);
+   }
+   
+   public static void deleteProduct(int productID) {
+       ProductMapper pm = new ProductMapper();
+       pm.deleteProduct(productID);
+   }
+   
 
     // ------- CARPORT CALCULATIONS LOGICFACADE ---------
     public static List<Product> CarportCalculaterFlatRoof(double length, double width, String roofMaterial) {
@@ -131,7 +142,7 @@ public class LogicFacade {
     }
 
     public static double roundDoubleToTwoDecimalPoints(double value) {
-        DecimalFormat df2 = new DecimalFormat(".##");
+        DecimalFormat df2 = new DecimalFormat(",##");
         return Double.parseDouble(df2.format(value));
 
     }

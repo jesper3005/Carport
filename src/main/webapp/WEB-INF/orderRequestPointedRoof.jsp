@@ -57,6 +57,7 @@
                 </select>
                 <p id="demo"></p>
         </div></center>
+            
     <script>
         function myFunction() {
             var top = '${drawingTop}';
@@ -69,6 +70,7 @@
             }
         }
     </script>
+    
     <form name="sendOrder" action="FrontController" method="POST">
         <input type="hidden" name="command" value="sendOrderPointed">
         <div class="container">

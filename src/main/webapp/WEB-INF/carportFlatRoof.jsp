@@ -44,10 +44,7 @@
                 Ved bestilling medfølger standardbyggevejledning.
             </div>
         </div>
-<<<<<<< HEAD
 
-=======
->>>>>>> 938631e8efb1859f0b57714cafbccbddfe4ff679
         <form name="FlatRoof" action="FrontController" method="POST">
             <input type="hidden" name="command" value="orderRequestFlat">
             <div class="container">
@@ -60,11 +57,8 @@
                             <%if (listOfRem.getCategory().equals("rem")) {%>
                             out.print(<option value="<%=listOfRem.getLength()%>"><%=listOfRem.getLength()%> cm</option>);
                             <%}
-<<<<<<< HEAD
                                 }%>
-=======
-                                    }%>
->>>>>>> 938631e8efb1859f0b57714cafbccbddfe4ff679
+                                    
                         </select>
                         <div class="select__arrow"></div>
                     </div>
@@ -76,11 +70,7 @@
                             <%if (listOfRem.getCategory().equals("rem")) {%>
                             out.print(<option value="<%=listOfRem.getLength()%>"><%=listOfRem.getLength()%> cm</option>);
                             <%}
-<<<<<<< HEAD
                                 }%>
-=======
-                                    }%>
->>>>>>> 938631e8efb1859f0b57714cafbccbddfe4ff679
                         </select>
                         <div class="select__arrow"></div>
                     </div>
@@ -104,14 +94,11 @@
                         </select>
                         <div class="select__arrowTag"></div>
                     </div>
-<<<<<<< HEAD
 
 
                 </div>
 
-=======
                 </div>
->>>>>>> 938631e8efb1859f0b57714cafbccbddfe4ff679
                 <br>
                 <div class="control-group">
                     <h1>Vælg mål på skur</h1>
@@ -123,51 +110,37 @@
                             <%if (listOfRem.getCategory().equals("beklædning")) {%>
                             out.print(<option  value="<%=listOfRem.getLength()%>" ><%=listOfRem.getLength()%> cm</option>);
                             <%}
-<<<<<<< HEAD
                                 }%>
 
                         </select>
                         <div class="select__arrowSkur"></div>
                         <br>
 
-=======
-                                    }%>
                         </select>
                         <div class="select__arrowSkur"></div>
                         <br>
->>>>>>> 938631e8efb1859f0b57714cafbccbddfe4ff679
                         <h4>Redskabsrum længde</h4>
                         <select name="skurlaengde">
                             <% for (Product listOfRem : orderByLengthRemList) {%>
                             <%if (listOfRem.getCategory().equals("beklædning")) {%>
                             out.print(<option value="<%=listOfRem.getLength()%>"><%=listOfRem.getLength()%> cm</option>);
                             <%}
-<<<<<<< HEAD
                                 }%>
-=======
-                                    }%>
->>>>>>> 938631e8efb1859f0b57714cafbccbddfe4ff679
                         </select>
                         <div class="select__arrowSkur"></div>
                     </div>
                 </div>
-<<<<<<< HEAD
 
                 <br>
 
-=======
                 <br>
->>>>>>> 938631e8efb1859f0b57714cafbccbddfe4ff679
                 <div class="control-group">
                     <button type="submit" name="request">Byg din carport!</button>
                 </div>
         </form>    
-<<<<<<< HEAD
 
     </div>
 
-=======
     </div>
->>>>>>> 938631e8efb1859f0b57714cafbccbddfe4ff679
 </body>
 </html>

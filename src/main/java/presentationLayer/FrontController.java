@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import exceptions.FogException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.security.auth.login.Configuration;
 import javax.security.auth.login.LoginException;
 import logging.DefaultLogger;
 import logging.LoggerConfig;

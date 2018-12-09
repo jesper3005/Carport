@@ -7,6 +7,7 @@ package presentationLayer;
 
 import dbAccess.ProductMapper;
 import exceptions.FogException;
+import functionLayer.LogicFacade;
 import functionLayer.Product;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -23,8 +24,7 @@ public class PointedRoof extends Command {
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
 
         try {
-            ProductMapper pm = new ProductMapper();
-            List<Product> orderByLengthRemList = pm.orderByLengthRem();
+            List<Product> orderByLengthRemList = LogicFacade.remOrderedByLength();
             HttpSession session = request.getSession();
             session.setAttribute("orderByLengthRemList", orderByLengthRemList);
 

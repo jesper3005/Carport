@@ -28,36 +28,9 @@
         <a class="active" href="/index.jsp">Home</a>
         <a class="active" href=http://localhost:8084//FrontController?command=Admin>Admin</a>
     </header>
-<<<<<<< HEAD
     
     <!-- ------------------SECTION 2.0 ADD PRODUCT---------------------------------->
 
-    <%List<Product> allProduct = (List) session.getAttribute("allProduct");%>
-
-
-    <div class="containerAdmin">
-        <div class="control-groupAdmin">
-            <div class="selectFormAdmin">
-                <form name="AddProduct" action="FrontController" method="POST">
-                 <input type="hidden" name="command" value="AddProduct">
-                    <h1>Tilføj et nyt produkt</h1>
-                    <h4>Produkt Navn</h4>
-                    <input type="text" name="produkt_name">
-                    <h4>Produkt Kategori</h4>
-                    <input type="text" name="category">
-                    <h4>Stykpris</h4>
-                    <input id="number" type="number" name="price" step="0.01" required="">
-                    <h4>Længde</h4>
-                    <input id="number" type="number" name="length" step="0.01" required="">
-                    <h4>Bredde</h4>
-                    <input id="number" type="number" name="width" step="0.01" required="">
-                    <h4>Højde</h4>
-                    <input id="number" type="number" name="height" step="0.01" required="">
-                    </br>
-                    </br>
-                    <input type="submit" value="AddProduct">
-                </form>
-=======
     <body>
         <%List<Product> allProduct = (List) session.getAttribute("allProduct");%>
         <div class="containerAdmin">
@@ -83,7 +56,6 @@
                         <input type="submit" value="AddProduct">
                     </form>
                 </div>
->>>>>>> 938631e8efb1859f0b57714cafbccbddfe4ff679
             </div>
         </div>
     </div>

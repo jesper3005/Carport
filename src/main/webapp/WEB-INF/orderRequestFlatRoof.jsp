@@ -18,6 +18,7 @@
         <link rel="icon" href=""
     </head>
     <body>
+
         <header>
             <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
             <a class="active" href="/FrontController?command=toRegi">Sign up</a>
@@ -46,6 +47,7 @@
                 samt en stykliste af produkter som der skal bruges.
                 <br>
                 <br>
+                
             </div>
         </div>
         <div class="drawings">
