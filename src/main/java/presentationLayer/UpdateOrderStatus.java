@@ -17,22 +17,19 @@ import javax.servlet.http.HttpSession;
  *
  * @author Jesper
  */
-public class UpdateOrderStatus extends Command{
+public class UpdateOrderStatus extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
-        HttpSession session = request.getSession();
-        
-        
-        String status = request.getParameter("status");
-        int id = Integer.parseInt(request.getParameter("id"));
-        
-        LogicFacade.updateOrderStatus(status, id);
-        
-        List<Carport> allOrders;
-        String enumValue = request.getParameter("selectOrder");
 
         try {
+            HttpSession session = request.getSession();
+            String status = request.getParameter("status");
+            String enumValue = request.getParameter("selectOrder");
+            int id = Integer.parseInt(request.getParameter("id"));
+            LogicFacade.updateOrderStatus(status, id);
+            List<Carport> allOrders;
+
             if (enumValue == null || enumValue.equals("allOrdre")) {
                 allOrders = LogicFacade.getALLOrdresFromCarport();
                 session.setAttribute("allOrders", allOrders);
@@ -47,5 +44,5 @@ public class UpdateOrderStatus extends Command{
         }
         return "manageOrders";
     }
-    
+
 }

@@ -50,7 +50,7 @@ public class ProductMapper {
             }
             return productList;
         } catch (SQLException | ClassNotFoundException ex) {
-            System.out.println(ex.getStackTrace());
+            System.out.println(ex.getMessage());
         }
         return null;
     }
@@ -110,7 +110,7 @@ public class ProductMapper {
             }
             return productList;
         } catch (SQLException | ClassNotFoundException ex) {
-            System.out.println(ex.getStackTrace());
+            System.out.println(ex.getMessage());
         }
         return null;
     }
@@ -135,7 +135,6 @@ public class ProductMapper {
    
     public List<Product> searchInProductTable(String value) {
         value = "%"+value+"%";
-        System.out.println(SEARCH_IN_Product_TABLE);
         try {
             Product p;
             List<Product> list = new ArrayList<>();
@@ -155,7 +154,6 @@ public class ProductMapper {
                 double height = res.getDouble("height");
                 
                 p = new Product(product_id, product_name, category, price, length, width, height);
-               // System.out.println(p);
                 list.add(p);
             }
 
@@ -197,36 +195,5 @@ public class ProductMapper {
     }
 
 }
-// public static List<Product> updateProduct(List<Integer> produkt_id) {
-//        String Update_PRODUCT = "SELECT `*` FROM `product` WHERE produkt_id=?;";
-//        List<Product> list = new ArrayList<>();
-//        try {
-//            Product p = null;
-//            Connection c = Connector.connection();
-//            String query = Update_PRODUCT;
-//            PreparedStatement pstmt = c.prepareStatement(query);
-//            
-//            for (int i = 0; i < produkt_id.size(); i++) {
-//            pstmt.setInt(1, produkt_id.get(i));
-//            ResultSet res = pstmt.executeQuery();
-//
-//            while (res.next()) {
-//                String produkt_name = res.getString("produkt_name");
-//                String category = res.getString("category");
-//                double price = res.getDouble("price");
-//                double length = res.getDouble("length");
-//                double width = res.getDouble("width");
-//                double height = res.getDouble("height");
-//                p = new Product(produkt_id.get(i), produkt_name, category, price, length, width, height);
-//                list.add(p);
-//            }
-//            }
-//            return list;
-//
-//        } catch (SQLException | ClassNotFoundException ex) {
-//            System.out.println(ex.getMessage());
-//        }
-//        return null;
-//
-//    }
+
 

@@ -23,21 +23,22 @@ public class Login extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
         HttpSession session = request.getSession();
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
+        String email = null;
+        String password = null;
         try {
+            email = request.getParameter("email");
+            password = request.getParameter("password");
             User user = LogicFacade.login(email, password);
             session.setAttribute("user", user);
             session.setAttribute("role", user.getRole());
-            return "../index";         
-        } catch(FogException ex) {
+            return "../index";
+        } catch (FogException ex) {
             request.setAttribute("error", "Wrong username or password");
             System.out.println("Login failed");
-            DefaultLogger.getMyLogger().log(Level.WARNING, "Login failed " + email+" : "+password);
-            return "login";        
+            DefaultLogger.getMyLogger().log(Level.WARNING, "Login failed " + email + " : " + password);
+            return "login";
         }
-        
-        
+
     }
-    
+
 }

@@ -1,4 +1,4 @@
-    /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -14,9 +14,15 @@ import java.util.List;
  */
 public class CalcShedSkeletton {
 
-
-   
     public Product calcAntalVerticalFrontAndBack(double length, double width, List allProducts) {
+
+        if (length <= 0 || width <= 0) {
+            throw new ArithmeticException();
+        }
+        if (allProducts == null) {
+            throw new NullPointerException();
+        }
+
         List<Product> productList = allProducts;
         Product p = null;
         double antal = 4; // top and bottom plank
@@ -29,13 +35,21 @@ public class CalcShedSkeletton {
             }
             return p;
         } catch (Exception e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
+            return p = new Product();
         }
-        return p;
 
     }
 
     public Product calcAntalVerticalLeftAndRight(double length, double width, List allProducts) {
+
+        if (length <= 0 || width <= 0) {
+            throw new ArithmeticException();
+        }
+        if (allProducts == null) {
+            throw new NullPointerException();
+        }
+
         List<Product> productList = allProducts;
         Product p = null;
         double antal = 4; // top and bottom plank
@@ -43,14 +57,14 @@ public class CalcShedSkeletton {
         try {
             for (Product product : productList) {
                 if (product.getCategory().equals("beklædning") && product.getLength() == width) {
-                    p = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), antal, product.getPriceLine(), product.getLength()-heightOfPlanksFrontandBack, product.getWidth(), product.getHeight());
+                    p = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), antal, product.getPriceLine(), product.getLength() - heightOfPlanksFrontandBack, product.getWidth(), product.getHeight());
                 }
             }
             return p;
         } catch (Exception e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
+            return p = new Product();
         }
-        return p;
 
     }
 
@@ -62,12 +76,21 @@ public class CalcShedSkeletton {
     206 cm planks to be used horizontal 
      */
     public Product calcAntalHorizontal(double length, double width, List allProducts) {
+
+        if (length <= 0 || width <= 0) {
+            throw new ArithmeticException();
+        }
+        if (allProducts == null) {
+            throw new NullPointerException();
+        }
+
         List<Product> productList = allProducts;
         Product p = null;
         double doorWidth = 80;
-        double antal = Math.ceil((((length * 2) + (width * 2)) - doorWidth) / 50); // horizontal planks with 50 cm space in between
+        double antal;
 
         try {
+            antal = Math.ceil((((length * 2) + (width * 2)) - doorWidth) / 50); // horizontal planks with 50 cm space in between
             for (Product product : productList) {
                 if (product.getId() == 4) {
                     p = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), antal, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
@@ -75,11 +98,10 @@ public class CalcShedSkeletton {
             }
             return p;
         } catch (Exception e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
+            return p = new Product();
         }
-        return p;
 
     }
-    
 
 }

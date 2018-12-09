@@ -20,7 +20,6 @@ import java.util.List;
  * @author oerte
  */
 public class CarportFlatProductListe {
-    
 
     private ProductMapper pm = new ProductMapper();
     private List<Product> list = pm.allProducts();
@@ -34,7 +33,6 @@ public class CarportFlatProductListe {
     private CalcScrew screw = new CalcScrew();//skrue
     private CalcOuterLayerOfShed shedOuterLayer = new CalcOuterLayerOfShed();
     private CalcShedSkeletton shed_InnerLayer = new CalcShedSkeletton();
-    
 
     private Product pBattens;
     private Product pBeam;
@@ -45,9 +43,15 @@ public class CarportFlatProductListe {
     private Product pSternUnder;
     private Product pshed_innerLayer;
     private Product pOuterLayer;
-    
 
     public List<Product> carportCalculaterFlatRoof(double length, double width, String roofMaterial) {
+
+        if (length <= 0 || width <= 0) {
+            throw new IllegalArgumentException();
+        }
+        if (roofMaterial == null || roofMaterial.equals("")) {
+            throw new NullPointerException();
+        }
 
         // List included everything needed to build the requestet carport
         List<Product> stykliste = new ArrayList<>();
@@ -77,8 +81,6 @@ public class CarportFlatProductListe {
             stykliste.add(angleBracket.calcAntal(antal, list));
             //6 screws per angle bracket ('33', 'NKT SPUN+ SKRUE UHJ 3,5X30MM TORX ELFORZINKET', 'skrue', '36', '0', '0', '0')
             stykliste.add(screw.calcAntal_3komma5X30MM(antal, list));
-            
-            
 
             stykliste.add(pBattens);
             stykliste.add(pBeam);
@@ -90,13 +92,20 @@ public class CarportFlatProductListe {
 
             return stykliste;
         } catch (Exception e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
         }
-        return stykliste;
+        return null;
 
     }
 
     public List<Product> carportCalculaterFlatRoofIncludingShed(double length, double width, double shedLength, double shedWidth, String roofMaterial) {
+
+        if (length <= 0 || width <= 0 || shedLength <= 0 || shedWidth <= 0) {
+            throw new IllegalArgumentException();
+        }
+        if (roofMaterial == null || roofMaterial.equals("")) {
+            throw new NullPointerException();
+        }
 
         // List included everything needed to build the requestet carport
         List<Product> stykliste = new ArrayList<>();
@@ -127,7 +136,7 @@ public class CarportFlatProductListe {
             stykliste.add(angleBracket.calcAntal(antal, list));
             //6 screws per angle bracket ('33', 'NKT SPUN+ SKRUE UHJ 3,5X30MM TORX ELFORZINKET', 'skrue', '36', '0', '0', '0')
             stykliste.add(screw.calcAntal_3komma5X30MM(antal, list));
-            
+
             //add all from doorList to styklist
             List<Product> doorList = shedOuterLayer.calcAntalDoor(list);
             for (Product product : doorList) {
@@ -150,9 +159,10 @@ public class CarportFlatProductListe {
 
             return stykliste;
         } catch (Exception e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
+
         }
-        return stykliste;
+        return null;
 
     }
 }

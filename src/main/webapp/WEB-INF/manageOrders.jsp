@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="./CSS/headerCSS.css">
         <link rel="stylesheet" href="./CSS/selectBoxes.css">
         <link rel="stylesheet" href="./CSS/tableDesign.css">
-        <title>JSP Page</title>
+        <title>Manage Orders</title>
     </head>
     <body>
         <%List<Carport> allOrders = (List) session.getAttribute("allOrders"); %>

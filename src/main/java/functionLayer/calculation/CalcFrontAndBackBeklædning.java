@@ -15,6 +15,13 @@ import java.util.List;
 public class CalcFrontAndBackBeklædning {
 
     public Product calcAntal(double length, double width, double degree, List allProducts) {
+        
+        if (length <= 0 || width <= 0 || degree <=0) {
+            throw new IllegalArgumentException();
+        }
+        if (allProducts == null) {
+            throw new NullPointerException();
+        }
 
         List<Product> productList = allProducts;
         Product p = null;
@@ -32,7 +39,7 @@ public class CalcFrontAndBackBeklædning {
 
         } catch (Exception e) {
             e.getMessage();
+            return p = new Product();
         }
-        return null;
     }
 }

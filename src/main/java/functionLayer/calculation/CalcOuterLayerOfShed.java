@@ -20,6 +20,14 @@ public class CalcOuterLayerOfShed {
     
      */
     public Product calAntal(double length, double width, List allProducts) {
+
+        if (length <= 0 || width <= 0) {
+            throw new IllegalArgumentException();
+        }
+        if (allProducts == null) {
+            throw new NullPointerException();
+        }
+
         List<Product> productList = allProducts;
         Product p = null;
         double widthOfPlanks = 10; //cm
@@ -39,9 +47,9 @@ public class CalcOuterLayerOfShed {
             }
             return p;
         } catch (Exception e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
+            return p = new Product();
         }
-        return p;
     }
 
     /*
@@ -90,9 +98,9 @@ public class CalcOuterLayerOfShed {
             }
             return doorList;
         } catch (Exception e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
         }
-        return doorList;
+        return null;
     }
 
 }

@@ -21,21 +21,28 @@ public class UpdateProduct extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
-        HttpSession session = request.getSession();
-        ProductMapper pm = new ProductMapper();
-        String action = request.getParameter("action");
-        if ("Update".equals(action)) {
 
-            double price = Double.parseDouble(request.getParameter("price"));
-            int id = Integer.parseInt(request.getParameter("id"));
-            pm.updatePrice(id, price);
-        } else {
-            int product_id = Integer.parseInt(request.getParameter("product_id"));
-            pm.deleteProduct(product_id);
+        try {
+            HttpSession session = request.getSession();
+            ProductMapper pm = new ProductMapper();
+            String action = request.getParameter("action");
+            if ("Update".equals(action)) {
+
+                double price = Double.parseDouble(request.getParameter("price"));
+                int id = Integer.parseInt(request.getParameter("id"));
+                pm.updatePrice(id, price);
+            } else {
+                int product_id = Integer.parseInt(request.getParameter("product_id"));
+                pm.deleteProduct(product_id);
+            }
+            List<Product> allProducts = pm.allProducts();
+            session.setAttribute("allProduct", allProducts);
+            return "admin";
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
-        List<Product> allProducts = pm.allProducts();
-        session.setAttribute("allProduct", allProducts);
         return "admin";
+
     }
 
 }

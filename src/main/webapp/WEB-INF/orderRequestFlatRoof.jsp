@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Order Request</title>
+        <title>Order Request Flad Tag</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="./CSS/headerCSS.css">
         <link rel="stylesheet" href="./CSS/orderRequest.css">
@@ -25,7 +25,6 @@
             <a class="active" href="/index.jsp">Home</a>
             <a class="active" href="/FrontController?command=Admin">Admin</a>
         </header>
-
         <div class="container">
             <div class="control-groupText">
                 <h1 class="title">Her er en skitse af din carport !</h1>
@@ -49,7 +48,6 @@
                 <br>
             </div>
         </div>
-
         <div class="drawings">
             <center><select name="test" id="mySelect" onchange="myFunction()">
                     <option>Vælg en skitse du vil se</option>
@@ -59,7 +57,6 @@
                 </select>
                 <p id="demo"></p>
         </div></center>
-
     <script>
         function myFunction() {
             var top = '${drawingTop}';
@@ -72,7 +69,6 @@
             }
         }
     </script>
-
     <form name="sendOrder" action="FrontController" method="POST">
         <input type="hidden" name="command" value="sendOrderFlat">
         <div class="container">
@@ -95,12 +91,10 @@
                     <input type="text" name="email" required="">
                     <h4>Evt. bemærkninger</h4>            
                     <textarea name="comment" form="usrform"></textarea>
-                    
                     <button type="submit" name="request">Send forspørgelse</button>
                 </div>
             </div>
         </div>
     </form>
-
 </body>
 </html>

@@ -21,32 +21,39 @@ public class Registration extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
-        HttpSession session = request.getSession();
-        
-        String email = request.getParameter("email");
-        String password1 = request.getParameter("password1");
-        String password2 = request.getParameter("password2");
-        String firstName = request.getParameter("firstName");
-        String lastName = request.getParameter("lastName");
-        String address = request.getParameter("address");
-        String town = request.getParameter("town");
-        String zipCode = request.getParameter("zipCode");
-        String phone = request.getParameter("phone");
-        
-        Customer customer = new Customer(firstName, lastName, email, address, town, zipCode, phone, town);
-        LogicFacade.createCustomer(customer);
-        
-        int id = customer.getId();
-        
-        if(password1.equals(password2)) {
-            User user;
-            user = LogicFacade.createUser(email, password2, 1);
-            session.setAttribute("user", user);
-        } else {
-            throw new FogException("the two password did not match");
+
+        try {
+            HttpSession session = request.getSession();
+
+            String email = request.getParameter("email");
+            String password1 = request.getParameter("password1");
+            String password2 = request.getParameter("password2");
+            String firstName = request.getParameter("firstName");
+            String lastName = request.getParameter("lastName");
+            String address = request.getParameter("address");
+            String town = request.getParameter("town");
+            String zipCode = request.getParameter("zipCode");
+            String phone = request.getParameter("phone");
+
+            Customer customer = new Customer(firstName, lastName, email, address, town, zipCode, phone, town);
+            LogicFacade.createCustomer(customer);
+
+            int id = customer.getId();
+
+            if (password1.equals(password2)) {
+                User user;
+                user = LogicFacade.createUser(email, password2, 1);
+                session.setAttribute("user", user);
+            } else {
+                throw new FogException("the two password did not match");
+            }
+
+            return "../index";
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return "../index";
         }
-        
-        return "../index";
+
     }
-    
+
 }

@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="./CSS/tableDesign.css">
         <link rel="icon" href=""
     </head>
-    
+
     <body>
         <header>
             <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
@@ -21,10 +21,7 @@
             <a class="active" href="/index.jsp">Home</a>
             <a class="active" href="/FrontController?command=Admin">Admin</a>
         </header>
-
         <%List<Product> allProduct = (List) session.getAttribute("searchList");%>
-
-        
         <div class="containerTable">
             <div class="control-groupTable">
                 <div class="search">

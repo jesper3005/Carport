@@ -15,11 +15,14 @@ import java.util.List;
 public class CalcPoles {
 
     public Product calcAntal(double length, double width, List allProducts) {
-        
-        if(length <= 0 || width <= 0){
-            throw new IllegalArgumentException("Value has to be larger den 0. CalcPoles class");
+
+        if (length <= 0 || width <= 0) {
+            throw new IllegalArgumentException();
         }
-        
+        if (allProducts == null) {
+            throw new NullPointerException();
+        }
+
         List<Product> productList = allProducts;
         Product p = null;
         try {
@@ -49,9 +52,10 @@ public class CalcPoles {
             }
             return p;
 
-        } catch (NullPointerException e) {
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return p = new Product();
         }
-        return p;
     }
 
 }
