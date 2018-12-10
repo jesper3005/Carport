@@ -45,6 +45,7 @@ public class Registration extends Command {
                 session.setAttribute("user", user);
                 return "../index";
             } else {
+                request.setAttribute("error", "Passwords are not matching");
                 throw new FogException("the two password did not match");
             }
 

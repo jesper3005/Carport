@@ -17,11 +17,12 @@
         <!-- -------HEADER------- -->
         <header>
             <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
-            <a class="active" href="/FrontController?command=toRegi">Sign up</a>
-            <a class="active" href="/FrontController?command=toLogin">Login</a>
+            <a class="active" href="/FrontController?command=toNavigator&site=registration">Sign up</a>
+            <a class="active" href="/FrontController?command=toNavigator&site=login">Login</a>
             <a class="active" href="/index.jsp">Home</a>
             <a class="active" href="/FrontController?command=Admin">Admin</a>
         </header>
+<<<<<<< HEAD
         
         
         <span align="center">
@@ -32,13 +33,15 @@
                 }
             %>
         </span>
+=======
+>>>>>>> ed1931b5593fb40f6a7b2904ae5c1036a99f0413
         <!-- -------INFO OF SITE------- -->
-        <% String erro = (String) request.getAttribute("error");%>
-        <% if (erro != null) {%>
+        <% String error = (String) request.getAttribute("error");%>
+        <% if (error != null) {%>
         <div class="container">
             <div class="control-groupText">
                 <h1 class="title"> Error!! </h1>
-                <%out.println(error);%>
+                <% out.print(error); %>
             </div>
         </div>
         <%} else {%>
