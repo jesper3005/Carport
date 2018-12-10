@@ -72,14 +72,20 @@ public class CreateOrderFlatRoof extends Command {
             if (customer != null && email.equals(customer.getEmail())) {
                 carport = new Carport(length, width, 0.0, "FLAT", roofMaterial, totalPriceOfCarport, shed.getShed_id(), customer.getId());
                 carportMapper.addCarport(carport, shed);
+                System.out.println(carport.toString() + "test1");
 
             } else {
                 Customer newCustomer = new Customer(firstName, lastName, email, addresse, town, zipCode, tel, comment);
                 LogicFacade.addCustomer(newCustomer);
                 Customer c = LogicFacade.getCustomerByEmail(email);
+<<<<<<< HEAD
                 //  public Carport(double carport_length, double carport_width, double degrees, String roof, String roofMaterial, double total_price, int shed_id, int customer_id) {
                 carport = new Carport(length, width, 0.0, "FLAT", roofMaterial, totalPriceOfCarport, shed.getShed_id(), c.getId());
+=======
+                carport = new Carport(length, width, 0.0, "FLAT", roofMaterial, 0.0, shed.getShed_id(), c.getId());
+>>>>>>> 1d1c24915ef0bfa6cf05543ba9e951cffd897caa
                 carportMapper.addCarport(carport, shed);
+                System.out.println(carport.toString() + "test2");
 
             }
             return "orderComplete";

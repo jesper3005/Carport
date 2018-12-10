@@ -74,7 +74,11 @@ public class CreateOrderPointedRoof extends Command {
                 Customer newCustomer = new Customer(firstName, lastName, email, addresse, town, zipCode, tel, comment);
                 LogicFacade.addCustomer(newCustomer);
                 Customer c = LogicFacade.getCustomerByEmail(email);
+<<<<<<< HEAD
                 carport = new Carport(length, width, degree, "PEAK", roofMaterial, totalPriceOfCarport, shed.getShed_id(), c.getId());
+=======
+                carport = new Carport(length, width, degree, "PEAK", roofMaterial, 0.0, shed.getShed_id(), c.getId());
+>>>>>>> 1d1c24915ef0bfa6cf05543ba9e951cffd897caa
                 LogicFacade.addCarport(carport, shed);
 
             }
