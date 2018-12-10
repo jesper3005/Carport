@@ -30,6 +30,15 @@
         </header>
 
         <!-- ------------------SECTION 2.0 WELCOME/INFO TEXT---------------------------------->
+        <% String error = (String) request.getAttribute("error");%>
+        <% if (error != null) {%>
+        <div class="container">
+            <div class="control-groupText">
+                <h1 class="title"> Error!! </h1>
+                <% out.print(error); %>
+            </div>
+        </div>
+        <%} else {%>
         <div class="container">
             <div class="control-groupText">
                 <h1 class="title">Velkommen til Quick-byg carport med fladt tag !</h1>
@@ -44,6 +53,7 @@
                 Ved bestilling medfølger standardbyggevejledning.
             </div>
         </div>
+        <%}%>
         <form name="FlatRoof" action="FrontController" method="POST">
             <input type="hidden" name="command" value="orderRequestFlat">
             <div class="container">
@@ -125,6 +135,7 @@
                 <br>
                 <br>
                 <div class="control-group">
+                    <input type="hidden" name="currentSite" value="carportFlatRoof">
                     <button type="submit" name="request">Byg din carport!</button>
                 </div>
         </form>    

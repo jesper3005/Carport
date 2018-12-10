@@ -135,12 +135,8 @@
                         <input type="hidden" name="command" value="updateOrderStatus">
                         <button type="submit" name="updateStatus">Opdater order status</button>
                 </form>
-
-
-
             </div>
         </div>
-
     </div>
     <%}%>
 

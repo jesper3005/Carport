@@ -39,6 +39,14 @@ public class OrderRequestPointedRoof extends Command {
             String redskabsskur = request.getParameter("redskabsskur");
             // value from roof selector
             String roofMaterial = request.getParameter("Tag");
+            
+            if(shedLength > length ){
+                request.setAttribute("error", "Skur længde skal være mindre den selve carporten.");
+                throw new FogException("Skur længde skal være mindre den selve carporten.");
+            }if(shedWidth > width){
+                request.setAttribute("error", "Skur bredde skal være mindre den selve carporten.");
+                throw new FogException("Skur bredde skal være mindre den selve carporten.");
+            }
 
             if (redskabsskur != null) {
                 stykliste = LogicFacade.CarportCalculaterFlatRoofIncludingShed(length, width, shedLength, shedWidth, roofMaterial);
@@ -83,7 +91,7 @@ public class OrderRequestPointedRoof extends Command {
             return "orderRequestPointedRoof";
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return "orderRequestPointedRoof";
+            return "carportPointedRoof";
         }
 
     }

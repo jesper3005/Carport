@@ -41,6 +41,14 @@ public class OrderRequestFlatRoof extends Command {
             String roofMaterial = request.getParameter("Tag");
             //Checks if roof is pointed for SVG's sake
 
+            if(shedLength > length ){
+                request.setAttribute("error", "Skur længde skal være mindre den selve carporten.");
+                throw new FogException("Skur længde skal være mindre den selve carporten.");
+            }if(shedWidth > width){
+                request.setAttribute("error", "Skur bredde skal være mindre den selve carporten.");
+                throw new FogException("Skur bredde skal være mindre den selve carporten.");
+            }
+            
             if (redskabsskur != null) {
                 stykliste = LogicFacade.CarportCalculaterFlatRoofIncludingShed(length, width, shedLength, shedWidth, roofMaterial);
             } else {
@@ -81,7 +89,7 @@ public class OrderRequestFlatRoof extends Command {
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return "orderRequestFlatRoof";
+            return "carportFlatRoof";
         }
 
     }
