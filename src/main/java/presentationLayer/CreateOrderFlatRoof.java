@@ -5,7 +5,6 @@
  */
 package presentationLayer;
 
-import dbAccess.CarportMapper;
 import exceptions.FogException;
 import functionLayer.Carport;
 import functionLayer.Customer;
@@ -27,7 +26,6 @@ public class CreateOrderFlatRoof extends Command {
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
 
         HttpSession session = request.getSession();
-        CarportMapper carportMapper = new CarportMapper();
         List<Product> stykliste = null;
         Carport carport;
         Customer customer;
@@ -42,21 +40,6 @@ public class CreateOrderFlatRoof extends Command {
             String roofMaterial = (String) session.getAttribute("roofMaterial");
             String redskabsskur = (String) session.getAttribute("redskabsskur");
             
-
-            if (redskabsskur != null) {
-                shedWidth = (double) session.getAttribute("skurbredde");
-                shedLength = (double) session.getAttribute("skurlaengde");
-                stykliste = LogicFacade.CarportCalculaterFlatRoofIncludingShed(length, width, shedLength, shedWidth, roofMaterial);
-            } else {
-                stykliste = LogicFacade.CarportCalculaterFlatRoof(length, width, roofMaterial);
-            }
-            Shed shed = new Shed(shedLength, shedWidth);
-
-            for (Product product : stykliste) {
-                System.out.println(product);
-            }
-
-            double totalPriceOfCarport = LogicFacade.totalPriceOfCarport(stykliste);
             //Customer information
             String firstName = request.getParameter("fornavn");
             String lastName = request.getParameter("efternavn");
@@ -67,25 +50,30 @@ public class CreateOrderFlatRoof extends Command {
             String email = request.getParameter("email");
             String comment = request.getParameter("comment");
 
+            if (redskabsskur != null) {
+                shedWidth = (double) session.getAttribute("skurbredde");
+                shedLength = (double) session.getAttribute("skurlaengde");
+                stykliste = LogicFacade.CarportCalculaterFlatRoofIncludingShed(length, width, shedLength, shedWidth, roofMaterial);
+            } else {
+                stykliste = LogicFacade.CarportCalculaterFlatRoof(length, width, roofMaterial);
+            }
+            Shed shed = new Shed(shedLength, shedWidth);
+
+            double totalPriceOfCarport = LogicFacade.totalPriceOfCarport(stykliste);
+
             customer = LogicFacade.getCustomerByEmail(email);
 
             if (customer != null && email.equals(customer.getEmail())) {
                 carport = new Carport(length, width, 0.0, "FLAT", roofMaterial, totalPriceOfCarport, shed.getShed_id(), customer.getId());
-                carportMapper.addCarport(carport, shed);
-                System.out.println(carport.toString() + "test1");
+                LogicFacade.addCarport(carport, shed);
 
             } else {
                 Customer newCustomer = new Customer(firstName, lastName, email, addresse, town, zipCode, tel, comment);
                 LogicFacade.addCustomer(newCustomer);
                 Customer c = LogicFacade.getCustomerByEmail(email);
-<<<<<<< HEAD
                 //  public Carport(double carport_length, double carport_width, double degrees, String roof, String roofMaterial, double total_price, int shed_id, int customer_id) {
                 carport = new Carport(length, width, 0.0, "FLAT", roofMaterial, totalPriceOfCarport, shed.getShed_id(), c.getId());
-=======
-                carport = new Carport(length, width, 0.0, "FLAT", roofMaterial, 0.0, shed.getShed_id(), c.getId());
->>>>>>> 1d1c24915ef0bfa6cf05543ba9e951cffd897caa
-                carportMapper.addCarport(carport, shed);
-                System.out.println(carport.toString() + "test2");
+                LogicFacade.addCarport(carport, shed);
 
             }
             return "orderComplete";
