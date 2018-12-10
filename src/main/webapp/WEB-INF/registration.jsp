@@ -22,8 +22,24 @@
             <a class="active" href="/index.jsp">Home</a>
             <a class="active" href="/FrontController?command=Admin">Admin</a>
         </header>
-
+        <span align="center">
+            <% String error = (String) request.getAttribute("error");
+                if (error != null) {
+                    out.println("Error!!");
+                    out.println(error);
+                }
+            %>
+        </span>
         <!-- -------INFO OF SITE------- -->
+        <% String erro = (String) request.getAttribute("error");%>
+        <% if (erro != null) {%>
+        <div class="container">
+            <div class="control-groupText">
+                <h1 class="title"> Error!! </h1>
+                <%out.println(error);%>
+            </div>
+        </div>
+        <%} else {%>
         <div class="container">
             <div class="control-groupText">
                 <h1 class="title">Registre dig som bruger i vores system !</h1>
@@ -34,12 +50,12 @@
                 annulere dem, samt se status på ordren.
                 <br>
                 <br>
-                Udfyld de nødvendige felter og tryk lav bruger.     
+                Udfyld de nødvendige felter og tryk opret bruger.     
             </div>
         </div>
+        <%}%>
 
         <!-- -------CREATE USER------- -->
-
         <form name="sendOrder" action="FrontController" method="POST">
             <div class="container">
                 <div class="control-groupForm">
@@ -62,8 +78,10 @@
                         <h4>Post nummer</h4>
                         <input type="text" name="zipCode" placeholder="Postnummer..">
                         <h4>Telefon nummer</h4>
-                        <input type="number" name="phone" placeholder="Telefon nummer..">           
+                        <input type="number" name="phone" placeholder="Telefon nummer.."> 
+                        <input type="hidden" name="currentSite" value="registration">
                         <input type="hidden" name="command" value="registrate">
+                        </br>
                         <button type="submit" name="createUser">Opret bruger</button>
                     </div>
                 </div>
