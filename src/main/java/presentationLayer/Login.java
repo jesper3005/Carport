@@ -28,6 +28,7 @@ public class Login extends Command {
         try {
             email = request.getParameter("email");
             password = request.getParameter("password");
+            password = LogicFacade.createHashedPassword(password);
             User user = LogicFacade.login(email, password);
             session.setAttribute("user", user);
             session.setAttribute("role", user.getRole());

@@ -12,6 +12,8 @@ import dbAccess.ProductMapper;
 import dbAccess.UserMapper;
 import exceptions.FogException;
 import functionLayer.calculation.CarportPointedRoofListe;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
 import java.util.List;
 
@@ -25,6 +27,30 @@ public class LogicFacade {
     public static User login(String email, String password) throws FogException {
         UserMapper um = new UserMapper();
         return um.getUser(email, password);
+    }
+    
+    public static String createHashedPassword(String password) {
+        String passwordToHash = password;
+        String generatedPassword = null;
+        try {
+            // Create MessageDigest instance for MD5
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            //Add password bytes to digest
+            md.update(passwordToHash.getBytes());
+            //Get the hash's bytes
+            byte[] bytes = md.digest();
+            //This bytes[] has bytes in decimal format;
+            //Convert it to hexadecimal format
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < bytes.length; i++) {
+                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            }
+            //Get complete hashed password in hex format
+            generatedPassword = sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return generatedPassword;
     }
 
     public static User createUser(String email, String password, int customerID) {

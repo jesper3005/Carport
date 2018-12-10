@@ -36,6 +36,7 @@ public class Registration extends Command {
             String phone = request.getParameter("phone");
 
             if (password1.equals(password2)) {
+                password2 = LogicFacade.createHashedPassword(password2);
                 Customer customer = new Customer(firstName, lastName, email, address, town, zipCode, phone, town);
                 int id = LogicFacade.createCustomer(customer);
                 System.out.println(id + " customer_id");
