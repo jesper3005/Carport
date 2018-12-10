@@ -14,6 +14,7 @@ import exceptions.FogException;
 import functionLayer.calculation.CarportPointedRoofListe;
 import java.text.DecimalFormat;
 import java.util.List;
+import java.util.Locale;
 
 /**
  *
@@ -146,6 +147,7 @@ public class LogicFacade {
         return Double.parseDouble(df2.format(value));
 
     }
+
 
     public static List<Product> getAllProductsFromDatabase() {
         ProductMapper pm = new ProductMapper();

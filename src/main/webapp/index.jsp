@@ -19,25 +19,29 @@
         <% User user = (User) session.getAttribute("user"); %>
         
         <%if(user == null) { %>
-        <header>
-            <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
-            <a class="active" href="/FrontController?command=toNavigator&site=registration">Sign up</a>
-            <a class="active" href="/FrontController?command=toNavigator&site=login">Login</a>
-            <a class="active" href="/index.jsp">Home</a>
-            <a class="active" href="/FrontController?command=Admin">Admin</a>
-            <a class="active" href="/FrontController?command=manageOrders">Se odre</a>
-            <a class="active" href="/FrontController?command=manageOrders">Se Ordre</a>
-            <!-- <input type='submit' value="Log Out">-->
-        </header>
+        
+            <header>
+                <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
+                <a class="active" href="/FrontController?command=toNavigator&site=registration">Sign up</a>
+                <a class="active" href="/FrontController?command=toNavigator&site=login">Login</a>
+                <a class="active" href="/index.jsp">Home</a>
+                <a class="active" href="/FrontController?command=Admin">Admin</a>
+                <a class="active" href="/FrontController?command=manageOrders">Se odre</a>
+                <!-- <input type='submit' value="Log Out">-->
+            </header>
+        
         <%} else {%> 
-        <header>
-            <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
-            <a class="active" href="/FrontController?command=toLogin">Profile</a>
-            <a class="active" href="/index.jsp">Home</a>
-            <a class="active" href="/FrontController?command=Admin">Admin</a>
-            <!-- <input type='submit' value="Log Out">-->
-        </header>
+        
+            <header>
+                <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
+                <a class="active" href="/FrontController?command=toLogin">Profile</a>
+                <a class="active" href="/index.jsp">Home</a>
+                <a class="active" href="/FrontController?command=Admin">Admin</a>
+                <!-- <input type='submit' value="Log Out">-->
+            </header>
         <%}%>
+        
+        
         <div class="containerTextIndex">
             <div class="control-groupTextIndex">
                 <h1 class="title">Velkommen til Fog Quick-byg carport !</h1>

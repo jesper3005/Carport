@@ -18,7 +18,7 @@
         <link rel="icon" href=""
     </head>
     <body>
-
+        <% double totalPriceOfCarport = (Double) session.getAttribute("totalPrice");%>
         <header>
             <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
             <a class="active" href="/FrontController?command=toRegi">Sign up</a>
@@ -47,9 +47,11 @@
                 samt en stykliste af produkter som der skal bruges.
                 <br>
                 <br>
-                
+                <%= totalPriceOfCarport %>
             </div>
         </div>
+            
+            
         <div class="drawings">
             <center><select name="test" id="mySelect" onchange="myFunction()">
                     <option>Vælg en skitse du vil se</option>
