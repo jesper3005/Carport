@@ -35,14 +35,14 @@ public class Registration extends Command {
             String zipCode = request.getParameter("zipCode");
             String phone = request.getParameter("phone");
 
-            Customer customer = new Customer(firstName, lastName, email, address, town, zipCode, phone, town);
-            LogicFacade.createCustomer(customer);
-
-            int id = customer.getId();
+            
 
             if (password1.equals(password2)) {
+                Customer customer = new Customer(firstName, lastName, email, address, town, zipCode, phone, town);
+                int id = LogicFacade.createCustomer(customer);
+                System.out.println(id + " customer_id");
                 User user;
-                user = LogicFacade.createUser(email, password2, 1);
+                user = LogicFacade.createUser(email, password2, id);
                 session.setAttribute("user", user);
             } else {
                 throw new FogException("the two password did not match");

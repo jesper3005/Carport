@@ -28,7 +28,7 @@ public class LogicFacade {
     }
 
     public static User createUser(String email, String password, int customerID) {
-        User user = new User(email, password, "customer", customerID);
+        User user = new User(password, email, "customer", customerID);
         UserMapper um = new UserMapper();
         um.createUser(user);
         return user;
@@ -47,10 +47,10 @@ public class LogicFacade {
 
     }
 
-    public static Customer createCustomer(Customer customer) {
+    public static int createCustomer(Customer customer) {
         CustomerMapper cm = new CustomerMapper();
-        cm.addCustomer(customer);
-        return customer;
+        int id = cm.addCustomerAndUser(customer);
+        return id;
     }
 
     public static void addCarport(Carport carport, Shed shed) {

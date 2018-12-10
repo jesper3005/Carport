@@ -62,7 +62,7 @@
                         <h4>Post nummer</h4>
                         <input type="text" name="zipCode" placeholder="Postnummer..">
                         <h4>Telefon nummer</h4>
-                        <input type="text" name="phone" placeholder="Telefon nummer..">           
+                        <input type="number" name="phone" placeholder="Telefon nummer..">           
                         <input type="hidden" name="command" value="registrate">
                         <button type="submit" name="createUser">Opret bruger</button>
                     </div>

@@ -46,6 +46,7 @@ abstract class Command {
         
         //Login
         commands.put(("login"), new Login());
+        commands.put(("registrate"), new Registration());
 
     }
 

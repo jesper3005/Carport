@@ -6,7 +6,6 @@
 package dbAccess;
 
 import functionLayer.Customer;
-import functionLayer.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,7 +20,7 @@ public class CustomerMapper {
 
     private final String ALL_FROM_CUSTOMER_BY_EMAIL = "SELECT `*` FROM `customer` WHERE `email`= ?;";
     private final String ADD_CUSTOMER = "INSERT INTO `customer`(`first_name`,`last_name`,`email`,`street_address`,`town`,`zip_code`,`telephone_number`,`comments`)VALUES(?,?,?,?,?,?,?,?);";
-    private final String CREATE_USER = "INSERT INTO `user`(password, email, role, customer_id) VALUES (?, ?, ?, ?);";
+    private final String ADD_CUSTOMER_AND_USER = "INSERT INTO `customer`(`first_name`,`last_name`,`email`,`street_address`,`town`,`zip_code`,`telephone_number`)VALUES(?,?,?,?,?,?,?);";
 
     public Customer getCustomerByEmail(String email) {
         try {
@@ -54,7 +53,6 @@ public class CustomerMapper {
     }
 
     public Customer addCustomer(Customer customer) {
-        int id = 0;
         try {
             Connection c = Connector.connection();
             String query = ADD_CUSTOMER;
@@ -70,10 +68,6 @@ public class CustomerMapper {
             pstmt.setString(8, customer.getComments());
 
             pstmt.executeUpdate();
-            ResultSet ids = pstmt.getGeneratedKeys();
-            ids.next();
-            id = ids.getInt(1);
-            customer.setId(id);
             pstmt.close();
             return customer;
 
@@ -82,27 +76,36 @@ public class CustomerMapper {
         }
         return null;
     }
-    
-    
 
-    public User createUser(User user, Customer customer) {
+
+    public int addCustomerAndUser(Customer customer) {
+        int id = 0;
         try {
-            Connection con = Connector.connection();
-            String query = CREATE_USER;
-            Customer c = addCustomer(customer);
-            PreparedStatement pstmt = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            pstmt.setString(1, user.getPassword());
-            pstmt.setString(2, user.getEmail());
-            pstmt.setString(3, user.getRole());
-            pstmt.setInt(4, c.getId());
+            Connection c = Connector.connection();
+            String query = ADD_CUSTOMER_AND_USER;
+            PreparedStatement pstmt = c.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            
+            pstmt.setString(1, customer.getFirstName());
+            pstmt.setString(2, customer.getLastName());
+            pstmt.setString(3, customer.getEmail());
+            pstmt.setString(4, customer.getAddress());
+            pstmt.setString(5, customer.getTown());
+            pstmt.setString(6, customer.getZipCode());
+            pstmt.setString(7, customer.getPhone());
+
             pstmt.executeUpdate();
+            ResultSet ids = pstmt.getGeneratedKeys();
+            ids.next();
+            id = ids.getInt(1);
             pstmt.close();
+            return id;
 
         } catch (SQLException | ClassNotFoundException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Error");
+            System.out.println(ex.getMessage() + " addCustomer");
         }
-        return user;
+        return 0;
     }
+
+    
 
 }
