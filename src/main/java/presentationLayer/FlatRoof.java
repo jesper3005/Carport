@@ -24,8 +24,8 @@ public class FlatRoof extends Command {
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
 
         try {
-            List<Product> orderByLengthRemList = LogicFacade.remOrderedByLength();
             HttpSession session = request.getSession();
+            List<Product> orderByLengthRemList = LogicFacade.remOrderedByLength();
             session.setAttribute("orderByLengthRemList", orderByLengthRemList);
 
             return "carportFlatRoof";

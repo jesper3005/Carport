@@ -5,6 +5,7 @@
  */
 package functionLayer.calculation;
 
+import functionLayer.LogicFacade;
 import functionLayer.Product;
 import java.util.List;
 
@@ -13,7 +14,8 @@ import java.util.List;
  * @author oerte
  */
 public class CalcScrew {
-
+    
+    
     public Product calcAntal_3X25MM(double qyt, List allProducts) {
 
         if (qyt <= 0) {

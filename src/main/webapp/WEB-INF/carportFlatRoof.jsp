@@ -44,7 +44,6 @@
                 Ved bestilling medfølger standardbyggevejledning.
             </div>
         </div>
-
         <form name="FlatRoof" action="FrontController" method="POST">
             <input type="hidden" name="command" value="orderRequestFlat">
             <div class="container">
@@ -58,7 +57,6 @@
                             out.print(<option value="<%=listOfRem.getLength()%>"><%=listOfRem.getLength()%> cm</option>);
                             <%}
                                 }%>
-                                    
                         </select>
                         <div class="select__arrow"></div>
                     </div>
@@ -94,15 +92,11 @@
                         </select>
                         <div class="select__arrowTag"></div>
                     </div>
-
-
-                </div>
-
                 </div>
                 <br>
                 <div class="control-group">
                     <h1>Vælg mål på skur</h1>
-                    <input type = "checkbox" name = "redskabsskur"  /> Jeg ønsker redskabskur
+                    <input type = "checkbox" name ="redskabsskur"  /> Jeg ønsker redskabskur
                     <h4>Redskabsrum bredde</h4>
                     <div class="select">
                         <select name="skurbredde">
@@ -111,11 +105,9 @@
                             out.print(<option  value="<%=listOfRem.getLength()%>" ><%=listOfRem.getLength()%> cm</option>);
                             <%}
                                 }%>
-
                         </select>
                         <div class="select__arrowSkur"></div>
                         <br>
-
                         </select>
                         <div class="select__arrowSkur"></div>
                         <br>
@@ -130,17 +122,13 @@
                         <div class="select__arrowSkur"></div>
                     </div>
                 </div>
-
                 <br>
-
                 <br>
                 <div class="control-group">
                     <button type="submit" name="request">Byg din carport!</button>
                 </div>
         </form>    
-
     </div>
-
-    </div>
+</div>
 </body>
 </html>

@@ -18,6 +18,8 @@
         <link rel="icon" href=""
     </head>
     <body>
+        <% double totalPriceOfCarport = (Double) session.getAttribute("totalPrice");%>
+
 
         <header>
             <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
@@ -47,7 +49,7 @@
                 samt en stykliste af produkter som der skal bruges.
                 <br>
                 <br>
-                
+                <%="Prisforslag: "+totalPriceOfCarport+" DKK" %>
             </div>
         </div>
         <div class="drawings">
@@ -77,7 +79,7 @@
             <div class="control-groupForm">
                 <div class="selectForm">
                     <h1 class="title">Udfyld formularen og send en forspørgelse</h1>
-                    <h4>Foravn</h4>
+                    <h4>Fornavn</h4>
                     <input type="text" name="fornavn" placeholder="fornavn" required="" >
                     <h4>Efternavn</h4>
                     <input type="text" name="efternavn" placeholder="efternavn" required="">

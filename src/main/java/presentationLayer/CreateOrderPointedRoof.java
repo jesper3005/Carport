@@ -25,29 +25,21 @@ public class CreateOrderPointedRoof extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
 
+        HttpSession session = request.getSession();
+        List<Product> stykliste = null;
+        Carport carport;
+        Customer customer;
+
         try {
-            HttpSession session = request.getSession();
-            List<Product> stykliste = null;
-            Carport carport;
-            Customer customer;
-            Shed shed = null;
             //carport and shed measurments
+            double shedWidth = 0;
+            double shedLength = 0;
             double width = (double) session.getAttribute("bredde");
             double length = (double) session.getAttribute("laengde");
-            double shedWidth = (double) session.getAttribute("skurbredde");
-            double shedLength = (double) session.getAttribute("skurlaengde");
             double degree = (double) session.getAttribute("degree");
             String roofMaterial = (String) session.getAttribute("roofMaterial");
             String redskabsskur = (String) session.getAttribute("redskabsskur");
 
-            if (redskabsskur == null) {
-                stykliste = LogicFacade.CarportCalculatorPointedRoof(length, width, degree, roofMaterial);
-            } else {
-                shed = new Shed(shedLength, shedWidth);
-                stykliste = LogicFacade.CarportCalculatorPointedRoofIncludingShed(length, width, degree, shedLength, shedWidth, roofMaterial);
-            }
-
-            //double totalPriceOfCarport = LogicFacade.totalPriceOfCarport(stykliste);
             //Customer information
             String firstName = request.getParameter("fornavn");
             String lastName = request.getParameter("efternavn");
@@ -58,19 +50,31 @@ public class CreateOrderPointedRoof extends Command {
             String email = request.getParameter("email");
             String comment = request.getParameter("comment");
 
+            if (redskabsskur != null) {
+                shedWidth = (double) session.getAttribute("skurbredde");
+                shedLength = (double) session.getAttribute("skurlaengde");
+                stykliste = LogicFacade.CarportCalculatorPointedRoofIncludingShed(length, width, degree, shedLength, shedWidth, roofMaterial);
+            } else {
+                stykliste = LogicFacade.CarportCalculatorPointedRoof(length, width, degree, roofMaterial);
+            }
+            Shed shed = new Shed(shedLength, shedWidth);
+            for (Product product : stykliste) {
+                System.out.println(product);
+            }
+
+            double totalPriceOfCarport = 0.0;//LogicFacade.totalPriceOfCarport(stykliste);
+
             customer = LogicFacade.getCustomerByEmail(email);
 
             if (customer != null && email.equals(customer.getEmail())) {
-                carport = new Carport(length, width, degree, "PEAK", roofMaterial, 0.0, shed.getShed_id(), customer.getId());
+                carport = new Carport(length, width, degree, "PEAK", roofMaterial, totalPriceOfCarport, shed.getShed_id(), customer.getId());
                 LogicFacade.addCarport(carport, shed);
 
             } else {
                 Customer newCustomer = new Customer(firstName, lastName, email, addresse, town, zipCode, tel, comment);
                 LogicFacade.addCustomer(newCustomer);
                 Customer c = LogicFacade.getCustomerByEmail(email);
-                System.out.println(shed.getShed_id() + " shed id " + " else");
-                //  public Carport(double carport_length, double carport_width, double degrees, String roof, String roofMaterial, double total_price, int shed_id, int customer_id) {
-                carport = new Carport(length, width, degree, "PEAK", roofMaterial, 0.0, shed.getShed_id(), c.getId());
+                carport = new Carport(length, width, degree, "PEAK", roofMaterial, totalPriceOfCarport, shed.getShed_id(), c.getId());
                 LogicFacade.addCarport(carport, shed);
 
             }

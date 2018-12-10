@@ -61,7 +61,7 @@ public class Product {
         this.category = category;
         this.price = price;
         this.qty = qty;
-        this.priceLine = priceLine;
+        this.priceLine = price * qty;
         this.length = length;
         this.width = width;
         this.height = height;
@@ -74,7 +74,7 @@ public class Product {
     }
 
     public double getPriceLine() {
-        return LogicFacade.roundDoubleToTwoDecimalPoints(this.priceLine = this.price * this.qty);
+        return LogicFacade.roundDoubleToTwoDecimalPoints(this.priceLine);
         //return this.priceLine;
     }
 

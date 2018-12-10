@@ -5,7 +5,7 @@
  */
 package functionLayer.calculation;
 
-import dbAccess.ProductMapper;
+import functionLayer.LogicFacade;
 import functionLayer.calculation.CalcPoles;
 import functionLayer.calculation.CalcStern;
 import functionLayer.calculation.CalcRoof;
@@ -21,8 +21,7 @@ import java.util.List;
  */
 public class CarportFlatProductListe {
 
-    private ProductMapper pm = new ProductMapper();
-    private List<Product> list = pm.allProducts();
+    private List<Product> list = LogicFacade.allProductsFromDatabase();
     private CalcBattens battens = new CalcBattens();
     private CalcBeam beam = new CalcBeam();//rem
     private CalcRoof roof = new CalcRoof();
@@ -58,12 +57,14 @@ public class CarportFlatProductListe {
             pSternOver = stern.calcAntalOverbrædt(length, width, list);
             pSternMellem = stern.calcAntalMellembrædt(length, width, list);
             pSternUnder = stern.calcAntalUnderbrædt(length, width, list);
-
-            //20 screws per m2 of roof plus 50 ekstra
-            //stykliste.add(screw.calcAntal_3X25MM(roof.calcAntalScrews(), list));
+            System.out.println(roof.getAntalScrews());
+            if (!roofMaterial.equals("Tagpap")) {
+                //20 screws per m2 of roof plus 50 ekstra
+                stykliste.add(screw.calcAntal_3X25MM(roof.getAntalScrews(), list));
+            }
             //4 nails per battens ('36', 'NKT FIRKANT SØM 1,6X25MM VARMFORZINKET', 'søm', '36', '0', '0', '0')
             stykliste.add(nail.calcAntal_25mm_Varmforzinket(pPoles.getQty(), list));
-            //4 screws per stern ('32', 'NKT FRANSK SKRUE 8X120MM VFZ 50 STK/PK', 'skrue', '29.9', '0', '0', '0')
+//            //4 screws per stern ('32', 'NKT FRANSK SKRUE 8X120MM VFZ 50 STK/PK', 'skrue', '29.9', '0', '0', '0')
             double antalScrewsStern = Math.ceil((pSternOver.getQty() + pSternMellem.getQty() + pSternUnder.getQty()) / 50);
             stykliste.add(screw.calcAntal_8X120MM_50STK_Pakke((antalScrewsStern), list));
             /*
@@ -93,8 +94,6 @@ public class CarportFlatProductListe {
 
     public List<Product> carportCalculaterFlatRoofIncludingShed(double length, double width, double shedLength, double shedWidth, String roofMaterial) {
 
-        
-
         // List included everything needed to build the requestet carport
         List<Product> stykliste = new ArrayList<>();
 
@@ -109,8 +108,10 @@ public class CarportFlatProductListe {
             pSternMellem = stern.calcAntalMellembrædt(length, width, list);
             pSternUnder = stern.calcAntalUnderbrædt(length, width, list);
 
-            //20 screws per m2 of roof plus 50 ekstra
-            //stykliste.add(screw.calcAntal_3X25MM(roof.calcAntalScrews(), list));
+            if (!roofMaterial.equals("Tagpap")) {
+                //20 screws per m2 of roof plus 50 ekstra
+                stykliste.add(screw.calcAntal_3X25MM(roof.getAntalScrews(), list));
+            }
             //4 nails per battens ('36', 'NKT FIRKANT SØM 1,6X25MM VARMFORZINKET', 'søm', '36', '0', '0', '0')
             stykliste.add(nail.calcAntal_25mm_Varmforzinket(pPoles.getQty(), list));
             //4 screws per stern ('32', 'NKT FRANSK SKRUE 8X120MM VFZ 50 STK/PK', 'skrue', '29.9', '0', '0', '0')

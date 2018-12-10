@@ -53,6 +53,30 @@ public class CarportMapper {
         }
     }
 
+    public Shed addShed(Shed shed) {
+        int id = 0;
+        try {
+            Connection c = Connector.connection();
+            String query = ADD_SHED;
+            PreparedStatement pstmt = c.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+
+            pstmt.setDouble(1, shed.getShed_length());
+            pstmt.setDouble(2, shed.getShed_width());
+
+            pstmt.executeUpdate();
+            ResultSet ids = pstmt.getGeneratedKeys();
+            ids.next();
+            id = ids.getInt(1);
+            shed.setShed_id(id);
+            pstmt.close();
+            return shed;
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage() + " addShed in carportMapper");
+        }
+        return null;
+    }
+
     public Shed getShedById(int shed_id) {
         try {
             Connection c = Connector.connection();
@@ -69,32 +93,6 @@ public class CarportMapper {
             }
         } catch (SQLException | ClassNotFoundException ex) {
             ex.getMessage();
-        }
-        return null;
-    }
-
-    public Shed addShed(Shed shed) {
-        int id = 0;
-        System.out.println(" addShed in carportMapper");
-        try {
-            Connection c = Connector.connection();
-            String query = ADD_SHED;
-            PreparedStatement pstmt = c.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-
-            pstmt.setDouble(1, shed.getShed_length());
-            pstmt.setDouble(2, shed.getShed_width());
-
-            pstmt.executeUpdate();
-            ResultSet ids = pstmt.getGeneratedKeys();
-            ids.next();
-            id = ids.getInt(1);
-            shed.setShed_id(id);
-            System.out.println(id + "add shed id");
-            pstmt.close();
-            return shed;
-
-        } catch (SQLException | ClassNotFoundException ex) {
-            System.out.println(ex.getMessage() + " addShed in carportMapper");
         }
         return null;
     }

@@ -53,10 +53,9 @@ public class LogicFacade {
         return customer;
     }
 
-    public static Carport addCarport(Carport carport, Shed shed) {
+    public static void addCarport(Carport carport, Shed shed) {
         CarportMapper cm = new CarportMapper();
         cm.addCarport(carport, shed);
-        return carport;
     }
 
     public static Shed addShed(Shed shed) {
@@ -119,30 +118,30 @@ public class LogicFacade {
     // ------- CARPORT CALCULATIONS LOGICFACADE ---------
     public static List<Product> CarportCalculaterFlatRoof(double length, double width, String roofMaterial) {
         CarportFlatProductListe cfp = new CarportFlatProductListe();
-        List list = cfp.carportCalculaterFlatRoof(length, width, roofMaterial);
+        List<Product>  list = cfp.carportCalculaterFlatRoof(length, width, roofMaterial);
         return list;
     }
 
     public static List<Product> CarportCalculaterFlatRoofIncludingShed(double length, double width, double shedLength, double shedWidth, String roofMaterial) {
         CarportFlatProductListe cfp = new CarportFlatProductListe();
-        List list = cfp.carportCalculaterFlatRoofIncludingShed(length, width, shedLength, shedWidth, roofMaterial);
+        List<Product>  list = cfp.carportCalculaterFlatRoofIncludingShed(length, width, shedLength, shedWidth, roofMaterial);
         return list;
     }
 
     public static List<Product> CarportCalculatorPointedRoof(double length, double width, double degree, String roofMaterial) {
         CarportPointedRoofListe cfp = new CarportPointedRoofListe();
-        List list = cfp.carportCalculaterPointedRoof(length, width, degree, roofMaterial);
+        List<Product> list = cfp.carportCalculaterPointedRoof(length, width, degree, roofMaterial);
         return list;
     }
 
     public static List<Product> CarportCalculatorPointedRoofIncludingShed(double length, double width, double degree, double shedLength, double shedWidth, String roofMaterial) {
         CarportPointedRoofListe cfp = new CarportPointedRoofListe();
-        List list = cfp.carportCalculaterPointedRoofIncludingShed(length, width, degree, length, width, roofMaterial);
+        List<Product> list = cfp.carportCalculaterPointedRoofIncludingShed(length, width, degree, length, width, roofMaterial);
         return list;
     }
 
     public static double roundDoubleToTwoDecimalPoints(double value) {
-        DecimalFormat df2 = new DecimalFormat(",##");
+        DecimalFormat df2 = new DecimalFormat(".##");
         return Double.parseDouble(df2.format(value));
 
     }

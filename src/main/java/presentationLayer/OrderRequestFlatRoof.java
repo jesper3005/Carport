@@ -28,10 +28,7 @@ public class OrderRequestFlatRoof extends Command {
         try {
             HttpSession session = request.getSession();
 
-            List<Product> stykliste = null;
-            Shed shed = null;
-            //String degreeStr = request.getParameter("degree");
-            //double degree = Double.parseDouble(degreeStr.substring(0, 2));
+            List<Product> stykliste;
             //length and width from shed from carportFlatRoof or carportPointedRoof jsp page.
             boolean shedCheck;
             double shedLength = Double.parseDouble(request.getParameter("skurlaengde"));
@@ -43,37 +40,31 @@ public class OrderRequestFlatRoof extends Command {
             // value from roof selector
             String roofMaterial = request.getParameter("Tag");
             //Checks if roof is pointed for SVG's sake
-            boolean pointedRoof = false;
 
-            if (redskabsskur == null) {
-                shedCheck = false;
-            } else {
-                shedCheck = true;
-            }
-            
-            
-            if (redskabsskur == null) {
-                stykliste = LogicFacade.CarportCalculaterFlatRoof(length, width, roofMaterial);
-            } else {
-                shed = new Shed(shedLength, shedWidth);
+            if (redskabsskur != null) {
                 stykliste = LogicFacade.CarportCalculaterFlatRoofIncludingShed(length, width, shedLength, shedWidth, roofMaterial);
+            } else {
+                stykliste = LogicFacade.CarportCalculaterFlatRoof(length, width, roofMaterial);
             }
-            
+
             double totalPriceOfCarport = LogicFacade.totalPriceOfCarport(stykliste);
-            session.setAttribute("totalPrice", totalPriceOfCarport);
-            
-            
 
             //Set styklisten, bredde, længde and totalPriceOfCarport in session
+            session.setAttribute("totalPrice", totalPriceOfCarport);
             session.setAttribute("roofMaterial", roofMaterial);
             session.setAttribute("redskabsskur", redskabsskur);
             session.setAttribute("bredde", width);
             session.setAttribute("laengde", length);
             session.setAttribute("skurbredde", shedWidth);
             session.setAttribute("skurlaengde", shedLength);
-            //session.setAttribute("degree", degree);
 
             //------------SVG-------------
+            if (redskabsskur == null) {
+                shedCheck = false;
+            } else {
+                shedCheck = true;
+            }
+
             //Rules (Tempoarily)
             double height = 230;
 

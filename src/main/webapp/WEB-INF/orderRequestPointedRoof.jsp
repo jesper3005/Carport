@@ -18,6 +18,9 @@
         <link rel="icon" href=""
     </head>
     <body>
+        <% double totalPriceOfCarport = (Double) session.getAttribute("totalPrice");%>
+
+
         <header>
             <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
             <a class="active" href="/FrontController?command=toRegi">Sign up</a>
@@ -46,6 +49,7 @@
                 samt en stykliste af produkter som der skal bruges.
                 <br>
                 <br>
+                <%="Prisforslag: "+totalPriceOfCarport+" DKK" %>
             </div>
         </div>
         <div class="drawings">
@@ -57,7 +61,6 @@
                 </select>
                 <p id="demo"></p>
         </div></center>
-            
     <script>
         function myFunction() {
             var top = '${drawingTop}';
@@ -70,14 +73,13 @@
             }
         }
     </script>
-    
     <form name="sendOrder" action="FrontController" method="POST">
         <input type="hidden" name="command" value="sendOrderPointed">
         <div class="container">
             <div class="control-groupForm">
                 <div class="selectForm">
                     <h1 class="title">Udfyld formularen og send en forspørgelse</h1>
-                    <h4>Foravn</h4>
+                    <h4>Fornavn</h4>
                     <input type="text" name="fornavn" placeholder="fornavn" required="" >
                     <h4>Efternavn</h4>
                     <input type="text" name="efternavn" placeholder="efternavn" required="">

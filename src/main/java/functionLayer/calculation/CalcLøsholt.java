@@ -5,6 +5,7 @@
  */
 package functionLayer.calculation;
 
+import functionLayer.LogicFacade;
 import functionLayer.Product;
 import java.util.List;
 
@@ -13,6 +14,8 @@ import java.util.List;
  * @author oerte
  */
 public class CalcLøsholt {
+    
+    
 
     public Product calcAntalPointedRoof(double length, double width, double degree, List allProducts) {
 
@@ -26,11 +29,11 @@ public class CalcLøsholt {
         Product p = null;
         List<Product> productList = allProducts;
         try {
-            double løsholdtLengthB = CalcPointedRoofTriangle.CalcHypotesen(length, width, degree) + 25;
+            double løsholtLengthB = CalcPointedRoofTriangle.CalcHypotesen(length, width, degree) + 25;
             double antal = 4;
 
             for (Product product : productList) {
-                if (product.getCategory().equals("løsholdt") && løsholdtLengthB >= product.getLength()) {
+                if (product.getCategory().equals("løsholt") && product.getLength() >= løsholtLengthB) {
                     p = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), antal, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
 
                 }
