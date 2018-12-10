@@ -59,14 +59,20 @@
         <form name="sendOrder" action="FrontController" method="POST">
             <div class="container">
                 <div class="control-groupForm">
+                    <input type="checkbox" onclick="myFunction()">Show Password
+                    </br>
+                    </br>
                     <div class="selectForm">
                         <h1 class="title">Udfyld formen og opret dig som bruger</h1>
                         <h4>Email</h4>
-                        <input type="text" name="email" placeholder="Email.." required="" >
-                        <h4>Password</h4>
-                        <input type="password" name="password1" placeholder="Password.." required="">
+                        <!-- An <input> element with type="email" that must be in the following order: 
+                        characters@characters.domain (characters followed by an @ sign, followed by more characters, and then a "." 
+                        After the "." sign, add at least 2 letters from a to z:-->
+                        <input type="text" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Email.." required="" >
+                        <h4>Password </h4>
+                        <input type="password" name="password1" pattern=".{6,}" placeholder="Password skal være minimum 6 lang." id="myInput" required="">
                         <h4>Confirm password</h4>
-                        <input type="password" name="password2" placeholder="Confirm password.." required="">
+                        <input type="password" name="password2" pattern=".{6,}" placeholder="Confirm password.." required="">
                         <h4>Fornavn</h4>
                         <input type="text" name="firstName" placeholder="Fornavn.." required="">
                         <h4>Efternavn</h4>
@@ -76,16 +82,27 @@
                         <h4>By</h4>
                         <input type="text" name="town" placeholder="By..">
                         <h4>Post nummer</h4>
-                        <input type="text" name="zipCode" placeholder="Postnummer..">
+                        <input type="text" pattern="\d*" maxlength="4" name="zipCode" placeholder="Postnummer.." >
                         <h4>Telefon nummer</h4>
                         <input type="number" name="phone" placeholder="Telefon nummer.."> 
                         <input type="hidden" name="currentSite" value="registration">
                         <input type="hidden" name="command" value="registrate">
+                        </br>
                         </br>
                         <button type="submit" name="createUser">Opret bruger</button>
                     </div>
                 </div>
             </div>
         </form>
+        <script>
+            function myFunction() {
+                var x = document.getElementById("myInput");
+                if (x.type === "password") {
+                    x.type = "text";
+                } else {
+                    x.type = "password";
+                }
+            }
+        </script>
     </body>
 </html>

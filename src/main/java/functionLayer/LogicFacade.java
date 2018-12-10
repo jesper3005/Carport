@@ -40,7 +40,7 @@ public class LogicFacade {
         return customer;
 
     }
-    
+
     public static void addCustomer(Customer customer) {
         CustomerMapper cm = new CustomerMapper();
         cm.addCustomer(customer);
@@ -97,56 +97,96 @@ public class LogicFacade {
         List<Product> searchList = pm.searchInProductTable(value);
         return searchList;
     }
-    
-    public static List<Product> remOrderedByLength(){
+
+    public static List<Product> remOrderedByLength() {
         ProductMapper pm = new ProductMapper();
         List<Product> remList = pm.orderByLengthRem();
         return remList;
     }
-   
-   public static void updatePrice(int id, double price) {
-       ProductMapper pm = new ProductMapper();
-       pm.updatePrice(id, price);
-   }
-   
-   public static void deleteProduct(int productID) {
-       ProductMapper pm = new ProductMapper();
-       pm.deleteProduct(productID);
-   }
-   
+
+    public static void updatePrice(int id, double price) {
+        ProductMapper pm = new ProductMapper();
+        pm.updatePrice(id, price);
+    }
+
+    public static void deleteProduct(int productID) {
+        ProductMapper pm = new ProductMapper();
+        pm.deleteProduct(productID);
+    }
 
     // ------- CARPORT CALCULATIONS LOGICFACADE ---------
+    /**
+     * This methode
+     *
+     * @param length length of the carport
+     * @param width width of the carport
+     * @param roofMaterial is the material what used for the roof.
+     * @return returns a list of products, what is needed to build a carport
+     * with a flat roof.
+     */
     public static List<Product> CarportCalculaterFlatRoof(double length, double width, String roofMaterial) {
         CarportFlatProductListe cfp = new CarportFlatProductListe();
-        List<Product>  list = cfp.carportCalculaterFlatRoof(length, width, roofMaterial);
+        List<Product> list = cfp.carportCalculaterFlatRoof(length, width, roofMaterial);
         return list;
     }
 
+    /**
+     *
+     * @param length
+     * @param width
+     * @param shedLength
+     * @param shedWidth
+     * @param roofMaterial
+     * @return
+     */
     public static List<Product> CarportCalculaterFlatRoofIncludingShed(double length, double width, double shedLength, double shedWidth, String roofMaterial) {
         CarportFlatProductListe cfp = new CarportFlatProductListe();
-        List<Product>  list = cfp.carportCalculaterFlatRoofIncludingShed(length, width, shedLength, shedWidth, roofMaterial);
+        List<Product> list = cfp.carportCalculaterFlatRoofIncludingShed(length, width, shedLength, shedWidth, roofMaterial);
         return list;
     }
-
+    /**
+     *
+     * @param length
+     * @param width
+     * @param degree
+     * @param roofMaterial
+     * @return
+     */
     public static List<Product> CarportCalculatorPointedRoof(double length, double width, double degree, String roofMaterial) {
         CarportPointedRoofListe cfp = new CarportPointedRoofListe();
         List<Product> list = cfp.carportCalculaterPointedRoof(length, width, degree, roofMaterial);
         return list;
     }
-
+    /**
+     * 
+     * @param length
+     * @param width
+     * @param degree
+     * @param shedLength
+     * @param shedWidth
+     * @param roofMaterial
+     * @return 
+     */
     public static List<Product> CarportCalculatorPointedRoofIncludingShed(double length, double width, double degree, double shedLength, double shedWidth, String roofMaterial) {
         CarportPointedRoofListe cfp = new CarportPointedRoofListe();
         List<Product> list = cfp.carportCalculaterPointedRoofIncludingShed(length, width, degree, length, width, roofMaterial);
         return list;
     }
-
+    /**
+     * 
+     * @param value
+     * @return 
+     */
     public static double roundDoubleToTwoDecimalPoints(double value) {
         DecimalFormat df2 = new DecimalFormat(".##");
         return Double.parseDouble(df2.format(value));
 
     }
-
-
+    /**
+     * 
+     * @param stykliste
+     * @return 
+     */
     public static double totalPriceOfCarport(List<Product> stykliste) {
         double totalPriceOfCarport = 0;
         for (Product produkt : stykliste) {
