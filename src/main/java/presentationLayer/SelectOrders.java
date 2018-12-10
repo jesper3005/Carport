@@ -25,38 +25,19 @@ public class SelectOrders extends Command {
 
         try {
             HttpSession session = request.getSession();
-            List<Carport> allOrders = null;
-            List<Product> productList = null;
+            List<Carport> allOrders;
+            
+            List<Product> productList = LogicFacade.getAllProductsFromDatabase();
+            session.setAttribute("productList", productList);
+            
             String enumValue = request.getParameter("selectOrder");
 
             if (enumValue == null || enumValue.equals("allOrdre")) {
                 allOrders = LogicFacade.getALLOrdresFromCarport();
                 session.setAttribute("allOrders", allOrders);
             } else {
-                System.out.println(enumValue);
                 allOrders = LogicFacade.getOrdresFromCarportByEnum(enumValue);
                 session.setAttribute("allOrders", allOrders);
-            }
-            for (Carport carport : allOrders) {
-                if (carport.getRoof().equals("FLAT") && carport.getCarport_length() != 0) {
-                    productList = LogicFacade.CarportCalculaterFlatRoofIncludingShed(carport.getCarport_length(), carport.getCarport_width(), carport.getShed().getShed_length(), carport.getShed().getShed_width(), carport.getRoofMaterial());
-                    session.setAttribute("productList", productList);
-                }
-                if (carport.getRoof().equals("FLAT")) {
-                    productList = LogicFacade.CarportCalculaterFlatRoof(carport.getCarport_length(), carport.getCarport_width(), carport.getRoofMaterial());
-                    session.setAttribute("productList", productList);
-                }
-                if (carport.getRoof().equals("PEAK") && carport.getCarport_length() != 0) {
-                    productList = LogicFacade.CarportCalculatorPointedRoofIncludingShed(carport.getCarport_length(), carport.getCarport_width(), carport.getDegrees(), carport.getShed().getShed_length(), carport.getShed().getShed_width(), carport.getRoofMaterial());
-                    session.setAttribute("productList", productList);
-                }
-                if (carport.getRoof().equals("PEAK")) {
-                    productList = LogicFacade.CarportCalculatorPointedRoof(carport.getCarport_length(), carport.getCarport_width(), carport.getDegrees(), carport.getRoofMaterial());
-                    session.setAttribute("productList", productList);
-                }
-            }
-            for (Product product : productList) {
-                System.out.println(product);
             }
             return "manageOrders";
         } catch (Exception e) {

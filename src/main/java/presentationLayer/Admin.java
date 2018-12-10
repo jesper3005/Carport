@@ -28,7 +28,7 @@ public class Admin extends Command {
             String search = search = request.getParameter("search");
 
             if (search == null) {
-                List<Product> allProducts = LogicFacade.allProductsFromDatabase();
+                List<Product> allProducts = LogicFacade.getAllProductsFromDatabase();
                 session.setAttribute("allProduct", allProducts);
                 return "admin";
             } else {

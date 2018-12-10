@@ -20,6 +20,7 @@
     </head>
     <body>
         <%List<Carport> allOrders = (List) session.getAttribute("allOrders"); %>
+        <%List<Product> stykliste = (List) session.getAttribute("productList"); %>
         <!-- -----------------HEADER---------------------------------- -->
         <header>
             <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
@@ -87,31 +88,32 @@
                 <br>
 
                 <!-- -----------------SECTION 2.1: Product list for order------------------------------------>
-                    <%List<Product> stykliste = (List)session.getAttribute("productList"); %>
 
-                    <div class="content">
-                        <table class="">
-                            <thead>
-                                <tr>
-                                    <th>Produkt id</th>
-                                    <th>Produkt Navn</th>
-                                    <th>Kategori</th>
-                                    <th>StykPris</th>
-                                    <th>Antal</th>
-                                    <th>LinjePris</th>
-                                    <th>Længde</th>
-                                    <th>Bredde</th>
-                                    <th>Højde</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <button class="collapsible">Se styklisten</button>
+                <div class="content">
+                    <table class="">
+                        <thead>
+                            <tr>
+                                <th>Produkt id</th>
+                                <th>Produkt Navn</th>
+                                <th>Kategori</th>
+                                <th>StykPris</th>
+                                <th>Antal</th>
+                                <th>LinjePris</th>
+                                <th>Længde</th>
+                                <th>Bredde</th>
+                                <th>Højde</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <%for (Product productList : stykliste) {%>
+                                <td><%=productList.getId()%></td><td><%=productList.getProductName()%></td><td><%=productList.getCategory()%></td><td><%=productList.getPrice() + " DKK"%></td><td><%=productList.getQty()%></td><td><%=productList.getPriceLine() + " DKK"%></td><td><%=productList.getLength()%></td><td><%=productList.getWidth()%></td><td><%=productList.getHeight()%></td></tr>
+                                <%}%>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <button class="collapsible">Se styklisten</button>
                 </form>
                 <!-- -----------------SECTION 2.2: Update order status------------------------------------>           
 
@@ -133,9 +135,9 @@
                         <input type="hidden" name="command" value="updateOrderStatus">
                         <button type="submit" name="updateStatus">Opdater order status</button>
                 </form>
-                
-                
-                
+
+
+
             </div>
         </div>
 

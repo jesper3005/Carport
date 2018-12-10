@@ -25,7 +25,6 @@
             <a class="active" href="/FrontController?command=toNavigator&site=login">Login</a>
             <a class="active" href="/index.jsp">Home</a>
             <a class="active" href="/FrontController?command=Admin">Admin</a>
-            <a class="active" href="/FrontController?command=manageOrders">Se odre</a>
             <a class="active" href="/FrontController?command=manageOrders">Se Ordre</a>
             <!-- <input type='submit' value="Log Out">-->
         </header>

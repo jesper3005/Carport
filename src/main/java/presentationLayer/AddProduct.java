@@ -36,7 +36,7 @@ public class AddProduct extends Command {
             Product product = new Product(produkt_navn, category, price, length, width, height);
 
             LogicFacade.addProduct(product);
-            List<Product> allProducts = LogicFacade.allProductsFromDatabase();
+            List<Product> allProducts = LogicFacade.getAllProductsFromDatabase();
             session.setAttribute("allProduct", allProducts);
             return "admin";
             

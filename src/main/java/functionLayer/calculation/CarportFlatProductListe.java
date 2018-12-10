@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class CarportFlatProductListe {
 
-    private List<Product> list = LogicFacade.allProductsFromDatabase();
+    private List<Product> list = LogicFacade.getAllProductsFromDatabase();
     private CalcBattens battens = new CalcBattens();
     private CalcBeam beam = new CalcBeam();//rem
     private CalcRoof roof = new CalcRoof();

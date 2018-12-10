@@ -86,10 +86,10 @@ public class LogicFacade {
         pm.addProducts(product);
     }
 
-    public static List<Product> allProductsFromDatabase() {
+    public static List<Product> getAllProductsFromDatabase() {
         ProductMapper pm = new ProductMapper();
-        List<Product> allProducts = pm.allProducts();
-        return allProducts;
+        List<Product> produktList = pm.allProducts();
+        return produktList;
     }
 
     public static List<Product> searchInDatabaseProductTable(String value) {
@@ -146,11 +146,6 @@ public class LogicFacade {
 
     }
 
-    public static List<Product> getAllProductsFromDatabase() {
-        ProductMapper pm = new ProductMapper();
-        List<Product> produktList = pm.allProducts();
-        return produktList;
-    }
 
     public static double totalPriceOfCarport(List<Product> stykliste) {
         double totalPriceOfCarport = 0;
