@@ -16,6 +16,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
 import java.util.List;
+import java.util.Locale;
 
 /**
  *
@@ -208,6 +209,7 @@ public class LogicFacade {
         return Double.parseDouble(df2.format(value));
 
     }
+    
     /**
      * 
      * @param stykliste

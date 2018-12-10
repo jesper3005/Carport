@@ -19,8 +19,11 @@
     </head>
     <body>
         <% double totalPriceOfCarport = (Double) session.getAttribute("totalPrice");%>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 850020e355346f33ea6552a539f832e6be83e142
         <header>
             <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
             <a class="active" href="/FrontController?command=toRegi">Sign up</a>
@@ -49,9 +52,15 @@
                 samt en stykliste af produkter som der skal bruges.
                 <br>
                 <br>
+<<<<<<< HEAD
                 <%="Prisforslag: "+totalPriceOfCarport+" DKK" %>
+=======
+                <%= totalPriceOfCarport %>
+>>>>>>> 850020e355346f33ea6552a539f832e6be83e142
             </div>
         </div>
+            
+            
         <div class="drawings">
             <center><select name="test" id="mySelect" onchange="myFunction()">
                     <option>Vælg en skitse du vil se</option>
