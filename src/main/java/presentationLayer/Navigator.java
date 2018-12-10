@@ -8,6 +8,7 @@ package presentationLayer;
 import exceptions.FogException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -17,7 +18,9 @@ public class Navigator extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
-
+        HttpSession session = request.getSession();
+        
+        
         try {
             String site = request.getParameter("site");
 
@@ -26,6 +29,11 @@ public class Navigator extends Command {
                     return "login";
                 case "registration":
                     return "registration";
+                case "home":
+                    return "../index";
+                case "logout":
+                    session.invalidate();
+                    return "../index";
 
             }
         } catch (Exception e) {

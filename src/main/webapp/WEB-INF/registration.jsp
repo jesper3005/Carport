@@ -22,6 +22,8 @@
             <a class="active" href="/index.jsp">Home</a>
             <a class="active" href="/FrontController?command=Admin">Admin</a>
         </header>
+        
+        
         <span align="center">
             <% String error = (String) request.getAttribute("error");
                 if (error != null) {

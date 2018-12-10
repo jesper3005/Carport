@@ -4,6 +4,7 @@
     Author     : Jesper
 --%>
 
+<%@page import="functionLayer.User"%>
 <%@page import="java.util.List"%>
 <%@page import="functionLayer.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -19,17 +20,38 @@
 
     <body>
 
-        <!-- ------------------SECTION 1.0 HEADER---------------------------------->
         <% List<Product> orderByLengthRemList = (List<Product>) session.getAttribute("orderByLengthRemList");%>
+        <% User user = (User) session.getAttribute("user"); %>
+        
+        <!-- ------------------SECTION 1.0 HEADER---------------------------------->
+        
+        <%if(user == null) { %>
         <header>
             <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
-            <a href="#SignUp">Sign up</a>
-            <a href="#Login">Login</a> 
-            <a class="active" href="/index.jsp">Home</a>
-            <a class="active" href=http:/FrontController?command=Admin>Admin</a>
+            <a class="active" href="/FrontController?command=toNavigator&site=registration">Sign up</a>
+            <a class="active" href="/FrontController?command=toNavigator&site=login">Login</a>
+            <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
         </header>
+        
+        <%} else if(user.getRole().equals("admin")) {%> 
+            <header>
+                <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
+                <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
+                <a class="active" href="/FrontController?command=Admin">Admin</a>
+                <a class="active" href="/FrontController?command=manageOrders">Se Ordre</a>
+                <a class="active" href="/FrontController?command=toNavigator&site=logout">Sign out</a>
+            </header>
+        <%} else if(user.getRole().equals("customer")) { %>
+            <header>
+                <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
+                <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
+                <a class="active" href="">Profile</a>
+                <a class="active" href="/FrontController?command=toNavigator&site=logout">Sign out</a>
+            </header>
+        <%}%>
 
         <!-- ------------------SECTION 2.0 WELCOME/INFO TEXT---------------------------------->
+        
         <div class="container">
             <div class="control-groupText">
                 <h1 class="title">Velkommen til Quick-byg carport med fladt tag !</h1>

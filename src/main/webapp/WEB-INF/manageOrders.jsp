@@ -3,6 +3,7 @@
     Created on : 07-12-2018, 00:02:50
     Author     : Jesper
 --%>
+<%@page import="functionLayer.User"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="functionLayer.Product"%>
 <%@page import="functionLayer.LogicFacade"%>
@@ -21,16 +22,35 @@
     <body>
         <%List<Carport> allOrders = (List) session.getAttribute("allOrders"); %>
         <%List<Product> stykliste = (List) session.getAttribute("productList"); %>
+        
         <!-- -----------------HEADER---------------------------------- -->
-        <header>
-            <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
-            <a class="active" href="/FrontController?command=toNavigator&site=registration">Sign up</a>
-            <a class="active" href="/FrontController?command=toNavigator&site=login">Login</a>
-            <a class="active" href="/index.jsp">Home</a>
-            <a class="active" href="/FrontController?command=Admin">Admin</a>
-            <a class="active" href="/FrontController?command=manageOrders"></a>
-            <!-- <input type='submit' value="Log Out">-->
-        </header>
+        <% User user = (User) session.getAttribute("user"); %>
+        
+        <%if(user == null) { %>
+            <header>
+                <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
+                <a class="active" href="/FrontController?command=toNavigator&site=registration">Sign up</a>
+                <a class="active" href="/FrontController?command=toNavigator&site=login">Login</a>
+                <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
+            </header>
+        <%} else if(user.getRole().equals("admin")) {%> 
+            <header>
+                <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
+                <a class="active" href="/FrontController?command=toLogin">Profile</a>
+                <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
+                <a class="active" href="/FrontController?command=Admin">Admin</a>
+                <a class="active" href="/FrontController?command=manageOrders">Se Ordre</a>
+                <a class="active" href="/FrontController?command=toNavigator&site=logout">Sign out</a>
+            </header>
+        <%} else if(user.getRole().equals("customer")) { %>
+            <header>
+                <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
+                <a class="active" href="/FrontController?command=toLogin">Profile</a>
+                <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
+                <a class="active" href="">Profile</a>
+                <a class="active" href="/FrontController?command=toNavigator&site=logout">Sign out</a>
+            </header>
+        <%}%>
 
         <!-- -----------------SECTION 1: Choose what order to view------------------------------------>
         <form action="FrontController" method="POST">

@@ -4,6 +4,7 @@
     Author     : Jesper
 --%>
 
+<%@page import="functionLayer.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,13 +16,33 @@
     </head>
     <body>
         
-        <header>
-            <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
-            <a href="#SignUp">Sign up</a>
-            <a href="#Login">Login</a> 
-            <a class="active" href="/index.jsp">Home</a>
-            <a class="active" href="/FrontController?command=Admin">Admin</a>
-        </header>
+        <% User user = (User) session.getAttribute("user"); %>
+        
+        <%if(user == null) { %>
+            <header>
+                <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
+                <a class="active" href="/FrontController?command=toNavigator&site=registration">Sign up</a>
+                <a class="active" href="/FrontController?command=toNavigator&site=login">Login</a>
+                <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
+            </header>
+        <%} else if(user.getRole().equals("admin")) {%> 
+            <header>
+                <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
+                <a class="active" href="/FrontController?command=toLogin">Profile</a>
+                <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
+                <a class="active" href="/FrontController?command=Admin">Admin</a>
+                <a class="active" href="/FrontController?command=manageOrders">Se Ordre</a>
+                <a class="active" href="/FrontController?command=toNavigator&site=logout">Sign out</a>
+            </header>
+        <%} else if(user.getRole().equals("customer")) { %>
+            <header>
+                <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
+                <a class="active" href="/FrontController?command=toLogin">Profile</a>
+                <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
+                <a class="active" href="">Profile</a>
+                <a class="active" href="/FrontController?command=toNavigator&site=logout">Sign out</a>
+            </header>
+        <%}%>
         
         <div class="containerOrderCreated">
             <div class="control-groupOrderCreated">

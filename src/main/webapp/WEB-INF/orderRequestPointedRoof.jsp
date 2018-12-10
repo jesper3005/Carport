@@ -4,6 +4,7 @@
     Author     : oerte
 --%>
 
+<%@page import="functionLayer.User"%>
 <%@page import="java.util.List"%>
 <%@page import="functionLayer.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -21,13 +22,35 @@
         <% double totalPriceOfCarport = (Double) session.getAttribute("totalPrice");%>
 
 
-        <header>
-            <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
-            <a class="active" href="/FrontController?command=toRegi">Sign up</a>
-            <a class="active" href="/FrontController?command=toLogin">Login</a>
-            <a class="active" href="/index.jsp">Home</a>
-            <a class="active" href="/FrontController?command=Admin">Admin</a>
-        </header>
+        <% User user = (User) session.getAttribute("user"); %>
+        
+        <%if(user == null) { %>
+            <header>
+                <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
+                <a class="active" href="/FrontController?command=toNavigator&site=registration">Sign up</a>
+                <a class="active" href="/FrontController?command=toNavigator&site=login">Login</a>
+                <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
+            </header>
+        <%} else if(user.getRole().equals("admin")) {%> 
+            <header>
+                <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
+                <a class="active" href="/FrontController?command=toLogin">Profile</a>
+                <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
+                <a class="active" href="/FrontController?command=Admin">Admin</a>
+                <a class="active" href="/FrontController?command=manageOrders">Se Ordre</a>
+                <a class="active" href="/FrontController?command=toNavigator&site=logout">Sign out</a>
+            </header>
+        <%} else if(user.getRole().equals("customer")) { %>
+            <header>
+                <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
+                <a class="active" href="/FrontController?command=toLogin">Profile</a>
+                <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
+                <a class="active" href="">Profile</a>
+                <a class="active" href="/FrontController?command=toNavigator&site=logout">Sign out</a>
+            </header>
+        <%}%>
+        
+        
         <div class="container">
             <div class="control-groupText">
                 <h1 class="title">Her er en skitse af din carport !</h1>

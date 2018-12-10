@@ -12,6 +12,7 @@
         <title>Login</title>
     </head>
     <body>
+        
             <% String error = (String) request.getAttribute("error"); %>
             <% if(error != null) { %>
             <h2><%=error %></h2>

@@ -39,7 +39,7 @@ public class Registration extends Command {
                 password2 = LogicFacade.createHashedPassword(password2);
                 Customer customer = new Customer(firstName, lastName, email, address, town, zipCode, phone, town);
                 int id = LogicFacade.createCustomer(customer);
-                System.out.println(id + " customer_id");
+                System.out.println(id + " customer_id");    
                 User user;
                 user = LogicFacade.createUser(email, password2, id);
                 session.setAttribute("user", user);

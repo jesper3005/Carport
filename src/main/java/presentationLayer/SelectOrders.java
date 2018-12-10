@@ -40,6 +40,7 @@ public class SelectOrders extends Command {
                 session.setAttribute("allOrders", allOrders);
             }
             return "manageOrders";
+            
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return "manageOrders";
