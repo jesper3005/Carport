@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="./CSS/headerCSS.css">
         <link rel="stylesheet" href="./CSS/selectBoxes.css">
         <link rel="stylesheet" href="./CSS/tableDesign.css">
+        <link rel="stylesheet" href="./CSS/manageOrderTable">
         <title>Manage Orders</title>
     </head>
     <body>
@@ -36,11 +37,11 @@
         <%} else if(user.getRole().equals("admin")) {%> 
             <header>
                 <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
+                <a class="active" href="/FrontController?command=toNavigator&site=logout">Sign out</a>
                 <a class="active" href="/FrontController?command=toLogin">Profile</a>
-                <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
                 <a class="active" href="/FrontController?command=Admin">Admin</a>
                 <a class="active" href="/FrontController?command=manageOrders">Se Ordre</a>
-                <a class="active" href="/FrontController?command=toNavigator&site=logout">Sign out</a>
+                <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
             </header>
         <%} else if(user.getRole().equals("customer")) { %>
             <header>
@@ -70,6 +71,8 @@
         </form>
 
         <!-- -----------------SECTION 2.0: Display orders------------------------------------>
+        <form action="FrontController" method="POST">
+            <input type="hidden" name="command" value="showProductList">
         <% for (Carport list : allOrders) {%>
         <div class="container">
             <div class="control-group">
@@ -79,38 +82,40 @@
                 <h4>CARPORT MED SPIDST TAG | Odre ID: <%=list.getId()%> | Oprettet: <%=list.getDate()%></h4>
                 <%}%>
                 <h4>Carport beskrivelse:</h4>
-                <text>Længde: <%=list.getCarport_length()%>cm</text>
+                <text name="length">Længde: <%=list.getCarport_length()%>cm</text>
                 <br>
                 <br>
-                <text>Bredde: <%=list.getCarport_width()%>cm</text>
+                <text name="width">Bredde: <%=list.getCarport_width()%>cm</text>
                 <br>
                 <br>
-                <text>Grader: <%=list.getDegrees()%></text>
+                <text name="degrees">Grader: <%=list.getDegrees()%></text>
                 <br>
                 <br>
-                <text>Tag materiale: <%=list.getRoofMaterial()%></text>
+                <text name="roofMaterial">Tag materiale: <%=list.getRoofMaterial()%></text>
                 <br>
                 <br>
-                <text>Total pris ex moms: <%=list.getTotal_price()%></text>
+                <text name="TotalPrice">Total pris ex moms: <%=list.getTotal_price()%></text>
                 <br>
                 <br>
-                <text>Status på odre: <%=list.getStatus_of_order()%></text>
+                <text name="orderStatus">Status på odre: <%=list.getStatus_of_order()%></text>
                 <br>
                 <br>
-                <text>Skurs længde: <%=list.getShed().getShed_length()%></text>
+                <text name="shedLength">Skurs længde: <%=list.getShed().getShed_length()%></text>
                 <br>
                 <br>
-                <text>Skurs bredde: <%=list.getShed().getShed_width()%></text>
+                <text name="shedWidth">Skurs bredde: <%=list.getShed().getShed_width()%></text>
                 <br>
                 <br>
-                <text>Kunde id: <%=list.getCustomer_id()%></text>
+                <text name="customerID">Kunde id: <%=list.getCustomer_id()%></text>
                 <br>
                 <br>
-
+                <input type="hidden" name="id" value="<%= list.getId() %>">
+                <button type="submit" name="seeProductList">Se styklisten</button>
+                </form>
                 <!-- -----------------SECTION 2.1: Product list for order------------------------------------>
-
+                <!--
                 <div class="content">
-                    <table class="">
+                    <table class="table-fill">
                         <thead>
                             <tr>
                                 <th>Produkt id</th>
@@ -124,7 +129,7 @@
                                 <th>Højde</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="table-hover">
                             <tr>
                                 <%for (Product productList : stykliste) {%>
                                 <td><%=productList.getId()%></td><td><%=productList.getProductName()%></td><td><%=productList.getCategory()%></td><td><%=productList.getPrice() + " DKK"%></td><td><%=productList.getQty()%></td><td><%=productList.getPriceLine() + " DKK"%></td><td><%=productList.getLength()%></td><td><%=productList.getWidth()%></td><td><%=productList.getHeight()%></td></tr>
@@ -133,8 +138,7 @@
                         </tbody>
                     </table>
                 </div>
-                <button class="collapsible">Se styklisten</button>
-                </form>
+                -->
                 <!-- -----------------SECTION 2.2: Update order status------------------------------------>           
 
 
@@ -142,13 +146,13 @@
                     <div class="control-groupManageOrders">
                         <h4>Ændre status på odren</h4>
                         <br>
-                        <input type="checkbox" name="status" value="approved"> Godkendt
+                        <input type="checkbox" name="status" value="approved"> Approved
                         <br>
                         <br>
-                        <input type="checkbox" name="status" value="paid"> Betalt
+                        <input type="checkbox" name="status" value="paid"> Paid
                         <br>
                         <br>
-                        <input type="checkbox" name="status" value="cancelled"> Annuler
+                        <input type="checkbox" name="status" value="cancelled"> Cancel
                         <br>
                         <br>
                         <input type="hidden" name="id" value="<%= list.getId()%>">

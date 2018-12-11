@@ -51,9 +51,7 @@
         <%}%>
 
         <!-- ------------------SECTION 2.0 WELCOME/INFO TEXT---------------------------------->
-<<<<<<< HEAD
         
-=======
         <% String error = (String) request.getAttribute("error");%>
         <% if (error != null) {%>
         <div class="container">
@@ -63,7 +61,6 @@
             </div>
         </div>
         <%} else {%>
->>>>>>> ed1931b5593fb40f6a7b2904ae5c1036a99f0413
         <div class="container">
             <div class="control-groupText">
                 <h1 class="title">Velkommen til Quick-byg carport med fladt tag !</h1>

@@ -29,7 +29,6 @@
             <a class="active" href="/FrontController?command=toNavigator&site=login">Login</a>
             <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
         </header>
-<<<<<<< HEAD
         
         <%} else if(user.getRole().equals("admin")) {%> 
             <header>
@@ -53,7 +52,6 @@
         <%}%>
         
         
-=======
 
         <!-- ------------------SECTION 2.0 WELCOME/INFO TEXT---------------------------------->
         <% String error = (String) request.getAttribute("error");%>
@@ -65,7 +63,6 @@
             </div>
         </div>
         <%} else {%>
->>>>>>> ed1931b5593fb40f6a7b2904ae5c1036a99f0413
         <div class="container">
             <div class="control-groupText">
                 <h1 class="title">Velkommen til Quick-byg carport med fladt tag !</h1>

@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -16,7 +16,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
 import java.util.List;
-import java.util.Locale;
 
 /**
  *
@@ -139,6 +138,12 @@ public class LogicFacade {
     public static void deleteProduct(int productID) {
         ProductMapper pm = new ProductMapper();
         pm.deleteProduct(productID);
+    }
+    
+    public static Carport getCarportByID(int caportID) {
+        CarportMapper cm = new CarportMapper();
+        Carport carport = cm.getCarportById(caportID);
+        return carport;
     }
 
     // ------- CARPORT CALCULATIONS LOGICFACADE ---------

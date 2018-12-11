@@ -81,6 +81,8 @@ public class SVGSide {
         double lengthOfLægte = (width + hypo + hypo/2) / 0.5 * width;
         
         
+        
+        
         return sb.toString();
     }
 }

@@ -28,7 +28,9 @@ public class CarportMapper {
     private final String GET_ALL_ORDERS = "SELECT * FROM `carport`;";
     private final String GET_SHED_BY_ID = "SELECT * FROM `shed` WHERE `shed_id` = ?;";
     private final String UPDATE_ORDER_STATUS = "UPDATE `carport` SET `status_of_order` = ? WHERE `carport_id` = ?;";
-
+    private final String GET_CARPORT_BY_ID = "SELECT * FROM `carport` WHERE `carport_id` = ?;";
+    
+    
     public void addCarport(Carport carport, Shed shed) {
         try {
             Connection c = Connector.connection();
@@ -177,6 +179,37 @@ public class CarportMapper {
             System.out.println(ex.getMessage());
         }
 
+    }
+    
+     public Carport getCarportById(int id) {
+        try {
+            Connection c = Connector.connection();
+            String query = GET_CARPORT_BY_ID;
+            PreparedStatement pstmt = c.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setInt(1, id);
+            ResultSet res = pstmt.executeQuery();
+
+            if (res.next()) {
+                int carport_id = res.getInt("carport_id");
+                Date date = res.getDate("date");
+                double carportLength = res.getDouble("carport_length");
+                double carportWidth = res.getDouble("carport_width");
+                double degrees = res.getDouble("degrees");
+                String roofType = res.getString("roof");
+                String roofMaterial = res.getString("roof_material");
+                double totalPrice = res.getDouble("total_price");
+                String orderStatus = res.getString("status_of_order");
+                int shedID = res.getInt("shed_id");
+                Shed shed = getShedById(shedID);
+                int customerID = res.getInt("customer_id");
+                int userID = res.getInt("user_id");
+                Carport carport = new Carport(carport_id, date, carportLength, carportWidth, degrees, roofType, roofMaterial, totalPrice, orderStatus, shedID, customerID, shed);
+                return carport;
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.getMessage();
+        }
+        return null;
     }
 
 }

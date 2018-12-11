@@ -24,13 +24,12 @@ public class SVGTop {
     double shedPlankWidth = 15;
     double doorWidth = 80;
 
-    public SVGTop(double length, double width, double shedLength, double shedWidth, boolean shedCheck) {
+    public SVGTop(double length, double width, double shedLength, double shedWidth, boolean shedCheck, boolean roofCheck) {
         this.sb = sb.append("<SVG width=\"820\" height=\"820\">");
         //ADD ALL METHODS FOR SVG DRAWING FROM TOP
 
         //Creates carport
         sb.append(createRemme(length, width));
-        sb.append(createLægterFlatRoof(length, width));
 
         //Creates shed
         if(shedCheck == true) {
@@ -38,8 +37,12 @@ public class SVGTop {
         }
         
         //For pointed roof
-        //sb.append(createLægterPointeRoof(length, width));
-        //sb.append(createSupportingLægter(length, width));
+        if(roofCheck == true) {
+            sb.append(createLægterPointeRoof(length, width));
+            sb.append(createSupportingLægter(length, width));
+        } else {
+            sb.append(createLægterFlatRoof(length, width));
+        }
         
         //Creates text and lines
         sb.append(createLengthText(length, width));

@@ -28,6 +28,7 @@ public class OrderRequestPointedRoof extends Command {
             HttpSession session = request.getSession();
             List<Product> stykliste;
             boolean shedCheck;
+            boolean roofCheck = true;
             String degreeStr = request.getParameter("degree");
             double degree = Double.parseDouble(degreeStr.substring(0, 2));
             //length and width from shed from carportFlatRoof or carportPointedRoof jsp page.
@@ -77,14 +78,11 @@ public class OrderRequestPointedRoof extends Command {
             double height = 230;
 
             //Inserting svg of the carport
-            //Carport fra toppen Test
-            SVGTop testSVG = new SVGTop(length, width, shedLength, shedWidth, shedCheck);
+            //Carport from top
+            SVGTop testSVG = new SVGTop(length, width, shedLength, shedWidth, shedCheck, roofCheck);
             request.setAttribute("drawingTop", testSVG.getMySVG());
 
-            //Carport fra toppen.
-            //SVGTop cSVG = new SVGTop(length, width, skurLength, skurWidth);
-            //request.setAttribute("drawingTop", cSVG.getMySVG());
-            //Carport fra siden.
+            //Carport from side.
             SVGSide sSVG = new SVGSide(length, height, shedLength, shedWidth, shedCheck);
             request.setAttribute("drawingSide", sSVG.getMySVG());
 

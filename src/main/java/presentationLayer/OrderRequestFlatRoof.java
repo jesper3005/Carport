@@ -31,6 +31,7 @@ public class OrderRequestFlatRoof extends Command {
             List<Product> stykliste;
             //length and width from shed from carportFlatRoof or carportPointedRoof jsp page.
             boolean shedCheck;
+            boolean roofCheck = false;
             double shedLength = Double.parseDouble(request.getParameter("skurlaengde"));
             double shedWidth = Double.parseDouble(request.getParameter("skurbredde"));
             //length and width from carportFlatRoof or carportPointedRoof jsp page.
@@ -78,7 +79,7 @@ public class OrderRequestFlatRoof extends Command {
 
             //Inserting svg of the carport
             //Carport fra toppen.
-            SVGTop testSVG = new SVGTop(length, width, shedLength, shedWidth, shedCheck);
+            SVGTop testSVG = new SVGTop(length, width, shedLength, shedWidth, shedCheck, roofCheck);
             request.setAttribute("drawingTop", testSVG.getMySVG());
 
             //Carport fra siden.

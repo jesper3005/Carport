@@ -22,19 +22,9 @@
             <a class="active" href="/index.jsp">Home</a>
             <a class="active" href="/FrontController?command=Admin">Admin</a>
         </header>
-<<<<<<< HEAD
         
         
-        <span align="center">
-            <% String error = (String) request.getAttribute("error");
-                if (error != null) {
-                    out.println("Error!!");
-                    out.println(error);
-                }
-            %>
-        </span>
-=======
->>>>>>> ed1931b5593fb40f6a7b2904ae5c1036a99f0413
+        
         <!-- -------INFO OF SITE------- -->
         <% String error = (String) request.getAttribute("error");%>
         <% if (error != null) {%>
