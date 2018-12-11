@@ -19,6 +19,9 @@ public class CalcBeam {
         if (length <= 0 || width <= 0) {
             throw new IllegalArgumentException();
         }
+         if (allProducts == null) {
+            throw new NullPointerException();
+        }
 
         List<Product> productList = allProducts;
         Product p = null;
@@ -36,8 +39,6 @@ public class CalcBeam {
 
                     }
                 }
-            }else{
-                throw new NullPointerException();
             }
             return p;
         } catch (Exception e) {

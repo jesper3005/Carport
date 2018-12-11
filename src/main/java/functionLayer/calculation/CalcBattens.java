@@ -50,7 +50,7 @@ public class CalcBattens {
 
     public Product calcAntalPointedRoof(double length, double width, double degree, List allProducts) {
 
-        if (length <= 0 || width <= 0) {
+        if (length <= 0 || width <= 0 || degree <= 0) {
             throw new IllegalArgumentException();
         }
         if (allProducts == null) {

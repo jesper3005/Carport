@@ -51,6 +51,7 @@ public class CalcJUnitTest {
     ProductMapper pm = new ProductMapper();
     List<Product> list = pm.allProducts();
     List<Product> nullList = new ArrayList<>();
+    
 
     @Test
     public void calPoleTest() {
@@ -95,19 +96,16 @@ public class CalcJUnitTest {
         assertEquals(expected, actual, 0.05);
     }
 
-//    @Test(expected = NullPointerException.class)
-//    public void calBeamEmptyList(){
-//        //Arrange
-//        CalcBeam cr = new CalcBeam();
-//        Product actuals;
-//        Product expected;
-//        //Act
-//        actuals = cr.calcAntal(480, 480, nullList);
-//        expected = cr.calcAntal(480, 480, list);
-//        //Assert
-//        assertEquals(expected, actuals);
-//    }
-//     
+    @Test(expected = NullPointerException.class)
+    public void calBeamEmptyList(){
+        //Arrange
+        CalcBeam cr = new CalcBeam();
+        Product actuals;
+        Product expected;
+        //Act
+        actuals = cr.calcAntal(480, 480, null);
+    }
+     
     @Test(expected = IllegalArgumentException.class)
     public void calBeamTest_Minus() {
         //Arrange
