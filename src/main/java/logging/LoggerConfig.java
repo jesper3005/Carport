@@ -18,17 +18,20 @@ import java.util.logging.SimpleFormatter;
 public class LoggerConfig {
 
     public static void setUpLogger() throws FogException {
-        ConsoleHandler handler = new ConsoleHandler();
-        DefaultLogger.getMyLogger().addHandler(handler);
+        if(DefaultLogger.getMyLogger().getHandlers().length < 1){
+            
+            ConsoleHandler handler = new ConsoleHandler();
+            DefaultLogger.getMyLogger().addHandler(handler);
 
-        if (DefaultLogger.PRODUCTION) {
-            try {
-                FileHandler fileHandler = new FileHandler(DefaultLogger.LOGFILEPATH);
-                fileHandler.setFormatter(new SimpleFormatter());
-                DefaultLogger.getMyLogger().addHandler(fileHandler);
-                fileHandler.close();
-            } catch (IOException | SecurityException ex) {
-                throw new FogException(ex.getMessage());
+            if (DefaultLogger.PRODUCTION) {
+                try {
+                    FileHandler fileHandler = new FileHandler(DefaultLogger.LOGFILEPATH);
+                    fileHandler.setFormatter(new SimpleFormatter());
+                    DefaultLogger.getMyLogger().addHandler(fileHandler);
+                    fileHandler.close();
+                } catch (IOException | SecurityException ex) {
+                    throw new FogException(ex.getMessage());
+                }
             }
         }
 

@@ -44,6 +44,7 @@ public class FrontController extends HttpServlet {
             String view = action.execute(request, response);
             request.getRequestDispatcher("/WEB-INF/" + view + ".jsp").forward(request, response);
         } catch (FogException ex) {
+            DefaultLogger.getMyLogger().log(Level.WARNING, ex.getMessage());
             request.setAttribute("error", ex.getMessage());
             String currentSite = (String) request.getParameter("currentSite");
             String notIndex = "/WEB-INF/";
@@ -51,7 +52,6 @@ public class FrontController extends HttpServlet {
                 notIndex = "";
             }
             request.getRequestDispatcher(notIndex + currentSite + ".jsp").forward(request, response);
-            DefaultLogger.getMyLogger().log(Level.WARNING, ex.getMessage());
         }
 
     }
