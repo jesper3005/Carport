@@ -5,7 +5,7 @@
  */
 package functionLayer;
 
-import functionLayer.Rules;
+import functionLayer.Rules.*;
 /**
  *
  * @author Jesper

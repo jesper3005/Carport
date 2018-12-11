@@ -8,6 +8,7 @@ package DataLayer;
 import functionLayer.Product;
 import dbAccess.Connector;
 import dbAccess.ProductMapper;
+import functionLayer.LogicFacade;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -80,7 +81,7 @@ public class ProductMapperTest {
         ProductMapper pm = new ProductMapper();
         //Act
         double actual = 200.00;
-        pm.updatePrice(1, actual);
+        LogicFacade.updatePrice(1, actual);
 
         Product expected = pm.getProductByID(1);
 
@@ -95,25 +96,64 @@ public class ProductMapperTest {
         Product p = new Product("testProduct", "testCategory", 200.0, 200.0, 200.0, 200.0);
 
         //Act
-        String expected = "testProduct";
-        Product actual = pm.addProducts(p);
+        List<Product> productListBefore = pm.allProducts();
+        pm.addProducts(p);
+        List<Product> productListAfter = pm.allProducts();
 
         //Assert
-        assertEquals(expected, actual.getProductName());
+        assertTrue(productListBefore.size() < productListAfter.size());
     }
 
     @Test
     public void testDeleteProduct() {
         //Arrange
         ProductMapper pm = new ProductMapper();
-        List<Product> product1 = pm.allProducts();
 
         //Act
+        List<Product> productListBefore = pm.allProducts();
         pm.deleteProduct(1);
-        List<Product> product2 = pm.allProducts();
+        List<Product> productListAfter = pm.allProducts();
 
         //Assert
-        assertTrue(product1.size() > product2.size());
+        assertTrue(productListBefore.size() > productListAfter.size());
     }
+    
+    @Test
+    public void testSearchProduct() {
+        //Arrange
+        List<Product> listOfProducts = LogicFacade.searchInDatabaseProductTable("rem");
+        
+        //Act
+        Product product = listOfProducts.get(0);
+        
+        //Assert
+        assertTrue(product.getCategory().equals("rem"));
+    }
+    
+    @Test
+    public void testGetProductById() {
+        //Arrange
+        ProductMapper pm = new ProductMapper();
+        Product product = pm.getProductByID(1);
+        
+        //Act
+        
+        //Assert
+        assertNotNull(product);
+        
+    }
+    
+    @Test
+    public void testGetAllRemLength() {
+        //Arrange
+        List<Product> list = LogicFacade.remOrderedByLength();
+        
+        //Act
+        
+        
+        //Assert
+        assertTrue(list.size() > 2);
+    }
+    
 
 }

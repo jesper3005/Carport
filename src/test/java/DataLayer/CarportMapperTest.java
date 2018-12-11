@@ -13,10 +13,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import org.junit.After;
-import org.junit.AfterClass;
+import java.util.List;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -70,17 +68,20 @@ public class CarportMapperTest {
         assertNotNull(testConnection);
     }
     
-//    @Test
-//    public void testAddCarport() {
-//        //Arrange
-//        Shed shed = new Shed(200.00, 200.00);
-//        Carport carport = new Carport(200.0, 200.0, 64, 5000.00, 3, 1);
-//        //Act
-//        double expected = 5000.00;
-//        Carport actual = LogicFacade.addCarport(carport, shed);
-//        //Assert
-//        assertEquals(expected, actual.getTotal_price(), 0);
-//    }
+    @Test
+    public void testAddCarport() {
+        //Arrange
+        Shed shed = new Shed(1 ,200.00, 200.00);
+        Carport carport = new Carport(200.00, 200.00, 15, "FLAT", "Tagpap", 5000.00, 1, 1);
+        
+        //Act
+        List<Carport> before = LogicFacade.getALLOrdresFromCarport();
+        LogicFacade.addCarport(carport, shed);
+        List<Carport> after = LogicFacade.getALLOrdresFromCarport();
+        
+        //Assert
+        assertTrue(before.size() < after.size());
+    }
     
     @Test
     public void testAddShed() {
@@ -94,6 +95,60 @@ public class CarportMapperTest {
         //Assert
         assertEquals(expected, actual.getShed_length(), 0);
     }
+    
+    @Test
+    public void testGetCarportByStatus(){
+        //Arrange
+        List<Carport> list = LogicFacade.getOrdresFromCarportByEnum("pending");
+        Carport car = list.get(0);
+        
+        //Act
+        String expected = "pending";
+        String actual = car.getStatus_of_order();
+        
+        //Assert
+        assertEquals(expected, actual);
+    }
+    
+    
+    @Test
+    public void testGetAllOrders() {
+        //Arrange
+        List<Carport> list = LogicFacade.getALLOrdresFromCarport();
+        
+        //Act
+        
+        //Assert
+        assertTrue(list.size() > 2);
+    }
+    
+    @Test
+    public void testUpdateOrderStatus() {
+        //Arrange
+        List<Carport> list = LogicFacade.getOrdresFromCarportByEnum("pending");
+        Carport carportPending = list.get(0);
+        
+        //Act
+        LogicFacade.updateOrderStatus("paid", carportPending.getId());
+        Carport carportPaid = LogicFacade.getCarportByID(carportPending.getId());
+        
+        //Assert
+        assertTrue(carportPaid.getStatus_of_order().equals("paid"));
+    }
+    
+    @Test
+    public void testGetCarportByID() {
+        //Arrange
+        Carport carport = LogicFacade.getCarportByID(1);
+        
+        //Act
+        
+        
+        //Assert
+        assertNotNull(carport);
+    }
+    
+
     
     
 }
