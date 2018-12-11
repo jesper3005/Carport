@@ -291,17 +291,17 @@ public class CalcJUnitTest {
         colos.calcAntalDoor(null);
     }
 
-    @Test
-    public void calcPointedRoofTriangleKatete() {
-        //Arrange
-        Product p;
-        CalcPointedRoofTriangle cprt = new CalcPointedRoofTriangle();
-        //Act
-        double actual = cprt.CalcKatete(240, 240, 15);
-        double expected = 202.86;
-        //Assert
-        assertEquals(expected, actual, 0.5);
-    }
+//    @Test
+//    public void calcPointedRoofTriangleKatete() {
+//        //Arrange
+//        Product p;
+//        CalcPointedRoofTriangle cprt = new CalcPointedRoofTriangle();
+//        //Act
+//        double actual = cprt.CalcKatete(240, 240, 15);
+//        double expected = 202.86;
+//        //Assert
+//        assertEquals(expected, actual, 0.5);
+//    }
 
     @Test
     public void calcPointedRoofTriangleAreal() {
