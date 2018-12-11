@@ -23,14 +23,14 @@ public class seeOrderProductList extends Command{
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
         HttpSession session = request.getSession();
-        int carportID = Integer.parseInt(request.getParameter("id"));
-        
+        int carportID = Integer.parseInt(request.getParameter("id2"));
+        System.out.println("THIS IS CARPORT ID : " + carportID);
         Carport c = LogicFacade.getCarportByID(carportID);
         
         if(c.getRoof().equals("FLAT") && c.getShed().getShed_length() > 0) {
             List<Product> stykListe = LogicFacade.CarportCalculaterFlatRoofIncludingShed(c.getCarport_length(), c.getCarport_width(), c.getShed().getShed_length(), c.getShed().getShed_width(), c.getRoofMaterial());
             session.setAttribute("orderProductList", stykListe);
-        } else if(c.getRoof().equals("FLAT")) {
+        } else if(c.getRoof().equals("FLAT") && c.getShed().getShed_length() == 0) {
             List<Product> stykListe = LogicFacade.CarportCalculaterFlatRoof(c.getCarport_length(), c.getCarport_width(), c.getRoofMaterial());
             session.setAttribute("orderProductList", stykListe);
         } 
@@ -38,7 +38,7 @@ public class seeOrderProductList extends Command{
         if(c.getRoof().equals("PEAK") && c.getShed().getShed_length() > 0) {
            List<Product> stykListe = LogicFacade.CarportCalculatorPointedRoofIncludingShed(c.getCarport_length(), c.getCarport_width(), c.getDegrees(), c.getShed().getShed_length(), c.getShed().getShed_width(), c.getRoofMaterial());
            session.setAttribute("orderProductList", stykListe);
-        } else if(c.getRoof().equals("PEAK")) {
+        } else if(c.getRoof().equals("PEAK") && c.getShed().getShed_length() == 0 ) {
            List<Product> stykListe = LogicFacade.CarportCalculatorPointedRoof(c.getCarport_length(), c.getCarport_width(), c.getDegrees(), c.getRoofMaterial());
            session.setAttribute("orderProductList", stykListe);
         }

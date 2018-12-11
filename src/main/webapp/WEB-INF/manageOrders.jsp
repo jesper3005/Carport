@@ -22,7 +22,6 @@
     </head>
     <body>
         <%List<Carport> allOrders = (List) session.getAttribute("allOrders"); %>
-        <%List<Product> stykliste = (List) session.getAttribute("productList"); %>
         
         <!-- -----------------HEADER---------------------------------- -->
         <% User user = (User) session.getAttribute("user"); %>
@@ -71,9 +70,9 @@
         </form>
 
         <!-- -----------------SECTION 2.0: Display orders------------------------------------>
+        <% for (Carport list : allOrders) {%>
         <form action="FrontController" method="POST">
             <input type="hidden" name="command" value="showProductList">
-        <% for (Carport list : allOrders) {%>
         <div class="container">
             <div class="control-group">
                 <% if (list.getRoof().equals("FLAT")) {%>
@@ -109,36 +108,11 @@
                 <text name="customerID">Kunde id: <%=list.getCustomer_id()%></text>
                 <br>
                 <br>
-                <input type="hidden" name="id" value="<%= list.getId() %>">
+                <input type="hidden" name="id2" value="<%= list.getId() %>">
                 <button type="submit" name="seeProductList">Se styklisten</button>
                 </form>
                 <!-- -----------------SECTION 2.1: Product list for order------------------------------------>
-                <!--
-                <div class="content">
-                    <table class="table-fill">
-                        <thead>
-                            <tr>
-                                <th>Produkt id</th>
-                                <th>Produkt Navn</th>
-                                <th>Kategori</th>
-                                <th>StykPris</th>
-                                <th>Antal</th>
-                                <th>LinjePris</th>
-                                <th>Længde</th>
-                                <th>Bredde</th>
-                                <th>Højde</th>
-                            </tr>
-                        </thead>
-                        <tbody class="table-hover">
-                            <tr>
-                                <%for (Product productList : stykliste) {%>
-                                <td><%=productList.getId()%></td><td><%=productList.getProductName()%></td><td><%=productList.getCategory()%></td><td><%=productList.getPrice() + " DKK"%></td><td><%=productList.getQty()%></td><td><%=productList.getPriceLine() + " DKK"%></td><td><%=productList.getLength()%></td><td><%=productList.getWidth()%></td><td><%=productList.getHeight()%></td></tr>
-                                <%}%>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                -->
+
                 <!-- -----------------SECTION 2.2: Update order status------------------------------------>           
 
 
@@ -162,26 +136,7 @@
             </div>
         </div>
     </div>
-    <%}%>
-
-
-
-    <script>
-        var coll = document.getElementsByClassName("collapsible");
-        var i;
-
-        for (i = 0; i < coll.length; i++) {
-            coll[i].addEventListener("click", function () {
-                this.classList.toggle("active");
-                var content = this.nextElementSibling;
-                if (content.style.display === "block") {
-                    content.style.display = "none";
-                } else {
-                    content.style.display = "block";
-                }
-            });
-        }
-    </script>           
+    <%}%>         
 
 </body>
 </html>

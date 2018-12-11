@@ -11,6 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="./CSS/tableDesign.css">
         <title>JSP Page</title>
     </head>
     <body>
@@ -30,10 +31,10 @@
                     <th>Højde</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
+            <tbody class="table-hover">
                     <% for (Product list : stykliste) {%>
-                    <td><%=list.getId()%></td>
+                <tr>
+                    <td><%=list.getId() %></td>
                     <td><%=list.getProductName()%></td>
                     <td><%=list.getCategory()%></td>
                     <td><%=list.getPrice() + " DKK"%></td>
@@ -42,8 +43,8 @@
                     <td><%=list.getLength()%></td>
                     <td><%=list.getWidth()%></td>
                     <td><%=list.getHeight()%></td>
-                    <%}%>
                 </tr>
+                    <%}%>
             </tbody>
         </table>
         
