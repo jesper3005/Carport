@@ -10,7 +10,6 @@ import functionLayer.LogicFacade;
 import functionLayer.Product;
 import functionLayer.SVGSide;
 import functionLayer.SVGTop;
-import functionLayer.Shed;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
