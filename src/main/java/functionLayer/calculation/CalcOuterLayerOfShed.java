@@ -60,6 +60,11 @@ public class CalcOuterLayerOfShed {
     - two hinges (hængsel)
      */
     public List<Product> calcAntalDoor(List allProducts) {
+        
+        if (allProducts == null) {
+            throw new NullPointerException();
+        }
+        
         List<Product> list = allProducts;
         List<Product> doorList = new ArrayList<>();
         double calcFrontPlanksAntal = 80 / 10;//door width divided with plank width

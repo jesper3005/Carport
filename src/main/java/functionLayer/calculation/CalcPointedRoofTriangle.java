@@ -5,13 +5,15 @@
  */
 package functionLayer.calculation;
 
+import functionLayer.LogicFacade;
+
 /**
  *
  * @author oerte
  */
 public class CalcPointedRoofTriangle {
 
-    public static double CalcHypotesen(double length, double c, double degree) {
+    public static double CalcKatete(double length, double c, double degree) {
 
         if (length <= 0 || c <= 0 || degree <= 0) {
             throw new IllegalArgumentException();
@@ -22,6 +24,7 @@ public class CalcPointedRoofTriangle {
             double sinC = 180 - (2 * degree);
 
             b = (c * Math.sin(25 * (Math.PI / 180))) / Math.sin(sinC * (Math.PI / 180));
+            b = LogicFacade.roundDoubleToTwoDecimalPoints(b);
             return b;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -31,16 +34,21 @@ public class CalcPointedRoofTriangle {
 
     }
 
-    public static double CalcArealTriangle(double length, double c, double degree) {
+    
+    /*
+    Area of a Triangle --> A = (a+b+c)/2
+    
+    */
+    
+    public static double CalcArealTriangle(double length, double width, double degree) {
 
-        if (length <= 0 || c <= 0 || degree <= 0) {
+        if (length <= 0 || width <= 0 || degree <= 0) {
             throw new IllegalArgumentException();
         }
 
         try {
-            double b = CalcArealTriangle(length, c, degree);
-            double h = ((b + b + c) / 2) / (1 / 2) * c;
-            double A = (1 / 2) * h * c;
+            double b = CalcKatete(length, width, degree);
+            double A = (b+b+width)/2;
             return A;
         } catch (Exception e) {
             System.out.println(e.getMessage());

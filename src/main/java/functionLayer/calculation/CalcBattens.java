@@ -61,7 +61,7 @@ public class CalcBattens {
         List<Product> productList = allProducts;
         double antal;
         try {
-            double b = CalcPointedRoofTriangle.CalcHypotesen(length, width, degree) + 25;
+            double b = CalcPointedRoofTriangle.CalcKatete(length, width, degree) + 25;
             double antalLaegter = 0;
             double totalMeterLægter = 0;
             //En lægte per 0.5 meter (50 cm)

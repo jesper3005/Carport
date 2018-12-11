@@ -29,7 +29,7 @@ public class CalcLøsholt {
         Product p = null;
         List<Product> productList = allProducts;
         try {
-            double løsholtLengthB = CalcPointedRoofTriangle.CalcHypotesen(length, width, degree) + 25;
+            double løsholtLengthB = CalcPointedRoofTriangle.CalcKatete(length, width, degree) + 25;
             double antal = 4;
 
             for (Product product : productList) {

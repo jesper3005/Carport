@@ -44,6 +44,13 @@ public class CarportFlatProductListe {
     private Product pOuterLayer;
 
     public List<Product> carportCalculaterFlatRoof(double length, double width, String roofMaterial) {
+        
+        if (length <= 0 || width <= 0) {
+            throw new IllegalArgumentException();
+        }
+        if (roofMaterial.isEmpty()) {
+            throw new NullPointerException();
+        }
 
         // List included everything needed to build the requestet carport
         List<Product> stykliste = new ArrayList<>();
@@ -93,6 +100,13 @@ public class CarportFlatProductListe {
     }
 
     public List<Product> carportCalculaterFlatRoofIncludingShed(double length, double width, double shedLength, double shedWidth, String roofMaterial) {
+        
+        if (length <= 0 || width <= 0) {
+            throw new IllegalArgumentException();
+        }
+        if (roofMaterial.isEmpty()) {
+            throw new NullPointerException();
+        }
 
         // List included everything needed to build the requestet carport
         List<Product> stykliste = new ArrayList<>();

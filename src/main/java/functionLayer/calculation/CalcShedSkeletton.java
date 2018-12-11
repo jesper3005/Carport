@@ -78,7 +78,7 @@ public class CalcShedSkeletton {
     public Product calcAntalHorizontal(double length, double width, List allProducts) {
 
         if (length <= 0 || width <= 0) {
-            throw new ArithmeticException();
+            throw new IllegalArgumentException();
         }
         if (allProducts == null) {
             throw new NullPointerException();

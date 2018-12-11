@@ -92,7 +92,7 @@ public class CalcRoof {
             throw new NullPointerException();
         }
 
-        width = CalcPointedRoofTriangle.CalcHypotesen(length, width, degree);
+        width = CalcPointedRoofTriangle.CalcKatete(length, width, degree);
         List<Product> productList = allProducts;
         Product p = null;
         double tagstenCm2;
