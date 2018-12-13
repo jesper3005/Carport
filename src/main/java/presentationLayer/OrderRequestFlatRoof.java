@@ -68,13 +68,7 @@ public class OrderRequestFlatRoof extends Command {
             session.setAttribute("carportFlat", carport);
             session.setAttribute("shedFlat", shed);
 
-            session.setAttribute("totalPrice", totalPriceOfCarport);
-            session.setAttribute("roofMaterial", roofMaterial);
-            session.setAttribute("redskabsskur", redskabsskur);
-            session.setAttribute("bredde", width);
-            session.setAttribute("laengde", length);
-            session.setAttribute("skurbredde", shedWidth);
-            session.setAttribute("skurlaengde", shedLength);
+            
 
             //------------SVG-------------
             if (redskabsskur == null) {

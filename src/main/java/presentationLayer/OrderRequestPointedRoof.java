@@ -67,15 +67,6 @@ public class OrderRequestPointedRoof extends Command {
             session.setAttribute("carportPeak", carport);
             session.setAttribute("shedPeak", shed);
 
-            //Set styklisten, bredde, længde and totalPriceOfCarport in session
-            session.setAttribute("totalPrice", totalPriceOfCarport);
-            session.setAttribute("roofMaterial", roofMaterial);
-            session.setAttribute("redskabsskur", redskabsskur);
-            session.setAttribute("bredde", width);
-            session.setAttribute("laengde", length);
-            session.setAttribute("skurbredde", shedWidth);
-            session.setAttribute("skurlaengde", shedLength);
-            session.setAttribute("degree", degree);
 
             //------------SVG-------------
             if (redskabsskur == null) {

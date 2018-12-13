@@ -4,6 +4,8 @@
     Author     : oerte
 --%>
 
+<%@page import="functionLayer.Shed"%>
+<%@page import="functionLayer.Carport"%>
 <%@page import="functionLayer.User"%>
 <%@page import="java.util.List"%>
 <%@page import="functionLayer.Product"%>
@@ -19,7 +21,8 @@
         <link rel="icon" href=""
     </head>
     <body>
-        <% double totalPriceOfCarport = (Double) session.getAttribute("totalPrice");%>
+        <% Carport carport = (Carport) session.getAttribute("carportFlat"); %>
+        <% Shed shed = (Shed) session.getAttribute("shedFlat"); %>
 
         <% User user = (User) session.getAttribute("user"); %>
         
@@ -72,7 +75,29 @@
                 samt en stykliste af produkter som der skal bruges.
                 <br>
                 <br>
-                <%="Prisforslag: "+totalPriceOfCarport+" DKK" %>
+                <h1>Mål på carporten</h1>
+                <%="Carport længde: " + carport.getCarport_length() + "cm" %>
+                <br>
+                <br>
+                <%="Carport bredde: " + carport.getCarport_width() +"cm" %>
+                <br>
+                <br>
+                <%="Carport tag type: " + carport.getRoof() %>
+                <br>
+                <br>
+                <%="Carport tag materiale: " + carport.getRoofMaterial() %>
+                <br>
+                <br>
+                Mål på skur hvis tilvalgt (Hvis skur ikke er tilvalgt vil der stå 0cm)
+                <br>
+                <br>
+                <%="Skur længde: " + shed.getShed_length() + "cm" %>
+                <br>
+                <br>
+                <%="Skur bredde: " + shed.getShed_width() + "cm" %>
+                <br>
+                <br>
+                <%="Prisforslag: " + carport.getTotal_price() +" DKK" %>
             </div>
         </div>
             
