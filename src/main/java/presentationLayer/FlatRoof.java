@@ -22,17 +22,17 @@ public class FlatRoof extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
+            HttpSession session = request.getSession();
 
         try {
-            HttpSession session = request.getSession();
             List<Product> orderByLengthRemList = LogicFacade.remOrderedByLength();
             session.setAttribute("orderByLengthRemList", orderByLengthRemList);
-
+            
             return "carportFlatRoof";
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return "carportFlatRoof";
+            return "../index";
         }
     }
 

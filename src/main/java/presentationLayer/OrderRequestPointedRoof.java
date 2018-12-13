@@ -50,9 +50,9 @@ public class OrderRequestPointedRoof extends Command {
             }
 
             if (redskabsskur != null) {
-                stykliste = LogicFacade.CarportCalculaterFlatRoofIncludingShed(length, width, shedLength, shedWidth, roofMaterial);
+                stykliste = LogicFacade.carportCalculaterFlatRoofIncludingShed(length, width, shedLength, shedWidth, roofMaterial);
             } else {
-                stykliste = LogicFacade.CarportCalculaterFlatRoof(length, width, roofMaterial);
+                stykliste = LogicFacade.carportCalculaterFlatRoof(length, width, roofMaterial); 
             }
 
             double totalPriceOfCarport = LogicFacade.totalPriceOfCarport(stykliste);

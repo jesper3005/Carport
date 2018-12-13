@@ -49,6 +49,7 @@ public class CarportMapper {
 
             pstmt.executeUpdate();
             pstmt.close();
+            System.out.println("Carport has succesfully been added");
 
         } catch (SQLException | ClassNotFoundException ex) {
             System.out.println(ex.getMessage() + " addCarport in carportMapper");

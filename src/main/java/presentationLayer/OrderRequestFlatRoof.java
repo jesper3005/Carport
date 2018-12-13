@@ -6,10 +6,12 @@
 package presentationLayer;
 
 import exceptions.FogException;
+import functionLayer.Carport;
 import functionLayer.LogicFacade;
 import functionLayer.Product;
 import functionLayer.SVGSide;
 import functionLayer.SVGTop;
+import functionLayer.Shed;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -50,14 +52,20 @@ public class OrderRequestFlatRoof extends Command {
             }
             
             if (redskabsskur != null) {
-                stykliste = LogicFacade.CarportCalculaterFlatRoofIncludingShed(length, width, shedLength, shedWidth, roofMaterial);
+                stykliste = LogicFacade.carportCalculaterFlatRoofIncludingShed(length, width, shedLength, shedWidth, roofMaterial);
             } else {
-                stykliste = LogicFacade.CarportCalculaterFlatRoof(length, width, roofMaterial);
+                stykliste = LogicFacade.carportCalculaterFlatRoof(length, width, roofMaterial);
             }
 
             double totalPriceOfCarport = LogicFacade.totalPriceOfCarport(stykliste);
 
             //Set styklisten, bredde, længde and totalPriceOfCarport in session
+            Shed shed = new Shed(shedLength, shedWidth);
+            Carport carport = new Carport(length, width, 0.0, "FLAT", roofMaterial, totalPriceOfCarport, shed.getShed_id(), 0);
+            session.setAttribute("carportFlat", carport);
+            session.setAttribute("shedFlat", shed);
+            
+            
             session.setAttribute("totalPrice", totalPriceOfCarport);
             session.setAttribute("roofMaterial", roofMaterial);
             session.setAttribute("redskabsskur", redskabsskur);
@@ -67,7 +75,7 @@ public class OrderRequestFlatRoof extends Command {
             session.setAttribute("skurlaengde", shedLength);
 
             //------------SVG-------------
-            if (redskabsskur == null) {
+            if(redskabsskur == null) {
                 shedCheck = false;
             } else {
                 shedCheck = true;

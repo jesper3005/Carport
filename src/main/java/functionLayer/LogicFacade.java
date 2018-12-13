@@ -163,7 +163,7 @@ public class LogicFacade {
      * @return Returns a list of all products, that is needed to build a carport with a flat roof.
      * 
      */
-    public static List<Product> CarportCalculaterFlatRoof(double length, double width, String roofMaterial) {
+    public static List<Product> carportCalculaterFlatRoof(double length, double width, String roofMaterial) {
         CarportFlatProductListe cfp = new CarportFlatProductListe();
         List<Product> list = cfp.carportCalculaterFlatRoof(length, width, roofMaterial);
         return list;
@@ -183,7 +183,7 @@ public class LogicFacade {
      * @return Returns a list of all products, that is needed to build a carport with a flat roof and shed.
      * 
      */
-    public static List<Product> CarportCalculaterFlatRoofIncludingShed(double length, double width, double shedLength, double shedWidth, String roofMaterial) {
+    public static List<Product> carportCalculaterFlatRoofIncludingShed(double length, double width, double shedLength, double shedWidth, String roofMaterial) {
         CarportFlatProductListe cfp = new CarportFlatProductListe();
         List<Product> list = cfp.carportCalculaterFlatRoofIncludingShed(length, width, shedLength, shedWidth, roofMaterial);
         return list;
@@ -201,7 +201,7 @@ public class LogicFacade {
      * @param roofMaterial Roof material is choosen from the client through carportFlarRoof.jsp or carportPointedRoof.jsp.
      * @return Returns a list of all products, that is needed to build a carport with a Pointed roof.
      */
-    public static List<Product> CarportCalculatorPointedRoof(double length, double width, double degree, String roofMaterial) {
+    public static List<Product> carportCalculatorPointedRoof(double length, double width, double degree, String roofMaterial) {
         CarportPointedRoofListe cfp = new CarportPointedRoofListe();
         List<Product> list = cfp.carportCalculaterPointedRoof(length, width, degree, roofMaterial);
         return list;
@@ -221,7 +221,7 @@ public class LogicFacade {
      * @param roofMaterial Roof material is choosen from the client through carportFlatRoof.jsp or carportPointedRoof.jsp.
      * @return Returns a list of all products, that is needed to build a carport with a Pointed roof and shed.
      */
-    public static List<Product> CarportCalculatorPointedRoofIncludingShed(double length, double width, double degree, double shedLength, double shedWidth, String roofMaterial) {
+    public static List<Product> carportCalculatorPointedRoofIncludingShed(double length, double width, double degree, double shedLength, double shedWidth, String roofMaterial) {
         CarportPointedRoofListe cfp = new CarportPointedRoofListe();
         List<Product> list = cfp.carportCalculaterPointedRoofIncludingShed(length, width, degree, length, width, roofMaterial);
         return list;

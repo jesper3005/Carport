@@ -53,9 +53,9 @@ public class CreateOrderPointedRoof extends Command {
             if (redskabsskur != null) {
                 shedWidth = (double) session.getAttribute("skurbredde");
                 shedLength = (double) session.getAttribute("skurlaengde");
-                stykliste = LogicFacade.CarportCalculatorPointedRoofIncludingShed(length, width, degree, shedLength, shedWidth, roofMaterial);
+                stykliste = LogicFacade.carportCalculatorPointedRoofIncludingShed(length, width, degree, shedLength, shedWidth, roofMaterial);
             } else {
-                stykliste = LogicFacade.CarportCalculatorPointedRoof(length, width, degree, roofMaterial);
+                stykliste = LogicFacade.carportCalculatorPointedRoof(length, width, degree, roofMaterial);
             }
             Shed shed = new Shed(shedLength, shedWidth);
 

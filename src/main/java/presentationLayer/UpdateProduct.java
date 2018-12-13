@@ -36,7 +36,7 @@ public class UpdateProduct extends Command {
                 LogicFacade.deleteProduct(product_id);
             }
             
-            List<Product> allProducts = pm.allProducts();
+            List<Product> allProducts = LogicFacade.getAllProductsFromDatabase();
             session.setAttribute("allProduct", allProducts);
             return "admin";
         } catch (Exception e) {
