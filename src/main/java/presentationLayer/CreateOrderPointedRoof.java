@@ -39,10 +39,10 @@ public class CreateOrderPointedRoof extends Command {
             String tel = request.getParameter("telefon");
             String email = request.getParameter("email");
             String comment = request.getParameter("comment");
-
+            
+            //Gets carport and shed from session
             Carport carportPeak = (Carport) session.getAttribute("carportPeak");
             Shed shedPeak = (Shed) session.getAttribute("shedPeak");
-
 
             customer = LogicFacade.getCustomerByEmail(email);
 

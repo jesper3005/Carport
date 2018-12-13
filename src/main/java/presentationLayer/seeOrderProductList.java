@@ -28,18 +28,18 @@ public class seeOrderProductList extends Command{
         Carport c = LogicFacade.getCarportByID(carportID);
         
         if(c.getRoof().equals("FLAT") && c.getShed().getShed_length() > 0) {
-            List<Product> stykListe = LogicFacade.CarportCalculaterFlatRoofIncludingShed(c.getCarport_length(), c.getCarport_width(), c.getShed().getShed_length(), c.getShed().getShed_width(), c.getRoofMaterial());
+            List<Product> stykListe = LogicFacade.carportCalculaterFlatRoofIncludingShed(c.getCarport_length(), c.getCarport_width(), c.getShed().getShed_length(), c.getShed().getShed_width(), c.getRoofMaterial());
             session.setAttribute("orderProductList", stykListe);
         } else if(c.getRoof().equals("FLAT") && c.getShed().getShed_length() == 0) {
-            List<Product> stykListe = LogicFacade.CarportCalculaterFlatRoof(c.getCarport_length(), c.getCarport_width(), c.getRoofMaterial());
+            List<Product> stykListe = LogicFacade.carportCalculaterFlatRoof(c.getCarport_length(), c.getCarport_width(), c.getRoofMaterial());
             session.setAttribute("orderProductList", stykListe);
         } 
         
         if(c.getRoof().equals("PEAK") && c.getShed().getShed_length() > 0) {
-           List<Product> stykListe = LogicFacade.CarportCalculatorPointedRoofIncludingShed(c.getCarport_length(), c.getCarport_width(), c.getDegrees(), c.getShed().getShed_length(), c.getShed().getShed_width(), c.getRoofMaterial());
+           List<Product> stykListe = LogicFacade.carportCalculatorPointedRoofIncludingShed(c.getCarport_length(), c.getCarport_width(), c.getDegrees(), c.getShed().getShed_length(), c.getShed().getShed_width(), c.getRoofMaterial());
            session.setAttribute("orderProductList", stykListe);
         } else if(c.getRoof().equals("PEAK") && c.getShed().getShed_length() == 0 ) {
-           List<Product> stykListe = LogicFacade.CarportCalculatorPointedRoof(c.getCarport_length(), c.getCarport_width(), c.getDegrees(), c.getRoofMaterial());
+           List<Product> stykListe = LogicFacade.carportCalculatorPointedRoof(c.getCarport_length(), c.getCarport_width(), c.getDegrees(), c.getRoofMaterial());
            session.setAttribute("orderProductList", stykListe);
         }
         

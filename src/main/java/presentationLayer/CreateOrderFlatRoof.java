@@ -27,6 +27,10 @@ public class CreateOrderFlatRoof extends Command {
 
         HttpSession session = request.getSession();
         Customer customer;
+        
+        //Get the carport added to the session
+        
+        
 
         try {
             //Customer information
@@ -38,24 +42,27 @@ public class CreateOrderFlatRoof extends Command {
             String tel = request.getParameter("telefon");
             String email = request.getParameter("email");
             String comment = request.getParameter("comment");
-
-            Carport carportFlat = (Carport) session.getAttribute("carportFlat");
+            
+            Carport carportFlat = (Carport) session.getAttribute("carportFladt");
             Shed shedFlat = (Shed) session.getAttribute("shedFlat");
 
+            
+            //Shed shed = new Shed(shedLength, shedWidth);
+
+            //double totalPriceOfCarport = LogicFacade.totalPriceOfCarport(stykliste);
+            //carportFlat.setTotal_price(totalPriceOfCarport);
 
             customer = LogicFacade.getCustomerByEmail(email);
 
             if (customer != null && email.equals(customer.getEmail())) {
                carportFlat.setCustomer_id(customer.getId());
                LogicFacade.addCarport(carportFlat, shedFlat);
-
-           } else {
-               Customer newCustomer = new Customer(firstName, lastName, email, addresse, town, zipCode, tel, comment);
-               LogicFacade.addCustomer(newCustomer);
-               Customer c = LogicFacade.getCustomerByEmail(email);
-               carportFlat.setCustomer_id(c.getId());
-               LogicFacade.addCarport(carportFlat, shedFlat);
-
+            } else {
+                Customer newCustomer = new Customer(firstName, lastName, email, addresse, town, zipCode, tel, comment);
+                LogicFacade.addCustomer(newCustomer);
+                Customer c = LogicFacade.getCustomerByEmail(email);
+                carportFlat.setCustomer_id(c.getId());
+                LogicFacade.addCarport(carportFlat, shedFlat);
            }
             return "orderComplete";
         } catch (Exception e) {

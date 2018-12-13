@@ -33,7 +33,6 @@ public class CarportMapper {
     
     public void addCarport(Carport carport, Shed shed) {
         try {
-            System.out.println("addcarportMapper");
             Connection c = Connector.connection();
             String query = ADD_Carport;
             PreparedStatement pstmt = c.prepareStatement(query);
@@ -50,9 +49,7 @@ public class CarportMapper {
             System.out.println(carport.toString());
 
             pstmt.executeUpdate();
-            System.out.println("has been added");
             pstmt.close();
-            
             
 
         } catch (SQLException | ClassNotFoundException ex) {

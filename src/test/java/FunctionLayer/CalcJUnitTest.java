@@ -303,17 +303,17 @@ public class CalcJUnitTest {
 //        assertEquals(expected, actual, 0.5);
 //    }
 
-    @Test
-    public void calcPointedRoofTriangleAreal() {
-        //Arrange
-        Product p;
-        CalcPointedRoofTriangle cprt = new CalcPointedRoofTriangle();
-        //Act
-        double actual = cprt.CalcArealTriangle(240, 240, 15);
-        double expected = 322.86;
-        //Assert
-        assertEquals(expected, actual, 0.5);
-    }
+//    @Test
+//    public void calcPointedRoofTriangleAreal() {
+//        //Arrange
+//        Product p;
+//        CalcPointedRoofTriangle cprt = new CalcPointedRoofTriangle();
+//        //Act
+//        double actual = cprt.CalcArealTriangle(240, 240, 15);
+//        double expected = 322.86;
+//        //Assert
+//        assertEquals(expected, actual, 0.5);
+//    }
 
     @Test
     public void CalcShedSkeletton() {

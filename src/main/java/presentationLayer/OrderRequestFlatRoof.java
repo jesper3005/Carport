@@ -54,10 +54,10 @@ public class OrderRequestFlatRoof extends Command {
             }
 
             if (redskabsskur != null) {
-                stykliste = LogicFacade.CarportCalculaterFlatRoofIncludingShed(length, width, shedLength, shedWidth, roofMaterial);
+                stykliste = LogicFacade.carportCalculaterFlatRoofIncludingShed(length, width, shedLength, shedWidth, roofMaterial);
                 shed = new Shed(shedLength, shedWidth);
             } else {
-                stykliste = LogicFacade.CarportCalculaterFlatRoof(length, width, roofMaterial);
+                stykliste = LogicFacade.carportCalculaterFlatRoof(length, width, roofMaterial);
                 shed = new Shed(0.0, 0.0);
             }
 
