@@ -104,6 +104,7 @@ public class CarportPointedRoofListe {
 
             pBattens = battens.calcAntalPointedRoof(length, width, degree, list);
             pBeam = beam.calcAntal(length, width, list);
+            System.out.println(roofMaterial + "carportcalculator");
             pRoof = roof.calcAntalPointedRoof(length, width, degree, roofMaterial, list);
             pPoles = poles.calcAntal(length, width, list);
             pLøsholdt = løsholdt.calcAntalPointedRoof(length, width, degree, list);

@@ -28,10 +28,13 @@ public class LogicFacade {
         UserMapper um = new UserMapper();
         return um.getUser(email, password);
     }
+    
     /**
-     * 
-     * @param password
-     * @return 
+     * This method will create a hashed password and return it, with help of
+     * userns password.
+     *
+     * @param password Userns password.
+     * @return Returns a new hashed password String
      */
     public static String createHashedPassword(String password) {
         String passwordToHash = password;
@@ -84,6 +87,7 @@ public class LogicFacade {
     }
 
     public static void addCarport(Carport carport, Shed shed) {
+        System.out.println("addCarportLogicFacade");
         CarportMapper cm = new CarportMapper();
         cm.addCarport(carport, shed);
     }

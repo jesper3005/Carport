@@ -6,10 +6,12 @@
 package presentationLayer;
 
 import exceptions.FogException;
+import functionLayer.Carport;
 import functionLayer.LogicFacade;
 import functionLayer.Product;
 import functionLayer.SVGSide;
 import functionLayer.SVGTop;
+import functionLayer.Shed;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,23 +43,31 @@ public class OrderRequestFlatRoof extends Command {
             String roofMaterial = request.getParameter("Tag");
             //Checks if roof is pointed for SVG's sake
 
-            if(shedLength > length ){
+            Shed shed;
+            if (shedLength > length) {
                 request.setAttribute("error", "Skur længde skal være mindre den selve carporten.");
                 throw new FogException("Skur længde skal være mindre den selve carporten.");
-            }if(shedWidth > width){
+            }
+            if (shedWidth > width) {
                 request.setAttribute("error", "Skur bredde skal være mindre den selve carporten.");
                 throw new FogException("Skur bredde skal være mindre den selve carporten.");
             }
-            
+
             if (redskabsskur != null) {
                 stykliste = LogicFacade.CarportCalculaterFlatRoofIncludingShed(length, width, shedLength, shedWidth, roofMaterial);
+                shed = new Shed(shedLength, shedWidth);
             } else {
                 stykliste = LogicFacade.CarportCalculaterFlatRoof(length, width, roofMaterial);
+                shed = new Shed(0.0, 0.0);
             }
 
             double totalPriceOfCarport = LogicFacade.totalPriceOfCarport(stykliste);
 
             //Set styklisten, bredde, længde and totalPriceOfCarport in session
+            Carport carport = new Carport(length, width, 0.0, "FLAT", roofMaterial, totalPriceOfCarport, shed.getShed_id(), 0);
+            session.setAttribute("carportFlat", carport);
+            session.setAttribute("shedFlat", shed);
+
             session.setAttribute("totalPrice", totalPriceOfCarport);
             session.setAttribute("roofMaterial", roofMaterial);
             session.setAttribute("redskabsskur", redskabsskur);

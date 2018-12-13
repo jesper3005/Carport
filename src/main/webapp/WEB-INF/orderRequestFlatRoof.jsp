@@ -73,7 +73,6 @@
                 <br>
                 <br>
                 <%="Prisforslag: "+totalPriceOfCarport+" DKK" %>
-                <%= totalPriceOfCarport %>
             </div>
         </div>
             

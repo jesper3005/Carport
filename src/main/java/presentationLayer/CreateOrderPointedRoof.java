@@ -26,20 +26,10 @@ public class CreateOrderPointedRoof extends Command {
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
 
         HttpSession session = request.getSession();
-        List<Product> stykliste = null;
-        Carport carport;
         Customer customer;
 
         try {
-            //carport and shed measurments
-            double shedWidth = 0;
-            double shedLength = 0;
-            double width = (double) session.getAttribute("bredde");
-            double length = (double) session.getAttribute("laengde");
-            double degree = (double) session.getAttribute("degree");
-            String roofMaterial = (String) session.getAttribute("roofMaterial");
-            String redskabsskur = (String) session.getAttribute("redskabsskur");
-
+           
             //Customer information
             String firstName = request.getParameter("fornavn");
             String lastName = request.getParameter("efternavn");
@@ -50,36 +40,29 @@ public class CreateOrderPointedRoof extends Command {
             String email = request.getParameter("email");
             String comment = request.getParameter("comment");
 
-            if (redskabsskur != null) {
-                shedWidth = (double) session.getAttribute("skurbredde");
-                shedLength = (double) session.getAttribute("skurlaengde");
-                stykliste = LogicFacade.CarportCalculatorPointedRoofIncludingShed(length, width, degree, shedLength, shedWidth, roofMaterial);
-            } else {
-                stykliste = LogicFacade.CarportCalculatorPointedRoof(length, width, degree, roofMaterial);
-            }
-            Shed shed = new Shed(shedLength, shedWidth);
+            Carport carportPeak = (Carport) session.getAttribute("carportPeak");
+            Shed shedPeak = (Shed) session.getAttribute("shedPeak");
 
-            double totalPriceOfCarport = LogicFacade.totalPriceOfCarport(stykliste);
 
             customer = LogicFacade.getCustomerByEmail(email);
 
             if (customer != null && email.equals(customer.getEmail())) {
-                carport = new Carport(length, width, degree, "PEAK", roofMaterial, totalPriceOfCarport, shed.getShed_id(), customer.getId());
-                LogicFacade.addCarport(carport, shed);
+               carportPeak.setCustomer_id(customer.getId());
+               LogicFacade.addCarport(carportPeak, shedPeak);
 
-            } else {
-                Customer newCustomer = new Customer(firstName, lastName, email, addresse, town, zipCode, tel, comment);
-                LogicFacade.addCustomer(newCustomer);
-                Customer c = LogicFacade.getCustomerByEmail(email);
-                carport = new Carport(length, width, degree, "PEAK", roofMaterial, totalPriceOfCarport, shed.getShed_id(), c.getId());
-                LogicFacade.addCarport(carport, shed);
+           } else {
+               Customer newCustomer = new Customer(firstName, lastName, email, addresse, town, zipCode, tel, comment);
+               LogicFacade.addCustomer(newCustomer);
+               Customer c = LogicFacade.getCustomerByEmail(email);
+               carportPeak.setCustomer_id(c.getId());
+               LogicFacade.addCarport(carportPeak, shedPeak);
 
-            }
+           }
             return "orderComplete";
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return "orderComplete";
+            return "orderRequestPointedRoof";
         }
 
     }

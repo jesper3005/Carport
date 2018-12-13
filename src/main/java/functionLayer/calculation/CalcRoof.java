@@ -84,6 +84,7 @@ public class CalcRoof {
     }
 
     public Product calcAntalPointedRoof(double length, double width, double degree, String roofMaterial, List allProducts) {
+        System.out.println(roofMaterial +" calcAntal");
 
         if (length <= 0 || width <= 0) {
             throw new IllegalArgumentException();
@@ -93,6 +94,7 @@ public class CalcRoof {
         }
 
         width = CalcPointedRoofTriangle.CalcKatete(length, width, degree);
+        width += 20; //on the left and right side we add 20 cm
         List<Product> productList = allProducts;
         Product p = null;
         double tagstenCm2;
@@ -100,7 +102,6 @@ public class CalcRoof {
 
         try {
             double roofCm2 = (length * width) * 2; // quadratcentimeter
-            roofCm2 = (width * length);
             for (Product product : productList) {
                 if (roofMaterial.equals("Tagpap") && product.getCategory().equals("tagpap") && (width % 60) == 0) {
                     antal = Math.ceil(roofCm2 / 45000);
@@ -111,8 +112,7 @@ public class CalcRoof {
                 } else if (roofMaterial.equals("Tagpap") && product.getCategory().equals("tagpap") && (roofCm2 % 80000) < (roofCm2 % 50000)) {
                     antal = Math.ceil(roofCm2 / 80000);
                     p = new Product(40, product.getProductName(), product.getCategory(), product.getPrice(), antal, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());
-                    //on each side of the carport we add 20 cm to the length or width
-                } else if (roofMaterial.equals("Tagsten") && product.getId() == 66) {
+                } else if (roofMaterial.equals("Tagsten")) {
                     tagstenCm2 = 40 * 24;
                     antal = Math.ceil(roofCm2 / tagstenCm2);
                     p = new Product(66, product.getProductName(), product.getCategory(), product.getPrice(), antal, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());

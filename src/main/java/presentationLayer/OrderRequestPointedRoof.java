@@ -6,10 +6,12 @@
 package presentationLayer;
 
 import exceptions.FogException;
+import functionLayer.Carport;
 import functionLayer.LogicFacade;
 import functionLayer.Product;
 import functionLayer.SVGSide;
 import functionLayer.SVGTop;
+import functionLayer.Shed;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,22 +42,30 @@ public class OrderRequestPointedRoof extends Command {
             String redskabsskur = request.getParameter("redskabsskur");
             // value from roof selector
             String roofMaterial = request.getParameter("Tag");
-            
-            if(shedLength > length ){
+
+            Shed shed; 
+            if (shedLength > length) {
                 request.setAttribute("error", "Skur længde skal være mindre den selve carporten.");
                 throw new FogException("Skur længde skal være mindre den selve carporten.");
-            }if(shedWidth > width){
+            }
+            if (shedWidth > width) {
                 request.setAttribute("error", "Skur bredde skal være mindre den selve carporten.");
                 throw new FogException("Skur bredde skal være mindre den selve carporten.");
             }
 
             if (redskabsskur != null) {
-                stykliste = LogicFacade.CarportCalculaterFlatRoofIncludingShed(length, width, shedLength, shedWidth, roofMaterial);
+                stykliste = LogicFacade.CarportCalculatorPointedRoofIncludingShed(length, width, degree, shedLength, shedWidth, roofMaterial);
+                shed = new Shed(shedLength, shedWidth);
             } else {
-                stykliste = LogicFacade.CarportCalculaterFlatRoof(length, width, roofMaterial);
+                stykliste = LogicFacade.CarportCalculatorPointedRoof(length, width, degree, roofMaterial);
+                shed = new Shed(0.0, 0.0);
             }
 
             double totalPriceOfCarport = LogicFacade.totalPriceOfCarport(stykliste);
+
+            Carport carport = new Carport(length, width, degree, "PEAK", roofMaterial, totalPriceOfCarport, shed.getShed_id(), 0);
+            session.setAttribute("carportPeak", carport);
+            session.setAttribute("shedPeak", shed);
 
             //Set styklisten, bredde, længde and totalPriceOfCarport in session
             session.setAttribute("totalPrice", totalPriceOfCarport);

@@ -52,6 +52,11 @@ public class Carport {
         this.shed = shed;
     }
 
+    public void setCustomer_id(int customer_id) {
+        this.customer_id = customer_id;
+    }
+
+    
     @Override
     public String toString() {
         return "Carport{" + "id=" + id + ", date=" + date + ", carport_length=" + carport_length + ", carport_width=" + carport_width + ", degrees=" + degrees + ", roof=" + roof + ", roofMaterial=" + roofMaterial + ", total_price=" + total_price + ", status_of_order=" + status_of_order + ", shed_id=" + shed_id + ", customer_id=" + customer_id + ", shed=" + shed + '}';
