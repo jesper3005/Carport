@@ -65,7 +65,7 @@
         <%} else {%>
         <div class="container">
             <div class="control-groupText">
-                <h1 class="title">Velkommen til Quick-byg carport med fladt tag !</h1>
+                <h1 class="title">Velkommen til Quick-byg carport med spidst tag !</h1>
                 <text>Med et specialudviklet computerprogram kan vi lynhurtigt beregne prisen og udskrive en skitsetegning på en carport  </text>
                 <br>
                 <text>indenfor vores standardprogram, der tilpasses dine specifikke ønsker.</text>
@@ -74,7 +74,7 @@
                 Tilbud og skitsetegning kan ses på næste side når målene er udfyldt
                 <br>
                 <br>
-                Ved bestilling medfølger standardbyggevejledning.
+                Ved bestilling medfølger standardbyggevejledning. (Ikke implemeteret)
             </div>
         </div>
         <%}%>

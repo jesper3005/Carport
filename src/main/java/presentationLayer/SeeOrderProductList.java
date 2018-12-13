@@ -18,13 +18,12 @@ import javax.servlet.http.HttpSession;
  *
  * @author Jesper
  */
-public class seeOrderProductList extends Command{
+public class SeeOrderProductList extends Command{
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
         HttpSession session = request.getSession();
-        int carportID = Integer.parseInt(request.getParameter("id2"));
-        System.out.println("THIS IS CARPORT ID : " + carportID);
+        int carportID = Integer.parseInt(request.getParameter("carportID"));
         Carport c = LogicFacade.getCarportByID(carportID);
         
         if(c.getRoof().equals("FLAT") && c.getShed().getShed_length() > 0) {

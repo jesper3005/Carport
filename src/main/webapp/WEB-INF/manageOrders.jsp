@@ -72,7 +72,7 @@
         <!-- -----------------SECTION 2.0: Display orders------------------------------------>
         <% for (Carport list : allOrders) {%>
         <form action="FrontController" method="POST">
-            <input type="hidden" name="command" value="showProductList">
+        <input type="hidden" name="command" value="showProductList">
         <div class="container">
             <div class="control-group">
                 <% if (list.getRoof().equals("FLAT")) {%>
@@ -81,35 +81,36 @@
                 <h4>CARPORT MED SPIDST TAG | Odre ID: <%=list.getId()%> | Oprettet: <%=list.getDate()%></h4>
                 <%}%>
                 <h4>Carport beskrivelse:</h4>
-                <text name="length">Længde: <%=list.getCarport_length()%>cm</text>
+                <text>Længde: <%=list.getCarport_length()%>cm</text>
                 <br>
                 <br>
-                <text name="width">Bredde: <%=list.getCarport_width()%>cm</text>
+                <text>Bredde: <%=list.getCarport_width()%>cm</text>
                 <br>
                 <br>
-                <text name="degrees">Grader: <%=list.getDegrees()%></text>
+                <text>Grader: <%=list.getDegrees()%></text>
                 <br>
                 <br>
-                <text name="roofMaterial">Tag materiale: <%=list.getRoofMaterial()%></text>
+                <text>Tag materiale: <%=list.getRoofMaterial()%></text>
                 <br>
                 <br>
-                <text name="TotalPrice">Total pris ex moms: <%=list.getTotal_price()%></text>
+                <text>Total pris ex moms: <%=list.getTotal_price()%></text>
                 <br>
                 <br>
-                <text name="orderStatus">Status på odre: <%=list.getStatus_of_order()%></text>
+                <text>Status på odre: <%=list.getStatus_of_order()%></text>
                 <br>
                 <br>
-                <text name="shedLength">Skurs længde: <%=list.getShed().getShed_length()%></text>
+                <text>Skurs længde: <%=list.getShed().getShed_length()%></text>
                 <br>
                 <br>
-                <text name="shedWidth">Skurs bredde: <%=list.getShed().getShed_width()%></text>
+                <text>Skurs bredde: <%=list.getShed().getShed_width()%></text>
                 <br>
                 <br>
-                <text name="customerID">Kunde id: <%=list.getCustomer_id()%></text>
+                <text>Kunde id: <%=list.getCustomer_id()%></text>
                 <br>
                 <br>
-                <input type="hidden" name="id2" value="<%= list.getId() %>">
+                <input type="hidden" name="carportID" value="<%= list.getId() %>">
                 <button type="submit" name="seeProductList">Se styklisten</button>
+                <button type="submit" name="seeCustomerInfo">Se kunde oplysninger</button>
                 </form>
                 <!-- -----------------SECTION 2.1: Product list for order------------------------------------>
 
