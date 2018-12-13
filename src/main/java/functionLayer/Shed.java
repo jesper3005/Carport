@@ -21,6 +21,14 @@ public class Shed {
         this.shed_width = shed_width;
     }
 
+    public Shed(int shed_id, double shed_length, double shed_width) {
+        this.shed_id = shed_id;
+        this.shed_length = shed_length;
+        this.shed_width = shed_width;
+    }
+    
+    
+
     @Override
     public String toString() {
         return "Shed{" + "shed_length=" + shed_length + ", shed_width=" + shed_width + '}';

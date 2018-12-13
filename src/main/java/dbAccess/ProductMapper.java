@@ -24,7 +24,7 @@ public class ProductMapper {
     private final String DELETE_PRODUCT = "DELETE FROM `product` WHERE product_id=?;";
     private final String Update_Price = "UPDATE `product` SET `price`=? WHERE product_id=?;";
     private final String ALL_REM_BY_LENGTH = "SELECT `category`,`length` FROM `product` ORDER BY `length`;";
-    private final String SEARCH_IN_Product_TABLE = "SELECT * FROM product WHERE CONCAT(product_name, '', category, '',length,'',width,'',height,'') LIKE ?;";
+    private final String SEARCH_IN_PRODUCT_TABLE = "SELECT * FROM product WHERE CONCAT(product_name, '', category, '',length,'',width,'',height,'') LIKE ?;";
     private final String GET_PRODUCT_BY_ID = "SELECT * FROM `product` WHERE `product_id` = ?;";
     
     // private final String Update_PRODUCT = "SELECT `*` FROM `product` WHERE produkt_id=?;";
@@ -139,7 +139,7 @@ public class ProductMapper {
             Product p;
             List<Product> list = new ArrayList<>();
             Connection c = Connector.connection();
-            String query = SEARCH_IN_Product_TABLE;
+            String query = SEARCH_IN_PRODUCT_TABLE;
             PreparedStatement pstmt = c.prepareStatement(query);
             pstmt.setString(1, value);
 

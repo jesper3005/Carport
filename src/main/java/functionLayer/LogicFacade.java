@@ -179,10 +179,10 @@ public class LogicFacade {
      * OrderRequestFlatRoof.java in presentationLayer, to get the total price of the carport, what is used to show the price at orderRequestFlatRoof.jsp,
      * SeeOrderProductList.java in presentationLayer, to show a List of parts for an specifik customer by Id.
      * 
-     * @param length Length of the carport from carportFlatRood.jsp.
-     * @param width Width of the carport from carportFlatRood.jsp.
-     * @param shedLength Length of shed from carportFlatRood.jsp.
-     * @param shedWidth Width of shed from carportFlatRood.jsp.
+     * @param length Length of the carport from carportFlatRoof.jsp.
+     * @param width Width of the carport from carportFlatRoof.jsp.
+     * @param shedLength Length of shed from carportFlatRoof.jsp.
+     * @param shedWidth Width of shed from carportFlatRoof.jsp.
      * @param roofMaterial Roof material is choosen from the client through carportFlarRoof.jsp or carportPointedRoof.jsp.
      * @return Returns a list of all products, that is needed to build a carport with a flat roof and shed.
      * 
@@ -240,7 +240,7 @@ public class LogicFacade {
      * @return Returns a double with two decimals after the comma.
      */
     public static double roundDoubleToTwoDecimalPoints(double value) {
-        DecimalFormat df2 = new DecimalFormat(".##");
+        DecimalFormat df2 = new DecimalFormat(",##");
         return Double.parseDouble(df2.format(value));
 
     }
