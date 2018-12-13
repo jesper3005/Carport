@@ -35,11 +35,11 @@ public class FrontController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, LoginException {
+            throws ServletException, IOException, LoginException, FogException {
         response.setContentType("text/html;charset=UTF-8");
 
+        LoggerConfig.setUpLogger();
         try {
-            LoggerConfig.setUpLogger();
             Command action = Command.from(request);
             String view = action.execute(request, response);
             request.getRequestDispatcher("/WEB-INF/" + view + ".jsp").forward(request, response);
@@ -73,6 +73,8 @@ public class FrontController extends HttpServlet {
         } catch (LoginException ex) {
             System.out.println(ex.getMessage());
             Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (FogException ex) {
+            Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -91,6 +93,8 @@ public class FrontController extends HttpServlet {
             processRequest(request, response);
         } catch (LoginException ex) {
             System.out.println(ex.getMessage());
+            Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (FogException ex) {
             Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
