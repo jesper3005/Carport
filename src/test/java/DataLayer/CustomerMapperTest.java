@@ -40,8 +40,8 @@ public class CustomerMapperTest {
             //Reset database
             try (Statement stmt = testConnection.createStatement()) {
                 stmt.execute("DROP TABLE IF EXISTS customer;");
-                stmt.execute("CREATE TABLE carport LIKE carportTest;");
-                stmt.execute("INSERT into carport SELECT * from carportTest;");
+                stmt.execute("CREATE TABLE customer LIKE customerTest;");
+                stmt.execute("INSERT into customer SELECT * from customerTest;");
             }
 
         } catch (ClassNotFoundException | SQLException ex) {
