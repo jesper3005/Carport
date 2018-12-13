@@ -10,6 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="shortcut icon" href="./IMAGES/FogLogo.png"/>
         <link rel="stylesheet" href="./CSS/headerCSS.css">
         <link rel="stylesheet" href="./CSS/orderCreated.css">
         <title>Tak for dit køb</title>
@@ -18,29 +19,28 @@
         
         <% User user = (User) session.getAttribute("user"); %>
         
-        <%if(user == null) { %>
-            <header>
-                <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
-                <a class="active" href="/FrontController?command=toNavigator&site=registration">Sign up</a>
-                <a class="active" href="/FrontController?command=toNavigator&site=login">Login</a>
-                <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
-            </header>
+       <%if(user == null) { %>
+        <header>
+            <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
+            <a class="active" href="/FrontController?command=toNavigator&site=registration">Sign up</a>
+            <a class="active" href="/FrontController?command=toNavigator&site=login">Login</a>
+            <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
+        </header>
+        
         <%} else if(user.getRole().equals("admin")) {%> 
             <header>
                 <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
-                <a class="active" href="/FrontController?command=toLogin">Profile</a>
-                <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
+                <a class="active" href="/FrontController?command=toNavigator&site=logout">Sign out</a>
                 <a class="active" href="/FrontController?command=Admin">Admin</a>
                 <a class="active" href="/FrontController?command=manageOrders">Se Ordre</a>
-                <a class="active" href="/FrontController?command=toNavigator&site=logout">Sign out</a>
+                <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
             </header>
         <%} else if(user.getRole().equals("customer")) { %>
             <header>
                 <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
-                <a class="active" href="/FrontController?command=toLogin">Profile</a>
-                <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
-                <a class="active" href="">Profile</a>
                 <a class="active" href="/FrontController?command=toNavigator&site=logout">Sign out</a>
+                <a class="active" href="">Profile</a>
+                <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
             </header>
         <%}%>
         

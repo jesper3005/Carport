@@ -20,16 +20,28 @@ public class SVGSide {
     double stolpeGapFraRem = 10;
     double shedPlankWidth = 10;
     double stolpeWidth = 10;
+    double lægteWidth = 5;
 
-    public SVGSide(double length, double height, double shedLength, double shedWidth, boolean shedCheck) {
+    public SVGSide(Carport carport, Shed shed, double height) {
         this.sb = sb.append("<SVG width=\"800\" height=\"500\">");
+        
+        double length = carport.getCarport_length();
+        double width = carport.getCarport_width();
+        double degree = carport.getDegrees();
+        double shedLength = shed.getShed_length();
+        double shedWidth = shed.getShed_width();
         //ADD ALL METHODS FOR SVG DRAWING FROM TOP
         sb.append(createRem(length));
         sb.append(createStolper(length, height));
 
-        if (shedCheck == true) {
+        if (shedLength > 0) {
             sb.append(createShed(length, shedWidth, shedLength, shedWidth, height));
         }
+        
+        if(carport.getRoof().equals("PEAK")) {
+            sb.append(createPointedRoof(length, width, degree));
+        }
+        
 
         sb.append("</SVG>");
         this.mySVG = sb.toString();
@@ -70,16 +82,18 @@ public class SVGSide {
         return sb.toString();
     }
 
-    public String createPointedRoof(double length, double width) {
-        int degree = 20;
-
+    public String createPointedRoof(double length, double width, double degree) {
         double sinC = 180 - (2 * degree);
        
-        //Calculates the length of the hypotenusen
+        //Calculates the length of the hypotenusen (The length of the rem depending on the angle 
         double hypo = (width * Math.sin(degree * (Math.PI/180))) / Math.sin(sinC * (Math.PI/180));
         
         double lengthOfLægte = (width + hypo + hypo/2) / 0.5 * width;
         
+        
+        double y = 0;
+        
+        sb.append("<rect x=\"" + startPosXY + "\" y=\"" + y + "\" height=\"" + lengthOfLægte + "\" width=\"" + lægteWidth + "\" style=\"stroke: #292929; fill:none;\"/>");
         
         
         

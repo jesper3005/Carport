@@ -66,9 +66,10 @@ public class CalcBattens {
             double totalMeterLægter = 0;
             //En lægte per 0.5 meter (50 cm)
             antalLaegter = ((length / 50) * 2);//50 cm
-            // Hvad mange meter lægter skal vi brug til hele carportens length
+            //Hvor mange meter lægter skal vi bruge til hele carportens length
             totalMeterLægter = (antalLaegter * b) / 540;//
-            antal = Math.ceil(totalMeterLægter + antalLaegter + (2 * length));
+            //antal = Math.ceil(totalMeterLægter + antalLaegter + (2 * length));
+            antal = Math.ceil((totalMeterLægter + antalLaegter) * 2);
             for (Product product : productList) {
                 if (product.getCategory().equals("lægte")) {
                     p = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), antal, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());

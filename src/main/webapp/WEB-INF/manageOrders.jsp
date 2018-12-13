@@ -26,18 +26,18 @@
         <!-- -----------------HEADER---------------------------------- -->
         <% User user = (User) session.getAttribute("user"); %>
         
-        <%if(user == null) { %>
-            <header>
-                <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
-                <a class="active" href="/FrontController?command=toNavigator&site=registration">Sign up</a>
-                <a class="active" href="/FrontController?command=toNavigator&site=login">Login</a>
-                <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
-            </header>
+       <%if(user == null) { %>
+        <header>
+            <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
+            <a class="active" href="/FrontController?command=toNavigator&site=registration">Sign up</a>
+            <a class="active" href="/FrontController?command=toNavigator&site=login">Login</a>
+            <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
+        </header>
+        
         <%} else if(user.getRole().equals("admin")) {%> 
             <header>
                 <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
                 <a class="active" href="/FrontController?command=toNavigator&site=logout">Sign out</a>
-                <a class="active" href="/FrontController?command=toLogin">Profile</a>
                 <a class="active" href="/FrontController?command=Admin">Admin</a>
                 <a class="active" href="/FrontController?command=manageOrders">Se Ordre</a>
                 <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
@@ -45,10 +45,9 @@
         <%} else if(user.getRole().equals("customer")) { %>
             <header>
                 <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
-                <a class="active" href="/FrontController?command=toLogin">Profile</a>
-                <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
-                <a class="active" href="">Profile</a>
                 <a class="active" href="/FrontController?command=toNavigator&site=logout">Sign out</a>
+                <a class="active" href="">Profile</a>
+                <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
             </header>
         <%}%>
 
@@ -109,10 +108,16 @@
                 <br>
                 <br>
                 <input type="hidden" name="carportID" value="<%= list.getId() %>">
-                <button type="submit" name="seeProductList">Se styklisten</button>
-                <button type="submit" name="seeCustomerInfo">Se kunde oplysninger</button>
+                    <button type="submit" name="seeProductList">Se styklisten</button>
                 </form>
-                <!-- -----------------SECTION 2.1: Product list for order------------------------------------>
+                
+                <!-- -----------------SECTION 2.1: Customer info on order ------------------------------------>
+                    
+                <form action="FrontController" method="POST">
+                    <input type="hidden" name="command" value="seeCustomerInfo">
+                    <input type="hidden" name="customerID" value="<%= list.getCustomer_id() %>">
+                    <button type="submit" name="seeCustomerInfo">Se kunde oplysninger</button>
+                </form>
 
                 <!-- -----------------SECTION 2.2: Update order status------------------------------------>           
 

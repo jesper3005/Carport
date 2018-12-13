@@ -11,6 +11,7 @@ import functionLayer.LogicFacade;
 import functionLayer.Product;
 import functionLayer.SVGSide;
 import functionLayer.SVGTop;
+import functionLayer.SVGTopTest;
 import functionLayer.Shed;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -82,11 +83,15 @@ public class OrderRequestFlatRoof extends Command {
 
             //Inserting svg of the carport
             //Carport fra toppen.
-            SVGTop testSVG = new SVGTop(length, width, shedLength, shedWidth, shedCheck, roofCheck);
-            request.setAttribute("drawingTop", testSVG.getMySVG());
+            SVGTopTest topSVG = new SVGTopTest(carport, shed);
+            request.setAttribute("drawingTop", topSVG.getMySVG());
+            
+            
+//            SVGTop testSVG = new SVGTop(length, width, shedLength, shedWidth, shedCheck, roofCheck);
+//            request.setAttribute("drawingTop", testSVG.getMySVG());
 
             //Carport fra siden.
-            SVGSide sSVG = new SVGSide(length, height, shedLength, shedWidth, shedCheck);
+            SVGSide sSVG = new SVGSide(carport, shed, height);
             request.setAttribute("drawingSide", sSVG.getMySVG());
 
             return "orderRequestFlatRoof";
