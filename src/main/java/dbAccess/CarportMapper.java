@@ -53,7 +53,7 @@ public class CarportMapper {
             
 
         } catch (SQLException | ClassNotFoundException ex) {
-            System.out.println(ex.getMessage() + " addCarport in carportMapper");
+            System.out.println(ex.getMessage() + " addCarport in carportMapper failed");
         }
     }
 
