@@ -1,25 +1,25 @@
 <%-- 
-    Document   : createOrder
-    Created on : 29-11-2018, 21:41:03
+    Document   : customerOrderInfo
+    Created on : 13-12-2018, 19:47:19
     Author     : Jesper
 --%>
 
 <%@page import="functionLayer.User"%>
+<%@page import="functionLayer.Customer"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="shortcut icon" href="./IMAGES/FogLogo.png"/>
+        <link rel="stylesheet" href="./CSS/selectBoxes.css">
         <link rel="stylesheet" href="./CSS/headerCSS.css">
-        <link rel="stylesheet" href="./CSS/orderCreated.css">
-        <title>Tak for dit køb</title>
+        <title>Kunde oplysninger</title>
     </head>
-    <body>
-        
-        <% User user = (User) session.getAttribute("user"); %>
-        
-       <%if(user == null) { %>
+    
+    <% User user = (User) session.getAttribute("user"); %>
+    
+    <%if(user == null) { %>
         <header>
             <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
             <a class="active" href="/FrontController?command=toNavigator&site=registration">Sign up</a>
@@ -44,20 +44,35 @@
             </header>
         <%}%>
         
-        <div class="containerOrderCreated">
-            <div class="control-groupOrderCreated">
-                Tak for din ordre!
+    <body>
+        <% Customer customer = (Customer) session.getAttribute("customerInfo"); %>
+        
+        <div class="container">
+            <div class="control-group">    
+                <h1>Kunde oplysninger</h1>
                 <br>
                 <br>
-                <img src="./IMAGES/confirmed.svg" height="100px" width="100px">
+                <%="Fornavn: " + customer.getFirstName() %>
                 <br>
                 <br>
-                Din ordre bliver behandlet af vores medarbejder snarest muligt.
+                <%="Efternavn: " + customer.getLastName() %>
                 <br>
-                
+                <br>
+                <%="Telefon nummer: " + customer.getPhone() %>
+                <br>
+                <br>
+                <%="Postnummer: " + customer.getZipCode() %>
+                <br>
+                <br>
+                <%="By: " + customer.getTown() %>
+                <br>
+                <br>
+                <%="Adresse: " + customer.getAddress() %>
+                <br>
+                <br>
+                <%="Kommentar: " + customer.getComments() %>
+        
             </div>
         </div>
-        
-        
     </body>
 </html>

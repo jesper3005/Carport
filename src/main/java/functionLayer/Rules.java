@@ -11,12 +11,13 @@ package functionLayer;
  */
 public class Rules {
     
-    public static final double remWidth = 10;
-    public static final double lægteWidth = 5;
-    public static final double stolpeWidth = 10;
-    public static final double stolpeHeight = 10;
-    public static final double startPosXY = 30;
-    public static final double lægtePosInd = 40;
-    public static final double shedPlankWidth = 15;
-    public double doorWidth = 80;
+    public static final double REM_WIDTH = 10;
+    public static final double REM_HEIGHT = 30;
+    public static final double BATTEN_WIDTH = 5;
+    public static final double BATTENS_GAP_REM = 40;
+    public static final double POLES_WIDTH = 10;
+    public static final double POLES_HEIGHT = 10;
+    public static final double POLES_GAP_REM = 10;
+    public static final double SHED_PLANK_WIDTH = 15;
+    public static final double DOOR_WIDTH = 80;
 }

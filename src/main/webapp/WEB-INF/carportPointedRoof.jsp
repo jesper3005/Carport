@@ -13,6 +13,7 @@
     <head>
         <title>Spids Tag</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="shortcut icon" href="./IMAGES/FogLogo.png"/>
         <link rel="stylesheet" href="./CSS/headerCSS.css">
         <link rel="stylesheet" href="./CSS/selectBoxes.css">
         <link rel="icon" href=""
@@ -22,7 +23,7 @@
         <% List<Product> orderByLengthRemList = (List<Product>) session.getAttribute("orderByLengthRemList");%>
         <% User user = (User) session.getAttribute("user"); %>
         
-        <%if(user == null) { %>
+       <%if(user == null) { %>
         <header>
             <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
             <a class="active" href="/FrontController?command=toNavigator&site=registration">Sign up</a>
@@ -33,21 +34,17 @@
         <%} else if(user.getRole().equals("admin")) {%> 
             <header>
                 <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
-                <a class="active" href="/FrontController?command=toLogin">Profile</a>
-                <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
+                <a class="active" href="/FrontController?command=toNavigator&site=logout">Sign out</a>
                 <a class="active" href="/FrontController?command=Admin">Admin</a>
                 <a class="active" href="/FrontController?command=manageOrders">Se Ordre</a>
-                <a class="active" href="/FrontController?command=toNavigator&site=logout">Sign out</a>
-                <!-- <input type='submit' value="Log Out">-->
+                <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
             </header>
         <%} else if(user.getRole().equals("customer")) { %>
             <header>
                 <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
-                <a class="active" href="/FrontController?command=toLogin">Profile</a>
-                <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
-                <a class="active" href="">Profile</a>
                 <a class="active" href="/FrontController?command=toNavigator&site=logout">Sign out</a>
-                <!-- <input type='submit' value="Log Out">-->
+                <a class="active" href="">Profile</a>
+                <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
             </header>
         <%}%>
         
@@ -65,7 +62,7 @@
         <%} else {%>
         <div class="container">
             <div class="control-groupText">
-                <h1 class="title">Velkommen til Quick-byg carport med fladt tag !</h1>
+                <h1 class="title">Velkommen til Quick-byg carport med spidst tag !</h1>
                 <text>Med et specialudviklet computerprogram kan vi lynhurtigt beregne prisen og udskrive en skitsetegning på en carport  </text>
                 <br>
                 <text>indenfor vores standardprogram, der tilpasses dine specifikke ønsker.</text>
@@ -74,7 +71,7 @@
                 Tilbud og skitsetegning kan ses på næste side når målene er udfyldt
                 <br>
                 <br>
-                Ved bestilling medfølger standardbyggevejledning.
+                Ved bestilling medfølger standardbyggevejledning. (Ikke implemeteret)
             </div>
         </div>
         <%}%>

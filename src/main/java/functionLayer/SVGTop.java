@@ -1,11 +1,11 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package functionLayer;
-
-import functionLayer.Rules.*;
+import static functionLayer.Rules.*;
 /**
  *
  * @author Jesper
@@ -14,30 +14,33 @@ public class SVGTop {
 
     private String mySVG = null;
     private StringBuilder sb = new StringBuilder();
-
-    double remWidth = 10;
-    double lægteWidth = 5;
-    double stolpeWidth = 10;
-    double stolpeHeight = 10;
     double startPosXY = 30;
-    double lægtePosInd = 40;
-    double shedPlankWidth = 15;
-    double doorWidth = 80;
 
-    public SVGTop(double length, double width, double shedLength, double shedWidth, boolean shedCheck, boolean roofCheck) {
+//    double REM_WIDTH = 10;
+//    double BATTEN_WIDTH = 5;
+//    double POLES_WIDTH = 10;
+//    double POLES_HEIGHT = 10;
+//    double BATTENS_GAP_REM = 40;
+//    double SHED_PLANK_WIDTH = 15;
+//    double DOOR_WIDTH = 80;
+
+    public SVGTop(Carport carport, Shed shed) {
         this.sb = sb.append("<SVG width=\"820\" height=\"820\">");
         //ADD ALL METHODS FOR SVG DRAWING FROM TOP
-
+        double length = carport.getCarport_length();
+        double width = carport.getCarport_width();
+        double shedLength = shed.getShed_length();
+        double shedWidth = shed.getShed_width();
         //Creates carport
         sb.append(createRemme(length, width));
 
         //Creates shed
-        if(shedCheck == true) {
+        if(shedLength > 0) {
             sb.append(createShed(length, width, shedLength, shedWidth));   
         }
         
         //For pointed roof
-        if(roofCheck == true) {
+        if(carport.getRoof().equals("PEAK")) {
             sb.append(createLægterPointeRoof(length, width));
             sb.append(createSupportingLægter(length, width));
         } else {
@@ -67,43 +70,41 @@ public class SVGTop {
     
     //Base model
     private String createRemme(double length, double width) {
-        
         //Decides where the bottom REM goes on y axis.
-        double bottomRemY = width + (startPosXY - remWidth);
+        double bottomRemY = width + (startPosXY - REM_WIDTH);
         //Decides where both bottom and top side REM will be placed on the x axis.
-        double remXSides = startPosXY + remWidth;
+        double remXSides = startPosXY + REM_WIDTH;
         //lengthOfRem decides the actual length of the REMME.
-        double lengthOfRem = length - (remWidth*2); 
+        double lengthOfRem = length - (REM_WIDTH*2); 
 
         //Side rem top.
-        sb.append("<rect x=\"" + remXSides + "\" y=\"" + startPosXY + "\" height=\"10\" width=\"" + lengthOfRem + "\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+        sb.append("<rect x=\"").append(remXSides).append("\" y=\"").append(startPosXY).append("\" height=\"10\" width=\"").append(lengthOfRem).append("\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
         
         //Side rem bottom.
-        sb.append("<rect x=\"" + remXSides + "\" y=\"" + bottomRemY + "\" height=\"10\" width=\"" + lengthOfRem + "\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+        sb.append("<rect x=\"").append(remXSides).append("\" y=\"").append(bottomRemY).append("\" height=\"10\" width=\"").append(lengthOfRem).append("\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
 
         //Remme front og bag.
         //x2 decides where the furthest back rem will be placed on the x axis.
-        double x2 = startPosXY + length - remWidth;
+        double x2 = startPosXY + length - REM_WIDTH;
 
-        sb.append("<rect x=\"" + startPosXY + "\" y=\"" + startPosXY + "\" height=\"" + width + "\" width=\"" + remWidth + "\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
-        sb.append("<rect x=\"" + x2 + "\" y=\"" + startPosXY + "\" height=\"" + width + "\" width=\"" + remWidth + "\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+        sb.append("<rect x=\"").append(startPosXY).append("\" y=\"").append(startPosXY).append("\" height=\"").append(width).append("\" width=\"").append(REM_WIDTH).append("\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+        sb.append("<rect x=\"").append(x2).append("\" y=\"").append(startPosXY).append("\" height=\"").append(width).append("\" width=\"").append(REM_WIDTH).append("\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
 
         return sb.toString();
     }
    
     private String createLengthText(double length, double width) {
-        
         double lineY = width + startPosXY + 30;
-        double startLine = startPosXY - remWidth;
+        double startLine = startPosXY - REM_WIDTH;
         double lenghtOfLine = length + startPosXY;
 
-        sb.append("<line x1=\"" + startLine + "\" y1=\"" + lineY + "\" x2=\"" + lenghtOfLine + "\" y2=\"" + lineY + "\" style=\"stroke:rgb(255,0,0);stroke-width:2\" />");
+        sb.append("<line x1=\"").append(startLine).append("\" y1=\"").append(lineY).append("\" x2=\"").append(lenghtOfLine).append("\" y2=\"").append(lineY).append("\" style=\"stroke:rgb(255,0,0);stroke-width:2\" />");
 
         //Minus 50 to get text centered, dividing with 2 will get the middle, but thats where the text will start
-        double textX = (lenghtOfLine / 2) - 50;
-        double textY = lineY + 20;
+        double textXPos = (lenghtOfLine / 2) - 50;
+        double textYPos = lineY + 20;
 
-        sb.append("<text x=\"" + textX + "\" y=\"" + textY + "\" fill=\"red\">" + "Længde: " + width + " cm" + "</text>");
+        sb.append("<text x=\"").append(textXPos).append("\" y=\"").append(textYPos).append("\" fill=\"red\">L\u00e6ngde: ").append(width).append(" cm</text>");
         return sb.toString();
     }
 
@@ -113,7 +114,7 @@ public class SVGTop {
         double x1 = length + startPosXY + 30;
         double y2 = width + startPosXY;
 
-        sb.append("<line x1=\"" + x1 + "\" y1=\"" + startPosXY + "\" x2=\"" + x1 + "\" y2=\"" + y2 + "\" style=\"stroke:rgb(255,0,0);stroke-width:2\" />");
+        sb.append("<line x1=\"").append(x1).append("\" y1=\"").append(startPosXY).append("\" x2=\"").append(x1).append("\" y2=\"").append(y2).append("\" style=\"stroke:rgb(255,0,0);stroke-width:2\" />");
 
         return sb.toString();
     }
@@ -122,42 +123,42 @@ public class SVGTop {
     private String createShed(double length, double width,double shedLength, double shedWidth) {
         
         //Amount of planks needed for both lengths 
-        double qtyShedLength = Math.ceil(shedLength / shedPlankWidth);
+        double qtyShedLength = Math.ceil(shedLength / SHED_PLANK_WIDTH);
         //Side with door
-        double qtyShedWidth = Math.ceil((shedWidth - doorWidth) / shedPlankWidth);
+        double qtyShedWidth = Math.ceil((shedWidth - DOOR_WIDTH) / SHED_PLANK_WIDTH);
         //Side no door
-        double qtyBackWidth = Math.ceil(shedWidth / shedPlankWidth);
+        double qtyBackWidth = Math.ceil(shedWidth / SHED_PLANK_WIDTH);
         
         //Creating sides length.
         //TOP
-        double xTOP = startPosXY + length - remWidth - shedPlankWidth;
+        double xTOP = startPosXY + length - REM_WIDTH - SHED_PLANK_WIDTH;
         for (int i = 0; i < qtyShedLength; i++) {
-            sb.append("<rect x=\"" + xTOP + "\" y=\"" + (startPosXY + remWidth) + "\" height=\"5\" width=\"" + shedPlankWidth + "\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
-            xTOP -= shedPlankWidth;
+            sb.append("<rect x=\"").append(xTOP).append("\" y=\"").append(startPosXY).append(REM_WIDTH).append("\" height=\"5\" width=\"").append(SHED_PLANK_WIDTH).append("\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+            xTOP -= SHED_PLANK_WIDTH;
         }
         
         //BOT
-        double xBOT = startPosXY + length - remWidth - shedPlankWidth;
-        double y = (startPosXY + remWidth + shedWidth);
+        double xBOT = startPosXY + length - REM_WIDTH - SHED_PLANK_WIDTH;
+        double y = (startPosXY + REM_WIDTH + shedWidth);
         for (int i = 0; i < qtyShedLength; i++) {
-            sb.append("<rect x=\"" + xBOT + "\" y=\"" + y + "\" height=\"5\" width=\"" + shedPlankWidth + "\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
-            xBOT -= shedPlankWidth;
+            sb.append("<rect x=\"").append(xBOT).append("\" y=\"").append(y).append("\" height=\"5\" width=\"").append(SHED_PLANK_WIDTH).append("\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+            xBOT -= SHED_PLANK_WIDTH;
         }
         
         //Right
-        double xRight = startPosXY + length - remWidth - 5;
-        double yRight = startPosXY + remWidth;
+        double xRight = startPosXY + length - REM_WIDTH - 5;
+        double yRight = startPosXY + REM_WIDTH;
         for (int i = 0; i < qtyBackWidth; i++) {
-            sb.append("<rect x=\"" + xRight + "\" y=\"" + yRight + "\" height=\"" + shedPlankWidth + "\" width=\"5\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
-            yRight += shedPlankWidth;
+            sb.append("<rect x=\"").append(xRight).append("\" y=\"").append(yRight).append("\" height=\"").append(SHED_PLANK_WIDTH).append("\" width=\"5\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+            yRight += SHED_PLANK_WIDTH;
         }
         
         //Left
-        double yLeft = startPosXY + remWidth + 5;
-        double xLeft = startPosXY + length - remWidth - shedLength;
+        double yLeft = startPosXY + REM_WIDTH + 5;
+        double xLeft = startPosXY + length - REM_WIDTH - shedLength;
         for (int i = 0; i < qtyShedWidth; i++) {
-            sb.append("<rect x=\"" + xLeft + "\" y=\"" + yLeft + "\" height=\"" + shedPlankWidth + "\" width=\"5\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
-            yLeft += shedPlankWidth;
+            sb.append("<rect x=\"").append(xLeft).append("\" y=\"").append(yLeft).append("\" height=\"").append(SHED_PLANK_WIDTH).append("\" width=\"5\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+            yLeft += SHED_PLANK_WIDTH;
         }
         
         
@@ -170,20 +171,20 @@ public class SVGTop {
         
         double lægteLength = width + 25;
 
-        double firstLægte = startPosXY + (lægtePosInd - remWidth);
-        double lastLægte = startPosXY + length - lægtePosInd;
+        double firstLægte = startPosXY + (BATTENS_GAP_REM - REM_WIDTH);
+        double lastLægte = startPosXY + length - BATTENS_GAP_REM;
         double y2 = startPosXY - 10;
         
-        sb.append("<rect x=\"" + firstLægte + "\" y=\"" + y2 + "\" height=\"" + lægteLength + "\" width=\"" + lægteWidth + "\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
-        sb.append("<rect x=\"" + lastLægte + "\" y=\"" + y2 + "\" height=\"" + lægteLength + "\" width=\"" + lægteWidth + "\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+        sb.append("<rect x=\"").append(firstLægte).append("\" y=\"").append(y2).append("\" height=\"").append(lægteLength).append("\" width=\"").append(BATTEN_WIDTH).append("\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+        sb.append("<rect x=\"").append(lastLægte).append("\" y=\"").append(y2).append("\" height=\"").append(lægteLength).append("\" width=\"").append(BATTEN_WIDTH).append("\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
         
         double qty = Math.ceil(length / 50);
-        length -= (lægtePosInd * 2);
+        length -= (BATTENS_GAP_REM * 2);
         double delta = length / (qty + 1);
         double lægtePos = delta + firstLægte;
         for (int i = 0; i < qty; i++) {
             System.out.println(qty);
-            sb.append("<rect x=\"" + lægtePos + "\" y=\"" + y2 + "\" height=\"" + lægteLength + "\" width=\"" + lægteWidth + "\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+            sb.append("<rect x=\"").append(lægtePos).append("\" y=\"").append(y2).append("\" height=\"").append(lægteLength).append("\" width=\"").append(BATTEN_WIDTH).append("\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
             lægtePos += delta; 
         }
         
@@ -194,32 +195,32 @@ public class SVGTop {
     //If pointed roof is choosen
     private String createLægterPointeRoof(double length, double width) {
         double lægteLength = width / 2;
-        double firstLægte = startPosXY + (lægtePosInd - remWidth);
-        double lastLægte = startPosXY + length - lægtePosInd;
+        double firstLægte = startPosXY + (BATTENS_GAP_REM - REM_WIDTH);
+        double lastLægte = startPosXY + length - BATTENS_GAP_REM;
         double y1 = startPosXY - 10;
         double y2 = startPosXY + (width / 2) + 10;
         
         double qty = Math.ceil(length / 50);
-        length -= (lægtePosInd * 2);
+        length -= (BATTENS_GAP_REM * 2);
         double delta = length / (qty + 1);
         double leftLægtePos = delta + firstLægte;
         //Left side lægter
-        sb.append("<rect x=\"" + firstLægte + "\" y=\"" + y1 + "\" height=\"" + lægteLength + "\" width=\"" + lægteWidth + "\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
-        sb.append("<rect x=\"" + lastLægte + "\" y=\"" + y1 + "\" height=\"" + lægteLength + "\" width=\"" + lægteWidth + "\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+        sb.append("<rect x=\"").append(firstLægte).append("\" y=\"").append(y1).append("\" height=\"").append(lægteLength).append("\" width=\"").append(BATTEN_WIDTH).append("\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+        sb.append("<rect x=\"").append(lastLægte).append("\" y=\"").append(y1).append("\" height=\"").append(lægteLength).append("\" width=\"").append(BATTEN_WIDTH).append("\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
         
         for (int i = 0; i < qty; i++) {
-           sb.append("<rect x=\"" + leftLægtePos + "\" y=\"" + y1 + "\" height=\"" + lægteLength + "\" width=\"" + lægteWidth + "\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+           sb.append("<rect x=\"").append(leftLægtePos).append("\" y=\"").append(y1).append("\" height=\"").append(lægteLength).append("\" width=\"").append(BATTEN_WIDTH).append("\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
            leftLægtePos += delta;
         }
         
         
         //Right side lægter
-        sb.append("<rect x=\"" + firstLægte + "\" y=\"" + y2 + "\" height=\"" + lægteLength + "\" width=\"" + lægteWidth + "\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
-        sb.append("<rect x=\"" + lastLægte + "\" y=\"" + y2 + "\" height=\"" + lægteLength + "\" width=\"" + lægteWidth + "\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+        sb.append("<rect x=\"").append(firstLægte).append("\" y=\"").append(y2).append("\" height=\"").append(lægteLength).append("\" width=\"").append(BATTEN_WIDTH).append("\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+        sb.append("<rect x=\"").append(lastLægte).append("\" y=\"").append(y2).append("\" height=\"").append(lægteLength).append("\" width=\"").append(BATTEN_WIDTH).append("\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
         
         double rightLægtePos = delta + firstLægte;
         for (int i = 0; i < qty; i++) {
-            sb.append("<rect x=\"" + rightLægtePos + "\" y=\"" + y2 + "\" height=\"" + lægteLength + "\" width=\"" + lægteWidth + "\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+            sb.append("<rect x=\"").append(rightLægtePos).append("\" y=\"").append(y2).append("\" height=\"").append(lægteLength).append("\" width=\"").append(BATTEN_WIDTH).append("\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
             rightLægtePos = delta + rightLægtePos;
         }
         
@@ -228,24 +229,24 @@ public class SVGTop {
     
     private String createSupportingLægter(double length, double width) {
         //The supporting lapth
-        double remXPos = startPosXY + remWidth;
-        double lengthOfRem = length - (remWidth*2);
+        double remXPos = startPosXY + REM_WIDTH;
+        double lengthOfRem = length - (REM_WIDTH*2);
         
         //Left
         double y1 = startPosXY + (width/4);
-        sb.append("<rect x=\"" + remXPos + "\" y=\"" + y1 + "\" height=\"" + lægteWidth + "\" width=\"" + lengthOfRem + "\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+        sb.append("<rect x=\"").append(remXPos).append("\" y=\"").append(y1).append("\" height=\"").append(BATTEN_WIDTH).append("\" width=\"").append(lengthOfRem).append("\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
         
         
         //Right
         double width1 = width / 2;
         double y2 = startPosXY + width1 + (width1 / 2);
         
-        sb.append("<rect x=\"" + remXPos + "\" y=\"" + y2 + "\" height=\"" + lægteWidth + "\" width=\"" + lengthOfRem + "\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+        sb.append("<rect x=\"").append(remXPos).append("\" y=\"").append(y2).append("\" height=\"").append(BATTEN_WIDTH).append("\" width=\"").append(lengthOfRem).append("\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
         
         //Middle
-        double y3 = startPosXY + (width / 2) - remWidth;
-        double middleRemWidth = remWidth + 10;
-        sb.append("<rect x=\"" + remXPos + "\" y=\"" + y3 + "\" height=\"" + middleRemWidth + "\" width=\"" + lengthOfRem + "\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
+        double y3 = startPosXY + (width / 2) - REM_WIDTH;
+        double middleRemWidth = REM_WIDTH + 10;
+        sb.append("<rect x=\"").append(remXPos).append("\" y=\"").append(y3).append("\" height=\"").append(middleRemWidth).append("\" width=\"").append(lengthOfRem).append("\" style=\"stroke: #292929; fill:none; stroke-width: 1.5;\"/>");
         
         
         return sb.toString();

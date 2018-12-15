@@ -104,9 +104,9 @@ public class LogicFacade {
         return carportList;
     }
 
-    public static List<Carport> getALLOrdresFromCarport() {
+    public static List<Carport> getAllCarportOrders() {
         CarportMapper cm = new CarportMapper();
-        List<Carport> carportList = cm.getAllCarportOrder();
+        List<Carport> carportList = cm.getAllCarportOrders();
         return carportList;
     }
 
@@ -152,6 +152,12 @@ public class LogicFacade {
         CarportMapper cm = new CarportMapper();
         Carport carport = cm.getCarportById(caportID);
         return carport;
+    }
+    
+    public static Customer getCustomerByID(int customerID) {
+        CustomerMapper cm = new CustomerMapper();
+        Customer customer = cm.getCustomerByID(customerID);
+        return customer;
     }
 
     // -----------------CARPORT CALCULATIONS LOGICFACADE --------------------------------
@@ -239,11 +245,11 @@ public class LogicFacade {
      * @param value 
      * @return Returns a double with two decimals after the comma.
      */
-    public static double roundDoubleToTwoDecimalPoints(double value) {
-        DecimalFormat df2 = new DecimalFormat(",##");
-        return Double.parseDouble(df2.format(value));
-
-    }
+//    public static double roundDoubleToTwoDecimalPoints(double value) {
+//        DecimalFormat df2 = new DecimalFormat(".##");
+//        return Double.parseDouble(df2.format(value));
+//
+//    }
     
     /**
      * This method takes a list of parts, loop through the list and add each priceLine of each product with eachother.
@@ -256,7 +262,8 @@ public class LogicFacade {
         for (Product produkt : stykliste) {
             totalPriceOfCarport += produkt.getTotalPriceOfOrder();
         }
-        return roundDoubleToTwoDecimalPoints(totalPriceOfCarport);
+        return totalPriceOfCarport;
+        //return roundDoubleToTwoDecimalPoints(totalPriceOfCarport);
     }
 
 

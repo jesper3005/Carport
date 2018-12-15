@@ -13,6 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="./CSS/headerCSS.css">
         <link rel="stylesheet" href="./CSS/selectBoxes.css">
+        <link rel="shortcut icon" href="./IMAGES/FogLogo.png"/>
         <link rel="icon" href=""
     </head>
     <body>
@@ -25,7 +26,6 @@
             <a class="active" href="/FrontController?command=toNavigator&site=login">Login</a>
             <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
             <a class="active" href="/FrontController?command=manageOrders">Se Ordre</a>
-
         </header>
         
         <%} else if(user.getRole().equals("admin")) {%> 
@@ -40,10 +40,9 @@
         <%} else if(user.getRole().equals("customer")) { %>
             <header>
                 <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
-                <a class="active" href="/FrontController?command=toLogin">Profile</a>
+                <a class="active" href="/FrontController?command=toNavigator&site=logout">Sign out</a>
                 <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
                 <a class="active" href="">Profile</a>
-                <a class="active" href="/FrontController?command=toNavigator&site=logout">Sign out</a>
                 <!-- <input type='submit' value="Log Out">-->
             </header>
         <%}%>

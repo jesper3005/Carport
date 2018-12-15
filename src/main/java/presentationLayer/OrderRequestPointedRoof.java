@@ -67,15 +67,6 @@ public class OrderRequestPointedRoof extends Command {
             session.setAttribute("carportPeak", carport);
             session.setAttribute("shedPeak", shed);
 
-            //Set styklisten, bredde, længde and totalPriceOfCarport in session
-            session.setAttribute("totalPrice", totalPriceOfCarport);
-            session.setAttribute("roofMaterial", roofMaterial);
-            session.setAttribute("redskabsskur", redskabsskur);
-            session.setAttribute("bredde", width);
-            session.setAttribute("laengde", length);
-            session.setAttribute("skurbredde", shedWidth);
-            session.setAttribute("skurlaengde", shedLength);
-            session.setAttribute("degree", degree);
 
             //------------SVG-------------
             if (redskabsskur == null) {
@@ -89,11 +80,11 @@ public class OrderRequestPointedRoof extends Command {
 
             //Inserting svg of the carport
             //Carport from top
-            SVGTop testSVG = new SVGTop(length, width, shedLength, shedWidth, shedCheck, roofCheck);
-            request.setAttribute("drawingTop", testSVG.getMySVG());
-
+            SVGTop topSVG = new SVGTop(carport, shed);
+            request.setAttribute("drawingTop", topSVG.getMySVG());
+            
             //Carport from side.
-            SVGSide sSVG = new SVGSide(length, height, shedLength, shedWidth, shedCheck);
+            SVGSide sSVG = new SVGSide(carport, shed, height);
             request.setAttribute("drawingSide", sSVG.getMySVG());
 
             return "orderRequestPointedRoof";

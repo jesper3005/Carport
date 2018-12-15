@@ -18,15 +18,16 @@ import java.sql.Statement;
  */
 public class CustomerMapper {
 
-    private final String ALL_FROM_CUSTOMER_BY_EMAIL = "SELECT `*` FROM `customer` WHERE `email`= ?;";
+    private final String GET_CUSTOMER_BY_EMAIL = "SELECT `*` FROM `customer` WHERE `email`= ?;";
     private final String ADD_CUSTOMER = "INSERT INTO `customer`(`first_name`,`last_name`,`email`,`street_address`,`town`,`zip_code`,`telephone_number`,`comments`)VALUES(?,?,?,?,?,?,?,?);";
     private final String ADD_CUSTOMER_AND_USER = "INSERT INTO `customer`(`first_name`,`last_name`,`email`,`street_address`,`town`,`zip_code`,`telephone_number`)VALUES(?,?,?,?,?,?,?);";
-
+    private final String GET_CUSTOMER_BY_ID = "SELECT `*` FROM `customer` WHERE `customer_id`= ?;";
+    
     public Customer getCustomerByEmail(String email) {
         try {
             Customer customer;
             Connection c = Connector.connection();
-            String query = ALL_FROM_CUSTOMER_BY_EMAIL;
+            String query = GET_CUSTOMER_BY_EMAIL;
             PreparedStatement pstmt = c.prepareStatement(query);
 
             pstmt.setString(1, email);
@@ -77,7 +78,6 @@ public class CustomerMapper {
         return null;
     }
 
-
     public int addCustomerAndUser(Customer customer) {
         int id = 0;
         try {
@@ -104,6 +104,36 @@ public class CustomerMapper {
             System.out.println(ex.getMessage() + " addCustomer");
         }
         return 0;
+    }
+    
+    public Customer getCustomerByID(int id) {
+        try {
+            Customer customer;
+            Connection c = Connector.connection();
+            String query = GET_CUSTOMER_BY_ID;
+            PreparedStatement pstmt = c.prepareStatement(query);
+
+            pstmt.setInt(1, id);
+            ResultSet res = pstmt.executeQuery();
+            if (res.next()) {
+                int customer_id = res.getInt("customer_id");
+                String first_name = res.getString("first_name");
+                String last_name = res.getString("last_name");
+                String email_ = res.getString("email");
+                String street_address = res.getString("street_address");
+                String town = res.getString("town");
+                String zipCode = res.getString("zip_code");
+                String tel = res.getString("telephone_number");
+                String comments = res.getString("comments");
+                customer = new Customer(customer_id, first_name, last_name, email_, street_address, town, zipCode, tel, comments);
+                return customer;
+
+            }
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage() + " getCustomerByEmail");
+        }
+        return null;
     }
 
     

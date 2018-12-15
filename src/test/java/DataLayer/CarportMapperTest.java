@@ -75,9 +75,9 @@ public class CarportMapperTest {
         Carport carport = new Carport(200.00, 200.00, 15, "FLAT", "Tagpap", 5000.00, 1, 1);
         
         //Act
-        List<Carport> before = LogicFacade.getALLOrdresFromCarport();
+        List<Carport> before = LogicFacade.getAllCarportOrders();
         LogicFacade.addCarport(carport, shed);
-        List<Carport> after = LogicFacade.getALLOrdresFromCarport();
+        List<Carport> after = LogicFacade.getAllCarportOrders();
         
         //Assert
         assertTrue(before.size() < after.size());
@@ -114,7 +114,7 @@ public class CarportMapperTest {
     @Test
     public void testGetAllOrders() {
         //Arrange
-        List<Carport> list = LogicFacade.getALLOrdresFromCarport();
+        List<Carport> list = LogicFacade.getAllCarportOrders();
         
         //Act
         

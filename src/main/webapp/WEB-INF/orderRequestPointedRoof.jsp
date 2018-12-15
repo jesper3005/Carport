@@ -4,6 +4,8 @@
     Author     : oerte
 --%>
 
+<%@page import="functionLayer.Shed"%>
+<%@page import="functionLayer.Carport"%>
 <%@page import="functionLayer.User"%>
 <%@page import="java.util.List"%>
 <%@page import="functionLayer.Product"%>
@@ -13,40 +15,41 @@
     <head>
         <title>Order Request Spids Tag</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="shortcut icon" href="./IMAGES/FogLogo.png"/>
         <link rel="stylesheet" href="./CSS/headerCSS.css">
         <link rel="stylesheet" href="./CSS/orderRequest.css">
         <link rel="stylesheet" href="./CSS/selectBoxes.css">
         <link rel="icon" href=""
     </head>
     <body>
-        <% double totalPriceOfCarport = (Double) session.getAttribute("totalPrice");%>
+        <% Carport carport = (Carport) session.getAttribute("carportPeak"); %>
+        <% Shed shed = (Shed) session.getAttribute("shedPeak"); %>
 
 
         <% User user = (User) session.getAttribute("user"); %>
         
-        <%if(user == null) { %>
-            <header>
-                <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
-                <a class="active" href="/FrontController?command=toNavigator&site=registration">Sign up</a>
-                <a class="active" href="/FrontController?command=toNavigator&site=login">Login</a>
-                <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
-            </header>
+       <%if(user == null) { %>
+        <header>
+            <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
+            <a class="active" href="/FrontController?command=toNavigator&site=registration">Sign up</a>
+            <a class="active" href="/FrontController?command=toNavigator&site=login">Login</a>
+            <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
+        </header>
+        
         <%} else if(user.getRole().equals("admin")) {%> 
             <header>
                 <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
-                <a class="active" href="/FrontController?command=toLogin">Profile</a>
-                <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
+                <a class="active" href="/FrontController?command=toNavigator&site=logout">Sign out</a>
                 <a class="active" href="/FrontController?command=Admin">Admin</a>
                 <a class="active" href="/FrontController?command=manageOrders">Se Ordre</a>
-                <a class="active" href="/FrontController?command=toNavigator&site=logout">Sign out</a>
+                <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
             </header>
         <%} else if(user.getRole().equals("customer")) { %>
             <header>
                 <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
-                <a class="active" href="/FrontController?command=toLogin">Profile</a>
-                <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
-                <a class="active" href="">Profile</a>
                 <a class="active" href="/FrontController?command=toNavigator&site=logout">Sign out</a>
+                <a class="active" href="">Profile</a>
+                <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
             </header>
         <%}%>
         
@@ -72,7 +75,29 @@
                 samt en stykliste af produkter som der skal bruges.
                 <br>
                 <br>
-                <%="Prisforslag: "+totalPriceOfCarport+" DKK" %>
+                <h1>Mål på carporten</h1>
+                <%="Carport længde: " + carport.getCarport_length() + "cm" %>
+                <br>
+                <br>
+                <%="Carport bredde: " + carport.getCarport_width() +"cm" %>
+                <br>
+                <br>
+                <%="Carport tag type: " + carport.getRoof() %>
+                <br>
+                <br>
+                <%="Carport tag materiale: " + carport.getRoofMaterial() %>
+                <br>
+                <br>
+                Mål på skur hvis tilvalgt (Hvis skur ikke er tilvalgt vil der stå 0cm)
+                <br>
+                <br>
+                <%="Skur længde: " + shed.getShed_length() + "cm" %>
+                <br>
+                <br>
+                <%="Skur bredde: " + shed.getShed_width() + "cm" %>
+                <br>
+                <br>
+                <%="Prisforslag: " + carport.getTotal_price() +" DKK" %>
             </div>
         </div>
         <div class="drawings">

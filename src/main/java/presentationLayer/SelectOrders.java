@@ -36,7 +36,7 @@ public class SelectOrders extends Command {
             String enumValue = request.getParameter("selectOrder");
 
             if (enumValue == null || enumValue.equals("allOrdre")) {
-                allOrders = LogicFacade.getALLOrdresFromCarport();
+                allOrders = LogicFacade.getAllCarportOrders();
                 session.setAttribute("allOrders", allOrders);
             } else {
                 allOrders = LogicFacade.getOrdresFromCarportByEnum(enumValue);
