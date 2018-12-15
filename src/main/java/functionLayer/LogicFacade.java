@@ -16,7 +16,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
 import java.util.List;
-import org.decimal4j.util.DoubleRounder;
+//import org.decimal4j.util.DoubleRounder;
 
 /**
  *
@@ -267,10 +267,9 @@ public class LogicFacade {
      * @param value
      * @return Returns a double with two decimals after the comma.
      */
-    public static double roundDoubleToTwoDecimalPoints(double value) {
-        return DoubleRounder.round(value, 2);
-
-    }
+//    public static double roundDoubleToTwoDecimalPoints(double value) {
+//        return DoubleRounder.round(value, 2);
+//    }
 
     /**
      * This method takes a list of parts, loop through the list and add each
