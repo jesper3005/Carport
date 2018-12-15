@@ -5,8 +5,6 @@
  */
 package presentationLayer;
 
-import dbAccess.ProductMapper;
-import exceptions.FogException;
 import functionLayer.LogicFacade;
 import functionLayer.Product;
 import java.util.List;
@@ -21,7 +19,7 @@ import javax.servlet.http.HttpSession;
 public class PointedRoof extends Command {
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
+    String execute(HttpServletRequest request, HttpServletResponse response) {
 
         try {
             List<Product> orderByLengthRemList = LogicFacade.remOrderedByLength();

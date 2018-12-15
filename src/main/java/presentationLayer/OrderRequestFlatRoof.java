@@ -13,9 +13,12 @@ import functionLayer.SVGSide;
 import functionLayer.SVGTop;
 import functionLayer.Shed;
 import java.util.List;
+import java.util.logging.Level;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import logging.DefaultLogger;
+import logging.LoggerConfig;
 
 /**
  *
@@ -24,7 +27,7 @@ import javax.servlet.http.HttpSession;
 public class OrderRequestFlatRoof extends Command {
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
+    String execute(HttpServletRequest request, HttpServletResponse response) {
 
         try {
             HttpSession session = request.getSession();
@@ -41,16 +44,21 @@ public class OrderRequestFlatRoof extends Command {
             String redskabsskur = request.getParameter("redskabsskur");
             // value from roof selector
             String roofMaterial = request.getParameter("Tag");
+            String error = "Skur bredde skal være mindre den selve carporten.";
             //Checks if roof is pointed for SVG's sake
 
             Shed shed;
             if (shedLength > length) {
                 request.setAttribute("error", "Skur længde skal være mindre den selve carporten.");
-                throw new FogException("Skur længde skal være mindre den selve carporten.");
+                LoggerConfig.setUpLogger();
+                DefaultLogger.getMyLogger().log(Level.SEVERE, error);
+                return "carportFlatRoof";
             }
             if (shedWidth > width) {
                 request.setAttribute("error", "Skur bredde skal være mindre den selve carporten.");
-                throw new FogException("Skur bredde skal være mindre den selve carporten.");
+                LoggerConfig.setUpLogger();
+                DefaultLogger.getMyLogger().log(Level.SEVERE, error);
+                return "carportFlatRoof";
             }
 
             if (redskabsskur != null) {
@@ -95,7 +103,6 @@ public class OrderRequestFlatRoof extends Command {
             System.out.println(e.getMessage());
             return "carportFlatRoof";
         }
-
     }
 
 }

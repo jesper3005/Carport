@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
 public class SeeOrderProductList extends Command{
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
+    String execute(HttpServletRequest request, HttpServletResponse response)  {
         HttpSession session = request.getSession();
         int carportID = Integer.parseInt(request.getParameter("carportID"));
         Carport c = LogicFacade.getCarportByID(carportID);

@@ -21,7 +21,7 @@ import logging.DefaultLogger;
 public class Login extends Command {
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
+    String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         String email = null;
         String password = null;

@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 public class CustomerOrderInfo extends Command {
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
+    String execute(HttpServletRequest request, HttpServletResponse response){
         HttpSession session = request.getSession();
         
         int customerID = Integer.parseInt(request.getParameter("customerID"));

@@ -245,11 +245,11 @@ public class LogicFacade {
      * @param value 
      * @return Returns a double with two decimals after the comma.
      */
-//    public static double roundDoubleToTwoDecimalPoints(double value) {
-//        DecimalFormat df2 = new DecimalFormat(".##");
-//        return Double.parseDouble(df2.format(value));
-//
-//    }
+    public static double roundDoubleToTwoDecimalPoints(double value) {
+        DecimalFormat df2 = new DecimalFormat(".##");
+        return Double.parseDouble(df2.format(value));
+
+    }
     
     /**
      * This method takes a list of parts, loop through the list and add each priceLine of each product with eachother.

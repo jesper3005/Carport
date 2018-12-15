@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
 public class Registration extends Command {
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
+    String execute(HttpServletRequest request, HttpServletResponse response) {
 
         try {
             HttpSession session = request.getSession();
@@ -35,6 +35,7 @@ public class Registration extends Command {
             String zipCode = request.getParameter("zipCode");
             String phone = request.getParameter("phone");
 
+            
             if (password1.equals(password2)) {
                 password2 = LogicFacade.createHashedPassword(password2);
                 Customer customer = new Customer(firstName, lastName, email, address, town, zipCode, phone, town);
@@ -45,6 +46,7 @@ public class Registration extends Command {
                 session.setAttribute("user", user);
                 return "../index";
             } else {
+                
                 request.setAttribute("error", "Passwords are not matching");
                 throw new FogException("the two password did not match");
             }

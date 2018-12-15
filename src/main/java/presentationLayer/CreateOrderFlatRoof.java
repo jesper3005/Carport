@@ -5,13 +5,10 @@
  */
 package presentationLayer;
 
-import exceptions.FogException;
 import functionLayer.Carport;
 import functionLayer.Customer;
 import functionLayer.LogicFacade;
-import functionLayer.Product;
 import functionLayer.Shed;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -23,15 +20,10 @@ import javax.servlet.http.HttpSession;
 public class CreateOrderFlatRoof extends Command {
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
+    String execute(HttpServletRequest request, HttpServletResponse response)  {
 
         HttpSession session = request.getSession();
         Customer customer;
-        
-        //Get the carport added to the session
-        
-        
-
         try {
             //Customer information
             String firstName = request.getParameter("fornavn");
@@ -67,7 +59,7 @@ public class CreateOrderFlatRoof extends Command {
             return "orderComplete";
             
         } catch (Exception e) {
-            System.out.println(e.getMessage() + "Hall World");
+            System.out.println(e.getMessage() + "CreateOrderFlatRoof");
             return "orderRequestFlatRoof";
         }
 
