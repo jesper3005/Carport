@@ -11,7 +11,6 @@ import functionLayer.LogicFacade;
 import functionLayer.Product;
 import functionLayer.SVGSide;
 import functionLayer.SVGTop;
-import functionLayer.SVGTopTest;
 import functionLayer.Shed;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -81,13 +80,9 @@ public class OrderRequestPointedRoof extends Command {
 
             //Inserting svg of the carport
             //Carport from top
-            SVGTopTest topSVG = new SVGTopTest(carport, shed);
+            SVGTop topSVG = new SVGTop(carport, shed);
             request.setAttribute("drawingTop", topSVG.getMySVG());
             
-            
-//            SVGTop testSVG = new SVGTop(length, width, shedLength, shedWidth, shedCheck, roofCheck);
-//            request.setAttribute("drawingTop", testSVG.getMySVG());
-
             //Carport from side.
             SVGSide sSVG = new SVGSide(carport, shed, height);
             request.setAttribute("drawingSide", sSVG.getMySVG());

@@ -31,7 +31,7 @@ public class UpdateOrderStatus extends Command {
             List<Carport> allOrders;
 
             if (enumValue == null || enumValue.equals("allOrdre")) {
-                allOrders = LogicFacade.getALLOrdresFromCarport();
+                allOrders = LogicFacade.getAllCarportOrders();
                 session.setAttribute("allOrders", allOrders);
             } else {
                 System.out.println(enumValue);
