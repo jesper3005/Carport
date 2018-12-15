@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
 public class UpdateOrderStatus extends Command {
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
+    String execute(HttpServletRequest request, HttpServletResponse response)  {
 
         try {
             HttpSession session = request.getSession();

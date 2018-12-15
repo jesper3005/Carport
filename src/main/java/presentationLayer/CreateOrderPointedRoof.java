@@ -5,13 +5,10 @@
  */
 package presentationLayer;
 
-import exceptions.FogException;
 import functionLayer.Carport;
 import functionLayer.Customer;
 import functionLayer.LogicFacade;
-import functionLayer.Product;
 import functionLayer.Shed;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -23,7 +20,7 @@ import javax.servlet.http.HttpSession;
 public class CreateOrderPointedRoof extends Command {
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
+    String execute(HttpServletRequest request, HttpServletResponse response){
 
         HttpSession session = request.getSession();
         Customer customer;

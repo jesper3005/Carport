@@ -15,8 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 public class UnknownCommand extends Command {
 
     @Override
-    String execute( HttpServletRequest request, HttpServletResponse response ) throws FogException {
+    String execute( HttpServletRequest request, HttpServletResponse response )  {
         String msg = "Unknown command. Contact IT";
-        throw new FogException( msg );
+        return msg;
+     
     }
 }

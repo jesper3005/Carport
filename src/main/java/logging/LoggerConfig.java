@@ -5,11 +5,13 @@
  */
 package logging;
 
-import exceptions.FogException;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Formatter;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
-import java.util.logging.SimpleFormatter;
+import java.util.logging.LogRecord;
 
 /**
  *
@@ -17,24 +19,34 @@ import java.util.logging.SimpleFormatter;
  */
 public class LoggerConfig {
 
-    public static void setUpLogger() throws FogException {
-        if(DefaultLogger.getMyLogger().getHandlers().length < 1){
-            
-            ConsoleHandler handler = new ConsoleHandler();
-            DefaultLogger.getMyLogger().addHandler(handler);
+    public static void setUpLogger() {
 
-            if (DefaultLogger.PRODUCTION) {
-                try {
-                    FileHandler fileHandler = new FileHandler(DefaultLogger.LOGFILEPATH);
-                    fileHandler.setFormatter(new SimpleFormatter());
-                    DefaultLogger.getMyLogger().addHandler(fileHandler);
-                    fileHandler.close();
-                } catch (IOException | SecurityException ex) {
-                    throw new FogException(ex.getMessage());
-                }
+        ConsoleHandler handler = new ConsoleHandler();
+
+        if (DefaultLogger.PRODUCTION) {
+            try {
+                DefaultLogger.getMyLogger().addHandler(handler);
+                FileHandler fileHandler = new FileHandler(DefaultLogger.LOGFILEPATH);
+                fileHandler.setFormatter(new VerySimpleFormatter());
+                fileHandler.close();
+            } catch (IOException | SecurityException ex) {
+                ex.printStackTrace();
             }
         }
-
     }
 
+    private static class VerySimpleFormatter extends Formatter {
+
+        private static final String PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX";
+
+        @Override
+        public String format(final LogRecord record) {
+            return String.format(
+                    "%1$s %2$-7s %3$s\n",
+                    new SimpleDateFormat(PATTERN).format(
+                            new Date(record.getMillis())),
+                    record.getLevel().getName(),
+                    formatMessage(record));
+        }
+    }
 }

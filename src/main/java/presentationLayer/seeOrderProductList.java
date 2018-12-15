@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
 public class seeOrderProductList extends Command{
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
+    String execute(HttpServletRequest request, HttpServletResponse response)  {
         HttpSession session = request.getSession();
         int carportID = Integer.parseInt(request.getParameter("id2"));
         System.out.println("THIS IS CARPORT ID : " + carportID);

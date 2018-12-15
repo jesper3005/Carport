@@ -5,7 +5,6 @@
  */
 package logging;
 
-import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,13 +14,13 @@ import java.util.logging.Logger;
  */
 public class DefaultLogger {
 
-
     public static final boolean PRODUCTION = true;
-    public static final String LOGFILEPATH = "C:\\Users\\oerte\\Desktop\\foglogs\\logfile.log";
-    private static Logger myLogger = Logger.getLogger("");
-    //public static final String LOGFILEPATH = "/var/log/tomcat8/foglogs/loginlog.log";
+    public static final String LOGFILEPATH = "C:\\temp\\oerte\\Desktop\\foglogs\\logfile.log";
+    private static final Logger LOGGER = Logger.getLogger(Logger.class.getName());
 
     public static Logger getMyLogger() {
-        return myLogger;
+        return LOGGER;
     }
-}
+    
+    }
+

@@ -5,7 +5,6 @@
  */
 package presentationLayer;
 
-import exceptions.FogException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -17,7 +16,7 @@ import javax.servlet.http.HttpSession;
 public class Navigator extends Command {
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws FogException {
+    String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         
         

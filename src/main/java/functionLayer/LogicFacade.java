@@ -240,7 +240,7 @@ public class LogicFacade {
      * @return Returns a double with two decimals after the comma.
      */
     public static double roundDoubleToTwoDecimalPoints(double value) {
-        DecimalFormat df2 = new DecimalFormat(",##");
+        DecimalFormat df2 = new DecimalFormat(".##");
         return Double.parseDouble(df2.format(value));
 
     }
