@@ -68,7 +68,6 @@ public class CalcBattens {
             antalLaegter = ((length / 50) * 2);//50 cm
             //Hvor mange meter lægter skal vi bruge til hele carportens length
             totalMeterLægter = (antalLaegter * b) / 540;//
-            //antal = Math.ceil(totalMeterLægter + antalLaegter + (2 * length));
             antal = Math.ceil((totalMeterLægter + antalLaegter) * 2);
             for (Product product : productList) {
                 if (product.getCategory().equals("lægte")) {
