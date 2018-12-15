@@ -1,4 +1,4 @@
-    /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -16,6 +16,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
 import java.util.List;
+import org.decimal4j.util.DoubleRounder;
 
 /**
  *
@@ -28,7 +29,7 @@ public class LogicFacade {
         UserMapper um = new UserMapper();
         return um.getUser(email, password);
     }
-    
+
     /**
      * This method will create a hashed password and return it, with help of
      * userns password.
@@ -147,7 +148,7 @@ public class LogicFacade {
         ProductMapper pm = new ProductMapper();
         pm.deleteProduct(productID);
     }
-    
+
     public static Carport getCarportByID(int caportID) {
         CarportMapper cm = new CarportMapper();
         Carport carport = cm.getCarportById(caportID);
@@ -156,99 +157,121 @@ public class LogicFacade {
 
     // -----------------CARPORT CALCULATIONS LOGICFACADE --------------------------------
     /**
-     * This methode is called in,
-     * CreateOrderFlatRoof.java in presentationLayer, to get the total price of the carport, what is then used to create a carport in the Database,
-     * OrderRequestFlatRoof.java in presentationLayer, to get the total price of the carport, what is used to show the price at orderRequestFlatRoof.jsp,
-     * SeeOrderProductList.java in presentationLayer, to show a List of parts for an specifik customer by Id.
+     * This methode is called in, CreateOrderFlatRoof.java in presentationLayer,
+     * to get the total price of the carport, what is then used to create a
+     * carport in the Database, OrderRequestFlatRoof.java in presentationLayer,
+     * to get the total price of the carport, what is used to show the price at
+     * orderRequestFlatRoof.jsp, SeeOrderProductList.java in presentationLayer,
+     * to show a List of parts for an specifik customer by Id.
      *
      * @param length Length of the carport from carportFlatRood.jsp
      * @param width Width of the carport from carportFlatRood.jsp
-     * @param roofMaterial Roof material is choosen from the client through carportFlarRoof.jsp or carportPointedRoof.jsp.
-     * @return Returns a list of all products, that is needed to build a carport with a flat roof.
-     * 
+     * @param roofMaterial Roof material is choosen from the client through
+     * carportFlarRoof.jsp or carportPointedRoof.jsp.
+     * @return Returns a list of all products, that is needed to build a carport
+     * with a flat roof.
+     *
      */
     public static List<Product> carportCalculaterFlatRoof(double length, double width, String roofMaterial) {
         CarportFlatProductListe cfp = new CarportFlatProductListe();
         List<Product> list = cfp.carportCalculaterFlatRoof(length, width, roofMaterial);
         return list;
     }
-    
+
     /**
-     * This methode is called in, 
-     * CreateOrderFlatRoof.java in presentationLayer, to get the total price of the carport, what is then used to create a carport in the Database,
-     * OrderRequestFlatRoof.java in presentationLayer, to get the total price of the carport, what is used to show the price at orderRequestFlatRoof.jsp,
-     * SeeOrderProductList.java in presentationLayer, to show a List of parts for an specifik customer by Id.
-     * 
+     * This methode is called in, CreateOrderFlatRoof.java in presentationLayer,
+     * to get the total price of the carport, what is then used to create a
+     * carport in the Database, OrderRequestFlatRoof.java in presentationLayer,
+     * to get the total price of the carport, what is used to show the price at
+     * orderRequestFlatRoof.jsp, SeeOrderProductList.java in presentationLayer,
+     * to show a List of parts for an specifik customer by Id.
+     *
      * @param length Length of the carport from carportFlatRoof.jsp.
      * @param width Width of the carport from carportFlatRoof.jsp.
      * @param shedLength Length of shed from carportFlatRoof.jsp.
      * @param shedWidth Width of shed from carportFlatRoof.jsp.
-     * @param roofMaterial Roof material is choosen from the client through carportFlarRoof.jsp or carportPointedRoof.jsp.
-     * @return Returns a list of all products, that is needed to build a carport with a flat roof and shed.
-     * 
+     * @param roofMaterial Roof material is choosen from the client through
+     * carportFlarRoof.jsp or carportPointedRoof.jsp.
+     * @return Returns a list of all products, that is needed to build a carport
+     * with a flat roof and shed.
+     *
      */
     public static List<Product> carportCalculaterFlatRoofIncludingShed(double length, double width, double shedLength, double shedWidth, String roofMaterial) {
         CarportFlatProductListe cfp = new CarportFlatProductListe();
         List<Product> list = cfp.carportCalculaterFlatRoofIncludingShed(length, width, shedLength, shedWidth, roofMaterial);
         return list;
     }
-    
+
     /**
-     * This methode is called in, 
-     * CreateOrderPointedRoof.java in presentationLayer, to get the total price of the carport, what is then used to create a carport in the Database,
-     * OrderRequestPointedRoof.java in presentationLayer, to get the total price of the carport, what is used to show the price at orderRequestPointedRoof.jsp,
-     * SeeOrderProductList.java in presentationLayer, to show a List of parts for an specifik customer by Id.
+     * This methode is called in, CreateOrderPointedRoof.java in
+     * presentationLayer, to get the total price of the carport, what is then
+     * used to create a carport in the Database, OrderRequestPointedRoof.java in
+     * presentationLayer, to get the total price of the carport, what is used to
+     * show the price at orderRequestPointedRoof.jsp, SeeOrderProductList.java
+     * in presentationLayer, to show a List of parts for an specifik customer by
+     * Id.
      *
      * @param length Length of the carport from carportPointedRoodf.jsp.
      * @param width Width of the carport from carportPointedRoof.jsp.
-     * @param degree Degree of the carports Pointed roof from carportPointedRoof.jsp.
-     * @param roofMaterial Roof material is choosen from the client through carportFlarRoof.jsp or carportPointedRoof.jsp.
-     * @return Returns a list of all products, that is needed to build a carport with a Pointed roof.
+     * @param degree Degree of the carports Pointed roof from
+     * carportPointedRoof.jsp.
+     * @param roofMaterial Roof material is choosen from the client through
+     * carportFlarRoof.jsp or carportPointedRoof.jsp.
+     * @return Returns a list of all products, that is needed to build a carport
+     * with a Pointed roof.
      */
     public static List<Product> carportCalculatorPointedRoof(double length, double width, double degree, String roofMaterial) {
         CarportPointedRoofListe cfp = new CarportPointedRoofListe();
         List<Product> list = cfp.carportCalculaterPointedRoof(length, width, degree, roofMaterial);
         return list;
     }
-    
+
     /**
-     * This methode is called in, 
-     * CreateOrderPointedRoof.java in presentationLayer, to get the total price of the carport, what is then used to create a carport in the Database,
-     * OrderRequestPointedRoof.java in presentationLayer, to get the total price of the carport, what is used to show the price at orderRequestPointedRoof.jsp,
-     * SeeOrderProductList.java in presentationLayer, to show a List of parts for an specifik customer by Id.
-     * 
+     * This methode is called in, CreateOrderPointedRoof.java in
+     * presentationLayer, to get the total price of the carport, what is then
+     * used to create a carport in the Database, OrderRequestPointedRoof.java in
+     * presentationLayer, to get the total price of the carport, what is used to
+     * show the price at orderRequestPointedRoof.jsp, SeeOrderProductList.java
+     * in presentationLayer, to show a List of parts for an specifik customer by
+     * Id.
+     *
      * @param length Length of the carport from carportPointedRoodf.jsp.
      * @param width Width of the carport from carportPointedRoof.jsp.
-     * @param degree Degree of the carports Pointed roof from carportPointedRoof.jsp.
+     * @param degree Degree of the carports Pointed roof from
+     * carportPointedRoof.jsp.
      * @param shedLength Length of shed from carportPointedRood.jsp.
      * @param shedWidth Width of shed from carportPointedRood.jsp.
-     * @param roofMaterial Roof material is choosen from the client through carportFlatRoof.jsp or carportPointedRoof.jsp.
-     * @return Returns a list of all products, that is needed to build a carport with a Pointed roof and shed.
+     * @param roofMaterial Roof material is choosen from the client through
+     * carportFlatRoof.jsp or carportPointedRoof.jsp.
+     * @return Returns a list of all products, that is needed to build a carport
+     * with a Pointed roof and shed.
      */
     public static List<Product> carportCalculatorPointedRoofIncludingShed(double length, double width, double degree, double shedLength, double shedWidth, String roofMaterial) {
         CarportPointedRoofListe cfp = new CarportPointedRoofListe();
         List<Product> list = cfp.carportCalculaterPointedRoofIncludingShed(length, width, degree, length, width, roofMaterial);
         return list;
     }
+
     /**
-     * This method with help of javas DecimalFormater, rounds a double to two decimal after the comma,
-     * This methode is called in,
-     * LogicFacade.java in functionLayer, in method totalPriceOfCarport,
-     * Product.java in functionLayer, in method getPriceLine.
-     * 
-     * @param value 
+     * This method with help of javas DecimalFormater, rounds a double to two
+     * decimal after the comma, This methode is called in, LogicFacade.java in
+     * functionLayer, in method totalPriceOfCarport, Product.java in
+     * functionLayer, in method getPriceLine.
+     *
+     * @param value
      * @return Returns a double with two decimals after the comma.
      */
     public static double roundDoubleToTwoDecimalPoints(double value) {
-        DecimalFormat df2 = new DecimalFormat(".##");
-        return Double.parseDouble(df2.format(value));
+        return DoubleRounder.round(value, 2);
 
     }
-    
+
     /**
-     * This method takes a list of parts, loop through the list and add each priceLine of each product with eachother.
-     * 
-     * @param stykliste Is a specific list of an Carport with all products needed to build it.
+     * This method takes a list of parts, loop through the list and add each
+     * priceLine of each product with eachother.
+     *
+     * @param stykliste Is a specific list of an Carport with all products
+     * needed to build it.
      * @return Returns the total price of an Carport.
      */
     public static double totalPriceOfCarport(List<Product> stykliste) {
@@ -258,6 +281,5 @@ public class LogicFacade {
         }
         return roundDoubleToTwoDecimalPoints(totalPriceOfCarport);
     }
-
 
 }
