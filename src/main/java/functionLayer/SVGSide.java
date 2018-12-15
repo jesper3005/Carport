@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package functionLayer;
+import static functionLayer.Rules.*;
 
 /**
  *
@@ -15,12 +16,9 @@ public class SVGSide {
     private StringBuilder sb = new StringBuilder();
 
     //-----RULES HERE--------
-    double remHeight = 30;
     double startPosXY = 200;
-    double stolpeGapFraRem = 10;
-    double shedPlankWidth = 10;
-    double stolpeWidth = 10;
-    double lægteWidth = 5;
+    
+
 
     public SVGSide(Carport carport, Shed shed, double height) {
         this.sb = sb.append("<SVG width=\"800\" height=\"500\">");
@@ -53,30 +51,30 @@ public class SVGSide {
 
     public String createRem(double length) {
 
-        sb.append("<rect x=\"" + startPosXY + "\" y=\"" + startPosXY + "\" height=\"" + remHeight + "\" width=\"" + length + "\" style=\"stroke: #292929; fill:none; stroke-width: 2;\"/>");
+        sb.append("<rect x=\"").append(startPosXY).append("\" y=\"").append(startPosXY).append("\" height=\"").append(REM_HEIGHT).append("\" width=\"").append(length).append("\" style=\"stroke: #292929; fill:none; stroke-width: 2;\"/>");
         return sb.toString();
     }
     
     public String createStolper(double length, double height) {
-        double x1 = startPosXY + stolpeGapFraRem;
-        double x2 = startPosXY + length - (stolpeGapFraRem*2);
-        double y = startPosXY + remHeight;
+        double x1 = startPosXY + POLES_GAP_REM;
+        double x2 = startPosXY + length - (POLES_GAP_REM*2);
+        double y = startPosXY + REM_HEIGHT;
         
         System.out.println(x2);
-        sb.append("<rect x=\"" + x1 + "\" y=\"" + y + "\" height=\"" + height + "\" width=\"" + stolpeWidth + "\" style=\"stroke: #292929; fill:1;\"/>");
-        sb.append("<rect x=\"" + x2 + "\" y=\"" + y + "\" height=\"" + height + "\" width=\"" + stolpeWidth + "\" style=\"stroke: #292929; fill:1;\"/>");
+        sb.append("<rect x=\"").append(x1).append("\" y=\"").append(y).append("\" height=\"").append(height).append("\" width=\"").append(POLES_WIDTH).append("\" style=\"stroke: #292929; fill:1;\"/>");
+        sb.append("<rect x=\"").append(x2).append("\" y=\"").append(y).append("\" height=\"").append(height).append("\" width=\"").append(POLES_WIDTH).append("\" style=\"stroke: #292929; fill:1;\"/>");
 
         return sb.toString();
     }
 
     public String createShed(double length, double width, double shedLength, double shedWidth, double height) {
-        double qtyShedLength = Math.ceil(shedLength / shedPlankWidth);
-        double y = startPosXY + remHeight;
+        double qtyShedLength = Math.ceil(shedLength / SHED_PLANK_WIDTH);
+        double y = startPosXY + REM_HEIGHT;
 
-        double x = startPosXY + length - (stolpeGapFraRem * 2);
+        double x = startPosXY + length - (POLES_GAP_REM * 2);
         for (int i = 0; i < qtyShedLength; i++) {
-            sb.append("<rect x=\"" + x + "\" y=\"" + y + "\" height=\"" + height + "\" width=\"" + shedPlankWidth + "\" style=\"stroke: #292929; fill:none;\"/>");
-            x -= shedPlankWidth;
+            sb.append("<rect x=\"").append(x).append("\" y=\"").append(y).append("\" height=\"").append(height).append("\" width=\"").append(SHED_PLANK_WIDTH).append("\" style=\"stroke: #292929; fill:none;\"/>");
+            x -= SHED_PLANK_WIDTH;
         }
 
         return sb.toString();
@@ -93,7 +91,7 @@ public class SVGSide {
         
         double y = 0;
         
-        sb.append("<rect x=\"" + startPosXY + "\" y=\"" + y + "\" height=\"" + lengthOfLægte + "\" width=\"" + lægteWidth + "\" style=\"stroke: #292929; fill:none;\"/>");
+        sb.append("<rect x=\"").append(startPosXY).append("\" y=\"").append(y).append("\" height=\"").append(lengthOfLægte).append("\" width=\"").append(BATTEN_WIDTH).append("\" style=\"stroke: #292929; fill:none;\"/>");
         
         
         

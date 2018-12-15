@@ -134,7 +134,7 @@ public class CarportMapper {
         return null;
     }
 
-    public List<Carport> getAllCarportOrder() {
+    public List<Carport> getAllCarportOrders() {
         try {
             List<Carport> carportList = new ArrayList<>();
             Connection c = Connector.connection();

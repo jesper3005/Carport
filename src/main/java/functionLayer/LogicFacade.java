@@ -104,9 +104,9 @@ public class LogicFacade {
         return carportList;
     }
 
-    public static List<Carport> getALLOrdresFromCarport() {
+    public static List<Carport> getAllCarportOrders() {
         CarportMapper cm = new CarportMapper();
-        List<Carport> carportList = cm.getAllCarportOrder();
+        List<Carport> carportList = cm.getAllCarportOrders();
         return carportList;
     }
 
