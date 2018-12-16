@@ -49,7 +49,7 @@
         
         <div class="container">
             <div class="control-group">    
-                <h1>Kunde oplysninger</h1>
+                <h1>Kundens oplysninger</h1>
                 <br>
                 <br>
                 <%="Fornavn: " + customer.getFirstName() %>

@@ -5,7 +5,6 @@
  */
 package presentationLayer;
 
-import exceptions.FogException;
 import functionLayer.Carport;
 import functionLayer.LogicFacade;
 import java.util.List;
