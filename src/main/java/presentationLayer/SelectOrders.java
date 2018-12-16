@@ -29,10 +29,6 @@ public class SelectOrders extends Command {
             
             List<Product> productList = LogicFacade.getAllProductsFromDatabase();
             session.setAttribute("productList", productList);
-            
-            //List<Product> stykliste = LogicFacade.CarportCalculaterFlatRoof(0, 0, roofMaterial);
-            
-            
             String enumValue = request.getParameter("selectOrder");
 
             if (enumValue == null || enumValue.equals("allOrdre")) {
@@ -45,7 +41,7 @@ public class SelectOrders extends Command {
             return "manageOrders";
             
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() +" "+ SelectOrders.class.getName());
             return "manageOrders";
         }
     }

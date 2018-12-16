@@ -11,11 +11,12 @@ import functionLayer.calculation.CarportFlatProductListe;
 import dbAccess.ProductMapper;
 import dbAccess.UserMapper;
 import exceptions.FogException;
-import functionLayer.calculation.CarportPointedRoofListe;
+import functionLayer.calculation.CarportPointedRoofProductListe;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
 import java.util.List;
+import org.decimal4j.util.DoubleRounder;
 //import org.decimal4j.util.DoubleRounder;
 
 /**
@@ -227,7 +228,7 @@ public class LogicFacade {
      * with a Pointed roof.
      */
     public static List<Product> carportCalculatorPointedRoof(double length, double width, double degree, String roofMaterial) {
-        CarportPointedRoofListe cfp = new CarportPointedRoofListe();
+        CarportPointedRoofProductListe cfp = new CarportPointedRoofProductListe();
         List<Product> list = cfp.carportCalculaterPointedRoof(length, width, degree, roofMaterial);
         return list;
     }
@@ -253,7 +254,7 @@ public class LogicFacade {
      * with a Pointed roof and shed.
      */
     public static List<Product> carportCalculatorPointedRoofIncludingShed(double length, double width, double degree, double shedLength, double shedWidth, String roofMaterial) {
-        CarportPointedRoofListe cfp = new CarportPointedRoofListe();
+        CarportPointedRoofProductListe cfp = new CarportPointedRoofProductListe();
         List<Product> list = cfp.carportCalculaterPointedRoofIncludingShed(length, width, degree, length, width, roofMaterial);
         return list;
     }
@@ -267,9 +268,9 @@ public class LogicFacade {
      * @param value
      * @return Returns a double with two decimals after the comma.
      */
-//    public static double roundDoubleToTwoDecimalPoints(double value) {
-//        return DoubleRounder.round(value, 2);
-//    }
+    public static double roundDoubleToTwoDecimalPoints(double value) {
+        return DoubleRounder.round(value, 2);
+    }
 
     /**
      * This method takes a list of parts, loop through the list and add each
@@ -284,8 +285,7 @@ public class LogicFacade {
         for (Product produkt : stykliste) {
             totalPriceOfCarport += produkt.getTotalPriceOfOrder();
         }
-        return totalPriceOfCarport;
-        //return roundDoubleToTwoDecimalPoints(totalPriceOfCarport);
+        return roundDoubleToTwoDecimalPoints(totalPriceOfCarport);
     }
 
 }

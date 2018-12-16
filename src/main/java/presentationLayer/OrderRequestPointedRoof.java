@@ -33,7 +33,6 @@ public class OrderRequestPointedRoof extends Command {
             HttpSession session = request.getSession();
             List<Product> stykliste;
             boolean shedCheck;
-            boolean roofCheck = true;
             String degreeStr = request.getParameter("degree");
             double degree = Double.parseDouble(degreeStr.substring(0, 2));
             //length and width from shed from carportFlatRoof or carportPointedRoof jsp page.
@@ -95,7 +94,7 @@ public class OrderRequestPointedRoof extends Command {
 
             return "orderRequestPointedRoof";
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() +" "+ OrderRequestPointedRoof.class.getName());
             return "carportPointedRoof";
         }
     }

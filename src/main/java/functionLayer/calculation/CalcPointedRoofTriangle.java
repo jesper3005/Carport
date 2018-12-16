@@ -24,7 +24,7 @@ public class CalcPointedRoofTriangle {
             double sinC = 180 - (2 * degree);
 
             b = (c * Math.sin(25 * (Math.PI / 180))) / Math.sin(sinC * (Math.PI / 180));
-            //b = LogicFacade.roundDoubleToTwoDecimalPoints(b);
+            b = LogicFacade.roundDoubleToTwoDecimalPoints(b);
             return b;
         } catch (Exception e) {
             System.out.println(e.getMessage());

@@ -40,7 +40,7 @@ public class UpdateOrderStatus extends Command {
             }
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() +" "+ UpdateOrderStatus.class.getName());
         }
         return "manageOrders";
     }

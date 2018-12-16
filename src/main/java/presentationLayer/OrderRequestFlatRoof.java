@@ -5,7 +5,6 @@
  */
 package presentationLayer;
 
-import exceptions.FogException;
 import functionLayer.Carport;
 import functionLayer.LogicFacade;
 import functionLayer.Product;
@@ -35,7 +34,6 @@ public class OrderRequestFlatRoof extends Command {
             List<Product> stykliste;
             //length and width from shed from carportFlatRoof or carportPointedRoof jsp page.
             boolean shedCheck;
-            boolean roofCheck = false;
             double shedLength = Double.parseDouble(request.getParameter("skurlaengde"));
             double shedWidth = Double.parseDouble(request.getParameter("skurbredde"));
             //length and width from carportFlatRoof or carportPointedRoof jsp page.
@@ -100,7 +98,7 @@ public class OrderRequestFlatRoof extends Command {
             return "orderRequestFlatRoof";
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() +" "+ OrderRequestFlatRoof.class.getName());
             return "carportFlatRoof";
         }
     }

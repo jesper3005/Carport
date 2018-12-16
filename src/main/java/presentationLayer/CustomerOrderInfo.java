@@ -5,7 +5,6 @@
  */
 package presentationLayer;
 
-import exceptions.FogException;
 import functionLayer.Customer;
 import functionLayer.LogicFacade;
 import javax.servlet.http.HttpServletRequest;
@@ -19,15 +18,20 @@ import javax.servlet.http.HttpSession;
 public class CustomerOrderInfo extends Command {
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response){
-        HttpSession session = request.getSession();
-        
-        int customerID = Integer.parseInt(request.getParameter("customerID"));
-        
-        Customer customer = LogicFacade.getCustomerByID(customerID);
-        session.setAttribute("customerInfo", customer);
-        
-        return "customerOrderInfo";
+    String execute(HttpServletRequest request, HttpServletResponse response) {
+
+        try {
+
+            HttpSession session = request.getSession();
+            int customerID = Integer.parseInt(request.getParameter("customerID"));
+            Customer customer = LogicFacade.getCustomerByID(customerID);
+            session.setAttribute("customerInfo", customer);
+
+            return "customerOrderInfo";
+        } catch (Exception e) {
+            System.out.println(e.getMessage() + " " + CustomerOrderInfo.class.getName());
+            return "customerOrderInfo";
+        }
     }
-    
+
 }

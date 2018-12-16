@@ -6,7 +6,6 @@
 package presentationLayer;
 
 import dbAccess.ProductMapper;
-import exceptions.FogException;
 import functionLayer.LogicFacade;
 import functionLayer.Product;
 import java.util.List;
@@ -25,7 +24,6 @@ public class UpdateProduct extends Command {
 
         try {
             HttpSession session = request.getSession();
-            ProductMapper pm = new ProductMapper();
             String action = request.getParameter("action");
             if ("Update".equals(action)) {
                 double price = Double.parseDouble(request.getParameter("price"));
@@ -40,7 +38,7 @@ public class UpdateProduct extends Command {
             session.setAttribute("allProduct", allProducts);
             return "admin";
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() +" "+ UpdateProduct.class.getName());
         }
         return "admin";
 
