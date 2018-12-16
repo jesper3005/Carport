@@ -34,6 +34,7 @@ public class Login extends Command {
             session.setAttribute("role", user.getRole());
             return "../index";
         } catch (FogException ex) {
+            System.out.println(ex.getMessage() +" "+ Login.class.getName());
             request.setAttribute("error", "Wrong username or password");
             System.out.println("Login failed");
             DefaultLogger.getMyLogger().log(Level.WARNING, "Login failed " + email + " : " + password);

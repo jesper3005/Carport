@@ -36,7 +36,7 @@ public class Navigator extends Command {
 
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() +" "+ Navigator.class.getName());
         }
 
         return "login";

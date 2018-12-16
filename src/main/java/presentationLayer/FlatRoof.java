@@ -29,7 +29,7 @@ public class FlatRoof extends Command {
             return "carportFlatRoof";
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() +" "+ FlatRoof.class.getName());
             return "../index";
         }
     }

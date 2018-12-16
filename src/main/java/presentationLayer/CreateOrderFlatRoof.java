@@ -35,14 +35,8 @@ public class CreateOrderFlatRoof extends Command {
             String email = request.getParameter("email");
             String comment = request.getParameter("comment");
             
-            Carport carportFlat = (Carport) session.getAttribute("carportFladt");
+            Carport carportFlat = (Carport) session.getAttribute("carportFlat");
             Shed shedFlat = (Shed) session.getAttribute("shedFlat");
-
-            
-            //Shed shed = new Shed(shedLength, shedWidth);
-
-            //double totalPriceOfCarport = LogicFacade.totalPriceOfCarport(stykliste);
-            //carportFlat.setTotal_price(totalPriceOfCarport);
 
             customer = LogicFacade.getCustomerByEmail(email);
 
@@ -59,7 +53,7 @@ public class CreateOrderFlatRoof extends Command {
             return "orderComplete";
             
         } catch (Exception e) {
-            System.out.println(e.getMessage() + "CreateOrderFlatRoof");
+            System.out.println(e.getMessage() +" "+ CreateOrderFlatRoof.class.getName());
             return "orderRequestFlatRoof";
         }
 

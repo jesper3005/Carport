@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author oerte
  */
-public class CarportPointedRoofListe {
+public class CarportPointedRoofProductListe {
 
     private  List<Product> list = LogicFacade.getAllProductsFromDatabase();
     private  CalcBattens battens = new CalcBattens();

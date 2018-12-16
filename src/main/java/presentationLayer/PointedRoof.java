@@ -28,7 +28,7 @@ public class PointedRoof extends Command {
 
             return "carportPointedRoof";
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() +" "+ PointedRoof.class.getName());
             return "carportPointedRoof";
         }
 
