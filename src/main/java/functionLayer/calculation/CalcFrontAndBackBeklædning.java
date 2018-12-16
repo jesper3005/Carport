@@ -6,6 +6,7 @@
 package functionLayer.calculation;
 
 import functionLayer.Product;
+import functionLayer.Rules;
 import java.util.List;
 
 /**
@@ -25,7 +26,8 @@ public class CalcFrontAndBackBeklædning {
 
         List<Product> productList = allProducts;
         Product p = null;
-        double antalOfPlanks = width / 10;
+        // 10 ER WIDTH OF THE PLANKS
+        double antalOfPlanks = width / Rules.PLANKS_WIDTH;
 
         try {
 

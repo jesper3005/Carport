@@ -6,12 +6,15 @@
 package functionLayer.calculation;
 
 import functionLayer.Product;
+import functionLayer.Rules;
 import java.util.List;
 
 /**
  *
  * @author Jesper
  */
+
+//rem
 public class CalcBeam {
 
     public Product calcAntal(double length, double width, List allProducts) {
@@ -27,11 +30,11 @@ public class CalcBeam {
         Product p = null;
         try {
             if (allProducts != null) {
-                int antal = 0;
+                double antal = 0;
                 if (width >= 510) {
-                    antal = 5;
+                    antal = Rules.AMOUNT_OF_BEAMS_OVER_OR_EQUAL_540;
                 } else {
-                    antal = 4;
+                    antal = Rules.AMOUNT_OF_BEAMS_UNDER_540;
                 }
                 for (Product product : productList) {
                     if (product.getCategory().equals("rem") && product.getLength() == length) {
