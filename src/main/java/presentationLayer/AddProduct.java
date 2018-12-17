@@ -41,7 +41,7 @@ public class AddProduct extends Command {
             return "admin";
             
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() + " " +AddProduct.class.getName());
             return "admin";
         }
 

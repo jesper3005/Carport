@@ -18,32 +18,36 @@ import javax.servlet.http.HttpSession;
  *
  * @author Jesper
  */
-public class SeeOrderProductList extends Command{
+public class SeeOrderProductList extends Command {
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response)  {
-        HttpSession session = request.getSession();
-        int carportID = Integer.parseInt(request.getParameter("carportID"));
-        Carport c = LogicFacade.getCarportByID(carportID);
-        
-        if(c.getRoof().equals("FLAT") && c.getShed().getShed_length() > 0) {
-            List<Product> stykListe = LogicFacade.carportCalculaterFlatRoofIncludingShed(c.getCarport_length(), c.getCarport_width(), c.getShed().getShed_length(), c.getShed().getShed_width(), c.getRoofMaterial());
-            session.setAttribute("orderProductList", stykListe);
-        } else if(c.getRoof().equals("FLAT") && c.getShed().getShed_length() == 0) {
-            List<Product> stykListe = LogicFacade.carportCalculaterFlatRoof(c.getCarport_length(), c.getCarport_width(), c.getRoofMaterial());
-            session.setAttribute("orderProductList", stykListe);
-        } 
-        
-        if(c.getRoof().equals("PEAK") && c.getShed().getShed_length() > 0) {
-           List<Product> stykListe = LogicFacade.carportCalculatorPointedRoofIncludingShed(c.getCarport_length(), c.getCarport_width(), c.getDegrees(), c.getShed().getShed_length(), c.getShed().getShed_width(), c.getRoofMaterial());
-           session.setAttribute("orderProductList", stykListe);
-        } else if(c.getRoof().equals("PEAK") && c.getShed().getShed_length() == 0 ) {
-           List<Product> stykListe = LogicFacade.carportCalculatorPointedRoof(c.getCarport_length(), c.getCarport_width(), c.getDegrees(), c.getRoofMaterial());
-           session.setAttribute("orderProductList", stykListe);
+    String execute(HttpServletRequest request, HttpServletResponse response) {
+
+        try {
+            HttpSession session = request.getSession();
+            int carportID = Integer.parseInt(request.getParameter("carportID"));
+            Carport c = LogicFacade.getCarportByID(carportID);
+
+            if (c.getRoof().equals("FLAT") && c.getShed().getShed_length() > 0) {
+                List<Product> stykListe = LogicFacade.carportCalculaterFlatRoofIncludingShed(c.getCarport_length(), c.getCarport_width(), c.getShed().getShed_length(), c.getShed().getShed_width(), c.getRoofMaterial());
+                session.setAttribute("orderProductList", stykListe);
+            } else if (c.getRoof().equals("FLAT") && c.getShed().getShed_length() == 0) {
+                List<Product> stykListe = LogicFacade.carportCalculaterFlatRoof(c.getCarport_length(), c.getCarport_width(), c.getRoofMaterial());
+                session.setAttribute("orderProductList", stykListe);
+            }
+
+            if (c.getRoof().equals("PEAK") && c.getShed().getShed_length() > 0) {
+                List<Product> stykListe = LogicFacade.carportCalculatorPointedRoofIncludingShed(c.getCarport_length(), c.getCarport_width(), c.getDegrees(), c.getShed().getShed_length(), c.getShed().getShed_width(), c.getRoofMaterial());
+                session.setAttribute("orderProductList", stykListe);
+            } else if (c.getRoof().equals("PEAK") && c.getShed().getShed_length() == 0) {
+                List<Product> stykListe = LogicFacade.carportCalculatorPointedRoof(c.getCarport_length(), c.getCarport_width(), c.getDegrees(), c.getRoofMaterial());
+                session.setAttribute("orderProductList", stykListe);
+            }
+            return "seeOrderProductList";
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage() + " " + SeeOrderProductList.class.getName());
+            return "manageOrders";
         }
-        
-        
-        return "seeOrderProductList";
     }
-    
 }

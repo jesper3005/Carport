@@ -6,6 +6,7 @@
 package functionLayer.calculation;
 
 import functionLayer.Product;
+import static functionLayer.Rules.*;
 import java.util.List;
 
 /**
@@ -30,7 +31,7 @@ public class CalcBattens {
             double antalLaegterLength = 0;
             double totalMeterLægter = 0;
             //En lægte per 0.5 meter (50 cm)
-            antalLaegterLength = length / 50;//50 cm
+            antalLaegterLength = length / DISTANCE_BETWEEN_EACH_BATTENS;//50 cm
             // Hvad mange meter lægter skal vi brug til hele carportens bredje
             totalMeterLægter = (antalLaegterLength * width) / 540;//
             antal = Math.ceil(totalMeterLægter + antalLaegterLength);
@@ -62,11 +63,11 @@ public class CalcBattens {
         double antal;
         try {
             //+25 to make the roof extend out of the carport.
-            double b = CalcPointedRoofTriangle.CalcKatete(length, width, degree) + 25;
+            double b = CalcPointedRoofTriangle.CalcKatete(length, width, degree) + POINTED_ROOF_SURPLUS;
             double antalLaegter = 0;
             double totalMeterLægter = 0;
             //En lægte per 0.5 meter (50 cm)
-            antalLaegter = ((length / 50) * 2);//50 cm
+            antalLaegter = ((length / DISTANCE_BETWEEN_EACH_BATTENS) * 2);//50 cm
             //Hvor mange meter lægter skal vi bruge til hele carportens length
             totalMeterLægter = (antalLaegter * b) / 540;//
             antal = Math.ceil((totalMeterLægter + antalLaegter) * 2);

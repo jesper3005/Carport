@@ -58,7 +58,7 @@ public class CreateOrderPointedRoof extends Command {
             return "orderComplete";
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() +" "+ CreateOrderPointedRoof.class.getName());
             return "orderRequestPointedRoof";
         }
 

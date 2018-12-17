@@ -5,7 +5,6 @@
  */
 package presentationLayer;
 
-import exceptions.FogException;
 import functionLayer.Carport;
 import functionLayer.LogicFacade;
 import java.util.List;
@@ -40,7 +39,7 @@ public class UpdateOrderStatus extends Command {
             }
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() +" "+ UpdateOrderStatus.class.getName());
         }
         return "manageOrders";
     }

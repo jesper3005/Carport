@@ -6,6 +6,7 @@
 package functionLayer.calculation;
 
 import functionLayer.Product;
+import functionLayer.Rules;
 import java.util.List;
 
 /**
@@ -26,11 +27,11 @@ public class CalcPoles {
         List<Product> productList = allProducts;
         Product p = null;
         try {
-            int antal = 0;
+            double antal = 0;
             if (length <= 450) {
-                antal = 4;
+                antal = Rules.AMOUNT_OF_POLES_LESS_OR_EQUAL_450;
             } else if (length > 450) {
-                antal = 6;
+                antal = Rules.AMOUNT_OF_POLES_OVER_450;
             }
             for (Product product : productList) {
                 if (product.getCategory().equals("stolpe") && length < 300) {

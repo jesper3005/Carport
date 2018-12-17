@@ -5,10 +5,8 @@
  */
 package presentationLayer;
 
-import exceptions.FogException;
 import functionLayer.Carport;
 import functionLayer.LogicFacade;
-import functionLayer.Product;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,13 +24,6 @@ public class SelectOrders extends Command {
         try {
             HttpSession session = request.getSession();
             List<Carport> allOrders;
-            
-            List<Product> productList = LogicFacade.getAllProductsFromDatabase();
-            session.setAttribute("productList", productList);
-            
-            //List<Product> stykliste = LogicFacade.CarportCalculaterFlatRoof(0, 0, roofMaterial);
-            
-            
             String enumValue = request.getParameter("selectOrder");
 
             if (enumValue == null || enumValue.equals("allOrdre")) {
@@ -45,7 +36,7 @@ public class SelectOrders extends Command {
             return "manageOrders";
             
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() +" "+ SelectOrders.class.getName());
             return "manageOrders";
         }
     }

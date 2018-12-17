@@ -5,8 +5,6 @@
  */
 package presentationLayer;
 
-import dbAccess.ProductMapper;
-import exceptions.FogException;
 import functionLayer.LogicFacade;
 import functionLayer.Product;
 import java.util.List;
@@ -37,7 +35,7 @@ public class Admin extends Command {
                 return "admin";
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() +" "+ Admin.class.getName());
             return "admin";
         }
 

@@ -11,7 +11,7 @@ import functionLayer.calculation.CarportFlatProductListe;
 import dbAccess.ProductMapper;
 import dbAccess.UserMapper;
 import exceptions.FogException;
-import functionLayer.calculation.CarportPointedRoofListe;
+import functionLayer.calculation.CarportPointedRoofProductListe;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
@@ -227,7 +227,7 @@ public class LogicFacade {
      * with a Pointed roof.
      */
     public static List<Product> carportCalculatorPointedRoof(double length, double width, double degree, String roofMaterial) {
-        CarportPointedRoofListe cfp = new CarportPointedRoofListe();
+        CarportPointedRoofProductListe cfp = new CarportPointedRoofProductListe();
         List<Product> list = cfp.carportCalculaterPointedRoof(length, width, degree, roofMaterial);
         return list;
     }
@@ -253,7 +253,7 @@ public class LogicFacade {
      * with a Pointed roof and shed.
      */
     public static List<Product> carportCalculatorPointedRoofIncludingShed(double length, double width, double degree, double shedLength, double shedWidth, String roofMaterial) {
-        CarportPointedRoofListe cfp = new CarportPointedRoofListe();
+        CarportPointedRoofProductListe cfp = new CarportPointedRoofProductListe();
         List<Product> list = cfp.carportCalculaterPointedRoofIncludingShed(length, width, degree, length, width, roofMaterial);
         return list;
     }

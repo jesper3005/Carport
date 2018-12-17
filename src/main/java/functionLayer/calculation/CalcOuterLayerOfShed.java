@@ -6,6 +6,7 @@
 package functionLayer.calculation;
 
 import functionLayer.Product;
+import functionLayer.Rules;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,8 +31,8 @@ public class CalcOuterLayerOfShed {
 
         List<Product> productList = allProducts;
         Product p = null;
-        double widthOfPlanks = 10; //cm
-        double doorWidth = 80;
+        double widthOfPlanks = Rules.PLANKS_WIDTH; //cm
+        double doorWidth = Rules.DOOR_WIDTH;
         // doorTop is the gap between roof and door
         double doorTop = 2;
         double antalOfPlanks;
@@ -67,13 +68,13 @@ public class CalcOuterLayerOfShed {
         
         List<Product> list = allProducts;
         List<Product> doorList = new ArrayList<>();
-        double calcFrontPlanksAntal = 80 / 10;//door width divided with plank width
+        double calcFrontPlanksAntal = 80 / Rules.PLANKS_WIDTH;//door width divided with plank width
         Product handtag;
         Product haengsel;
         Product firstAndSecondPlank;// top and bottom blank to hold the door
         Product thirdPlank; //cross  between the top and bottom plank
         Product frontPlanks;
-        Product screws; // en pakke med 50st screws
+        Product screws; // one packet with 50 screws
 
         try {
             for (Product product : list) {
