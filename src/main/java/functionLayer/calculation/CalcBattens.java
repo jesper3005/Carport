@@ -61,6 +61,7 @@ public class CalcBattens {
         List<Product> productList = allProducts;
         double antal;
         try {
+            //+25 to make the roof extend out of the carport.
             double b = CalcPointedRoofTriangle.CalcKatete(length, width, degree) + 25;
             double antalLaegter = 0;
             double totalMeterLægter = 0;

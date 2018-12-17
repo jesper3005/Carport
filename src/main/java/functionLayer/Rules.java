@@ -11,9 +11,7 @@ package functionLayer;
  */
 public class Rules {
     
-<<<<<<< HEAD
     
-=======
     public static final double REM_WIDTH = 10;
     public static final double REM_HEIGHT = 30;
     public static final double BATTEN_WIDTH = 5;
@@ -23,5 +21,4 @@ public class Rules {
     public static final double POLES_GAP_REM = 10;
     public static final double SHED_PLANK_WIDTH = 15;
     public static final double DOOR_WIDTH = 80;
->>>>>>> 1cf72fd1a5c0021f0dea3acc39f0326809c32bde
 }
