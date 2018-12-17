@@ -42,7 +42,7 @@ public class UserMapper {
             } else {
                 throw new FogException("Could not validate user");
             }
-        } catch (ClassNotFoundException | SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             throw new FogException("Could not validate user");
         }
@@ -60,7 +60,7 @@ public class UserMapper {
             pstmt.executeUpdate();
             pstmt.close();
 
-        } catch (SQLException | ClassNotFoundException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             System.out.println("Error");
         }
