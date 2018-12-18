@@ -10,8 +10,7 @@ package functionLayer;
  * @author Jesper
  */
 public class Rules {
-    
-    
+
     public static final double REM_WIDTH = 10;
     public static final double REM_HEIGHT = 30;
     public static final double PLANKS_WIDTH = 10;
@@ -29,4 +28,8 @@ public class Rules {
     public static final double AMOUNT_OF_BEAMS_UNDER_540 = 4;
     public static final double AMOUNT_OF_POLES_LESS_OR_EQUAL_450 = 4;
     public static final double AMOUNT_OF_POLES_OVER_450 = 6;
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 3d6affd756cc2f9028d28e1ec280f9e40f0c9b58
 }

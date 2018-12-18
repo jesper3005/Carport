@@ -105,7 +105,7 @@ public class CalcJUnitTest {
         Product p;
         CalcBeam cr = new CalcBeam();
         //Act
-        p = cr.calcAntal(-480, -480, list);
+        p = cr.calcAntal(-480, 0, list);
     }
 
     @Test

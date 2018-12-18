@@ -22,7 +22,7 @@ public class UserMapper {
     private final String GET_USER = "SELECT * FROM `user` WHERE email = ? AND password = ?;";
     private final String CREATE_USER = "INSERT INTO `user`(password, email, role, customer_id) VALUES (?, ?, ?, ?);";
 
-    public User getUser(String email, String password) throws FogException {
+    public User getUser(String email, String password) throws FogException, ClassNotFoundException {
         User user = null;
         try {
             Connection con = Connector.connection();
@@ -48,7 +48,7 @@ public class UserMapper {
         }
     }
 
-    public void createUser(User user) {
+    public void createUser(User user) throws ClassNotFoundException {
         try {
             Connection con = Connector.connection();
             String query = CREATE_USER;
