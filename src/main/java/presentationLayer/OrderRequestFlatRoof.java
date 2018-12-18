@@ -30,10 +30,8 @@ public class OrderRequestFlatRoof extends Command {
 
         try {
             HttpSession session = request.getSession();
-
             List<Product> stykliste;
             //length and width from shed from carportFlatRoof or carportPointedRoof jsp page.
-            boolean shedCheck;
             double shedLength = Double.parseDouble(request.getParameter("skurlaengde"));
             double shedWidth = Double.parseDouble(request.getParameter("skurbredde"));
             //length and width from carportFlatRoof or carportPointedRoof jsp page.
@@ -42,22 +40,17 @@ public class OrderRequestFlatRoof extends Command {
             String redskabsskur = request.getParameter("redskabsskur");
             // value from roof selector
             String roofMaterial = request.getParameter("Tag");
-            String error = "Skur bredde skal være mindre den selve carporten.";
+            String error = "Skurets bredde og/eller længde må ikke være størrer end selve carporten.";
             //Checks if roof is pointed for SVG's sake
 
             Shed shed;
-            if (shedLength > length) {
-                request.setAttribute("error", "Skur længde skal være mindre den selve carporten.");
+            if (shedLength > length || shedWidth > width) {
+                request.setAttribute("error", error);
                 LoggerConfig.setUpLogger();
                 DefaultLogger.getMyLogger().log(Level.SEVERE, error);
                 return "carportFlatRoof";
             }
-            if (shedWidth > width) {
-                request.setAttribute("error", "Skur bredde skal være mindre den selve carporten.");
-                LoggerConfig.setUpLogger();
-                DefaultLogger.getMyLogger().log(Level.SEVERE, error);
-                return "carportFlatRoof";
-            }
+
 
             if (redskabsskur != null) {
                 stykliste = LogicFacade.carportCalculaterFlatRoofIncludingShed(length, width, shedLength, shedWidth, roofMaterial);
@@ -77,11 +70,6 @@ public class OrderRequestFlatRoof extends Command {
             
 
             //------------SVG-------------
-            if (redskabsskur == null) {
-                shedCheck = false;
-            } else {
-                shedCheck = true;
-            }
 
             //Rules (Tempoarily)
             double height = 230;

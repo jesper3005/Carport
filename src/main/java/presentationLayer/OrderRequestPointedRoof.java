@@ -32,7 +32,6 @@ public class OrderRequestPointedRoof extends Command {
 
             HttpSession session = request.getSession();
             List<Product> stykliste;
-            boolean shedCheck;
             String degreeStr = request.getParameter("degree");
             double degree = Double.parseDouble(degreeStr.substring(0, 2));
             //length and width from shed from carportFlatRoof or carportPointedRoof jsp page.
@@ -47,15 +46,13 @@ public class OrderRequestPointedRoof extends Command {
 
             Shed shed;
             LoggerConfig.setUpLogger();
-            if (shedLength > length) {
-                request.setAttribute("error", "Skur længde skal være mindre den selve carporten.");
-                DefaultLogger.getMyLogger().log(Level.SEVERE, "Skur længde skal være mindre den selve carporten.");
-                return "carportPointedRoof";
-            }
-            if (shedWidth > width) {
-                request.setAttribute("error", "Skur længde skal være mindre den selve carporten.");
-                DefaultLogger.getMyLogger().log(Level.SEVERE, "Skur længde skal være mindre den selve carporten.");
-                return "carportPointedRoof";
+            String error = "Skurets bredde og/eller længde må ikke være størrer end selve carporten.";
+
+            if (shedLength > length || shedWidth > width) {
+                request.setAttribute("error", error);
+                LoggerConfig.setUpLogger();
+                DefaultLogger.getMyLogger().log(Level.SEVERE, error);
+                return "carportFlatRoof";
             }
 
             if (redskabsskur != null) {
@@ -74,12 +71,6 @@ public class OrderRequestPointedRoof extends Command {
 
 
             //------------SVG-------------
-            if (redskabsskur == null) {
-                shedCheck = false;
-            } else {
-                shedCheck = true;
-            }
-
             //Rules (Tempoarily)
             double height = 230;
 

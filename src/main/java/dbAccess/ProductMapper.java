@@ -49,7 +49,7 @@ public class ProductMapper {
                 productList.add(p);
             }
             return productList;
-        } catch (SQLException | ClassNotFoundException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         return null;
@@ -71,7 +71,7 @@ public class ProductMapper {
             pstmt.executeUpdate();
             pstmt.close();
 
-        } catch (SQLException | ClassNotFoundException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         return product;
@@ -88,7 +88,7 @@ public class ProductMapper {
             pstmt.executeUpdate();
             pstmt.close();
 
-        } catch (SQLException | ClassNotFoundException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
 
@@ -109,7 +109,7 @@ public class ProductMapper {
                 productList.add(p);
             }
             return productList;
-        } catch (SQLException | ClassNotFoundException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         return null;
@@ -127,7 +127,7 @@ public class ProductMapper {
             pstmt.executeUpdate();
             pstmt.close();
 
-        } catch (SQLException | ClassNotFoundException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
@@ -159,7 +159,7 @@ public class ProductMapper {
 
             return list;
 
-        } catch (SQLException | ClassNotFoundException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         return null;
@@ -187,7 +187,7 @@ public class ProductMapper {
                 return product;
             }
 
-        } catch (SQLException | ClassNotFoundException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         return null;

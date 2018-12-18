@@ -53,12 +53,7 @@
         <!-- ------------------SECTION 2.0 WELCOME/INFO TEXT---------------------------------->
         <% String error = (String) request.getAttribute("error");%>
         <% if (error != null) {%>
-        <div class="container">
-            <div class="control-groupText">
-                <h1 class="title"> Error!! </h1>
-                <% out.print(error); %>
-            </div>
-        </div>
+        <script>alert("<%=error%>")</script>
         <%} else {%>
         <div class="container">
             <div class="control-groupText">

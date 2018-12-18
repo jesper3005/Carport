@@ -47,7 +47,7 @@ public class CustomerMapper {
 
             }
 
-        } catch (SQLException | ClassNotFoundException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage() + " getCustomerByEmail");
         }
         return null;
@@ -72,7 +72,7 @@ public class CustomerMapper {
             pstmt.close();
             return customer;
 
-        } catch (SQLException | ClassNotFoundException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage() + " addCustomer");
         }
         return null;
@@ -100,7 +100,7 @@ public class CustomerMapper {
             pstmt.close();
             return id;
 
-        } catch (SQLException | ClassNotFoundException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage() + " addCustomer");
         }
         return 0;
@@ -130,7 +130,7 @@ public class CustomerMapper {
 
             }
 
-        } catch (SQLException | ClassNotFoundException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage() + " getCustomerByEmail");
         }
         return null;

@@ -52,7 +52,7 @@ public class CarportMapper {
             pstmt.close();
             
 
-        } catch (SQLException | ClassNotFoundException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage() + " addCarport in carportMapper failed");
         }
     }
@@ -75,7 +75,7 @@ public class CarportMapper {
             pstmt.close();
             return shed;
 
-        } catch (SQLException | ClassNotFoundException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage() + " addShed in carportMapper");
         }
         return null;
@@ -95,7 +95,7 @@ public class CarportMapper {
                 Shed shed = new Shed(shedLength, shedWidth);
                 return shed;
             }
-        } catch (SQLException | ClassNotFoundException ex) {
+        } catch (SQLException ex) {
             ex.getMessage();
         }
         return null;
@@ -128,7 +128,7 @@ public class CarportMapper {
                 carportList.add(carport);
             }
             return carportList;
-        } catch (SQLException | ClassNotFoundException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         return null;
@@ -159,7 +159,7 @@ public class CarportMapper {
                 carportList.add(carport);
             }
             return carportList;
-        } catch (SQLException | ClassNotFoundException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         return null;
@@ -177,7 +177,7 @@ public class CarportMapper {
             pstmt.executeUpdate();
             pstmt.close();
 
-        } catch (SQLException | ClassNotFoundException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
 
@@ -208,8 +208,8 @@ public class CarportMapper {
                 Carport carport = new Carport(carport_id, date, carportLength, carportWidth, degrees, roofType, roofMaterial, totalPrice, orderStatus, shedID, customerID, shed);
                 return carport;
             }
-        } catch (SQLException | ClassNotFoundException ex) {
-            ex.getMessage();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());  
         }
         return null;
     }
