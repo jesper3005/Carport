@@ -16,150 +16,153 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import org.decimal4j.util.DoubleRounder;
-//import org.decimal4j.util.DoubleRounder;
 
 /**
  *
  * @author oerte
  */
-<span class="nc" id="L25">public class LogicFacade {</span>
+<span class="nc" id="L24">public class LogicFacade {</span>
 
     // ------------ LOGICFACADE METHODS FOR DATABASE -----------------
     public static User login(String email, String password) throws FogException {
-<span class="fc" id="L29">        UserMapper um = new UserMapper();</span>
-<span class="fc" id="L30">        return um.getUser(email, password);</span>
+<span class="fc" id="L28">        UserMapper um = new UserMapper();</span>
+<span class="fc" id="L29">        return um.getUser(email, password);</span>
     }
 
     /**
      * This method will create a hashed password and return it, with help of
      * userns password.
+     * The MD5 Message-Digest Algorithm is a cryptographic hash function that produces a 128-bit (16-byte) hash value.
+     * The basic idea is to map data sets of variable length to data sets of a fixed length.
+     * In order to do this, the input message is split into chunks of 512-bit blocks. A padding is added to the end so that it’s length can be divided by 512. 
+     * Now, these blocks are processed by the MD5 algorithm, which operates in a 128-bit state, and the result will be a 128-bit hash value. 
+     * After applying MD5, generated hash is typically a 32-digit hexadecimal number.
      *
      * @param password Userns password.
      * @return Returns a new hashed password String
      */
     public static String createHashedPassword(String password) {
-<span class="nc" id="L41">        String passwordToHash = password;</span>
-<span class="nc" id="L42">        String generatedPassword = null;</span>
+<span class="nc" id="L45">        String passwordToHash = password;</span>
+<span class="nc" id="L46">        String generatedPassword = null;</span>
         try {
             // Create MessageDigest instance for MD5
-<span class="nc" id="L45">            MessageDigest md = MessageDigest.getInstance(&quot;MD5&quot;);</span>
+<span class="nc" id="L49">            MessageDigest md = MessageDigest.getInstance(&quot;MD5&quot;);</span>
             //Add password bytes to digest
-<span class="nc" id="L47">            md.update(passwordToHash.getBytes());</span>
+<span class="nc" id="L51">            md.update(passwordToHash.getBytes());</span>
             //Get the hash's bytes
-<span class="nc" id="L49">            byte[] bytes = md.digest();</span>
+<span class="nc" id="L53">            byte[] bytes = md.digest();</span>
             //This bytes[] has bytes in decimal format;
             //Convert it to hexadecimal format
-<span class="nc" id="L52">            StringBuilder sb = new StringBuilder();</span>
-<span class="nc bnc" id="L53" title="All 2 branches missed.">            for (int i = 0; i &lt; bytes.length; i++) {</span>
-<span class="nc" id="L54">                sb.append(Integer.toString((bytes[i] &amp; 0xff) + 0x100, 16).substring(1));</span>
+<span class="nc" id="L56">            StringBuilder sb = new StringBuilder();</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">            for (int i = 0; i &lt; bytes.length; i++) {</span>
+<span class="nc" id="L58">                sb.append(Integer.toString((bytes[i] &amp; 0xff) + 0x100, 16).substring(1));</span>
             }
             //Get complete hashed password in hex format
-<span class="nc" id="L57">            generatedPassword = sb.toString();</span>
-<span class="nc" id="L58">        } catch (NoSuchAlgorithmException e) {</span>
-<span class="nc" id="L59">            System.out.println(e.getMessage() +&quot; &quot;+ LogicFacade.class.getName());</span>
-<span class="nc" id="L60">            e.printStackTrace();</span>
-<span class="nc" id="L61">        }</span>
-<span class="nc" id="L62">        return generatedPassword;</span>
+<span class="nc" id="L61">            generatedPassword = sb.toString();</span>
+<span class="nc" id="L62">        } catch (NoSuchAlgorithmException e) {</span>
+<span class="nc" id="L63">            System.out.println(e.getMessage() + &quot; &quot; + LogicFacade.class.getName());</span>
+<span class="nc" id="L64">            e.printStackTrace();</span>
+<span class="nc" id="L65">        }</span>
+<span class="nc" id="L66">        return generatedPassword;</span>
     }
 
     public static User createUser(String email, String password, int customerID) throws FogException {
-<span class="nc" id="L66">        User user = new User(password, email, &quot;customer&quot;, customerID);</span>
-<span class="nc" id="L67">        UserMapper um = new UserMapper();</span>
-<span class="nc" id="L68">        um.createUser(user);</span>
-<span class="nc" id="L69">        return user;</span>
+<span class="nc" id="L70">        User user = new User(password, email, &quot;customer&quot;, customerID);</span>
+<span class="nc" id="L71">        UserMapper um = new UserMapper();</span>
+<span class="nc" id="L72">        um.createUser(user);</span>
+<span class="nc" id="L73">        return user;</span>
     }
 
     public static Customer getCustomerByEmail(String email) {
-<span class="nc" id="L73">        CustomerMapper cm = new CustomerMapper();</span>
-<span class="nc" id="L74">        Customer customer = cm.getCustomerByEmail(email);</span>
-<span class="nc" id="L75">        return customer;</span>
+<span class="nc" id="L77">        CustomerMapper cm = new CustomerMapper();</span>
+<span class="nc" id="L78">        Customer customer = cm.getCustomerByEmail(email);</span>
+<span class="nc" id="L79">        return customer;</span>
 
     }
 
     public static void addCustomer(Customer customer) {
-<span class="nc" id="L80">        CustomerMapper cm = new CustomerMapper();</span>
-<span class="nc" id="L81">        cm.addCustomer(customer);</span>
+<span class="nc" id="L84">        CustomerMapper cm = new CustomerMapper();</span>
+<span class="nc" id="L85">        cm.addCustomer(customer);</span>
 
-<span class="nc" id="L83">    }</span>
+<span class="nc" id="L87">    }</span>
 
     public static int createCustomer(Customer customer) {
-<span class="nc" id="L86">        CustomerMapper cm = new CustomerMapper();</span>
-<span class="nc" id="L87">        int id = cm.addCustomerAndUser(customer);</span>
-<span class="nc" id="L88">        return id;</span>
+<span class="nc" id="L90">        CustomerMapper cm = new CustomerMapper();</span>
+<span class="nc" id="L91">        int id = cm.addCustomerAndUser(customer);</span>
+<span class="nc" id="L92">        return id;</span>
     }
 
     public static void addCarport(Carport carport, Shed shed) {
-<span class="fc" id="L92">        System.out.println(&quot;addCarportLogicFacade&quot;);</span>
-<span class="fc" id="L93">        CarportMapper cm = new CarportMapper();</span>
-<span class="fc" id="L94">        cm.addCarport(carport, shed);</span>
-<span class="fc" id="L95">    }</span>
+<span class="fc" id="L96">        CarportMapper cm = new CarportMapper();</span>
+<span class="fc" id="L97">        cm.addCarport(carport, shed);</span>
+<span class="fc" id="L98">    }</span>
 
     public static Shed addShed(Shed shed) {
-<span class="fc" id="L98">        CarportMapper cm = new CarportMapper();</span>
-<span class="fc" id="L99">        cm.addShed(shed);</span>
-<span class="fc" id="L100">        return shed;</span>
+<span class="fc" id="L101">        CarportMapper cm = new CarportMapper();</span>
+<span class="fc" id="L102">        cm.addShed(shed);</span>
+<span class="fc" id="L103">        return shed;</span>
     }
 
     public static List&lt;Carport&gt; getOrdresFromCarportByEnum(String enumValue) {
-<span class="fc" id="L104">        CarportMapper cm = new CarportMapper();</span>
-<span class="fc" id="L105">        List&lt;Carport&gt; carportList = cm.getCarportByStatus(enumValue);</span>
-<span class="fc" id="L106">        return carportList;</span>
+<span class="fc" id="L107">        CarportMapper cm = new CarportMapper();</span>
+<span class="fc" id="L108">        List&lt;Carport&gt; carportList = cm.getCarportByStatus(enumValue);</span>
+<span class="fc" id="L109">        return carportList;</span>
     }
 
     public static List&lt;Carport&gt; getAllCarportOrders() {
-<span class="fc" id="L110">        CarportMapper cm = new CarportMapper();</span>
-<span class="fc" id="L111">        List&lt;Carport&gt; carportList = cm.getAllCarportOrders();</span>
-<span class="fc" id="L112">        return carportList;</span>
+<span class="fc" id="L113">        CarportMapper cm = new CarportMapper();</span>
+<span class="fc" id="L114">        List&lt;Carport&gt; carportList = cm.getAllCarportOrders();</span>
+<span class="fc" id="L115">        return carportList;</span>
     }
 
     public static void updateOrderStatus(String status, int id) {
-<span class="fc" id="L116">        CarportMapper cm = new CarportMapper();</span>
-<span class="fc" id="L117">        cm.updateOrderStatus(status, id);</span>
-<span class="fc" id="L118">    }</span>
+<span class="fc" id="L119">        CarportMapper cm = new CarportMapper();</span>
+<span class="fc" id="L120">        cm.updateOrderStatus(status, id);</span>
+<span class="fc" id="L121">    }</span>
 
     public static void addProduct(Product product) {
-<span class="nc" id="L121">        ProductMapper pm = new ProductMapper();</span>
-<span class="nc" id="L122">        pm.addProducts(product);</span>
-<span class="nc" id="L123">    }</span>
+<span class="nc" id="L124">        ProductMapper pm = new ProductMapper();</span>
+<span class="nc" id="L125">        pm.addProducts(product);</span>
+<span class="nc" id="L126">    }</span>
 
     public static List&lt;Product&gt; getAllProductsFromDatabase() {
-<span class="fc" id="L126">        ProductMapper pm = new ProductMapper();</span>
-<span class="fc" id="L127">        List&lt;Product&gt; produktList = pm.allProducts();</span>
-<span class="fc" id="L128">        return produktList;</span>
+<span class="fc" id="L129">        ProductMapper pm = new ProductMapper();</span>
+<span class="fc" id="L130">        List&lt;Product&gt; produktList = pm.allProducts();</span>
+<span class="fc" id="L131">        return produktList;</span>
     }
 
     public static List&lt;Product&gt; searchInDatabaseProductTable(String value) {
-<span class="fc" id="L132">        ProductMapper pm = new ProductMapper();</span>
-<span class="fc" id="L133">        List&lt;Product&gt; searchList = pm.searchInProductTable(value);</span>
-<span class="fc" id="L134">        return searchList;</span>
+<span class="fc" id="L135">        ProductMapper pm = new ProductMapper();</span>
+<span class="fc" id="L136">        List&lt;Product&gt; searchList = pm.searchInProductTable(value);</span>
+<span class="fc" id="L137">        return searchList;</span>
     }
 
     public static List&lt;Product&gt; remOrderedByLength() {
-<span class="fc" id="L138">        ProductMapper pm = new ProductMapper();</span>
-<span class="fc" id="L139">        List&lt;Product&gt; remList = pm.orderByLengthRem();</span>
-<span class="fc" id="L140">        return remList;</span>
+<span class="fc" id="L141">        ProductMapper pm = new ProductMapper();</span>
+<span class="fc" id="L142">        List&lt;Product&gt; remList = pm.orderByLengthRem();</span>
+<span class="fc" id="L143">        return remList;</span>
     }
 
     public static void updatePrice(int id, double price) {
-<span class="fc" id="L144">        ProductMapper pm = new ProductMapper();</span>
-<span class="fc" id="L145">        pm.updatePrice(id, price);</span>
-<span class="fc" id="L146">    }</span>
+<span class="fc" id="L147">        ProductMapper pm = new ProductMapper();</span>
+<span class="fc" id="L148">        pm.updatePrice(id, price);</span>
+<span class="fc" id="L149">    }</span>
 
     public static void deleteProduct(int productID) {
-<span class="nc" id="L149">        ProductMapper pm = new ProductMapper();</span>
-<span class="nc" id="L150">        pm.deleteProduct(productID);</span>
-<span class="nc" id="L151">    }</span>
+<span class="nc" id="L152">        ProductMapper pm = new ProductMapper();</span>
+<span class="nc" id="L153">        pm.deleteProduct(productID);</span>
+<span class="nc" id="L154">    }</span>
 
     public static Carport getCarportByID(int caportID) {
-<span class="fc" id="L154">        CarportMapper cm = new CarportMapper();</span>
-<span class="fc" id="L155">        Carport carport = cm.getCarportById(caportID);</span>
-<span class="fc" id="L156">        return carport;</span>
+<span class="fc" id="L157">        CarportMapper cm = new CarportMapper();</span>
+<span class="fc" id="L158">        Carport carport = cm.getCarportById(caportID);</span>
+<span class="fc" id="L159">        return carport;</span>
     }
-    
+
     public static Customer getCustomerByID(int customerID) {
-<span class="nc" id="L160">        CustomerMapper cm = new CustomerMapper();</span>
-<span class="nc" id="L161">        Customer customer = cm.getCustomerByID(customerID);</span>
-<span class="nc" id="L162">        return customer;</span>
+<span class="nc" id="L163">        CustomerMapper cm = new CustomerMapper();</span>
+<span class="nc" id="L164">        Customer customer = cm.getCustomerByID(customerID);</span>
+<span class="nc" id="L165">        return customer;</span>
     }
 
     // -----------------CARPORT CALCULATIONS LOGICFACADE --------------------------------
@@ -180,9 +183,9 @@ import org.decimal4j.util.DoubleRounder;
      *
      */
     public static List&lt;Product&gt; carportCalculaterFlatRoof(double length, double width, String roofMaterial) {
-<span class="nc" id="L183">        CarportFlatProductListe cfp = new CarportFlatProductListe();</span>
-<span class="nc" id="L184">        List&lt;Product&gt; list = cfp.carportCalculaterFlatRoof(length, width, roofMaterial);</span>
-<span class="nc" id="L185">        return list;</span>
+<span class="nc" id="L186">        CarportFlatProductListe cfp = new CarportFlatProductListe();</span>
+<span class="nc" id="L187">        List&lt;Product&gt; list = cfp.carportCalculaterFlatRoof(length, width, roofMaterial);</span>
+<span class="nc" id="L188">        return list;</span>
     }
 
     /**
@@ -204,9 +207,9 @@ import org.decimal4j.util.DoubleRounder;
      *
      */
     public static List&lt;Product&gt; carportCalculaterFlatRoofIncludingShed(double length, double width, double shedLength, double shedWidth, String roofMaterial) {
-<span class="nc" id="L207">        CarportFlatProductListe cfp = new CarportFlatProductListe();</span>
-<span class="nc" id="L208">        List&lt;Product&gt; list = cfp.carportCalculaterFlatRoofIncludingShed(length, width, shedLength, shedWidth, roofMaterial);</span>
-<span class="nc" id="L209">        return list;</span>
+<span class="nc" id="L210">        CarportFlatProductListe cfp = new CarportFlatProductListe();</span>
+<span class="nc" id="L211">        List&lt;Product&gt; list = cfp.carportCalculaterFlatRoofIncludingShed(length, width, shedLength, shedWidth, roofMaterial);</span>
+<span class="nc" id="L212">        return list;</span>
     }
 
     /**
@@ -228,9 +231,9 @@ import org.decimal4j.util.DoubleRounder;
      * with a Pointed roof.
      */
     public static List&lt;Product&gt; carportCalculatorPointedRoof(double length, double width, double degree, String roofMaterial) {
-<span class="nc" id="L231">        CarportPointedRoofProductListe cfp = new CarportPointedRoofProductListe();</span>
-<span class="nc" id="L232">        List&lt;Product&gt; list = cfp.carportCalculaterPointedRoof(length, width, degree, roofMaterial);</span>
-<span class="nc" id="L233">        return list;</span>
+<span class="nc" id="L234">        CarportPointedRoofProductListe cfp = new CarportPointedRoofProductListe();</span>
+<span class="nc" id="L235">        List&lt;Product&gt; list = cfp.carportCalculaterPointedRoof(length, width, degree, roofMaterial);</span>
+<span class="nc" id="L236">        return list;</span>
     }
 
     /**
@@ -254,9 +257,9 @@ import org.decimal4j.util.DoubleRounder;
      * with a Pointed roof and shed.
      */
     public static List&lt;Product&gt; carportCalculatorPointedRoofIncludingShed(double length, double width, double degree, double shedLength, double shedWidth, String roofMaterial) {
-<span class="nc" id="L257">        CarportPointedRoofProductListe cfp = new CarportPointedRoofProductListe();</span>
-<span class="nc" id="L258">        List&lt;Product&gt; list = cfp.carportCalculaterPointedRoofIncludingShed(length, width, degree, length, width, roofMaterial);</span>
-<span class="nc" id="L259">        return list;</span>
+<span class="nc" id="L260">        CarportPointedRoofProductListe cfp = new CarportPointedRoofProductListe();</span>
+<span class="nc" id="L261">        List&lt;Product&gt; list = cfp.carportCalculaterPointedRoofIncludingShed(length, width, degree, length, width, roofMaterial);</span>
+<span class="nc" id="L262">        return list;</span>
     }
 
     /**
@@ -269,7 +272,10 @@ import org.decimal4j.util.DoubleRounder;
      * @return Returns a double with two decimals after the comma.
      */
     public static double roundDoubleToTwoDecimalPoints(double value) {
-<span class="nc" id="L272">        return DoubleRounder.round(value, 2);</span>
+//        String value_String =  String.format(&quot;%.2f&quot;, value);
+//        double newValue = Double.parseDouble(value_String);
+//        return newValue;
+<span class="fc" id="L278">        return DoubleRounder.round(value, 2);</span>
     }
 
     /**
@@ -281,12 +287,12 @@ import org.decimal4j.util.DoubleRounder;
      * @return Returns the total price of an Carport.
      */
     public static double totalPriceOfCarport(List&lt;Product&gt; stykliste) {
-<span class="nc" id="L284">        double totalPriceOfCarport = 0;</span>
-<span class="nc bnc" id="L285" title="All 2 branches missed.">        for (Product produkt : stykliste) {</span>
-<span class="nc" id="L286">            totalPriceOfCarport += produkt.getTotalPriceOfOrder();</span>
-<span class="nc" id="L287">        }</span>
+<span class="nc" id="L290">        double totalPriceOfCarport = 0;</span>
+<span class="nc bnc" id="L291" title="All 2 branches missed.">        for (Product produkt : stykliste) {</span>
+<span class="nc" id="L292">            totalPriceOfCarport += produkt.getTotalPriceOfOrder();</span>
+<span class="nc" id="L293">        }</span>
         //return totalPriceOfCarport;
-<span class="nc" id="L289">        return roundDoubleToTwoDecimalPoints(totalPriceOfCarport);</span>
+<span class="nc" id="L295">        return roundDoubleToTwoDecimalPoints(totalPriceOfCarport);</span>
     }
 
 }

@@ -22,7 +22,7 @@ import java.sql.Statement;
 <span class="nc" id="L22">    private final String ADD_CUSTOMER = &quot;INSERT INTO `customer`(`first_name`,`last_name`,`email`,`street_address`,`town`,`zip_code`,`telephone_number`,`comments`)VALUES(?,?,?,?,?,?,?,?);&quot;;</span>
 <span class="nc" id="L23">    private final String ADD_CUSTOMER_AND_USER = &quot;INSERT INTO `customer`(`first_name`,`last_name`,`email`,`street_address`,`town`,`zip_code`,`telephone_number`)VALUES(?,?,?,?,?,?,?);&quot;;</span>
 <span class="nc" id="L24">    private final String GET_CUSTOMER_BY_ID = &quot;SELECT `*` FROM `customer` WHERE `customer_id`= ?;&quot;;</span>
-    
+
     public Customer getCustomerByEmail(String email) {
         try {
             Customer customer;
@@ -48,7 +48,7 @@ import java.sql.Statement;
             }
 
 <span class="nc" id="L50">        } catch (SQLException ex) {</span>
-<span class="nc" id="L51">            System.out.println(ex.getMessage() +&quot; &quot;+ CustomerMapper.class.getName());</span>
+<span class="nc" id="L51">            System.out.println(ex.getMessage() + &quot; &quot; + CustomerMapper.class.getName());</span>
 <span class="nc" id="L52">        }</span>
 <span class="nc" id="L53">        return null;</span>
     }
@@ -73,7 +73,7 @@ import java.sql.Statement;
 <span class="nc" id="L73">            return customer;</span>
 
 <span class="nc" id="L75">        } catch (SQLException ex) {</span>
-<span class="nc" id="L76">            System.out.println(ex.getMessage() +&quot; &quot;+ CustomerMapper.class.getName());</span>
+<span class="nc" id="L76">            System.out.println(ex.getMessage() + &quot; &quot; + CustomerMapper.class.getName());</span>
         }
 <span class="nc" id="L78">        return null;</span>
     }
@@ -84,7 +84,7 @@ import java.sql.Statement;
 <span class="nc" id="L84">            Connection c = Connector.connection();</span>
 <span class="nc" id="L85">            String query = ADD_CUSTOMER_AND_USER;</span>
 <span class="nc" id="L86">            PreparedStatement pstmt = c.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);</span>
-            
+
 <span class="nc" id="L88">            pstmt.setString(1, customer.getFirstName());</span>
 <span class="nc" id="L89">            pstmt.setString(2, customer.getLastName());</span>
 <span class="nc" id="L90">            pstmt.setString(3, customer.getEmail());</span>
@@ -101,11 +101,11 @@ import java.sql.Statement;
 <span class="nc" id="L101">            return id;</span>
 
 <span class="nc" id="L103">        } catch (SQLException ex) {</span>
-<span class="nc" id="L104">            System.out.println(ex.getMessage() +&quot; &quot;+ CustomerMapper.class.getName());</span>
+<span class="nc" id="L104">            System.out.println(ex.getMessage() + &quot; &quot; + CustomerMapper.class.getName());</span>
         }
 <span class="nc" id="L106">        return 0;</span>
     }
-    
+
     public Customer getCustomerByID(int id) {
         try {
             Customer customer;
@@ -131,12 +131,10 @@ import java.sql.Statement;
             }
 
 <span class="nc" id="L133">        } catch (SQLException ex) {</span>
-<span class="nc" id="L134">            System.out.println(ex.getMessage() +&quot; &quot;+ CustomerMapper.class.getName());</span>
+<span class="nc" id="L134">            System.out.println(ex.getMessage() + &quot; &quot; + CustomerMapper.class.getName());</span>
 <span class="nc" id="L135">        }</span>
 <span class="nc" id="L136">        return null;</span>
     }
-
-    
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
