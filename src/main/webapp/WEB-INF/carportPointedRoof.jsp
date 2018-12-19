@@ -22,43 +22,38 @@
     <body>
         <% List<Product> orderByLengthRemList = (List<Product>) session.getAttribute("orderByLengthRemList");%>
         <% User user = (User) session.getAttribute("user"); %>
-        
-       <%if(user == null) { %>
+
+        <%if (user == null) { %>
         <header>
             <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
             <a class="active" href="/FrontController?command=toNavigator&site=registration">Sign up</a>
             <a class="active" href="/FrontController?command=toNavigator&site=login">Login</a>
             <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
         </header>
-        
-        <%} else if(user.getRole().equals("admin")) {%> 
-            <header>
-                <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
-                <a class="active" href="/FrontController?command=toNavigator&site=logout">Sign out</a>
-                <a class="active" href="/FrontController?command=Admin">Admin</a>
-                <a class="active" href="/FrontController?command=manageOrders">Se Ordre</a>
-                <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
-            </header>
-        <%} else if(user.getRole().equals("customer")) { %>
-            <header>
-                <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
-                <a class="active" href="/FrontController?command=toNavigator&site=logout">Sign out</a>
-                <a class="active" href="">Profile</a>
-                <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
-            </header>
+
+        <%} else if (user.getRole().equals("admin")) {%> 
+        <header>
+            <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
+            <a class="active" href="/FrontController?command=toNavigator&site=logout">Sign out</a>
+            <a class="active" href="/FrontController?command=Admin">Admin</a>
+            <a class="active" href="/FrontController?command=manageOrders">Se Ordre</a>
+            <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
+        </header>
+        <%} else if (user.getRole().equals("customer")) { %>
+        <header>
+            <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
+            <a class="active" href="/FrontController?command=toNavigator&site=logout">Sign out</a>
+            <a class="active" href="">Profile</a>
+            <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
+        </header>
         <%}%>
-        
-        
+
+
 
         <!-- ------------------SECTION 2.0 WELCOME/INFO TEXT---------------------------------->
         <% String error = (String) request.getAttribute("error");%>
         <% if (error != null) {%>
-        <div class="container">
-            <div class="control-groupText">
-                <h1 class="title"> Error!! </h1>
-                <% out.print(error); %>
-            </div>
-        </div>
+        <script>alert("<%=error%>")</script>
         <%} else {%>
         <div class="container">
             <div class="control-groupText">

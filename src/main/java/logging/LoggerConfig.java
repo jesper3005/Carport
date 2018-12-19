@@ -30,7 +30,7 @@ public class LoggerConfig {
                 fileHandler.setFormatter(new VerySimpleFormatter());
                 fileHandler.close();
             } catch (IOException | SecurityException ex) {
-                ex.printStackTrace();
+                System.out.println(ex.getMessage() +" "+ LoggerConfig.class.getName());
             }
         }
     }

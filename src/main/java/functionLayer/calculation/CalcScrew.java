@@ -36,7 +36,7 @@ public class CalcScrew {
             }
             return p;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() +" "+ CalcScrew.class.getName());
             return p = new Product();
         }
     }
@@ -62,7 +62,7 @@ public class CalcScrew {
             }
             return p;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() +" "+ CalcScrew.class.getName());
             return p = new Product();
         }
     }
@@ -88,7 +88,7 @@ public class CalcScrew {
             }
             return p;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() +" "+ CalcScrew.class.getName());
             return p = new Product();
         }
     }

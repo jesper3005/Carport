@@ -54,7 +54,7 @@ public class CalcPoles {
             return p;
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() +" "+ CalcPoles.class.getName());
             return p = new Product();
         }
     }

@@ -81,7 +81,7 @@ public class CarportPointedRoofProductListe {
 
             return stykliste;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() +" "+ CarportPointedRoofProductListe.class.getName());
         }
         return null;
 
@@ -144,7 +144,7 @@ public class CarportPointedRoofProductListe {
 
             return stykliste;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() +" "+ CarportPointedRoofProductListe.class.getName());
 
         }
         return null;

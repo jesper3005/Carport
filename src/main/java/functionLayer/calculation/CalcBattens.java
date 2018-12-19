@@ -43,7 +43,7 @@ public class CalcBattens {
             }
             return p;
         } catch (Exception e) {
-            e.getMessage();
+            System.out.println(e.getMessage() +" "+ CalcBattens.class.getName());
             return p = new Product();
         }
 
@@ -79,7 +79,7 @@ public class CalcBattens {
             }
             return p;
         } catch (Exception e) {
-            e.getMessage();
+            System.out.println(e.getMessage() +" "+ CalcBattens.class.getName());
             return p = new Product();
         }
 

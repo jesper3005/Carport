@@ -93,7 +93,7 @@ public class CarportFlatProductListe {
 
             return stykliste;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() +" "+ CarportFlatProductListe.class.getName());
         }
         return null;
 
@@ -162,7 +162,7 @@ public class CarportFlatProductListe {
 
             return stykliste;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() +" "+ CarportFlatProductListe.class.getName());
 
         }
         return null;

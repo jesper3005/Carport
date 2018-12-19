@@ -40,7 +40,7 @@ public class CalcFrontAndBackBeklædning {
             return p;
 
         } catch (Exception e) {
-            e.getMessage();
+            System.out.println(e.getMessage() +" "+ CalcFrontAndBackBeklædning.class.getName());
             return p = new Product();
         }
     }

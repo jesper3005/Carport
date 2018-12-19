@@ -8,6 +8,8 @@ package dbAccess;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -24,9 +26,14 @@ public class Connector {
         singleton = con;
     }
 
-    public static Connection connection() throws ClassNotFoundException, SQLException {
+    public static Connection connection() throws SQLException {
         if (singleton == null) {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+            } catch (ClassNotFoundException ex) {
+                System.out.println(ex.getMessage() +" "+ Connector.class.getName());
+                Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+            }
             singleton = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         }
         return singleton;

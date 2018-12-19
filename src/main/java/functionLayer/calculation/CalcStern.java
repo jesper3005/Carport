@@ -38,7 +38,7 @@ public class CalcStern {
             }
             return p;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() +" "+ CalcStern.class.getName());
             return p = new Product();
         }
 
@@ -68,7 +68,7 @@ public class CalcStern {
             }
             return p;
         } catch (NumberFormatException e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() +" "+ CalcStern.class.getName());
             return p = new Product();
         }
 
@@ -98,7 +98,7 @@ public class CalcStern {
             }
             return p;
         } catch (NumberFormatException e) {
-            System.out.println(e.getMessage());
+           System.out.println(e.getMessage() +" "+ CalcStern.class.getName());
             return p = new Product();
         }
 

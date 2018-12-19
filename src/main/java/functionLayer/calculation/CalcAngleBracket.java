@@ -35,7 +35,7 @@ public class CalcAngleBracket {
             }
             return p;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() +" "+ CalcAngleBracket.class.getName());
             return p = new Product();
 
         }

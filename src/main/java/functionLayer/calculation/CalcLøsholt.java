@@ -42,7 +42,7 @@ public class CalcLøsholt {
             return p;
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() +" "+ CalcLøsholt.class.getName());
             return p = new Product();
 
         }

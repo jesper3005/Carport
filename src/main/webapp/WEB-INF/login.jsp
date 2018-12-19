@@ -20,7 +20,7 @@
         
         <% String error = (String) request.getAttribute("error"); %>
         <% if(error != null) { %>
-        <h2><%=error %></h2>
+        <script>alert("<%=error%>")</script>
         <% } %>
         
         

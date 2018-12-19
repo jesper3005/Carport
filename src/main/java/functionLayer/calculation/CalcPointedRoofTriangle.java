@@ -7,6 +7,7 @@ package functionLayer.calculation;
 
 import functionLayer.LogicFacade;
 
+
 /**
  *
  * @author oerte
@@ -32,10 +33,10 @@ public class CalcPointedRoofTriangle {
         try {
             double sinA = 180 - (2 * degree);
             c = (width/Math.sin(sinA * (Math.PI / 180))) * Math.sin(degree * (Math.PI / 180));
-            //c = LogicFacade.roundDoubleToTwoDecimalPoints(c);
+            c = LogicFacade.roundDoubleToTwoDecimalPoints(c);
             return c;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() +" "+ CalcPointedRoofTriangle.class.getName());
         }
 
         return 0;
@@ -58,7 +59,7 @@ public class CalcPointedRoofTriangle {
             double A = (b+b+width)/2;
             return A;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() +" "+ CalcPointedRoofTriangle.class.getName());
         }
         return 0;
 
