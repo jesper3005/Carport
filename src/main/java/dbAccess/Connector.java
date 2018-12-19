@@ -33,8 +33,8 @@ public class Connector {
             }
             singleton = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         }
+        System.out.println("Hallo");
         return singleton;
-
     }
     
 
