@@ -1,12 +1,1 @@
-<<<<<<< HEAD
-# Logs and databases #
-######################
-Connector.java
-DefaultLogger.java
 
-
-=======
-/target/
-/nbproject/
-Connector.java
->>>>>>> cd4a221aa3be936c3d647c211fb3c393d9453258
