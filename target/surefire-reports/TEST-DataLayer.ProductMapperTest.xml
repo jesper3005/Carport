@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="8" failures="0" name="DataLayer.ProductMapperTest" time="2.177" errors="0" skipped="0">
+<testsuite tests="8" failures="0" name="DataLayer.ProductMapperTest" time="1.373" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_161\jre\bin"/>
@@ -61,12 +61,12 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="DataLayer.ProductMapperTest" name="testGetAllRemLength" time="0.442"/>
-  <testcase classname="DataLayer.ProductMapperTest" name="testSearchProduct" time="0.194"/>
-  <testcase classname="DataLayer.ProductMapperTest" name="testUpdatePrice" time="0.227"/>
-  <testcase classname="DataLayer.ProductMapperTest" name="testAddProduct" time="0.262"/>
-  <testcase classname="DataLayer.ProductMapperTest" name="testGetProductById" time="0.194"/>
-  <testcase classname="DataLayer.ProductMapperTest" name="testDeleteProduct" time="0.256"/>
-  <testcase classname="DataLayer.ProductMapperTest" name="testGetAllProducts" time="0.202"/>
-  <testcase classname="DataLayer.ProductMapperTest" name="testSetUpOK" time="0.399"/>
+  <testcase classname="DataLayer.ProductMapperTest" name="testGetAllRemLength" time="0.284"/>
+  <testcase classname="DataLayer.ProductMapperTest" name="testSearchProduct" time="0.14"/>
+  <testcase classname="DataLayer.ProductMapperTest" name="testUpdatePrice" time="0.175"/>
+  <testcase classname="DataLayer.ProductMapperTest" name="testAddProduct" time="0.201"/>
+  <testcase classname="DataLayer.ProductMapperTest" name="testGetProductById" time="0.134"/>
+  <testcase classname="DataLayer.ProductMapperTest" name="testDeleteProduct" time="0.177"/>
+  <testcase classname="DataLayer.ProductMapperTest" name="testGetAllProducts" time="0.137"/>
+  <testcase classname="DataLayer.ProductMapperTest" name="testSetUpOK" time="0.123"/>
 </testsuite>

@@ -36,11 +36,11 @@ import javax.servlet.http.HttpSession;
             
 <span class="nc" id="L37">            List&lt;Product&gt; allProducts = LogicFacade.getAllProductsFromDatabase();</span>
 <span class="nc" id="L38">            session.setAttribute(&quot;allProduct&quot;, allProducts);</span>
-<span class="nc" id="L39">            return &quot;admin&quot;;</span>
+<span class="nc" id="L39">            return &quot;manageProducts&quot;;</span>
 <span class="nc" id="L40">        } catch (Exception e) {</span>
 <span class="nc" id="L41">            System.out.println(e.getMessage() +&quot; &quot;+ UpdateProduct.class.getName());</span>
         }
-<span class="nc" id="L43">        return &quot;admin&quot;;</span>
+<span class="nc" id="L43">        return &quot;manageProducts&quot;;</span>
 
     }
 
