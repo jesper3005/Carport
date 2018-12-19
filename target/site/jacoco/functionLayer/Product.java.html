@@ -74,8 +74,8 @@ public class Product {
     }
 
     public double getPriceLine() {
-<span class="fc" id="L77">        return this.getPrice() * qty;</span>
-        //return LogicFacade.roundDoubleToTwoDecimalPoints(this.priceLine);
+        //return this.getPrice() * qty;
+<span class="fc" id="L78">        return LogicFacade.roundDoubleToTwoDecimalPoints(this.priceLine);</span>
     }
 
     public double getTotalPriceOfOrder() {

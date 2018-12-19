@@ -30,76 +30,64 @@ import logging.LoggerConfig;
 
         try {
 <span class="nc" id="L32">            HttpSession session = request.getSession();</span>
-
             List&lt;Product&gt; stykliste;
             //length and width from shed from carportFlatRoof or carportPointedRoof jsp page.
-            boolean shedCheck;
-<span class="nc" id="L37">            double shedLength = Double.parseDouble(request.getParameter(&quot;skurlaengde&quot;));</span>
-<span class="nc" id="L38">            double shedWidth = Double.parseDouble(request.getParameter(&quot;skurbredde&quot;));</span>
+<span class="nc" id="L35">            double shedLength = Double.parseDouble(request.getParameter(&quot;skurlaengde&quot;));</span>
+<span class="nc" id="L36">            double shedWidth = Double.parseDouble(request.getParameter(&quot;skurbredde&quot;));</span>
             //length and width from carportFlatRoof or carportPointedRoof jsp page.
-<span class="nc" id="L40">            double length = Double.parseDouble(request.getParameter(&quot;laengde&quot;));</span>
-<span class="nc" id="L41">            double width = Double.parseDouble(request.getParameter(&quot;bredde&quot;));</span>
-<span class="nc" id="L42">            String redskabsskur = request.getParameter(&quot;redskabsskur&quot;);</span>
+<span class="nc" id="L38">            double length = Double.parseDouble(request.getParameter(&quot;laengde&quot;));</span>
+<span class="nc" id="L39">            double width = Double.parseDouble(request.getParameter(&quot;bredde&quot;));</span>
+<span class="nc" id="L40">            String redskabsskur = request.getParameter(&quot;redskabsskur&quot;);</span>
             // value from roof selector
-<span class="nc" id="L44">            String roofMaterial = request.getParameter(&quot;Tag&quot;);</span>
-<span class="nc" id="L45">            String error = &quot;Skur bredde skal være mindre den selve carporten.&quot;;</span>
+<span class="nc" id="L42">            String roofMaterial = request.getParameter(&quot;Tag&quot;);</span>
+<span class="nc" id="L43">            String error = &quot;Skurets bredde og/eller længde må ikke være størrer end selve carporten.&quot;;</span>
             //Checks if roof is pointed for SVG's sake
 
             Shed shed;
-<span class="nc bnc" id="L49" title="All 2 branches missed.">            if (shedLength &gt; length) {</span>
-<span class="nc" id="L50">                request.setAttribute(&quot;error&quot;, &quot;Skur længde skal være mindre den selve carporten.&quot;);</span>
-<span class="nc" id="L51">                LoggerConfig.setUpLogger();</span>
-<span class="nc" id="L52">                DefaultLogger.getMyLogger().log(Level.SEVERE, error);</span>
-<span class="nc" id="L53">                return &quot;carportFlatRoof&quot;;</span>
-            }
-<span class="nc bnc" id="L55" title="All 2 branches missed.">            if (shedWidth &gt; width) {</span>
-<span class="nc" id="L56">                request.setAttribute(&quot;error&quot;, &quot;Skur bredde skal være mindre den selve carporten.&quot;);</span>
-<span class="nc" id="L57">                LoggerConfig.setUpLogger();</span>
-<span class="nc" id="L58">                DefaultLogger.getMyLogger().log(Level.SEVERE, error);</span>
-<span class="nc" id="L59">                return &quot;carportFlatRoof&quot;;</span>
+<span class="nc bnc" id="L47" title="All 4 branches missed.">            if (shedLength &gt; length || shedWidth &gt; width) {</span>
+<span class="nc" id="L48">                request.setAttribute(&quot;error&quot;, error);</span>
+<span class="nc" id="L49">                LoggerConfig.setUpLogger();</span>
+<span class="nc" id="L50">                DefaultLogger.getMyLogger().log(Level.SEVERE, error);</span>
+<span class="nc" id="L51">                return &quot;carportFlatRoof&quot;;</span>
             }
 
-<span class="nc bnc" id="L62" title="All 2 branches missed.">            if (redskabsskur != null) {</span>
-<span class="nc" id="L63">                stykliste = LogicFacade.carportCalculaterFlatRoofIncludingShed(length, width, shedLength, shedWidth, roofMaterial);</span>
-<span class="nc" id="L64">                shed = new Shed(shedLength, shedWidth);</span>
+
+<span class="nc bnc" id="L55" title="All 2 branches missed.">            if (redskabsskur != null) {</span>
+<span class="nc" id="L56">                stykliste = LogicFacade.carportCalculaterFlatRoofIncludingShed(length, width, shedLength, shedWidth, roofMaterial);</span>
+<span class="nc" id="L57">                shed = new Shed(shedLength, shedWidth);</span>
             } else {
-<span class="nc" id="L66">                stykliste = LogicFacade.carportCalculaterFlatRoof(length, width, roofMaterial);</span>
-<span class="nc" id="L67">                shed = new Shed(0.0, 0.0);</span>
+<span class="nc" id="L59">                stykliste = LogicFacade.carportCalculaterFlatRoof(length, width, roofMaterial);</span>
+<span class="nc" id="L60">                shed = new Shed(0.0, 0.0);</span>
             }
 
-<span class="nc" id="L70">            double totalPriceOfCarport = LogicFacade.totalPriceOfCarport(stykliste);</span>
+<span class="nc" id="L63">            double totalPriceOfCarport = LogicFacade.totalPriceOfCarport(stykliste);</span>
 
             //Set styklisten, bredde, længde and totalPriceOfCarport in session
-<span class="nc" id="L73">            Carport carport = new Carport(length, width, 0.0, &quot;FLAT&quot;, roofMaterial, totalPriceOfCarport, shed.getShed_id(), 0);</span>
-<span class="nc" id="L74">            session.setAttribute(&quot;carportFlat&quot;, carport);</span>
-<span class="nc" id="L75">            session.setAttribute(&quot;shedFlat&quot;, shed);</span>
+<span class="nc" id="L66">            Carport carport = new Carport(length, width, 0.0, &quot;FLAT&quot;, roofMaterial, totalPriceOfCarport, shed.getShed_id(), 0);</span>
+<span class="nc" id="L67">            session.setAttribute(&quot;carportFlat&quot;, carport);</span>
+<span class="nc" id="L68">            session.setAttribute(&quot;shedFlat&quot;, shed);</span>
 
             
 
             //------------SVG-------------
-<span class="nc bnc" id="L80" title="All 2 branches missed.">            if (redskabsskur == null) {</span>
-<span class="nc" id="L81">                shedCheck = false;</span>
-            } else {
-<span class="nc" id="L83">                shedCheck = true;</span>
-            }
 
             //Rules (Tempoarily)
-<span class="nc" id="L87">            double height = 230;</span>
+<span class="nc" id="L75">            double height = 230;</span>
 
             //Inserting svg of the carport
             //Carport fra toppen.
-<span class="nc" id="L91">            SVGTop topSVG = new SVGTop(carport, shed);</span>
-<span class="nc" id="L92">            request.setAttribute(&quot;drawingTop&quot;, topSVG.getMySVG());</span>
+<span class="nc" id="L79">            SVGTop topSVG = new SVGTop(carport, shed);</span>
+<span class="nc" id="L80">            request.setAttribute(&quot;drawingTop&quot;, topSVG.getMySVG());</span>
             
             //Carport fra siden.
-<span class="nc" id="L95">            SVGSide sSVG = new SVGSide(carport, shed, height);</span>
-<span class="nc" id="L96">            request.setAttribute(&quot;drawingSide&quot;, sSVG.getMySVG());</span>
+<span class="nc" id="L83">            SVGSide sSVG = new SVGSide(carport, shed, height);</span>
+<span class="nc" id="L84">            request.setAttribute(&quot;drawingSide&quot;, sSVG.getMySVG());</span>
 
-<span class="nc" id="L98">            return &quot;orderRequestFlatRoof&quot;;</span>
+<span class="nc" id="L86">            return &quot;orderRequestFlatRoof&quot;;</span>
 
-<span class="nc" id="L100">        } catch (Exception e) {</span>
-<span class="nc" id="L101">            System.out.println(e.getMessage() +&quot; &quot;+ OrderRequestFlatRoof.class.getName());</span>
-<span class="nc" id="L102">            return &quot;carportFlatRoof&quot;;</span>
+<span class="nc" id="L88">        } catch (Exception e) {</span>
+<span class="nc" id="L89">            System.out.println(e.getMessage() +&quot; &quot;+ OrderRequestFlatRoof.class.getName());</span>
+<span class="nc" id="L90">            return &quot;carportFlatRoof&quot;;</span>
         }
     }
 
