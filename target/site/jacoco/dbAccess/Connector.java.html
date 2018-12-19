@@ -8,14 +8,12 @@ package dbAccess;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author oerte
  */
-<span class="nc" id="L18">public class Connector {</span>
+<span class="nc" id="L16">public class Connector {</span>
     private static final String URL = &quot;jdbc:mysql://142.93.173.199:3306/carport&quot;;
     private static final String USERNAME = &quot;joerg&quot;;
     private static final String PASSWORD = &quot;joerg/3085&quot;;
@@ -23,20 +21,19 @@ import java.util.logging.Logger;
     private static Connection singleton;
 
     public static void setConnection(Connection con) {
-<span class="fc" id="L26">        singleton = con;</span>
-<span class="fc" id="L27">    }</span>
+<span class="fc" id="L24">        singleton = con;</span>
+<span class="fc" id="L25">    }</span>
 
     public static Connection connection() throws SQLException {
-<span class="pc bpc" id="L30" title="1 of 2 branches missed.">        if (singleton == null) {</span>
+<span class="pc bpc" id="L28" title="1 of 2 branches missed.">        if (singleton == null) {</span>
             try {
-<span class="nc" id="L32">                Class.forName(&quot;com.mysql.cj.jdbc.Driver&quot;);</span>
-<span class="nc" id="L33">            } catch (ClassNotFoundException ex) {</span>
-<span class="nc" id="L34">                System.out.println(ex.getMessage() +&quot; &quot;+ Connector.class.getName());</span>
-<span class="nc" id="L35">                Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);</span>
-<span class="nc" id="L36">            }</span>
-<span class="nc" id="L37">            singleton = DriverManager.getConnection(URL, USERNAME, PASSWORD);</span>
+<span class="nc" id="L30">                Class.forName(&quot;com.mysql.cj.jdbc.Driver&quot;);</span>
+<span class="nc" id="L31">            } catch (ClassNotFoundException ex) {</span>
+<span class="nc" id="L32">                System.out.println(ex.getMessage());</span>
+<span class="nc" id="L33">            }</span>
+<span class="nc" id="L34">            singleton = DriverManager.getConnection(URL, USERNAME, PASSWORD);</span>
         }
-<span class="fc" id="L39">        return singleton;</span>
+<span class="fc" id="L36">        return singleton;</span>
 
     }
     

@@ -32,13 +32,15 @@ import logging.DefaultLogger;
 <span class="nc" id="L32">            User user = LogicFacade.login(email, password);</span>
 <span class="nc" id="L33">            session.setAttribute(&quot;user&quot;, user);</span>
 <span class="nc" id="L34">            session.setAttribute(&quot;role&quot;, user.getRole());</span>
-<span class="nc" id="L35">            return &quot;../index&quot;;</span>
-<span class="nc" id="L36">        } catch (FogException ex) {</span>
-<span class="nc" id="L37">            System.out.println(ex.getMessage() +&quot; &quot;+ Login.class.getName());</span>
-<span class="nc" id="L38">            request.setAttribute(&quot;error&quot;, ex.getMessage());</span>
-<span class="nc" id="L39">            System.out.println(&quot;Login failed&quot;);</span>
-<span class="nc" id="L40">            DefaultLogger.getMyLogger().log(Level.WARNING, &quot;Login failed &quot; + email + &quot; : &quot; + password);</span>
-<span class="nc" id="L41">            return &quot;login&quot;;</span>
+<span class="nc" id="L35">            String ipAddress = request.getRemoteAddr();</span>
+<span class="nc" id="L36">            System.out.println(&quot;Ipaddresse: &quot;+ ipAddress);</span>
+<span class="nc" id="L37">            return &quot;../index&quot;;</span>
+<span class="nc" id="L38">        } catch (FogException ex) {</span>
+<span class="nc" id="L39">            System.out.println(ex.getMessage() +&quot; &quot;+ Login.class.getName());</span>
+<span class="nc" id="L40">            request.setAttribute(&quot;error&quot;, ex.getMessage());</span>
+<span class="nc" id="L41">            System.out.println(&quot;Login failed&quot;);</span>
+<span class="nc" id="L42">            DefaultLogger.getMyLogger().log(Level.WARNING, &quot;Login failed &quot; + email + &quot; : &quot; + password);</span>
+<span class="nc" id="L43">            return &quot;login&quot;;</span>
         }
 
     }
