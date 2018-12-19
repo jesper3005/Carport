@@ -3,7 +3,6 @@ C:\Users\oerte\Documents\NetBeansProjects\Carport\src\main\java\functionLayer\ca
 C:\Users\oerte\Documents\NetBeansProjects\Carport\src\main\java\functionLayer\Shed.java
 C:\Users\oerte\Documents\NetBeansProjects\Carport\src\main\java\presentationLayer\OrderRequestFlatRoof.java
 C:\Users\oerte\Documents\NetBeansProjects\Carport\src\main\java\dbAccess\CustomerMapper.java
-C:\Users\oerte\Documents\NetBeansProjects\Carport\src\main\java\presentationLayer\Admin.java
 C:\Users\oerte\Documents\NetBeansProjects\Carport\src\main\java\exceptions\FogException.java
 C:\Users\oerte\Documents\NetBeansProjects\Carport\src\main\java\functionLayer\Employee.java
 C:\Users\oerte\Documents\NetBeansProjects\Carport\src\main\java\presentationLayer\FlatRoof.java
@@ -22,6 +21,7 @@ C:\Users\oerte\Documents\NetBeansProjects\Carport\src\main\java\functionLayer\ca
 C:\Users\oerte\Documents\NetBeansProjects\Carport\src\main\java\functionLayer\calculation\CarportFlatProductListe.java
 C:\Users\oerte\Documents\NetBeansProjects\Carport\src\main\java\logging\LoggerConfig.java
 C:\Users\oerte\Documents\NetBeansProjects\Carport\src\main\java\presentationLayer\CreateOrderFlatRoof.java
+C:\Users\oerte\Documents\NetBeansProjects\Carport\src\main\java\presentationLayer\ManageProducts.java
 C:\Users\oerte\Documents\NetBeansProjects\Carport\src\main\java\functionLayer\calculation\CalcPointedRoofTriangle.java
 C:\Users\oerte\Documents\NetBeansProjects\Carport\src\main\java\presentationLayer\SeeOrderProductList.java
 C:\Users\oerte\Documents\NetBeansProjects\Carport\src\main\java\presentationLayer\CreateOrderPointedRoof.java

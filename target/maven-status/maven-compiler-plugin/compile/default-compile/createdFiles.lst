@@ -32,7 +32,6 @@ presentationLayer\FrontController.class
 functionLayer\User.class
 functionLayer\calculation\CalcRoof.class
 functionLayer\SVGTop.class
-presentationLayer\Admin.class
 functionLayer\calculation\CarportPointedRoofProductListe.class
 functionLayer\calculation\CarportFlatProductListe.class
 presentationLayer\CreateOrderPointedRoof.class
@@ -46,6 +45,7 @@ exceptions\FogException.class
 functionLayer\calculation\CalcLøsholt.class
 functionLayer\SVGSide.class
 dbAccess\Connector.class
+presentationLayer\ManageProducts.class
 functionLayer\Rules.class
 functionLayer\Employee.class
 functionLayer\calculation\CalcOuterLayerOfShed.class

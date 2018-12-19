@@ -20,39 +20,37 @@
         <link rel="stylesheet" href="./CSS/tableDesign.css">
         <link rel="icon" href=""
     </head>
-    
+
     <body>
-    <!-- ------------------SECTION 1.0 HEADER---------------------------------->
+        <!-- ------------------SECTION 1.0 HEADER---------------------------------->
         <% User user = (User) session.getAttribute("user"); %>
-        
-        <%if(user == null) { %>
+
+        <%if (user == null) { %>
         <header>
             <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
-            <a class="active" href="/FrontController?command=toNavigator&site=registration">Sign up</a>
-            <a class="active" href="/FrontController?command=toNavigator&site=login">Login</a>
-            <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
+            <a class="active" href="/Carport/FrontController?command=toNavigator&site=registration">Sign up</a>
+            <a class="active" href="/Carport/FrontController?command=toNavigator&site=login">Login</a>
+            <a class="active" href="/Carport/FrontController?command=toNavigator&site=home">Home</a>
         </header>
-        
-        <%} else if(user.getRole().equals("admin")) {%> 
-            <header>
-                <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
-                <a class="active" href="/FrontController?command=toNavigator&site=logout">Sign out</a>
-                <a class="active" href="/FrontController?command=Admin">Admin</a>
-                <a class="active" href="/FrontController?command=manageOrders">Se Ordre</a>
-                <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
-                <!-- <input type='submit' value="Log Out">-->
-            </header>
-        <%} else if(user.getRole().equals("customer")) { %>
-            <header>
-                <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
-                <a class="active" href="/FrontController?command=toNavigator&site=logout">Sign out</a>
-                <a class="active" href="">Profile</a>
-                <a class="active" href="/FrontController?command=toNavigator&site=home">Home</a>
-                <!-- <input type='submit' value="Log Out">-->
-            </header>
+
+        <%} else if (user.getRole().equals("admin")) {%> 
+        <header>
+            <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
+            <a class="active" href="/Carport/FrontController?command=toNavigator&site=logout">Sign out</a>
+            <a class="active" href="/Carport/FrontController?command=Admin">Admin</a>
+            <a class="active" href="/Carport/FrontController?command=manageOrders">Se Ordre</a>
+            <a class="active" href="/Carport/FrontController?command=toNavigator&site=home">Home</a>
+        </header>
+        <%} else if (user.getRole().equals("customer")) { %>
+        <header>
+            <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
+            <a class="active" href="/Carport/FrontController?command=toNavigator&site=logout">Sign out</a>
+            <a class="active" href="">Profile</a>
+            <a class="active" href="/Carport/FrontController?command=toNavigator&site=home">Home</a>
+        </header>
         <%}%>
-    
-    <!-- ------------------SECTION 2.0 ADD PRODUCT---------------------------------->
+
+        <!-- ------------------SECTION 2.0 ADD PRODUCT---------------------------------->
 
     <body>
         <%List<Product> allProduct = (List) session.getAttribute("allProduct");%>
@@ -82,7 +80,7 @@
             </div>
         </div>
     </div>
-        
+
     <div class="containerAdmin">
         <div class="control-groupAdmin">
             <div class="selectFormAdmin">
@@ -91,9 +89,9 @@
             </div>
         </div>    
     </div>
-        
+
     <!-- ------------------SECTION 3.0 SEARCH FOR PRODUCT-------------------------------->
-        
+
     <div class="containerTable">
         <div class="control-groupTable">
             <div class="search">
@@ -104,8 +102,8 @@
                         <input type = "submit" name="action" value = "Search" >
                     </form>
                 </div>
-    
-    <!-- ------------------SECTION 3.1 FULL PRODUCT LIST---------------------------------->            
+
+                <!-- ------------------SECTION 3.1 FULL PRODUCT LIST---------------------------------->            
                 <table class="table-fill">
                     <thead>
                         <tr>
@@ -131,7 +129,7 @@
                         <td><%=list.getWidth()%></td>
                         <td><%=list.getHeight()%></td>
                     </form>
-                    <td><%out.println("<a href=\"http://localhost:8084//FrontController?command=UpdateProduct&product_id=" + list.getId() + "\")>");%>Slet</td>
+                    <td><%out.println("<a href=\"http:/Carport/FrontController?command=UpdateProduct&product_id=" + list.getId() + "\")>");%>Slet</td>
                     </tr>
                     <%}%>
                     </tbody>
@@ -140,6 +138,6 @@
             </div>
         </div>
     </div>
-                        
-    </body>
+
+</body>
 </html>

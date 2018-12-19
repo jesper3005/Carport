@@ -5,12 +5,12 @@ Carport,presentationLayer,FrontController,42,0,0,0,11,0,5,0,5,0
 Carport,presentationLayer,OrderRequestFlatRoof,150,0,6,0,32,0,5,0,2,0
 Carport,presentationLayer,CustomerOrderInfo,37,0,0,0,9,0,2,0,2,0
 Carport,presentationLayer,Registration,130,0,10,0,29,0,7,0,2,0
+Carport,presentationLayer,ManageProducts,48,0,2,0,13,0,3,0,2,0
 Carport,presentationLayer,SeeOrderProductList,143,0,16,0,20,0,10,0,2,0
 Carport,presentationLayer,UpdateOrderStatus,63,0,4,0,16,0,4,0,2,0
 Carport,presentationLayer,Navigator,74,0,18,0,13,0,14,0,2,0
 Carport,presentationLayer,OrderRequestPointedRoof,163,0,6,0,35,0,5,0,2,0
 Carport,presentationLayer,FlatRoof,31,0,0,0,8,0,2,0,2,0
-Carport,presentationLayer,Admin,48,0,2,0,13,0,3,0,2,0
 Carport,presentationLayer,PointedRoof,31,0,0,0,8,0,2,0,2,0
 Carport,presentationLayer,UnknownCommand,7,0,0,0,3,0,2,0,2,0
 Carport,presentationLayer,UpdateProduct,60,0,2,0,16,0,3,0,2,0

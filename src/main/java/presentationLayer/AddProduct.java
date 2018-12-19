@@ -36,11 +36,11 @@ public class AddProduct extends Command {
             LogicFacade.addProduct(product);
             List<Product> allProducts = LogicFacade.getAllProductsFromDatabase();
             session.setAttribute("allProduct", allProducts);
-            return "admin";
+            return "manageProducts";
             
         } catch (Exception e) {
             System.out.println(e.getMessage() + " " +AddProduct.class.getName());
-            return "admin";
+            return "manageProducts";
         }
 
     }
