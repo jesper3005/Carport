@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SVGTop.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Carport</a> &gt; <a href="index.source.html" class="el_package">functionLayer</a> &gt; <span class="el_source">SVGTop.java</span></div><h1>SVGTop.java</h1><pre class="source lang-java linenums">
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package functionLayer;
+import static functionLayer.Rules.*;
+/**
+ *
+ * @author Jesper
+ */
+public class SVGTop {
+
+<span class="nc" id="L15">    private String mySVG = null;</span>
+<span class="nc" id="L16">    private StringBuilder sb = new StringBuilder();</span>
+<span class="nc" id="L17">    double startPosXY = 30;</span>
+
+//    double REM_WIDTH = 10;
+//    double BATTEN_WIDTH = 5;
+//    double POLES_WIDTH = 10;
+//    double POLES_HEIGHT = 10;
+//    double BATTENS_GAP_REM = 40;
+//    double SHED_PLANK_WIDTH = 15;
+//    double DOOR_WIDTH = 80;
+
+<span class="nc" id="L27">    public SVGTop(Carport carport, Shed shed) {</span>
+<span class="nc" id="L28">        this.sb = sb.append(&quot;&lt;SVG width=\&quot;820\&quot; height=\&quot;820\&quot;&gt;&quot;);</span>
+        //ADD ALL METHODS FOR SVG DRAWING FROM TOP
+<span class="nc" id="L30">        double length = carport.getCarport_length();</span>
+<span class="nc" id="L31">        double width = carport.getCarport_width();</span>
+<span class="nc" id="L32">        double shedLength = shed.getShed_length();</span>
+<span class="nc" id="L33">        double shedWidth = shed.getShed_width();</span>
+        //Creates carport
+<span class="nc" id="L35">        sb.append(createRemme(length, width));</span>
+
+        //Creates shed
+<span class="nc bnc" id="L38" title="All 2 branches missed.">        if(shedLength &gt; 0) {</span>
+<span class="nc" id="L39">            sb.append(createShed(length, width, shedLength, shedWidth));   </span>
+        }
+        
+        //For pointed roof
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        if(carport.getRoof().equals(&quot;PEAK&quot;)) {</span>
+<span class="nc" id="L44">            sb.append(createLægterPointeRoof(length, width));</span>
+<span class="nc" id="L45">            sb.append(createSupportingLægter(length, width));</span>
+        } else {
+<span class="nc" id="L47">            sb.append(createLægterFlatRoof(length, width));</span>
+        }
+        
+        //Creates text and lines
+<span class="nc" id="L51">        sb.append(createLengthText(length, width));</span>
+<span class="nc" id="L52">        sb.append(createWidthText(length, width));</span>
+        
+<span class="nc" id="L54">        sb.append(&quot;&lt;/SVG&gt;&quot;);</span>
+<span class="nc" id="L55">        this.mySVG = sb.toString();</span>
+
+<span class="nc" id="L57">    }</span>
+
+    public String getMySVG() {
+<span class="nc" id="L60">        return mySVG;</span>
+    }
+    
+    /*         Y
+               |
+               |
+         x - - - - - 
+               |
+               |
+    */
+    
+    //Base model
+    private String createRemme(double length, double width) {
+        //Decides where the bottom REM goes on y axis.
+<span class="nc" id="L74">        double bottomRemY = width + (startPosXY - REM_WIDTH);</span>
+        //Decides where both bottom and top side REM will be placed on the x axis.
+<span class="nc" id="L76">        double remXSides = startPosXY + REM_WIDTH;</span>
+        //lengthOfRem decides the actual length of the REMME.
+<span class="nc" id="L78">        double lengthOfRem = length - (REM_WIDTH*2); </span>
+
+        //Side rem top.
+<span class="nc" id="L81">        sb.append(&quot;&lt;rect x=\&quot;&quot;).append(remXSides).append(&quot;\&quot; y=\&quot;&quot;).append(startPosXY).append(&quot;\&quot; height=\&quot;10\&quot; width=\&quot;&quot;).append(lengthOfRem).append(&quot;\&quot; style=\&quot;stroke: #292929; fill:none; stroke-width: 1.5;\&quot;/&gt;&quot;);</span>
+        
+        //Side rem bottom.
+<span class="nc" id="L84">        sb.append(&quot;&lt;rect x=\&quot;&quot;).append(remXSides).append(&quot;\&quot; y=\&quot;&quot;).append(bottomRemY).append(&quot;\&quot; height=\&quot;10\&quot; width=\&quot;&quot;).append(lengthOfRem).append(&quot;\&quot; style=\&quot;stroke: #292929; fill:none; stroke-width: 1.5;\&quot;/&gt;&quot;);</span>
+
+        //Remme front og bag.
+        //x2 decides where the furthest back rem will be placed on the x axis.
+<span class="nc" id="L88">        double x2 = startPosXY + length - REM_WIDTH;</span>
+
+<span class="nc" id="L90">        sb.append(&quot;&lt;rect x=\&quot;&quot;).append(startPosXY).append(&quot;\&quot; y=\&quot;&quot;).append(startPosXY).append(&quot;\&quot; height=\&quot;&quot;).append(width).append(&quot;\&quot; width=\&quot;&quot;).append(REM_WIDTH).append(&quot;\&quot; style=\&quot;stroke: #292929; fill:none; stroke-width: 1.5;\&quot;/&gt;&quot;);</span>
+<span class="nc" id="L91">        sb.append(&quot;&lt;rect x=\&quot;&quot;).append(x2).append(&quot;\&quot; y=\&quot;&quot;).append(startPosXY).append(&quot;\&quot; height=\&quot;&quot;).append(width).append(&quot;\&quot; width=\&quot;&quot;).append(REM_WIDTH).append(&quot;\&quot; style=\&quot;stroke: #292929; fill:none; stroke-width: 1.5;\&quot;/&gt;&quot;);</span>
+
+<span class="nc" id="L93">        return sb.toString();</span>
+    }
+   
+    private String createLengthText(double length, double width) {
+<span class="nc" id="L97">        double lineY = width + startPosXY + 30;</span>
+<span class="nc" id="L98">        double startLine = startPosXY - REM_WIDTH;</span>
+<span class="nc" id="L99">        double lenghtOfLine = length + startPosXY;</span>
+
+<span class="nc" id="L101">        sb.append(&quot;&lt;line x1=\&quot;&quot;).append(startLine).append(&quot;\&quot; y1=\&quot;&quot;).append(lineY).append(&quot;\&quot; x2=\&quot;&quot;).append(lenghtOfLine).append(&quot;\&quot; y2=\&quot;&quot;).append(lineY).append(&quot;\&quot; style=\&quot;stroke:rgb(255,0,0);stroke-width:2\&quot; /&gt;&quot;);</span>
+
+        //Minus 50 to get text centered, dividing with 2 will get the middle, but thats where the text will start
+<span class="nc" id="L104">        double textXPos = (lenghtOfLine / 2) - 50;</span>
+<span class="nc" id="L105">        double textYPos = lineY + 20;</span>
+
+<span class="nc" id="L107">        sb.append(&quot;&lt;text x=\&quot;&quot;).append(textXPos).append(&quot;\&quot; y=\&quot;&quot;).append(textYPos).append(&quot;\&quot; fill=\&quot;red\&quot;&gt;L\u00e6ngde: &quot;).append(width).append(&quot; cm&lt;/text&gt;&quot;);</span>
+<span class="nc" id="L108">        return sb.toString();</span>
+    }
+
+    private String createWidthText(double length, double width) {
+        
+
+<span class="nc" id="L114">        double x1 = length + startPosXY + 30;</span>
+<span class="nc" id="L115">        double y2 = width + startPosXY;</span>
+
+<span class="nc" id="L117">        sb.append(&quot;&lt;line x1=\&quot;&quot;).append(x1).append(&quot;\&quot; y1=\&quot;&quot;).append(startPosXY).append(&quot;\&quot; x2=\&quot;&quot;).append(x1).append(&quot;\&quot; y2=\&quot;&quot;).append(y2).append(&quot;\&quot; style=\&quot;stroke:rgb(255,0,0);stroke-width:2\&quot; /&gt;&quot;);</span>
+
+<span class="nc" id="L119">        return sb.toString();</span>
+    }
+    
+    //For shed
+    private String createShed(double length, double width,double shedLength, double shedWidth) {
+        
+        //Amount of planks needed for both lengths 
+<span class="nc" id="L126">        double qtyShedLength = Math.ceil(shedLength / SHED_PLANK_WIDTH);</span>
+        //Side with door
+<span class="nc" id="L128">        double qtyShedWidth = Math.ceil((shedWidth - DOOR_WIDTH) / SHED_PLANK_WIDTH);</span>
+        //Side no door
+<span class="nc" id="L130">        double qtyBackWidth = Math.ceil(shedWidth / SHED_PLANK_WIDTH);</span>
+        
+        //Creating sides length.
+        //TOP
+<span class="nc" id="L134">        double xTOP = startPosXY + length - REM_WIDTH - SHED_PLANK_WIDTH;</span>
+<span class="nc bnc" id="L135" title="All 2 branches missed.">        for (int i = 0; i &lt; qtyShedLength; i++) {</span>
+<span class="nc" id="L136">            sb.append(&quot;&lt;rect x=\&quot;&quot;).append(xTOP).append(&quot;\&quot; y=\&quot;&quot;).append(startPosXY).append(REM_WIDTH).append(&quot;\&quot; height=\&quot;5\&quot; width=\&quot;&quot;).append(SHED_PLANK_WIDTH).append(&quot;\&quot; style=\&quot;stroke: #292929; fill:none; stroke-width: 1.5;\&quot;/&gt;&quot;);</span>
+<span class="nc" id="L137">            xTOP -= SHED_PLANK_WIDTH;</span>
+        }
+        
+        //BOT
+<span class="nc" id="L141">        double xBOT = startPosXY + length - REM_WIDTH - SHED_PLANK_WIDTH;</span>
+<span class="nc" id="L142">        double y = (startPosXY + REM_WIDTH + shedWidth);</span>
+<span class="nc bnc" id="L143" title="All 2 branches missed.">        for (int i = 0; i &lt; qtyShedLength; i++) {</span>
+<span class="nc" id="L144">            sb.append(&quot;&lt;rect x=\&quot;&quot;).append(xBOT).append(&quot;\&quot; y=\&quot;&quot;).append(y).append(&quot;\&quot; height=\&quot;5\&quot; width=\&quot;&quot;).append(SHED_PLANK_WIDTH).append(&quot;\&quot; style=\&quot;stroke: #292929; fill:none; stroke-width: 1.5;\&quot;/&gt;&quot;);</span>
+<span class="nc" id="L145">            xBOT -= SHED_PLANK_WIDTH;</span>
+        }
+        
+        //Right
+<span class="nc" id="L149">        double xRight = startPosXY + length - REM_WIDTH - 5;</span>
+<span class="nc" id="L150">        double yRight = startPosXY + REM_WIDTH;</span>
+<span class="nc bnc" id="L151" title="All 2 branches missed.">        for (int i = 0; i &lt; qtyBackWidth; i++) {</span>
+<span class="nc" id="L152">            sb.append(&quot;&lt;rect x=\&quot;&quot;).append(xRight).append(&quot;\&quot; y=\&quot;&quot;).append(yRight).append(&quot;\&quot; height=\&quot;&quot;).append(SHED_PLANK_WIDTH).append(&quot;\&quot; width=\&quot;5\&quot; style=\&quot;stroke: #292929; fill:none; stroke-width: 1.5;\&quot;/&gt;&quot;);</span>
+<span class="nc" id="L153">            yRight += SHED_PLANK_WIDTH;</span>
+        }
+        
+        //Left
+<span class="nc" id="L157">        double yLeft = startPosXY + REM_WIDTH + 5;</span>
+<span class="nc" id="L158">        double xLeft = startPosXY + length - REM_WIDTH - shedLength;</span>
+<span class="nc bnc" id="L159" title="All 2 branches missed.">        for (int i = 0; i &lt; qtyShedWidth; i++) {</span>
+<span class="nc" id="L160">            sb.append(&quot;&lt;rect x=\&quot;&quot;).append(xLeft).append(&quot;\&quot; y=\&quot;&quot;).append(yLeft).append(&quot;\&quot; height=\&quot;&quot;).append(SHED_PLANK_WIDTH).append(&quot;\&quot; width=\&quot;5\&quot; style=\&quot;stroke: #292929; fill:none; stroke-width: 1.5;\&quot;/&gt;&quot;);</span>
+<span class="nc" id="L161">            yLeft += SHED_PLANK_WIDTH;</span>
+        }
+        
+        
+<span class="nc" id="L165">        return sb.toString();</span>
+    }
+    
+    //If flat roof is choosen
+    private String createLægterFlatRoof(double length, double width) {
+        
+        
+<span class="nc" id="L172">        double lægteLength = width + 25;</span>
+
+<span class="nc" id="L174">        double firstLægte = startPosXY + (BATTENS_GAP_REM - REM_WIDTH);</span>
+<span class="nc" id="L175">        double lastLægte = startPosXY + length - BATTENS_GAP_REM;</span>
+<span class="nc" id="L176">        double y2 = startPosXY - 10;</span>
+        
+<span class="nc" id="L178">        sb.append(&quot;&lt;rect x=\&quot;&quot;).append(firstLægte).append(&quot;\&quot; y=\&quot;&quot;).append(y2).append(&quot;\&quot; height=\&quot;&quot;).append(lægteLength).append(&quot;\&quot; width=\&quot;&quot;).append(BATTEN_WIDTH).append(&quot;\&quot; style=\&quot;stroke: #292929; fill:none; stroke-width: 1.5;\&quot;/&gt;&quot;);</span>
+<span class="nc" id="L179">        sb.append(&quot;&lt;rect x=\&quot;&quot;).append(lastLægte).append(&quot;\&quot; y=\&quot;&quot;).append(y2).append(&quot;\&quot; height=\&quot;&quot;).append(lægteLength).append(&quot;\&quot; width=\&quot;&quot;).append(BATTEN_WIDTH).append(&quot;\&quot; style=\&quot;stroke: #292929; fill:none; stroke-width: 1.5;\&quot;/&gt;&quot;);</span>
+        
+<span class="nc" id="L181">        double qty = Math.ceil(length / 50);</span>
+<span class="nc" id="L182">        length -= (BATTENS_GAP_REM * 2);</span>
+<span class="nc" id="L183">        double delta = length / (qty + 1);</span>
+<span class="nc" id="L184">        double lægtePos = delta + firstLægte;</span>
+<span class="nc bnc" id="L185" title="All 2 branches missed.">        for (int i = 0; i &lt; qty; i++) {</span>
+<span class="nc" id="L186">            System.out.println(qty);</span>
+<span class="nc" id="L187">            sb.append(&quot;&lt;rect x=\&quot;&quot;).append(lægtePos).append(&quot;\&quot; y=\&quot;&quot;).append(y2).append(&quot;\&quot; height=\&quot;&quot;).append(lægteLength).append(&quot;\&quot; width=\&quot;&quot;).append(BATTEN_WIDTH).append(&quot;\&quot; style=\&quot;stroke: #292929; fill:none; stroke-width: 1.5;\&quot;/&gt;&quot;);</span>
+<span class="nc" id="L188">            lægtePos += delta; </span>
+        }
+        
+        
+<span class="nc" id="L192">        return sb.toString();</span>
+    }
+    
+    //If pointed roof is choosen
+    private String createLægterPointeRoof(double length, double width) {
+<span class="nc" id="L197">        double lægteLength = width / 2;</span>
+<span class="nc" id="L198">        double firstLægte = startPosXY + (BATTENS_GAP_REM - REM_WIDTH);</span>
+<span class="nc" id="L199">        double lastLægte = startPosXY + length - BATTENS_GAP_REM;</span>
+<span class="nc" id="L200">        double y1 = startPosXY - 10;</span>
+<span class="nc" id="L201">        double y2 = startPosXY + (width / 2) + 10;</span>
+        
+<span class="nc" id="L203">        double qty = Math.ceil(length / 50);</span>
+<span class="nc" id="L204">        length -= (BATTENS_GAP_REM * 2);</span>
+<span class="nc" id="L205">        double delta = length / (qty + 1);</span>
+<span class="nc" id="L206">        double leftLægtePos = delta + firstLægte;</span>
+        //Left side lægter
+<span class="nc" id="L208">        sb.append(&quot;&lt;rect x=\&quot;&quot;).append(firstLægte).append(&quot;\&quot; y=\&quot;&quot;).append(y1).append(&quot;\&quot; height=\&quot;&quot;).append(lægteLength).append(&quot;\&quot; width=\&quot;&quot;).append(BATTEN_WIDTH).append(&quot;\&quot; style=\&quot;stroke: #292929; fill:none; stroke-width: 1.5;\&quot;/&gt;&quot;);</span>
+<span class="nc" id="L209">        sb.append(&quot;&lt;rect x=\&quot;&quot;).append(lastLægte).append(&quot;\&quot; y=\&quot;&quot;).append(y1).append(&quot;\&quot; height=\&quot;&quot;).append(lægteLength).append(&quot;\&quot; width=\&quot;&quot;).append(BATTEN_WIDTH).append(&quot;\&quot; style=\&quot;stroke: #292929; fill:none; stroke-width: 1.5;\&quot;/&gt;&quot;);</span>
+        
+<span class="nc bnc" id="L211" title="All 2 branches missed.">        for (int i = 0; i &lt; qty; i++) {</span>
+<span class="nc" id="L212">           sb.append(&quot;&lt;rect x=\&quot;&quot;).append(leftLægtePos).append(&quot;\&quot; y=\&quot;&quot;).append(y1).append(&quot;\&quot; height=\&quot;&quot;).append(lægteLength).append(&quot;\&quot; width=\&quot;&quot;).append(BATTEN_WIDTH).append(&quot;\&quot; style=\&quot;stroke: #292929; fill:none; stroke-width: 1.5;\&quot;/&gt;&quot;);</span>
+<span class="nc" id="L213">           leftLægtePos += delta;</span>
+        }
+        
+        
+        //Right side lægter
+<span class="nc" id="L218">        sb.append(&quot;&lt;rect x=\&quot;&quot;).append(firstLægte).append(&quot;\&quot; y=\&quot;&quot;).append(y2).append(&quot;\&quot; height=\&quot;&quot;).append(lægteLength).append(&quot;\&quot; width=\&quot;&quot;).append(BATTEN_WIDTH).append(&quot;\&quot; style=\&quot;stroke: #292929; fill:none; stroke-width: 1.5;\&quot;/&gt;&quot;);</span>
+<span class="nc" id="L219">        sb.append(&quot;&lt;rect x=\&quot;&quot;).append(lastLægte).append(&quot;\&quot; y=\&quot;&quot;).append(y2).append(&quot;\&quot; height=\&quot;&quot;).append(lægteLength).append(&quot;\&quot; width=\&quot;&quot;).append(BATTEN_WIDTH).append(&quot;\&quot; style=\&quot;stroke: #292929; fill:none; stroke-width: 1.5;\&quot;/&gt;&quot;);</span>
+        
+<span class="nc" id="L221">        double rightLægtePos = delta + firstLægte;</span>
+<span class="nc bnc" id="L222" title="All 2 branches missed.">        for (int i = 0; i &lt; qty; i++) {</span>
+<span class="nc" id="L223">            sb.append(&quot;&lt;rect x=\&quot;&quot;).append(rightLægtePos).append(&quot;\&quot; y=\&quot;&quot;).append(y2).append(&quot;\&quot; height=\&quot;&quot;).append(lægteLength).append(&quot;\&quot; width=\&quot;&quot;).append(BATTEN_WIDTH).append(&quot;\&quot; style=\&quot;stroke: #292929; fill:none; stroke-width: 1.5;\&quot;/&gt;&quot;);</span>
+<span class="nc" id="L224">            rightLægtePos = delta + rightLægtePos;</span>
+        }
+        
+<span class="nc" id="L227">        return sb.toString();</span>
+    }
+    
+    private String createSupportingLægter(double length, double width) {
+        //The supporting lapth
+<span class="nc" id="L232">        double remXPos = startPosXY + REM_WIDTH;</span>
+<span class="nc" id="L233">        double lengthOfRem = length - (REM_WIDTH*2);</span>
+        
+        //Left
+<span class="nc" id="L236">        double y1 = startPosXY + (width/4);</span>
+<span class="nc" id="L237">        sb.append(&quot;&lt;rect x=\&quot;&quot;).append(remXPos).append(&quot;\&quot; y=\&quot;&quot;).append(y1).append(&quot;\&quot; height=\&quot;&quot;).append(BATTEN_WIDTH).append(&quot;\&quot; width=\&quot;&quot;).append(lengthOfRem).append(&quot;\&quot; style=\&quot;stroke: #292929; fill:none; stroke-width: 1.5;\&quot;/&gt;&quot;);</span>
+        
+        
+        //Right
+<span class="nc" id="L241">        double width1 = width / 2;</span>
+<span class="nc" id="L242">        double y2 = startPosXY + width1 + (width1 / 2);</span>
+        
+<span class="nc" id="L244">        sb.append(&quot;&lt;rect x=\&quot;&quot;).append(remXPos).append(&quot;\&quot; y=\&quot;&quot;).append(y2).append(&quot;\&quot; height=\&quot;&quot;).append(BATTEN_WIDTH).append(&quot;\&quot; width=\&quot;&quot;).append(lengthOfRem).append(&quot;\&quot; style=\&quot;stroke: #292929; fill:none; stroke-width: 1.5;\&quot;/&gt;&quot;);</span>
+        
+        //Middle
+<span class="nc" id="L247">        double y3 = startPosXY + (width / 2) - REM_WIDTH;</span>
+<span class="nc" id="L248">        double middleRemWidth = REM_WIDTH + 10;</span>
+<span class="nc" id="L249">        sb.append(&quot;&lt;rect x=\&quot;&quot;).append(remXPos).append(&quot;\&quot; y=\&quot;&quot;).append(y3).append(&quot;\&quot; height=\&quot;&quot;).append(middleRemWidth).append(&quot;\&quot; width=\&quot;&quot;).append(lengthOfRem).append(&quot;\&quot; style=\&quot;stroke: #292929; fill:none; stroke-width: 1.5;\&quot;/&gt;&quot;);</span>
+        
+        
+<span class="nc" id="L252">        return sb.toString();</span>
+    }
+    
+    //Test
+    private String createPointedRoof(double length, double width) {
+<span class="nc" id="L257">        int degree = 20;</span>
+
+<span class="nc" id="L259">        double sinC = 180 - (2 * degree);</span>
+       
+        //Calculates the length of the hypotenusen
+<span class="nc" id="L262">        double hypo = (width * Math.sin(degree * (Math.PI/180))) / Math.sin(sinC * (Math.PI/180));</span>
+        
+<span class="nc" id="L264">        double lengthOfLægte = (width + hypo + hypo/2) / 0.5 * width;</span>
+<span class="nc" id="L265">        double middleLægte = length;</span>
+<span class="nc" id="L266">        double middleLægtePos = lengthOfLægte / 2;</span>
+        
+<span class="nc" id="L268">        sb.append(&quot;&quot;);</span>
+        
+        
+<span class="nc" id="L271">        return sb.toString();</span>
+    }
+    
+    
+ 
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

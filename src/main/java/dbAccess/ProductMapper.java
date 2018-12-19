@@ -26,9 +26,8 @@ public class ProductMapper {
     private final String ALL_REM_BY_LENGTH = "SELECT `category`,`length` FROM `product` ORDER BY `length`;";
     private final String SEARCH_IN_PRODUCT_TABLE = "SELECT * FROM product WHERE CONCAT(product_name, '', category, '',length,'',width,'',height,'') LIKE ?;";
     private final String GET_PRODUCT_BY_ID = "SELECT * FROM `product` WHERE `product_id` = ?;";
-    
-    // private final String Update_PRODUCT = "SELECT `*` FROM `product` WHERE produkt_id=?;";
 
+    // private final String Update_PRODUCT = "SELECT `*` FROM `product` WHERE produkt_id=?;";
     public List<Product> allProducts() {
         try {
             List<Product> productList = new ArrayList<>();
@@ -50,11 +49,7 @@ public class ProductMapper {
             }
             return productList;
         } catch (SQLException ex) {
-<<<<<<< HEAD
-            System.out.println(ex.getMessage());
-=======
-            System.out.println(ex.getMessage() +" "+ ProductMapper.class.getName());
->>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
+            System.out.println(ex.getMessage() + " " + ProductMapper.class.getName());
         }
         return null;
     }
@@ -75,12 +70,8 @@ public class ProductMapper {
             pstmt.executeUpdate();
             pstmt.close();
 
-<<<<<<< HEAD
         } catch (SQLException ex) {
-=======
-        } catch (SQLException  ex) {
->>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
-            System.out.println(ex.getMessage());
+            System.out.println(ex.getMessage() + " " + ProductMapper.class.getName());
         }
         return product;
     }
@@ -97,11 +88,7 @@ public class ProductMapper {
             pstmt.close();
 
         } catch (SQLException ex) {
-<<<<<<< HEAD
-            System.out.println(ex.getMessage());
-=======
-            System.out.println(ex.getMessage() +" "+ ProductMapper.class.getName());
->>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
+            System.out.println(ex.getMessage() + " " + ProductMapper.class.getName());
         }
 
     }
@@ -122,11 +109,7 @@ public class ProductMapper {
             }
             return productList;
         } catch (SQLException ex) {
-<<<<<<< HEAD
-            System.out.println(ex.getMessage());
-=======
-            System.out.println(ex.getMessage() +" "+ ProductMapper.class.getName());
->>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
+            System.out.println(ex.getMessage() + " " + ProductMapper.class.getName());
         }
         return null;
     }
@@ -143,19 +126,13 @@ public class ProductMapper {
             pstmt.executeUpdate();
             pstmt.close();
 
-<<<<<<< HEAD
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-=======
-        } catch (SQLException  ex) {
-          System.out.println(ex.getMessage() +" "+ ProductMapper.class.getName());
->>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
+            System.out.println(ex.getMessage() + " " + ProductMapper.class.getName());
         }
     }
 
-   
     public List<Product> searchInProductTable(String value) {
-        value = "%"+value+"%";
+        value = "%" + value + "%";
         try {
             Product p;
             List<Product> list = new ArrayList<>();
@@ -173,20 +150,15 @@ public class ProductMapper {
                 double length = res.getDouble("length");
                 double width = res.getDouble("width");
                 double height = res.getDouble("height");
-                
+
                 p = new Product(product_id, product_name, category, price, length, width, height);
                 list.add(p);
             }
 
             return list;
 
-<<<<<<< HEAD
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-=======
-        } catch (SQLException  ex) {
-           System.out.println(ex.getMessage() +" "+ ProductMapper.class.getName());
->>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
+            System.out.println(ex.getMessage() + " " + ProductMapper.class.getName());
         }
         return null;
     }
@@ -213,18 +185,11 @@ public class ProductMapper {
                 return product;
             }
 
-<<<<<<< HEAD
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-=======
-        } catch (SQLException  ex) {
-           System.out.println(ex.getMessage() +" "+ ProductMapper.class.getName());
->>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
+            System.out.println(ex.getMessage() + " " + ProductMapper.class.getName());
         }
         return null;
 
     }
 
 }
-
-

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CalcFrontAndBackBeklædning.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Carport</a> &gt; <a href="index.source.html" class="el_package">functionLayer.calculation</a> &gt; <span class="el_source">CalcFrontAndBackBeklædning.java</span></div><h1>CalcFrontAndBackBeklædning.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package functionLayer.calculation;
+
+import functionLayer.Product;
+import functionLayer.Rules;
+import java.util.List;
+
+/**
+ *
+ * @author oerte
+ */
+<span class="nc" id="L16">public class CalcFrontAndBackBeklædning {</span>
+
+    public Product calcAntal(double length, double width, double degree, List allProducts) {
+        
+<span class="nc bnc" id="L20" title="All 6 branches missed.">        if (length &lt;= 0 || width &lt;= 0 || degree &lt;=0) {</span>
+<span class="nc" id="L21">            throw new IllegalArgumentException();</span>
+        }
+<span class="nc bnc" id="L23" title="All 2 branches missed.">        if (allProducts == null) {</span>
+<span class="nc" id="L24">            throw new NullPointerException();</span>
+        }
+
+<span class="nc" id="L27">        List&lt;Product&gt; productList = allProducts;</span>
+<span class="nc" id="L28">        Product p = null;</span>
+        // 10 ER WIDTH OF THE PLANKS
+<span class="nc" id="L30">        double antalOfPlanks = width / Rules.PLANKS_WIDTH;</span>
+
+        try {
+
+<span class="nc bnc" id="L34" title="All 2 branches missed.">            for (Product product : productList) {</span>
+<span class="nc bnc" id="L35" title="All 4 branches missed.">                if (product.getCategory().equals(&quot;udbeklædning&quot;) &amp;&amp; width &gt;= product.getLength()) {</span>
+<span class="nc" id="L36">                    p = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), antalOfPlanks, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());</span>
+
+                }
+<span class="nc" id="L39">            }</span>
+<span class="nc" id="L40">            return p;</span>
+
+<span class="nc" id="L42">        } catch (Exception e) {</span>
+<span class="nc" id="L43">            System.out.println(e.getMessage() +&quot; &quot;+ CalcFrontAndBackBeklædning.class.getName());</span>
+<span class="nc" id="L44">            return p = new Product();</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

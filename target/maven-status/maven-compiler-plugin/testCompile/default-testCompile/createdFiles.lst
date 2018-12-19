@@ -1,0 +1,5 @@
+FunctionLayer\CalcJUnitTest.class
+DataLayer\ProductMapperTest.class
+DataLayer\CarportMapperTest.class
+DataLayer\CustomerMapperTest.class
+DataLayer\UserMapperTest.class

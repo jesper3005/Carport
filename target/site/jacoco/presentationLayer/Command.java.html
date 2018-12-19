@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Command.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Carport</a> &gt; <a href="index.source.html" class="el_package">presentationLayer</a> &gt; <span class="el_source">Command.java</span></div><h1>Command.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package presentationLayer;
+
+import java.util.HashMap;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ *
+ * @author oerte
+ */
+<span class="nc" id="L16">abstract class Command {</span>
+
+    private static HashMap&lt;String, Command&gt; commands;
+
+    private static void initCommands() {
+<span class="nc" id="L21">        commands = new HashMap&lt;&gt;();</span>
+        
+        //The two carport creation site
+<span class="nc" id="L24">        commands.put(&quot;flatRoof&quot;, new FlatRoof());</span>
+<span class="nc" id="L25">        commands.put(&quot;pointedRoof&quot;, new PointedRoof());</span>
+        
+        //See order and request the order site
+<span class="nc" id="L28">        commands.put(&quot;orderRequestFlat&quot;, new OrderRequestFlatRoof());</span>
+<span class="nc" id="L29">        commands.put(&quot;orderRequestPointed&quot;, new OrderRequestPointedRoof());</span>
+        
+        //Send order request site
+<span class="nc" id="L32">        commands.put(&quot;sendOrderFlat&quot;, new CreateOrderFlatRoof());</span>
+<span class="nc" id="L33">        commands.put(&quot;sendOrderPointed&quot;, new CreateOrderPointedRoof());</span>
+        
+        //Admin
+<span class="nc" id="L36">        commands.put(&quot;Admin&quot;, new Admin());</span>
+<span class="nc" id="L37">        commands.put(&quot;AddProduct&quot;, new AddProduct());</span>
+<span class="nc" id="L38">        commands.put(&quot;UpdateProduct&quot;, new UpdateProduct());</span>
+<span class="nc" id="L39">        commands.put(&quot;updateOrderStatus&quot;, new UpdateOrderStatus());</span>
+<span class="nc" id="L40">        commands.put(&quot;manageOrders&quot;, new SelectOrders()); </span>
+<span class="nc" id="L41">        commands.put(&quot;showProductList&quot;, new SeeOrderProductList());</span>
+<span class="nc" id="L42">        commands.put(&quot;seeCustomerInfo&quot;, new CustomerOrderInfo());</span>
+        
+        //Navigator for hyperlinks
+<span class="nc" id="L45">        commands.put(&quot;toNavigator&quot;, new Navigator());</span>
+        
+        //Login
+<span class="nc" id="L48">        commands.put((&quot;login&quot;), new Login());</span>
+<span class="nc" id="L49">        commands.put((&quot;registrate&quot;), new Registration());</span>
+
+<span class="nc" id="L51">    }</span>
+
+    static Command from(HttpServletRequest request) {
+<span class="nc" id="L54">        String commandName = request.getParameter(&quot;command&quot;);</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">        if (commands == null) {</span>
+<span class="nc" id="L56">            initCommands();</span>
+        }
+<span class="nc" id="L58">        return commands.getOrDefault(commandName, new UnknownCommand());</span>
+    }
+
+    abstract String execute(HttpServletRequest request, HttpServletResponse response);
+           
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

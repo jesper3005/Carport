@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LogicFacade.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Carport</a> &gt; <a href="index.source.html" class="el_package">functionLayer</a> &gt; <span class="el_source">LogicFacade.java</span></div><h1>LogicFacade.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package functionLayer;
+
+import dbAccess.CarportMapper;
+import dbAccess.CustomerMapper;
+import functionLayer.calculation.CarportFlatProductListe;
+import dbAccess.ProductMapper;
+import dbAccess.UserMapper;
+import exceptions.FogException;
+import functionLayer.calculation.CarportPointedRoofProductListe;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.List;
+import org.decimal4j.util.DoubleRounder;
+//import org.decimal4j.util.DoubleRounder;
+
+/**
+ *
+ * @author oerte
+ */
+<span class="nc" id="L25">public class LogicFacade {</span>
+
+    // ------------ LOGICFACADE METHODS FOR DATABASE -----------------
+    public static User login(String email, String password) throws FogException {
+<span class="fc" id="L29">        UserMapper um = new UserMapper();</span>
+<span class="fc" id="L30">        return um.getUser(email, password);</span>
+    }
+
+    /**
+     * This method will create a hashed password and return it, with help of
+     * userns password.
+     *
+     * @param password Userns password.
+     * @return Returns a new hashed password String
+     */
+    public static String createHashedPassword(String password) {
+<span class="nc" id="L41">        String passwordToHash = password;</span>
+<span class="nc" id="L42">        String generatedPassword = null;</span>
+        try {
+            // Create MessageDigest instance for MD5
+<span class="nc" id="L45">            MessageDigest md = MessageDigest.getInstance(&quot;MD5&quot;);</span>
+            //Add password bytes to digest
+<span class="nc" id="L47">            md.update(passwordToHash.getBytes());</span>
+            //Get the hash's bytes
+<span class="nc" id="L49">            byte[] bytes = md.digest();</span>
+            //This bytes[] has bytes in decimal format;
+            //Convert it to hexadecimal format
+<span class="nc" id="L52">            StringBuilder sb = new StringBuilder();</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">            for (int i = 0; i &lt; bytes.length; i++) {</span>
+<span class="nc" id="L54">                sb.append(Integer.toString((bytes[i] &amp; 0xff) + 0x100, 16).substring(1));</span>
+            }
+            //Get complete hashed password in hex format
+<span class="nc" id="L57">            generatedPassword = sb.toString();</span>
+<span class="nc" id="L58">        } catch (NoSuchAlgorithmException e) {</span>
+<span class="nc" id="L59">            System.out.println(e.getMessage() +&quot; &quot;+ LogicFacade.class.getName());</span>
+<span class="nc" id="L60">            e.printStackTrace();</span>
+<span class="nc" id="L61">        }</span>
+<span class="nc" id="L62">        return generatedPassword;</span>
+    }
+
+    public static User createUser(String email, String password, int customerID) throws FogException {
+<span class="nc" id="L66">        User user = new User(password, email, &quot;customer&quot;, customerID);</span>
+<span class="nc" id="L67">        UserMapper um = new UserMapper();</span>
+<span class="nc" id="L68">        um.createUser(user);</span>
+<span class="nc" id="L69">        return user;</span>
+    }
+
+    public static Customer getCustomerByEmail(String email) {
+<span class="nc" id="L73">        CustomerMapper cm = new CustomerMapper();</span>
+<span class="nc" id="L74">        Customer customer = cm.getCustomerByEmail(email);</span>
+<span class="nc" id="L75">        return customer;</span>
+
+    }
+
+    public static void addCustomer(Customer customer) {
+<span class="nc" id="L80">        CustomerMapper cm = new CustomerMapper();</span>
+<span class="nc" id="L81">        cm.addCustomer(customer);</span>
+
+<span class="nc" id="L83">    }</span>
+
+    public static int createCustomer(Customer customer) {
+<span class="nc" id="L86">        CustomerMapper cm = new CustomerMapper();</span>
+<span class="nc" id="L87">        int id = cm.addCustomerAndUser(customer);</span>
+<span class="nc" id="L88">        return id;</span>
+    }
+
+    public static void addCarport(Carport carport, Shed shed) {
+<span class="fc" id="L92">        System.out.println(&quot;addCarportLogicFacade&quot;);</span>
+<span class="fc" id="L93">        CarportMapper cm = new CarportMapper();</span>
+<span class="fc" id="L94">        cm.addCarport(carport, shed);</span>
+<span class="fc" id="L95">    }</span>
+
+    public static Shed addShed(Shed shed) {
+<span class="fc" id="L98">        CarportMapper cm = new CarportMapper();</span>
+<span class="fc" id="L99">        cm.addShed(shed);</span>
+<span class="fc" id="L100">        return shed;</span>
+    }
+
+    public static List&lt;Carport&gt; getOrdresFromCarportByEnum(String enumValue) {
+<span class="fc" id="L104">        CarportMapper cm = new CarportMapper();</span>
+<span class="fc" id="L105">        List&lt;Carport&gt; carportList = cm.getCarportByStatus(enumValue);</span>
+<span class="fc" id="L106">        return carportList;</span>
+    }
+
+    public static List&lt;Carport&gt; getAllCarportOrders() {
+<span class="fc" id="L110">        CarportMapper cm = new CarportMapper();</span>
+<span class="fc" id="L111">        List&lt;Carport&gt; carportList = cm.getAllCarportOrders();</span>
+<span class="fc" id="L112">        return carportList;</span>
+    }
+
+    public static void updateOrderStatus(String status, int id) {
+<span class="fc" id="L116">        CarportMapper cm = new CarportMapper();</span>
+<span class="fc" id="L117">        cm.updateOrderStatus(status, id);</span>
+<span class="fc" id="L118">    }</span>
+
+    public static void addProduct(Product product) {
+<span class="nc" id="L121">        ProductMapper pm = new ProductMapper();</span>
+<span class="nc" id="L122">        pm.addProducts(product);</span>
+<span class="nc" id="L123">    }</span>
+
+    public static List&lt;Product&gt; getAllProductsFromDatabase() {
+<span class="fc" id="L126">        ProductMapper pm = new ProductMapper();</span>
+<span class="fc" id="L127">        List&lt;Product&gt; produktList = pm.allProducts();</span>
+<span class="fc" id="L128">        return produktList;</span>
+    }
+
+    public static List&lt;Product&gt; searchInDatabaseProductTable(String value) {
+<span class="fc" id="L132">        ProductMapper pm = new ProductMapper();</span>
+<span class="fc" id="L133">        List&lt;Product&gt; searchList = pm.searchInProductTable(value);</span>
+<span class="fc" id="L134">        return searchList;</span>
+    }
+
+    public static List&lt;Product&gt; remOrderedByLength() {
+<span class="fc" id="L138">        ProductMapper pm = new ProductMapper();</span>
+<span class="fc" id="L139">        List&lt;Product&gt; remList = pm.orderByLengthRem();</span>
+<span class="fc" id="L140">        return remList;</span>
+    }
+
+    public static void updatePrice(int id, double price) {
+<span class="fc" id="L144">        ProductMapper pm = new ProductMapper();</span>
+<span class="fc" id="L145">        pm.updatePrice(id, price);</span>
+<span class="fc" id="L146">    }</span>
+
+    public static void deleteProduct(int productID) {
+<span class="nc" id="L149">        ProductMapper pm = new ProductMapper();</span>
+<span class="nc" id="L150">        pm.deleteProduct(productID);</span>
+<span class="nc" id="L151">    }</span>
+
+    public static Carport getCarportByID(int caportID) {
+<span class="fc" id="L154">        CarportMapper cm = new CarportMapper();</span>
+<span class="fc" id="L155">        Carport carport = cm.getCarportById(caportID);</span>
+<span class="fc" id="L156">        return carport;</span>
+    }
+    
+    public static Customer getCustomerByID(int customerID) {
+<span class="nc" id="L160">        CustomerMapper cm = new CustomerMapper();</span>
+<span class="nc" id="L161">        Customer customer = cm.getCustomerByID(customerID);</span>
+<span class="nc" id="L162">        return customer;</span>
+    }
+
+    // -----------------CARPORT CALCULATIONS LOGICFACADE --------------------------------
+    /**
+     * This methode is called in, CreateOrderFlatRoof.java in presentationLayer,
+     * to get the total price of the carport, what is then used to create a
+     * carport in the Database, OrderRequestFlatRoof.java in presentationLayer,
+     * to get the total price of the carport, what is used to show the price at
+     * orderRequestFlatRoof.jsp, SeeOrderProductList.java in presentationLayer,
+     * to show a List of parts for an specifik customer by Id.
+     *
+     * @param length Length of the carport from carportFlatRood.jsp
+     * @param width Width of the carport from carportFlatRood.jsp
+     * @param roofMaterial Roof material is choosen from the client through
+     * carportFlarRoof.jsp or carportPointedRoof.jsp.
+     * @return Returns a list of all products, that is needed to build a carport
+     * with a flat roof.
+     *
+     */
+    public static List&lt;Product&gt; carportCalculaterFlatRoof(double length, double width, String roofMaterial) {
+<span class="nc" id="L183">        CarportFlatProductListe cfp = new CarportFlatProductListe();</span>
+<span class="nc" id="L184">        List&lt;Product&gt; list = cfp.carportCalculaterFlatRoof(length, width, roofMaterial);</span>
+<span class="nc" id="L185">        return list;</span>
+    }
+
+    /**
+     * This methode is called in, CreateOrderFlatRoof.java in presentationLayer,
+     * to get the total price of the carport, what is then used to create a
+     * carport in the Database, OrderRequestFlatRoof.java in presentationLayer,
+     * to get the total price of the carport, what is used to show the price at
+     * orderRequestFlatRoof.jsp, SeeOrderProductList.java in presentationLayer,
+     * to show a List of parts for an specifik customer by Id.
+     *
+     * @param length Length of the carport from carportFlatRoof.jsp.
+     * @param width Width of the carport from carportFlatRoof.jsp.
+     * @param shedLength Length of shed from carportFlatRoof.jsp.
+     * @param shedWidth Width of shed from carportFlatRoof.jsp.
+     * @param roofMaterial Roof material is choosen from the client through
+     * carportFlarRoof.jsp or carportPointedRoof.jsp.
+     * @return Returns a list of all products, that is needed to build a carport
+     * with a flat roof and shed.
+     *
+     */
+    public static List&lt;Product&gt; carportCalculaterFlatRoofIncludingShed(double length, double width, double shedLength, double shedWidth, String roofMaterial) {
+<span class="nc" id="L207">        CarportFlatProductListe cfp = new CarportFlatProductListe();</span>
+<span class="nc" id="L208">        List&lt;Product&gt; list = cfp.carportCalculaterFlatRoofIncludingShed(length, width, shedLength, shedWidth, roofMaterial);</span>
+<span class="nc" id="L209">        return list;</span>
+    }
+
+    /**
+     * This methode is called in, CreateOrderPointedRoof.java in
+     * presentationLayer, to get the total price of the carport, what is then
+     * used to create a carport in the Database, OrderRequestPointedRoof.java in
+     * presentationLayer, to get the total price of the carport, what is used to
+     * show the price at orderRequestPointedRoof.jsp, SeeOrderProductList.java
+     * in presentationLayer, to show a List of parts for an specifik customer by
+     * Id.
+     *
+     * @param length Length of the carport from carportPointedRoodf.jsp.
+     * @param width Width of the carport from carportPointedRoof.jsp.
+     * @param degree Degree of the carports Pointed roof from
+     * carportPointedRoof.jsp.
+     * @param roofMaterial Roof material is choosen from the client through
+     * carportFlarRoof.jsp or carportPointedRoof.jsp.
+     * @return Returns a list of all products, that is needed to build a carport
+     * with a Pointed roof.
+     */
+    public static List&lt;Product&gt; carportCalculatorPointedRoof(double length, double width, double degree, String roofMaterial) {
+<span class="nc" id="L231">        CarportPointedRoofProductListe cfp = new CarportPointedRoofProductListe();</span>
+<span class="nc" id="L232">        List&lt;Product&gt; list = cfp.carportCalculaterPointedRoof(length, width, degree, roofMaterial);</span>
+<span class="nc" id="L233">        return list;</span>
+    }
+
+    /**
+     * This methode is called in, CreateOrderPointedRoof.java in
+     * presentationLayer, to get the total price of the carport, what is then
+     * used to create a carport in the Database, OrderRequestPointedRoof.java in
+     * presentationLayer, to get the total price of the carport, what is used to
+     * show the price at orderRequestPointedRoof.jsp, SeeOrderProductList.java
+     * in presentationLayer, to show a List of parts for an specifik customer by
+     * Id.
+     *
+     * @param length Length of the carport from carportPointedRoodf.jsp.
+     * @param width Width of the carport from carportPointedRoof.jsp.
+     * @param degree Degree of the carports Pointed roof from
+     * carportPointedRoof.jsp.
+     * @param shedLength Length of shed from carportPointedRood.jsp.
+     * @param shedWidth Width of shed from carportPointedRood.jsp.
+     * @param roofMaterial Roof material is choosen from the client through
+     * carportFlatRoof.jsp or carportPointedRoof.jsp.
+     * @return Returns a list of all products, that is needed to build a carport
+     * with a Pointed roof and shed.
+     */
+    public static List&lt;Product&gt; carportCalculatorPointedRoofIncludingShed(double length, double width, double degree, double shedLength, double shedWidth, String roofMaterial) {
+<span class="nc" id="L257">        CarportPointedRoofProductListe cfp = new CarportPointedRoofProductListe();</span>
+<span class="nc" id="L258">        List&lt;Product&gt; list = cfp.carportCalculaterPointedRoofIncludingShed(length, width, degree, length, width, roofMaterial);</span>
+<span class="nc" id="L259">        return list;</span>
+    }
+
+    /**
+     * This method with help of javas DecimalFormater, rounds a double to two
+     * decimal after the comma, This methode is called in, LogicFacade.java in
+     * functionLayer, in method totalPriceOfCarport, Product.java in
+     * functionLayer, in method getPriceLine.
+     *
+     * @param value
+     * @return Returns a double with two decimals after the comma.
+     */
+    public static double roundDoubleToTwoDecimalPoints(double value) {
+<span class="nc" id="L272">        return DoubleRounder.round(value, 2);</span>
+    }
+
+    /**
+     * This method takes a list of parts, loop through the list and add each
+     * priceLine of each product with eachother.
+     *
+     * @param stykliste Is a specific list of an Carport with all products
+     * needed to build it.
+     * @return Returns the total price of an Carport.
+     */
+    public static double totalPriceOfCarport(List&lt;Product&gt; stykliste) {
+<span class="nc" id="L284">        double totalPriceOfCarport = 0;</span>
+<span class="nc bnc" id="L285" title="All 2 branches missed.">        for (Product produkt : stykliste) {</span>
+<span class="nc" id="L286">            totalPriceOfCarport += produkt.getTotalPriceOfOrder();</span>
+<span class="nc" id="L287">        }</span>
+        //return totalPriceOfCarport;
+<span class="nc" id="L289">        return roundDoubleToTwoDecimalPoints(totalPriceOfCarport);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

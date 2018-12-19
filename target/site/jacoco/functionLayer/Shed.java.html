@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Shed.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Carport</a> &gt; <a href="index.source.html" class="el_package">functionLayer</a> &gt; <span class="el_source">Shed.java</span></div><h1>Shed.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package functionLayer;
+
+/**
+ *
+ * @author oerte
+ */
+public class Shed {
+
+    private int shed_id;
+    private double shed_length;
+    private double shed_width;
+    private int shed_facade_id;
+
+<span class="fc" id="L19">    public Shed(double shed_length, double shed_width) {</span>
+<span class="fc" id="L20">        this.shed_length = shed_length;</span>
+<span class="fc" id="L21">        this.shed_width = shed_width;</span>
+<span class="fc" id="L22">    }</span>
+
+<span class="fc" id="L24">    public Shed(int shed_id, double shed_length, double shed_width) {</span>
+<span class="fc" id="L25">        this.shed_id = shed_id;</span>
+<span class="fc" id="L26">        this.shed_length = shed_length;</span>
+<span class="fc" id="L27">        this.shed_width = shed_width;</span>
+<span class="fc" id="L28">    }</span>
+    
+    
+
+    @Override
+    public String toString() {
+<span class="nc" id="L34">        return &quot;Shed{&quot; + &quot;shed_length=&quot; + shed_length + &quot;, shed_width=&quot; + shed_width + '}';</span>
+    }
+    
+
+    public void setShed_id(int shed_id) {
+<span class="fc" id="L39">        this.shed_id = shed_id;</span>
+<span class="fc" id="L40">    }</span>
+
+    public int getShed_id() {
+<span class="fc" id="L43">        return shed_id;</span>
+    }
+
+    public double getShed_length() {
+<span class="fc" id="L47">        return shed_length;</span>
+    }
+
+    public double getShed_width() {
+<span class="fc" id="L51">        return shed_width;</span>
+    }
+
+    public int getShed_facade_id() {
+<span class="nc" id="L55">        return shed_facade_id;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

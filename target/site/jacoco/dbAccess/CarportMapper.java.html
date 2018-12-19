@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CarportMapper.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Carport</a> &gt; <a href="index.source.html" class="el_package">dbAccess</a> &gt; <span class="el_source">CarportMapper.java</span></div><h1>CarportMapper.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package dbAccess;
+
+import functionLayer.Carport;
+import functionLayer.Shed;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+/**
+ *
+ * @author oerte
+ */
+<span class="fc" id="L23">public class CarportMapper {</span>
+
+<span class="fc" id="L25">    private final String ADD_Carport = &quot;INSERT INTO `carport`(`carport_length`,`carport_width`,`degrees`,`roof`,`roof_material`,`total_price`,`shed_id`,`customer_id`)VALUES(?,?,?,?,?,?,?,?);&quot;;</span>
+<span class="fc" id="L26">    private final String ADD_SHED = &quot;INSERT INTO `shed` (shed_length, shed_width) VALUES (?,?)&quot;;</span>
+<span class="fc" id="L27">    private final String GET_ORDER_BY_STATUS = &quot;SELECT * FROM `carport` WHERE `status_of_order` = ?;&quot;;</span>
+<span class="fc" id="L28">    private final String GET_ALL_ORDERS = &quot;SELECT * FROM `carport`;&quot;;</span>
+<span class="fc" id="L29">    private final String GET_SHED_BY_ID = &quot;SELECT * FROM `shed` WHERE `shed_id` = ?;&quot;;</span>
+<span class="fc" id="L30">    private final String UPDATE_ORDER_STATUS = &quot;UPDATE `carport` SET `status_of_order` = ? WHERE `carport_id` = ?;&quot;;</span>
+<span class="fc" id="L31">    private final String GET_CARPORT_BY_ID = &quot;SELECT * FROM `carport` WHERE `carport_id` = ?;&quot;;</span>
+    
+    
+    public void addCarport(Carport carport, Shed shed) {
+        try {
+<span class="fc" id="L36">            Connection c = Connector.connection();</span>
+<span class="fc" id="L37">            String query = ADD_Carport;</span>
+<span class="fc" id="L38">            PreparedStatement pstmt = c.prepareStatement(query);</span>
+<span class="fc" id="L39">            Shed s = addShed(shed);</span>
+
+<span class="fc" id="L41">            pstmt.setDouble(1, carport.getCarport_length());</span>
+<span class="fc" id="L42">            pstmt.setDouble(2, carport.getCarport_width());</span>
+<span class="fc" id="L43">            pstmt.setDouble(3, carport.getDegrees());</span>
+<span class="fc" id="L44">            pstmt.setString(4, carport.getRoof());</span>
+<span class="fc" id="L45">            pstmt.setString(5, carport.getRoofMaterial());</span>
+<span class="fc" id="L46">            pstmt.setDouble(6, carport.getTotal_price());</span>
+<span class="fc" id="L47">            pstmt.setInt(7, s.getShed_id());</span>
+<span class="fc" id="L48">            pstmt.setInt(8, carport.getCustomer_id());</span>
+<span class="fc" id="L49">            System.out.println(carport.toString());</span>
+
+<span class="fc" id="L51">            pstmt.executeUpdate();</span>
+<span class="fc" id="L52">            pstmt.close();</span>
+            
+
+<span class="nc" id="L55">        } catch (SQLException  ex) {</span>
+<span class="nc" id="L56">            System.out.println(ex.getMessage() +&quot; &quot;+ CarportMapper.class.getName());</span>
+<span class="fc" id="L57">        }</span>
+<span class="fc" id="L58">    }</span>
+
+    public Shed addShed(Shed shed) {
+<span class="fc" id="L61">        int id = 0;</span>
+        try {
+<span class="fc" id="L63">            Connection c = Connector.connection();</span>
+<span class="fc" id="L64">            String query = ADD_SHED;</span>
+<span class="fc" id="L65">            PreparedStatement pstmt = c.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);</span>
+
+<span class="fc" id="L67">            pstmt.setDouble(1, shed.getShed_length());</span>
+<span class="fc" id="L68">            pstmt.setDouble(2, shed.getShed_width());</span>
+
+<span class="fc" id="L70">            pstmt.executeUpdate();</span>
+<span class="fc" id="L71">            ResultSet ids = pstmt.getGeneratedKeys();</span>
+<span class="fc" id="L72">            ids.next();</span>
+<span class="fc" id="L73">            id = ids.getInt(1);</span>
+<span class="fc" id="L74">            shed.setShed_id(id);</span>
+<span class="fc" id="L75">            pstmt.close();</span>
+<span class="fc" id="L76">            return shed;</span>
+
+<span class="nc" id="L78">        } catch (SQLException ex) {</span>
+<span class="nc" id="L79">            System.out.println(ex.getMessage() +&quot; &quot;+ CarportMapper.class.getName());</span>
+        }
+<span class="nc" id="L81">        return null;</span>
+    }
+
+    public Shed getShedById(int shed_id) {
+        try {
+<span class="fc" id="L86">            Connection c = Connector.connection();</span>
+<span class="fc" id="L87">            String query = GET_SHED_BY_ID;</span>
+<span class="fc" id="L88">            PreparedStatement pstmt = c.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);</span>
+<span class="fc" id="L89">            pstmt.setInt(1, shed_id);</span>
+<span class="fc" id="L90">            ResultSet res = pstmt.executeQuery();</span>
+
+<span class="fc bfc" id="L92" title="All 2 branches covered.">            if (res.next()) {</span>
+<span class="fc" id="L93">                double shedLength = res.getDouble(&quot;shed_length&quot;);</span>
+<span class="fc" id="L94">                double shedWidth = res.getDouble(&quot;shed_width&quot;);</span>
+<span class="fc" id="L95">                Shed shed = new Shed(shedLength, shedWidth);</span>
+<span class="fc" id="L96">                return shed;</span>
+            }
+<span class="nc" id="L98">        } catch (SQLException ex) {</span>
+<span class="nc" id="L99">            System.out.println(ex.getMessage() +&quot; &quot;+ CarportMapper.class.getName());</span>
+<span class="fc" id="L100">        }</span>
+<span class="fc" id="L101">        return null;</span>
+    }
+
+    public List&lt;Carport&gt; getCarportByStatus(String enumValue) {
+        try {
+<span class="fc" id="L106">            List&lt;Carport&gt; carportList = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L107">            Connection c = Connector.connection();</span>
+<span class="fc" id="L108">            String query = GET_ORDER_BY_STATUS;</span>
+<span class="fc" id="L109">            PreparedStatement pstmt = c.prepareStatement(query);</span>
+<span class="fc" id="L110">            pstmt.setString(1, enumValue);</span>
+<span class="fc" id="L111">            ResultSet res = pstmt.executeQuery();</span>
+
+<span class="fc bfc" id="L113" title="All 2 branches covered.">            while (res.next()) {</span>
+<span class="fc" id="L114">                int carport_id = res.getInt(&quot;carport_id&quot;);</span>
+<span class="fc" id="L115">                Date date = res.getDate(&quot;date&quot;);</span>
+<span class="fc" id="L116">                double carportLength = res.getDouble(&quot;carport_length&quot;);</span>
+<span class="fc" id="L117">                double carportWidth = res.getDouble(&quot;carport_width&quot;);</span>
+<span class="fc" id="L118">                double degrees = res.getDouble(&quot;degrees&quot;);</span>
+<span class="fc" id="L119">                String roofType = res.getString(&quot;roof&quot;);</span>
+<span class="fc" id="L120">                String roofMaterial = res.getString(&quot;roof_material&quot;);</span>
+<span class="fc" id="L121">                double totalPrice = res.getDouble(&quot;total_price&quot;);</span>
+<span class="fc" id="L122">                String orderStatus = res.getString(&quot;status_of_order&quot;);</span>
+<span class="fc" id="L123">                int shedID = res.getInt(&quot;shed_id&quot;);</span>
+<span class="fc" id="L124">                Shed shed = getShedById(shedID);</span>
+<span class="fc" id="L125">                int customerID = res.getInt(&quot;customer_id&quot;);</span>
+<span class="fc" id="L126">                int userID = res.getInt(&quot;user_id&quot;);</span>
+<span class="fc" id="L127">                Carport carport = new Carport(carport_id, date, carportLength, carportWidth, degrees, roofType, roofMaterial, totalPrice, orderStatus, shedID, customerID, shed);</span>
+<span class="fc" id="L128">                carportList.add(carport);</span>
+<span class="fc" id="L129">            }</span>
+<span class="fc" id="L130">            return carportList;</span>
+<span class="nc" id="L131">        } catch (SQLException ex) {</span>
+<span class="nc" id="L132">            System.out.println(ex.getMessage() +&quot; &quot;+ CarportMapper.class.getName());</span>
+        }
+<span class="nc" id="L134">        return null;</span>
+    }
+
+    public List&lt;Carport&gt; getAllCarportOrders() {
+        try {
+<span class="fc" id="L139">            List&lt;Carport&gt; carportList = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L140">            Connection c = Connector.connection();</span>
+<span class="fc" id="L141">            String query = GET_ALL_ORDERS;</span>
+<span class="fc" id="L142">            PreparedStatement pstmt = c.prepareStatement(query);</span>
+<span class="fc" id="L143">            ResultSet res = pstmt.executeQuery();</span>
+<span class="fc bfc" id="L144" title="All 2 branches covered.">            while (res.next()) {</span>
+<span class="fc" id="L145">                int carport_id = res.getInt(&quot;carport_id&quot;);</span>
+<span class="fc" id="L146">                Date date = res.getDate(&quot;date&quot;);</span>
+<span class="fc" id="L147">                double carportLength = res.getDouble(&quot;carport_length&quot;);</span>
+<span class="fc" id="L148">                double carportWidth = res.getDouble(&quot;carport_width&quot;);</span>
+<span class="fc" id="L149">                double degrees = res.getDouble(&quot;degrees&quot;);</span>
+<span class="fc" id="L150">                String roofType = res.getString(&quot;roof&quot;);</span>
+<span class="fc" id="L151">                String roofMaterial = res.getString(&quot;roof_material&quot;);</span>
+<span class="fc" id="L152">                double totalPrice = res.getDouble(&quot;total_price&quot;);</span>
+<span class="fc" id="L153">                String orderStatus = res.getString(&quot;status_of_order&quot;);</span>
+<span class="fc" id="L154">                int shedID = res.getInt(&quot;shed_id&quot;);</span>
+<span class="fc" id="L155">                Shed shed = getShedById(shedID);</span>
+<span class="fc" id="L156">                int customerID = res.getInt(&quot;customer_id&quot;);</span>
+<span class="fc" id="L157">                int userID = res.getInt(&quot;user_id&quot;);</span>
+<span class="fc" id="L158">                Carport carport = new Carport(carport_id, date, carportLength, carportWidth, degrees, roofType, roofMaterial, totalPrice, orderStatus, shedID, customerID, shed);</span>
+<span class="fc" id="L159">                carportList.add(carport);</span>
+<span class="fc" id="L160">            }</span>
+<span class="fc" id="L161">            return carportList;</span>
+<span class="nc" id="L162">        } catch (SQLException ex) {</span>
+<span class="nc" id="L163">            System.out.println(ex.getMessage() +&quot; &quot;+ CarportMapper.class.getName());</span>
+        }
+<span class="nc" id="L165">        return null;</span>
+    }
+
+    public void updateOrderStatus(String status, int id) {
+        try {
+<span class="fc" id="L170">            Connection c = Connector.connection();</span>
+<span class="fc" id="L171">            String query = UPDATE_ORDER_STATUS;</span>
+<span class="fc" id="L172">            PreparedStatement pstmt = c.prepareStatement(query);</span>
+
+<span class="fc" id="L174">            pstmt.setString(1, status);</span>
+<span class="fc" id="L175">            pstmt.setInt(2, id);</span>
+
+<span class="fc" id="L177">            pstmt.executeUpdate();</span>
+<span class="fc" id="L178">            pstmt.close();</span>
+
+<span class="nc" id="L180">        } catch (SQLException ex) {</span>
+<span class="nc" id="L181">            System.out.println(ex.getMessage() +&quot; &quot;+ CarportMapper.class.getName());</span>
+<span class="fc" id="L182">        }</span>
+
+<span class="fc" id="L184">    }</span>
+    
+     public Carport getCarportById(int id) {
+        try {
+<span class="fc" id="L188">            Connection c = Connector.connection();</span>
+<span class="fc" id="L189">            String query = GET_CARPORT_BY_ID;</span>
+<span class="fc" id="L190">            PreparedStatement pstmt = c.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);</span>
+<span class="fc" id="L191">            pstmt.setInt(1, id);</span>
+<span class="fc" id="L192">            ResultSet res = pstmt.executeQuery();</span>
+
+<span class="pc bpc" id="L194" title="1 of 2 branches missed.">            if (res.next()) {</span>
+<span class="fc" id="L195">                int carport_id = res.getInt(&quot;carport_id&quot;);</span>
+<span class="fc" id="L196">                Date date = res.getDate(&quot;date&quot;);</span>
+<span class="fc" id="L197">                double carportLength = res.getDouble(&quot;carport_length&quot;);</span>
+<span class="fc" id="L198">                double carportWidth = res.getDouble(&quot;carport_width&quot;);</span>
+<span class="fc" id="L199">                double degrees = res.getDouble(&quot;degrees&quot;);</span>
+<span class="fc" id="L200">                String roofType = res.getString(&quot;roof&quot;);</span>
+<span class="fc" id="L201">                String roofMaterial = res.getString(&quot;roof_material&quot;);</span>
+<span class="fc" id="L202">                double totalPrice = res.getDouble(&quot;total_price&quot;);</span>
+<span class="fc" id="L203">                String orderStatus = res.getString(&quot;status_of_order&quot;);</span>
+<span class="fc" id="L204">                int shedID = res.getInt(&quot;shed_id&quot;);</span>
+<span class="fc" id="L205">                Shed shed = getShedById(shedID);</span>
+<span class="fc" id="L206">                int customerID = res.getInt(&quot;customer_id&quot;);</span>
+<span class="fc" id="L207">                int userID = res.getInt(&quot;user_id&quot;);</span>
+<span class="fc" id="L208">                Carport carport = new Carport(carport_id, date, carportLength, carportWidth, degrees, roofType, roofMaterial, totalPrice, orderStatus, shedID, customerID, shed);</span>
+<span class="fc" id="L209">                return carport;</span>
+            }
+<span class="nc" id="L211">        } catch (SQLException ex) {</span>
+<span class="nc" id="L212">            System.out.println(ex.getMessage() +&quot; &quot;+ CarportMapper.class.getName());</span>
+<span class="nc" id="L213">        }</span>
+<span class="nc" id="L214">        return null;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

@@ -1,3 +1,6 @@
-/target/
-/nbproject/
-dbAccess
+# Logs and databases #
+######################
+Connector.java
+DefaultLogger.java
+
+

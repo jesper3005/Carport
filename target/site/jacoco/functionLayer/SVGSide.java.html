@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SVGSide.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Carport</a> &gt; <a href="index.source.html" class="el_package">functionLayer</a> &gt; <span class="el_source">SVGSide.java</span></div><h1>SVGSide.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package functionLayer;
+import static functionLayer.Rules.*;
+
+/**
+ *
+ * @author Jesper
+ */
+public class SVGSide {
+
+<span class="nc" id="L15">    private String mySVG = null;</span>
+<span class="nc" id="L16">    private StringBuilder sb = new StringBuilder();</span>
+
+    //-----RULES HERE--------
+<span class="nc" id="L19">    double startPosXY = 200;</span>
+    
+
+
+<span class="nc" id="L23">    public SVGSide(Carport carport, Shed shed, double height) {</span>
+<span class="nc" id="L24">        this.sb = sb.append(&quot;&lt;SVG width=\&quot;800\&quot; height=\&quot;500\&quot;&gt;&quot;);</span>
+        
+<span class="nc" id="L26">        double length = carport.getCarport_length();</span>
+<span class="nc" id="L27">        double width = carport.getCarport_width();</span>
+<span class="nc" id="L28">        double degree = carport.getDegrees();</span>
+<span class="nc" id="L29">        double shedLength = shed.getShed_length();</span>
+<span class="nc" id="L30">        double shedWidth = shed.getShed_width();</span>
+        //ADD ALL METHODS FOR SVG DRAWING FROM TOP
+<span class="nc" id="L32">        sb.append(createRem(length));</span>
+<span class="nc" id="L33">        sb.append(createStolper(length, height));</span>
+
+<span class="nc bnc" id="L35" title="All 2 branches missed.">        if (shedLength &gt; 0) {</span>
+<span class="nc" id="L36">            sb.append(createShed(length, shedWidth, shedLength, shedWidth, height));</span>
+        }
+        
+<span class="nc bnc" id="L39" title="All 2 branches missed.">        if(carport.getRoof().equals(&quot;PEAK&quot;)) {</span>
+<span class="nc" id="L40">            sb.append(createPointedRoof(length, width, degree));</span>
+        }
+        
+
+<span class="nc" id="L44">        sb.append(&quot;&lt;/SVG&gt;&quot;);</span>
+<span class="nc" id="L45">        this.mySVG = sb.toString();</span>
+<span class="nc" id="L46">    }</span>
+
+    public String getMySVG() {
+<span class="nc" id="L49">        return mySVG;</span>
+    }
+
+    public String createRem(double length) {
+
+<span class="nc" id="L54">        sb.append(&quot;&lt;rect x=\&quot;&quot;).append(startPosXY).append(&quot;\&quot; y=\&quot;&quot;).append(startPosXY).append(&quot;\&quot; height=\&quot;&quot;).append(REM_HEIGHT).append(&quot;\&quot; width=\&quot;&quot;).append(length).append(&quot;\&quot; style=\&quot;stroke: #292929; fill:none; stroke-width: 2;\&quot;/&gt;&quot;);</span>
+<span class="nc" id="L55">        return sb.toString();</span>
+    }
+    
+    public String createStolper(double length, double height) {
+<span class="nc" id="L59">        double x1 = startPosXY + POLES_GAP_REM;</span>
+<span class="nc" id="L60">        double x2 = startPosXY + length - (POLES_GAP_REM*2);</span>
+<span class="nc" id="L61">        double y = startPosXY + REM_HEIGHT;</span>
+        
+<span class="nc" id="L63">        System.out.println(x2);</span>
+<span class="nc" id="L64">        sb.append(&quot;&lt;rect x=\&quot;&quot;).append(x1).append(&quot;\&quot; y=\&quot;&quot;).append(y).append(&quot;\&quot; height=\&quot;&quot;).append(height).append(&quot;\&quot; width=\&quot;&quot;).append(POLES_WIDTH).append(&quot;\&quot; style=\&quot;stroke: #292929; fill:1;\&quot;/&gt;&quot;);</span>
+<span class="nc" id="L65">        sb.append(&quot;&lt;rect x=\&quot;&quot;).append(x2).append(&quot;\&quot; y=\&quot;&quot;).append(y).append(&quot;\&quot; height=\&quot;&quot;).append(height).append(&quot;\&quot; width=\&quot;&quot;).append(POLES_WIDTH).append(&quot;\&quot; style=\&quot;stroke: #292929; fill:1;\&quot;/&gt;&quot;);</span>
+
+<span class="nc" id="L67">        return sb.toString();</span>
+    }
+
+    public String createShed(double length, double width, double shedLength, double shedWidth, double height) {
+<span class="nc" id="L71">        double qtyShedLength = Math.ceil(shedLength / SHED_PLANK_WIDTH);</span>
+<span class="nc" id="L72">        double y = startPosXY + REM_HEIGHT;</span>
+
+<span class="nc" id="L74">        double x = startPosXY + length - (POLES_GAP_REM * 2);</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">        for (int i = 0; i &lt; qtyShedLength; i++) {</span>
+<span class="nc" id="L76">            sb.append(&quot;&lt;rect x=\&quot;&quot;).append(x).append(&quot;\&quot; y=\&quot;&quot;).append(y).append(&quot;\&quot; height=\&quot;&quot;).append(height).append(&quot;\&quot; width=\&quot;&quot;).append(SHED_PLANK_WIDTH).append(&quot;\&quot; style=\&quot;stroke: #292929; fill:none;\&quot;/&gt;&quot;);</span>
+<span class="nc" id="L77">            x -= SHED_PLANK_WIDTH;</span>
+        }
+
+<span class="nc" id="L80">        return sb.toString();</span>
+    }
+
+    public String createPointedRoof(double length, double width, double degree) {
+<span class="nc" id="L84">        double sinC = 180 - (2 * degree);</span>
+       
+        //Calculates the length of the hypotenusen (The length of the rem depending on the angle 
+<span class="nc" id="L87">        double hypo = (width * Math.sin(degree * (Math.PI/180))) / Math.sin(sinC * (Math.PI/180));</span>
+        
+<span class="nc" id="L89">        double lengthOfLægte = (width + hypo + hypo/2) / 0.5 * width;</span>
+        
+        
+<span class="nc" id="L92">        double y = 0;</span>
+        
+<span class="nc" id="L94">        sb.append(&quot;&lt;rect x=\&quot;&quot;).append(startPosXY).append(&quot;\&quot; y=\&quot;&quot;).append(y).append(&quot;\&quot; height=\&quot;&quot;).append(lengthOfLægte).append(&quot;\&quot; width=\&quot;&quot;).append(BATTEN_WIDTH).append(&quot;\&quot; style=\&quot;stroke: #292929; fill:none;\&quot;/&gt;&quot;);</span>
+        
+        
+        
+<span class="nc" id="L98">        return sb.toString();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

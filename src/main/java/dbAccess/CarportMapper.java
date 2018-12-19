@@ -29,8 +29,7 @@ public class CarportMapper {
     private final String GET_SHED_BY_ID = "SELECT * FROM `shed` WHERE `shed_id` = ?;";
     private final String UPDATE_ORDER_STATUS = "UPDATE `carport` SET `status_of_order` = ? WHERE `carport_id` = ?;";
     private final String GET_CARPORT_BY_ID = "SELECT * FROM `carport` WHERE `carport_id` = ?;";
-    
-    
+
     public void addCarport(Carport carport, Shed shed) {
         try {
             Connection c = Connector.connection();
@@ -50,15 +49,9 @@ public class CarportMapper {
 
             pstmt.executeUpdate();
             pstmt.close();
-            
 
-<<<<<<< HEAD
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage() + " addCarport in carportMapper failed");
-=======
-        } catch (SQLException  ex) {
-            System.out.println(ex.getMessage() +" "+ CarportMapper.class.getName());
->>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
+            System.out.println(ex.getMessage() + " " + CarportMapper.class.getName());
         }
     }
 
@@ -81,11 +74,7 @@ public class CarportMapper {
             return shed;
 
         } catch (SQLException ex) {
-<<<<<<< HEAD
-            System.out.println(ex.getMessage() + " addShed in carportMapper");
-=======
-            System.out.println(ex.getMessage() +" "+ CarportMapper.class.getName());
->>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
+            System.out.println(ex.getMessage() + " " + CarportMapper.class.getName());
         }
         return null;
     }
@@ -105,11 +94,7 @@ public class CarportMapper {
                 return shed;
             }
         } catch (SQLException ex) {
-<<<<<<< HEAD
-            ex.getMessage();
-=======
-            System.out.println(ex.getMessage() +" "+ CarportMapper.class.getName());
->>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
+            System.out.println(ex.getMessage() + " " + CarportMapper.class.getName());
         }
         return null;
     }
@@ -142,11 +127,7 @@ public class CarportMapper {
             }
             return carportList;
         } catch (SQLException ex) {
-<<<<<<< HEAD
-            System.out.println(ex.getMessage());
-=======
-            System.out.println(ex.getMessage() +" "+ CarportMapper.class.getName());
->>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
+            System.out.println(ex.getMessage() + " " + CarportMapper.class.getName());
         }
         return null;
     }
@@ -177,11 +158,7 @@ public class CarportMapper {
             }
             return carportList;
         } catch (SQLException ex) {
-<<<<<<< HEAD
-            System.out.println(ex.getMessage());
-=======
-            System.out.println(ex.getMessage() +" "+ CarportMapper.class.getName());
->>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
+            System.out.println(ex.getMessage() + " " + CarportMapper.class.getName());
         }
         return null;
     }
@@ -199,16 +176,12 @@ public class CarportMapper {
             pstmt.close();
 
         } catch (SQLException ex) {
-<<<<<<< HEAD
-            System.out.println(ex.getMessage());
-=======
-            System.out.println(ex.getMessage() +" "+ CarportMapper.class.getName());
->>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
+            System.out.println(ex.getMessage() + " " + CarportMapper.class.getName());
         }
 
     }
-    
-     public Carport getCarportById(int id) {
+
+    public Carport getCarportById(int id) {
         try {
             Connection c = Connector.connection();
             String query = GET_CARPORT_BY_ID;
@@ -234,11 +207,7 @@ public class CarportMapper {
                 return carport;
             }
         } catch (SQLException ex) {
-<<<<<<< HEAD
-            System.out.println(ex.getMessage());  
-=======
-            System.out.println(ex.getMessage() +" "+ CarportMapper.class.getName());
->>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
+            System.out.println(ex.getMessage() + " " + CarportMapper.class.getName());
         }
         return null;
     }

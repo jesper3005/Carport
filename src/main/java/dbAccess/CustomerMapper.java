@@ -22,7 +22,7 @@ public class CustomerMapper {
     private final String ADD_CUSTOMER = "INSERT INTO `customer`(`first_name`,`last_name`,`email`,`street_address`,`town`,`zip_code`,`telephone_number`,`comments`)VALUES(?,?,?,?,?,?,?,?);";
     private final String ADD_CUSTOMER_AND_USER = "INSERT INTO `customer`(`first_name`,`last_name`,`email`,`street_address`,`town`,`zip_code`,`telephone_number`)VALUES(?,?,?,?,?,?,?);";
     private final String GET_CUSTOMER_BY_ID = "SELECT `*` FROM `customer` WHERE `customer_id`= ?;";
-    
+
     public Customer getCustomerByEmail(String email) {
         try {
             Customer customer;
@@ -48,11 +48,7 @@ public class CustomerMapper {
             }
 
         } catch (SQLException ex) {
-<<<<<<< HEAD
-            System.out.println(ex.getMessage() + " getCustomerByEmail");
-=======
-            System.out.println(ex.getMessage() +" "+ CustomerMapper.class.getName());
->>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
+            System.out.println(ex.getMessage() + " " + CustomerMapper.class.getName());
         }
         return null;
     }
@@ -77,11 +73,7 @@ public class CustomerMapper {
             return customer;
 
         } catch (SQLException ex) {
-<<<<<<< HEAD
-            System.out.println(ex.getMessage() + " addCustomer");
-=======
-            System.out.println(ex.getMessage() +" "+ CustomerMapper.class.getName());
->>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
+            System.out.println(ex.getMessage() + " " + CustomerMapper.class.getName());
         }
         return null;
     }
@@ -92,7 +84,7 @@ public class CustomerMapper {
             Connection c = Connector.connection();
             String query = ADD_CUSTOMER_AND_USER;
             PreparedStatement pstmt = c.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            
+
             pstmt.setString(1, customer.getFirstName());
             pstmt.setString(2, customer.getLastName());
             pstmt.setString(3, customer.getEmail());
@@ -109,15 +101,11 @@ public class CustomerMapper {
             return id;
 
         } catch (SQLException ex) {
-<<<<<<< HEAD
-            System.out.println(ex.getMessage() + " addCustomer");
-=======
-            System.out.println(ex.getMessage() +" "+ CustomerMapper.class.getName());
->>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
+            System.out.println(ex.getMessage() + " " + CustomerMapper.class.getName());
         }
         return 0;
     }
-    
+
     public Customer getCustomerByID(int id) {
         try {
             Customer customer;
@@ -143,15 +131,9 @@ public class CustomerMapper {
             }
 
         } catch (SQLException ex) {
-<<<<<<< HEAD
-            System.out.println(ex.getMessage() + " getCustomerByEmail");
-=======
-            System.out.println(ex.getMessage() +" "+ CustomerMapper.class.getName());
->>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
+            System.out.println(ex.getMessage() + " " + CustomerMapper.class.getName());
         }
         return null;
     }
-
-    
 
 }

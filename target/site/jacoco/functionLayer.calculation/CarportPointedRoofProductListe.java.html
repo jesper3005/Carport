@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CarportPointedRoofProductListe.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Carport</a> &gt; <a href="index.source.html" class="el_package">functionLayer.calculation</a> &gt; <span class="el_source">CarportPointedRoofProductListe.java</span></div><h1>CarportPointedRoofProductListe.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package functionLayer.calculation;
+
+import functionLayer.LogicFacade;
+import functionLayer.Product;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * @author oerte
+ */
+<span class="nc" id="L17">public class CarportPointedRoofProductListe {</span>
+
+<span class="nc" id="L19">    private  List&lt;Product&gt; list = LogicFacade.getAllProductsFromDatabase();</span>
+<span class="nc" id="L20">    private  CalcBattens battens = new CalcBattens();</span>
+<span class="nc" id="L21">    private  CalcBeam beam = new CalcBeam();//rem</span>
+<span class="nc" id="L22">    private  CalcRoof roof = new CalcRoof();</span>
+<span class="nc" id="L23">    private  CalcPoles poles = new CalcPoles();//stolper</span>
+<span class="nc" id="L24">    private  CalcNails nail = new CalcNails(); //søm</span>
+<span class="nc" id="L25">    private  CalcAngleBracket angleBracket = new CalcAngleBracket();//vinkelbeslag</span>
+<span class="nc" id="L26">    private  CalcScrew screw = new CalcScrew();//skrue</span>
+<span class="nc" id="L27">    private  CalcOuterLayerOfShed shedOuterLayer = new CalcOuterLayerOfShed();</span>
+<span class="nc" id="L28">    private  CalcShedSkeletton shed_InnerLayer = new CalcShedSkeletton();</span>
+<span class="nc" id="L29">    private  CalcLøsholt løsholdt = new CalcLøsholt();</span>
+<span class="nc" id="L30">    private  CalcFrontAndBackBeklædning arealTriangleBackAndFront = new CalcFrontAndBackBeklædning();</span>
+
+    private  Product pBattens;
+    private  Product pBeam;
+    private  Product pRoof;
+    private  Product pPoles;
+    private  Product pshed_innerLayer;
+    private  Product pOuterLayer;
+    private  Product pLøsholdt;
+    private  Product pArealTriangleBackAndFront;
+
+
+    public List&lt;Product&gt; carportCalculaterPointedRoof(double length, double width, double degree, String roofMaterial) {
+        
+<span class="nc bnc" id="L44" title="All 6 branches missed.">        if (length &lt;= 0 || width &lt;= 0 || degree &lt;= 0) {</span>
+<span class="nc" id="L45">            throw new IllegalArgumentException();</span>
+        }
+<span class="nc bnc" id="L47" title="All 2 branches missed.">        if (roofMaterial.isEmpty()) {</span>
+<span class="nc" id="L48">            throw new NullPointerException();</span>
+        }
+
+        // List included everything needed to build the requestet carport
+<span class="nc" id="L52">        List&lt;Product&gt; stykliste = new ArrayList&lt;&gt;();</span>
+
+        try {
+            //Objekter Af Carport part calculations
+<span class="nc" id="L56">            pBattens = battens.calcAntalPointedRoof(length, width, degree, list);</span>
+<span class="nc" id="L57">            pBeam = beam.calcAntal(length, width, list);</span>
+<span class="nc" id="L58">            pRoof = roof.calcAntalPointedRoof(length, width, degree, roofMaterial, list);</span>
+<span class="nc" id="L59">            pPoles = poles.calcAntal(length, width, list);</span>
+<span class="nc" id="L60">            pLøsholdt = løsholdt.calcAntalPointedRoof(length, width, degree, list);</span>
+<span class="nc" id="L61">            pArealTriangleBackAndFront = arealTriangleBackAndFront.calcAntal(length, width, degree, list);</span>
+//
+//            //4 nails per battens ('36', 'NKT FIRKANT SØM 1,6X25MM VARMFORZINKET', 'søm', '36', '0', '0', '0')
+<span class="nc" id="L64">            stykliste.add(nail.calcAntal_25mm_Varmforzinket(pPoles.getQty(), list));</span>
+//            /*
+//            2 angle bracket per pole
+//            4 angle bracket per beam
+//             */
+<span class="nc" id="L69">            double antal = ((pPoles.getQty() * 2) + (pBeam.getQty() * 4));</span>
+<span class="nc" id="L70">            stykliste.add(angleBracket.calcAntal(antal, list));</span>
+//            //6 screws per angle bracket ('33', 'NKT SPUN+ SKRUE UHJ 3,5X30MM TORX ELFORZINKET', 'skrue', '36', '0', '0', '0')
+<span class="nc" id="L72">            stykliste.add(screw.calcAntal_3komma5X30MM(antal, list));</span>
+//
+<span class="nc" id="L74">            stykliste.add(pBattens);</span>
+<span class="nc" id="L75">            stykliste.add(pBeam);</span>
+<span class="nc" id="L76">            stykliste.add(pRoof);</span>
+<span class="nc" id="L77">            stykliste.add(pPoles);</span>
+<span class="nc" id="L78">            stykliste.add(pLøsholdt);</span>
+<span class="nc" id="L79">            stykliste.add(pArealTriangleBackAndFront);</span>
+<span class="nc" id="L80">            stykliste.add(beam.calcAntalPointedRoofTOP(length, width, list));</span>
+
+<span class="nc" id="L82">            return stykliste;</span>
+<span class="nc" id="L83">        } catch (Exception e) {</span>
+<span class="nc" id="L84">            System.out.println(e.getMessage() +&quot; &quot;+ CarportPointedRoofProductListe.class.getName());</span>
+        }
+<span class="nc" id="L86">        return null;</span>
+
+    }
+
+    public List&lt;Product&gt; carportCalculaterPointedRoofIncludingShed(double length, double width, double degree, double shedLength, double shedWidth, String roofMaterial) {
+        
+<span class="nc bnc" id="L92" title="All 6 branches missed.">        if (length &lt;= 0 || width &lt;= 0 || degree &lt;= 0) {</span>
+<span class="nc" id="L93">            throw new IllegalArgumentException();</span>
+        }
+<span class="nc bnc" id="L95" title="All 2 branches missed.">        if (roofMaterial.isEmpty()) {</span>
+<span class="nc" id="L96">            throw new NullPointerException();</span>
+        }
+
+        // List included everything needed to build the requestet carport
+<span class="nc" id="L100">        List&lt;Product&gt; stykliste = new ArrayList&lt;&gt;();</span>
+
+        try {
+            //Objekter Af Carport part calculations
+
+<span class="nc" id="L105">            pBattens = battens.calcAntalPointedRoof(length, width, degree, list);</span>
+<span class="nc" id="L106">            pBeam = beam.calcAntal(length, width, list);</span>
+<span class="nc" id="L107">            System.out.println(roofMaterial + &quot;carportcalculator&quot;);</span>
+<span class="nc" id="L108">            pRoof = roof.calcAntalPointedRoof(length, width, degree, roofMaterial, list);</span>
+<span class="nc" id="L109">            pPoles = poles.calcAntal(length, width, list);</span>
+<span class="nc" id="L110">            pLøsholdt = løsholdt.calcAntalPointedRoof(length, width, degree, list);</span>
+<span class="nc" id="L111">            pArealTriangleBackAndFront = arealTriangleBackAndFront.calcAntal(length, width, degree, list);</span>
+
+            
+            //4 nails per battens ('36', 'NKT FIRKANT SØM 1,6X25MM VARMFORZINKET', 'søm', '36', '0', '0', '0')
+<span class="nc" id="L115">            stykliste.add(nail.calcAntal_25mm_Varmforzinket(pPoles.getQty(), list));</span>
+            /*
+            2 angle bracket per pole
+            4 angle bracket per beam
+             */
+<span class="nc" id="L120">            double antal = ((pPoles.getQty() * 2) + (pBeam.getQty() * 4));</span>
+<span class="nc" id="L121">            stykliste.add(angleBracket.calcAntal(antal, list));</span>
+            //6 screws per angle bracket ('33', 'NKT SPUN+ SKRUE UHJ 3,5X30MM TORX ELFORZINKET', 'skrue', '36', '0', '0', '0')
+<span class="nc" id="L123">            stykliste.add(screw.calcAntal_3komma5X30MM(antal, list));</span>
+
+            //add all from doorList to styklist
+<span class="nc" id="L126">            List&lt;Product&gt; doorList = shedOuterLayer.calcAntalDoor(list);</span>
+<span class="nc bnc" id="L127" title="All 2 branches missed.">            for (Product product : doorList) {</span>
+<span class="nc" id="L128">                stykliste.add(product);</span>
+<span class="nc" id="L129">            }</span>
+
+<span class="nc" id="L131">            stykliste.add(pBattens);</span>
+<span class="nc" id="L132">            stykliste.add(pBeam);</span>
+<span class="nc" id="L133">            stykliste.add(pRoof);</span>
+<span class="nc" id="L134">            stykliste.add(pPoles);</span>
+<span class="nc" id="L135">            stykliste.add(pLøsholdt);</span>
+<span class="nc" id="L136">            stykliste.add(pArealTriangleBackAndFront);</span>
+<span class="nc" id="L137">            stykliste.add(beam.calcAntalPointedRoofTOP(length, width, list));</span>
+            //
+<span class="nc" id="L139">            stykliste.add(shed_InnerLayer.calcAntalHorizontal(shedLength, shedWidth, list));</span>
+<span class="nc" id="L140">            stykliste.add(shed_InnerLayer.calcAntalVerticalFrontAndBack(shedLength, shedWidth, list));</span>
+<span class="nc" id="L141">            stykliste.add(shed_InnerLayer.calcAntalVerticalLeftAndRight(shedLength, shedWidth, list));</span>
+            //
+<span class="nc" id="L143">            stykliste.add(shedOuterLayer.calAntal(length, width, list));</span>
+
+<span class="nc" id="L145">            return stykliste;</span>
+<span class="nc" id="L146">        } catch (Exception e) {</span>
+<span class="nc" id="L147">            System.out.println(e.getMessage() +&quot; &quot;+ CarportPointedRoofProductListe.class.getName());</span>
+
+        }
+<span class="nc" id="L150">        return null;</span>
+
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

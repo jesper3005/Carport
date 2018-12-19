@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CalcOuterLayerOfShed.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Carport</a> &gt; <a href="index.source.html" class="el_package">functionLayer.calculation</a> &gt; <span class="el_source">CalcOuterLayerOfShed.java</span></div><h1>CalcOuterLayerOfShed.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package functionLayer.calculation;
+
+import functionLayer.Product;
+import functionLayer.Rules;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * @author oerte
+ */
+<span class="fc" id="L17">public class CalcOuterLayerOfShed {</span>
+
+    /*
+    All planks are placed horizontal, incl. the part on top of the door
+    
+     */
+    public Product calAntal(double length, double width, List allProducts) {
+
+<span class="pc bpc" id="L25" title="1 of 4 branches missed.">        if (length &lt;= 0 || width &lt;= 0) {</span>
+<span class="fc" id="L26">            throw new IllegalArgumentException();</span>
+        }
+<span class="pc bpc" id="L28" title="1 of 2 branches missed.">        if (allProducts == null) {</span>
+<span class="nc" id="L29">            throw new NullPointerException();</span>
+        }
+
+<span class="fc" id="L32">        List&lt;Product&gt; productList = allProducts;</span>
+<span class="fc" id="L33">        Product p = null;</span>
+<span class="fc" id="L34">        double widthOfPlanks = Rules.PLANKS_WIDTH; //cm</span>
+<span class="fc" id="L35">        double doorWidth = Rules.DOOR_WIDTH;</span>
+        // doorTop is the gap between roof and door
+<span class="fc" id="L37">        double doorTop = 2;</span>
+        double antalOfPlanks;
+
+        try {
+<span class="fc" id="L41">            antalOfPlanks = Math.ceil(((((length * 2) + (width * 2)) - doorWidth) / widthOfPlanks) + doorTop);</span>
+
+<span class="fc bfc" id="L43" title="All 2 branches covered.">            for (Product product : productList) {</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">                if (product.getId() == 65) {</span>
+<span class="fc" id="L45">                    p = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), antalOfPlanks, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());</span>
+
+                }
+<span class="fc" id="L48">            }</span>
+<span class="fc" id="L49">            return p;</span>
+<span class="nc" id="L50">        } catch (Exception e) {</span>
+<span class="nc" id="L51">            System.out.println(e.getMessage() +&quot; &quot;+ CalcOuterLayerOfShed.class.getName());</span>
+<span class="nc" id="L52">            return p = new Product();</span>
+        }
+    }
+
+    /*
+    Door is 80 cm in width and 2040 cm in length
+    One door needs 
+    - one door handle
+    - three planks to attach the front planks of the door
+    - two hinges (hængsel)
+     */
+    public List&lt;Product&gt; calcAntalDoor(List allProducts) {
+        
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        if (allProducts == null) {</span>
+<span class="fc" id="L66">            throw new NullPointerException();</span>
+        }
+        
+<span class="fc" id="L69">        List&lt;Product&gt; list = allProducts;</span>
+<span class="fc" id="L70">        List&lt;Product&gt; doorList = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L71">        double calcFrontPlanksAntal = 80 / Rules.PLANKS_WIDTH;//door width divided with plank width</span>
+        Product handtag;
+        Product haengsel;
+        Product firstAndSecondPlank;// top and bottom blank to hold the door
+        Product thirdPlank; //cross  between the top and bottom plank
+        Product frontPlanks;
+        Product screws; // one packet with 50 screws
+
+        try {
+<span class="fc bfc" id="L80" title="All 2 branches covered.">            for (Product product : list) {</span>
+<span class="pc bpc" id="L81" title="1 of 2 branches missed.">                if (product.getId() == 81) {</span>
+<span class="nc" id="L82">                    handtag = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), 1, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());</span>
+<span class="nc" id="L83">                    doorList.add(handtag);</span>
+                }
+<span class="pc bpc" id="L85" title="1 of 2 branches missed.">                if (product.getId() == 82) {</span>
+<span class="nc" id="L86">                    haengsel = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), 1, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());</span>
+<span class="nc" id="L87">                    doorList.add(haengsel);</span>
+                }
+<span class="fc bfc" id="L89" title="All 2 branches covered.">                if (product.getId() == 3) {</span>
+<span class="fc" id="L90">                    firstAndSecondPlank = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), 2, product.getPriceLine(), 80, product.getWidth(), product.getHeight());</span>
+<span class="fc" id="L91">                    doorList.add(firstAndSecondPlank);</span>
+<span class="fc" id="L92">                    thirdPlank = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), 1, product.getPriceLine(), 200, product.getWidth(), product.getHeight());</span>
+<span class="fc" id="L93">                    doorList.add(thirdPlank);</span>
+                }
+<span class="fc bfc" id="L95" title="All 2 branches covered.">                if (product.getId() == 60) {</span>
+<span class="fc" id="L96">                    frontPlanks = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), calcFrontPlanksAntal, product.getPriceLine(), 204, product.getWidth(), product.getHeight());</span>
+<span class="fc" id="L97">                    doorList.add(frontPlanks);</span>
+                }
+<span class="fc bfc" id="L99" title="All 2 branches covered.">                if (product.getId() == 33) {</span>
+<span class="fc" id="L100">                    screws = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), product.getQty(), product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());</span>
+<span class="fc" id="L101">                    doorList.add(screws);</span>
+                }
+
+<span class="fc" id="L104">            }</span>
+<span class="fc" id="L105">            return doorList;</span>
+<span class="nc" id="L106">        } catch (Exception e) {</span>
+<span class="nc" id="L107">            System.out.println(e.getMessage() +&quot; &quot;+ CalcOuterLayerOfShed.class.getName());</span>
+        }
+<span class="nc" id="L109">        return null;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

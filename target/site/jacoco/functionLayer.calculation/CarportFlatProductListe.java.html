@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CarportFlatProductListe.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Carport</a> &gt; <a href="index.source.html" class="el_package">functionLayer.calculation</a> &gt; <span class="el_source">CarportFlatProductListe.java</span></div><h1>CarportFlatProductListe.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package functionLayer.calculation;
+
+import functionLayer.LogicFacade;
+import functionLayer.calculation.CalcPoles;
+import functionLayer.calculation.CalcStern;
+import functionLayer.calculation.CalcRoof;
+import functionLayer.calculation.CalcBeam;
+import functionLayer.calculation.CalcBattens;
+import functionLayer.Product;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * @author oerte
+ */
+<span class="fc" id="L22">public class CarportFlatProductListe {</span>
+
+<span class="fc" id="L24">    private List&lt;Product&gt; list = LogicFacade.getAllProductsFromDatabase();</span>
+<span class="fc" id="L25">    private CalcBattens battens = new CalcBattens();</span>
+<span class="fc" id="L26">    private CalcBeam beam = new CalcBeam();//rem</span>
+<span class="fc" id="L27">    private CalcRoof roof = new CalcRoof();</span>
+<span class="fc" id="L28">    private CalcStern stern = new CalcStern();</span>
+<span class="fc" id="L29">    private CalcPoles poles = new CalcPoles();//stolper</span>
+<span class="fc" id="L30">    private CalcNails nail = new CalcNails(); //søm</span>
+<span class="fc" id="L31">    private CalcAngleBracket angleBracket = new CalcAngleBracket();//vinkelbeslag</span>
+<span class="fc" id="L32">    private CalcScrew screw = new CalcScrew();//skrue</span>
+<span class="fc" id="L33">    private CalcOuterLayerOfShed shedOuterLayer = new CalcOuterLayerOfShed();</span>
+<span class="fc" id="L34">    private CalcShedSkeletton shed_InnerLayer = new CalcShedSkeletton();</span>
+
+    private Product pBattens;
+    private Product pBeam;
+    private Product pRoof;
+    private Product pPoles;
+    private Product pSternOver;
+    private Product pSternMellem;
+    private Product pSternUnder;
+    private Product pshed_innerLayer;
+    private Product pOuterLayer;
+
+    public List&lt;Product&gt; carportCalculaterFlatRoof(double length, double width, String roofMaterial) {
+        
+<span class="pc bpc" id="L48" title="3 of 4 branches missed.">        if (length &lt;= 0 || width &lt;= 0) {</span>
+<span class="fc" id="L49">            throw new IllegalArgumentException();</span>
+        }
+<span class="nc bnc" id="L51" title="All 2 branches missed.">        if (roofMaterial.isEmpty()) {</span>
+<span class="nc" id="L52">            throw new NullPointerException();</span>
+        }
+
+        // List included everything needed to build the requestet carport
+<span class="nc" id="L56">        List&lt;Product&gt; stykliste = new ArrayList&lt;&gt;();</span>
+
+        try {
+            //Objekter Af Carport part calculations
+<span class="nc" id="L60">            pBattens = battens.calcAntal(length, width, list);//lægter</span>
+<span class="nc" id="L61">            pBeam = beam.calcAntal(length, width, list);</span>
+<span class="nc" id="L62">            pRoof = roof.calcAntal(length, width, roofMaterial, list);</span>
+<span class="nc" id="L63">            pPoles = poles.calcAntal(length, width, list);</span>
+<span class="nc" id="L64">            pSternOver = stern.calcAntalOverbrædt(length, width, list);</span>
+<span class="nc" id="L65">            pSternMellem = stern.calcAntalMellembrædt(length, width, list);</span>
+<span class="nc" id="L66">            pSternUnder = stern.calcAntalUnderbrædt(length, width, list);</span>
+<span class="nc" id="L67">            System.out.println(roof.getAntalScrews());</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">            if (!roofMaterial.equals(&quot;Tagpap&quot;)) {</span>
+                //20 screws per m2 of roof plus 50 ekstra
+<span class="nc" id="L70">                stykliste.add(screw.calcAntal_3X25MM(roof.getAntalScrews(), list));</span>
+            }
+            //4 nails per battens ('36', 'NKT FIRKANT SØM 1,6X25MM VARMFORZINKET', 'søm', '36', '0', '0', '0')
+<span class="nc" id="L73">            stykliste.add(nail.calcAntal_25mm_Varmforzinket(pPoles.getQty(), list));</span>
+//            //4 screws per stern ('32', 'NKT FRANSK SKRUE 8X120MM VFZ 50 STK/PK', 'skrue', '29.9', '0', '0', '0')
+<span class="nc" id="L75">            double antalScrewsStern = Math.ceil((pSternOver.getQty() + pSternMellem.getQty() + pSternUnder.getQty()) / 50);</span>
+<span class="nc" id="L76">            stykliste.add(screw.calcAntal_8X120MM_50STK_Pakke((antalScrewsStern), list));</span>
+            /*
+            2 angle bracket per pole
+            4 angle bracket per beam
+             */
+<span class="nc" id="L81">            double antal = ((pPoles.getQty() * 2) + (pBeam.getQty() * 4));</span>
+<span class="nc" id="L82">            stykliste.add(angleBracket.calcAntal(antal, list));</span>
+            //6 screws per angle bracket ('33', 'NKT SPUN+ SKRUE UHJ 3,5X30MM TORX ELFORZINKET', 'skrue', '36', '0', '0', '0')
+<span class="nc" id="L84">            stykliste.add(screw.calcAntal_3komma5X30MM(antal, list));</span>
+
+<span class="nc" id="L86">            stykliste.add(pBattens);</span>
+<span class="nc" id="L87">            stykliste.add(pBeam);</span>
+<span class="nc" id="L88">            stykliste.add(pRoof);</span>
+<span class="nc" id="L89">            stykliste.add(pSternOver);</span>
+<span class="nc" id="L90">            stykliste.add(pSternMellem);</span>
+<span class="nc" id="L91">            stykliste.add(pSternUnder);</span>
+<span class="nc" id="L92">            stykliste.add(pPoles);</span>
+
+<span class="nc" id="L94">            return stykliste;</span>
+<span class="nc" id="L95">        } catch (Exception e) {</span>
+<span class="nc" id="L96">            System.out.println(e.getMessage() +&quot; &quot;+ CarportFlatProductListe.class.getName());</span>
+        }
+<span class="nc" id="L98">        return null;</span>
+
+    }
+
+    public List&lt;Product&gt; carportCalculaterFlatRoofIncludingShed(double length, double width, double shedLength, double shedWidth, String roofMaterial) {
+        
+<span class="nc bnc" id="L104" title="All 4 branches missed.">        if (length &lt;= 0 || width &lt;= 0) {</span>
+<span class="nc" id="L105">            throw new IllegalArgumentException();</span>
+        }
+<span class="nc bnc" id="L107" title="All 2 branches missed.">        if (roofMaterial.isEmpty()) {</span>
+<span class="nc" id="L108">            throw new NullPointerException();</span>
+        }
+
+        // List included everything needed to build the requestet carport
+<span class="nc" id="L112">        List&lt;Product&gt; stykliste = new ArrayList&lt;&gt;();</span>
+
+        try {
+            //Objekter Af Carport part calculations
+
+<span class="nc" id="L117">            pBattens = battens.calcAntal(length, width, list);//lægter</span>
+<span class="nc" id="L118">            pBeam = beam.calcAntal(length, width, list);</span>
+<span class="nc" id="L119">            pRoof = roof.calcAntal(length, width, roofMaterial, list);</span>
+<span class="nc" id="L120">            pPoles = poles.calcAntal(length, width, list);</span>
+<span class="nc" id="L121">            pSternOver = stern.calcAntalOverbrædt(length, width, list);</span>
+<span class="nc" id="L122">            pSternMellem = stern.calcAntalMellembrædt(length, width, list);</span>
+<span class="nc" id="L123">            pSternUnder = stern.calcAntalUnderbrædt(length, width, list);</span>
+
+<span class="nc bnc" id="L125" title="All 2 branches missed.">            if (!roofMaterial.equals(&quot;Tagpap&quot;)) {</span>
+                //20 screws per m2 of roof plus 50 ekstra
+<span class="nc" id="L127">                stykliste.add(screw.calcAntal_3X25MM(roof.getAntalScrews(), list));</span>
+            }
+            //4 nails per battens ('36', 'NKT FIRKANT SØM 1,6X25MM VARMFORZINKET', 'søm', '36', '0', '0', '0')
+<span class="nc" id="L130">            stykliste.add(nail.calcAntal_25mm_Varmforzinket(pPoles.getQty(), list));</span>
+            //4 screws per stern ('32', 'NKT FRANSK SKRUE 8X120MM VFZ 50 STK/PK', 'skrue', '29.9', '0', '0', '0')
+<span class="nc" id="L132">            double antalScrewsStern = Math.ceil((pSternOver.getQty() + pSternMellem.getQty() + pSternUnder.getQty()) / 50);</span>
+<span class="nc" id="L133">            stykliste.add(screw.calcAntal_8X120MM_50STK_Pakke((antalScrewsStern), list));</span>
+            /*
+            2 angle bracket per pole
+            4 angle bracket per beam
+             */
+<span class="nc" id="L138">            double antal = ((pPoles.getQty() * 2) + (pBeam.getQty() * 4));</span>
+<span class="nc" id="L139">            stykliste.add(angleBracket.calcAntal(antal, list));</span>
+            //6 screws per angle bracket ('33', 'NKT SPUN+ SKRUE UHJ 3,5X30MM TORX ELFORZINKET', 'skrue', '36', '0', '0', '0')
+<span class="nc" id="L141">            stykliste.add(screw.calcAntal_3komma5X30MM(antal, list));</span>
+
+            //add all from doorList to styklist
+<span class="nc" id="L144">            List&lt;Product&gt; doorList = shedOuterLayer.calcAntalDoor(list);</span>
+<span class="nc bnc" id="L145" title="All 2 branches missed.">            for (Product product : doorList) {</span>
+<span class="nc" id="L146">                stykliste.add(product);</span>
+<span class="nc" id="L147">            }</span>
+
+<span class="nc" id="L149">            stykliste.add(pBattens);</span>
+<span class="nc" id="L150">            stykliste.add(pBeam);</span>
+<span class="nc" id="L151">            stykliste.add(pRoof);</span>
+<span class="nc" id="L152">            stykliste.add(pSternOver);</span>
+<span class="nc" id="L153">            stykliste.add(pSternMellem);</span>
+<span class="nc" id="L154">            stykliste.add(pSternUnder);</span>
+<span class="nc" id="L155">            stykliste.add(pPoles);</span>
+            //
+<span class="nc" id="L157">            stykliste.add(shed_InnerLayer.calcAntalHorizontal(shedLength, shedWidth, list));</span>
+<span class="nc" id="L158">            stykliste.add(shed_InnerLayer.calcAntalVerticalFrontAndBack(shedLength, shedWidth, list));</span>
+<span class="nc" id="L159">            stykliste.add(shed_InnerLayer.calcAntalVerticalLeftAndRight(shedLength, shedWidth, list));</span>
+            //
+<span class="nc" id="L161">            stykliste.add(shedOuterLayer.calAntal(length, width, list));</span>
+
+<span class="nc" id="L163">            return stykliste;</span>
+<span class="nc" id="L164">        } catch (Exception e) {</span>
+<span class="nc" id="L165">            System.out.println(e.getMessage() +&quot; &quot;+ CarportFlatProductListe.class.getName());</span>
+
+        }
+<span class="nc" id="L168">        return null;</span>
+
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
