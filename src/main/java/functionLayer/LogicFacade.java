@@ -268,7 +268,7 @@ public class LogicFacade {
      * functionLayer, in method totalPriceOfCarport, Product.java in
      * functionLayer, in method getPriceLine.
      *
-     * @param value
+     * @param value is a price value
      * @return Returns a double with two decimals after the comma.
      */
     public static double roundDoubleToTwoDecimalPoints(double value) {
