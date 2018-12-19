@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author oerte
  */
-public class Admin extends Command {
+public class ManageProducts extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response)  {
@@ -28,15 +28,15 @@ public class Admin extends Command {
             if (search == null) {
                 List<Product> allProducts = LogicFacade.getAllProductsFromDatabase();
                 session.setAttribute("allProduct", allProducts);
-                return "admin";
+                return "manageProducts";
             } else {
                 List<Product> searchList = LogicFacade.searchInDatabaseProductTable(search);
                 session.setAttribute("allProduct", searchList);
-                return "admin";
+                return "manageProducts";
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage() +" "+ Admin.class.getName());
-            return "admin";
+            System.out.println(e.getMessage() +" "+ ManageProducts.class.getName());
+            return "manageProducts";
         }
 
     }

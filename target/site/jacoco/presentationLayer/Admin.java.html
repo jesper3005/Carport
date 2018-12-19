@@ -28,15 +28,15 @@ import javax.servlet.http.HttpSession;
 <span class="nc bnc" id="L28" title="All 2 branches missed.">            if (search == null) {</span>
 <span class="nc" id="L29">                List&lt;Product&gt; allProducts = LogicFacade.getAllProductsFromDatabase();</span>
 <span class="nc" id="L30">                session.setAttribute(&quot;allProduct&quot;, allProducts);</span>
-<span class="nc" id="L31">                return &quot;admin&quot;;</span>
+<span class="nc" id="L31">                return &quot;manageProducts&quot;;</span>
             } else {
 <span class="nc" id="L33">                List&lt;Product&gt; searchList = LogicFacade.searchInDatabaseProductTable(search);</span>
 <span class="nc" id="L34">                session.setAttribute(&quot;allProduct&quot;, searchList);</span>
-<span class="nc" id="L35">                return &quot;admin&quot;;</span>
+<span class="nc" id="L35">                return &quot;manageProducts&quot;;</span>
             }
 <span class="nc" id="L37">        } catch (Exception e) {</span>
 <span class="nc" id="L38">            System.out.println(e.getMessage() +&quot; &quot;+ Admin.class.getName());</span>
-<span class="nc" id="L39">            return &quot;admin&quot;;</span>
+<span class="nc" id="L39">            return &quot;manageProducts&quot;;</span>
         }
 
     }

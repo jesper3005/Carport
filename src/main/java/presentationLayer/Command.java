@@ -33,7 +33,7 @@ abstract class Command {
         commands.put("sendOrderPointed", new CreateOrderPointedRoof());
         
         //Admin
-        commands.put("Admin", new Admin());
+        commands.put("Admin", new ManageProducts());
         commands.put("AddProduct", new AddProduct());
         commands.put("UpdateProduct", new UpdateProduct());
         commands.put("updateOrderStatus", new UpdateOrderStatus());
