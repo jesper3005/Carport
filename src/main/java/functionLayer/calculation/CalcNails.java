@@ -34,7 +34,7 @@ public class CalcNails {
             }
             return p;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() +" "+ CalcNails.class.getName());
             return p = new Product();
 
         }
@@ -61,7 +61,7 @@ public class CalcNails {
             }
             return p;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() +" "+ CalcNails.class.getName());
             return p = new Product();
 
         }
@@ -88,7 +88,7 @@ public class CalcNails {
             }
             return p;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() +" "+ CalcNails.class.getName());
             return p = new Product();
 
         }

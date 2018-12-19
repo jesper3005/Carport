@@ -35,7 +35,7 @@ public class CalcShedSkeletton {
             }
             return p;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() + " " + CalcShedSkeletton.class.getName());
             return p = new Product();
         }
 
@@ -62,7 +62,7 @@ public class CalcShedSkeletton {
             }
             return p;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() + " " + CalcShedSkeletton.class.getName());
             return p = new Product();
         }
 
@@ -98,7 +98,7 @@ public class CalcShedSkeletton {
             }
             return p;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() +" "+ CalcShedSkeletton.class.getName());
             return p = new Product();
         }
 

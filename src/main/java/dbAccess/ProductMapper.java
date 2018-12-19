@@ -50,7 +50,11 @@ public class ProductMapper {
             }
             return productList;
         } catch (SQLException ex) {
+<<<<<<< HEAD
             System.out.println(ex.getMessage());
+=======
+            System.out.println(ex.getMessage() +" "+ ProductMapper.class.getName());
+>>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
         }
         return null;
     }
@@ -71,7 +75,11 @@ public class ProductMapper {
             pstmt.executeUpdate();
             pstmt.close();
 
+<<<<<<< HEAD
         } catch (SQLException ex) {
+=======
+        } catch (SQLException  ex) {
+>>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
             System.out.println(ex.getMessage());
         }
         return product;
@@ -89,7 +97,11 @@ public class ProductMapper {
             pstmt.close();
 
         } catch (SQLException ex) {
+<<<<<<< HEAD
             System.out.println(ex.getMessage());
+=======
+            System.out.println(ex.getMessage() +" "+ ProductMapper.class.getName());
+>>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
         }
 
     }
@@ -110,7 +122,11 @@ public class ProductMapper {
             }
             return productList;
         } catch (SQLException ex) {
+<<<<<<< HEAD
             System.out.println(ex.getMessage());
+=======
+            System.out.println(ex.getMessage() +" "+ ProductMapper.class.getName());
+>>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
         }
         return null;
     }
@@ -127,8 +143,13 @@ public class ProductMapper {
             pstmt.executeUpdate();
             pstmt.close();
 
+<<<<<<< HEAD
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+=======
+        } catch (SQLException  ex) {
+          System.out.println(ex.getMessage() +" "+ ProductMapper.class.getName());
+>>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
         }
     }
 
@@ -159,8 +180,13 @@ public class ProductMapper {
 
             return list;
 
+<<<<<<< HEAD
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+=======
+        } catch (SQLException  ex) {
+           System.out.println(ex.getMessage() +" "+ ProductMapper.class.getName());
+>>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
         }
         return null;
     }
@@ -187,8 +213,13 @@ public class ProductMapper {
                 return product;
             }
 
+<<<<<<< HEAD
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+=======
+        } catch (SQLException  ex) {
+           System.out.println(ex.getMessage() +" "+ ProductMapper.class.getName());
+>>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
         }
         return null;
 

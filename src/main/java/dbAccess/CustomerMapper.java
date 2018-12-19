@@ -48,7 +48,11 @@ public class CustomerMapper {
             }
 
         } catch (SQLException ex) {
+<<<<<<< HEAD
             System.out.println(ex.getMessage() + " getCustomerByEmail");
+=======
+            System.out.println(ex.getMessage() +" "+ CustomerMapper.class.getName());
+>>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
         }
         return null;
     }
@@ -73,7 +77,11 @@ public class CustomerMapper {
             return customer;
 
         } catch (SQLException ex) {
+<<<<<<< HEAD
             System.out.println(ex.getMessage() + " addCustomer");
+=======
+            System.out.println(ex.getMessage() +" "+ CustomerMapper.class.getName());
+>>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
         }
         return null;
     }
@@ -101,7 +109,11 @@ public class CustomerMapper {
             return id;
 
         } catch (SQLException ex) {
+<<<<<<< HEAD
             System.out.println(ex.getMessage() + " addCustomer");
+=======
+            System.out.println(ex.getMessage() +" "+ CustomerMapper.class.getName());
+>>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
         }
         return 0;
     }
@@ -131,7 +143,11 @@ public class CustomerMapper {
             }
 
         } catch (SQLException ex) {
+<<<<<<< HEAD
             System.out.println(ex.getMessage() + " getCustomerByEmail");
+=======
+            System.out.println(ex.getMessage() +" "+ CustomerMapper.class.getName());
+>>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
         }
         return null;
     }

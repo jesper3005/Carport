@@ -31,7 +31,12 @@ public class Connector {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
             } catch (ClassNotFoundException ex) {
+<<<<<<< HEAD
                 System.out.println(ex.getMessage());
+=======
+                System.out.println(ex.getMessage() +" "+ Connector.class.getName());
+                Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+>>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
             }
             singleton = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         }

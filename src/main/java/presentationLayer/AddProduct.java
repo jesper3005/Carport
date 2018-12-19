@@ -5,8 +5,6 @@
  */
 package presentationLayer;
 
-import dbAccess.ProductMapper;
-import exceptions.FogException;
 import functionLayer.LogicFacade;
 import functionLayer.Product;
 import java.util.List;

@@ -14,9 +14,8 @@ import exceptions.FogException;
 import functionLayer.calculation.CarportPointedRoofProductListe;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.text.DecimalFormat;
 import java.util.List;
-//import org.decimal4j.util.DoubleRounder;
+import org.decimal4j.util.DoubleRounder;
 
 /**
  *
@@ -33,6 +32,11 @@ public class LogicFacade {
     /**
      * This method will create a hashed password and return it, with help of
      * userns password.
+     * The MD5 Message-Digest Algorithm is a cryptographic hash function that produces a 128-bit (16-byte) hash value.
+     * The basic idea is to map data sets of variable length to data sets of a fixed length.
+     * In order to do this, the input message is split into chunks of 512-bit blocks. A padding is added to the end so that it’s length can be divided by 512. 
+     * Now, these blocks are processed by the MD5 algorithm, which operates in a 128-bit state, and the result will be a 128-bit hash value. 
+     * After applying MD5, generated hash is typically a 32-digit hexadecimal number.
      *
      * @param password Userns password.
      * @return Returns a new hashed password String
@@ -56,12 +60,13 @@ public class LogicFacade {
             //Get complete hashed password in hex format
             generatedPassword = sb.toString();
         } catch (NoSuchAlgorithmException e) {
+            System.out.println(e.getMessage() + " " + LogicFacade.class.getName());
             e.printStackTrace();
         }
         return generatedPassword;
     }
 
-    public static User createUser(String email, String password, int customerID) {
+    public static User createUser(String email, String password, int customerID) throws FogException {
         User user = new User(password, email, "customer", customerID);
         UserMapper um = new UserMapper();
         um.createUser(user);
@@ -88,7 +93,6 @@ public class LogicFacade {
     }
 
     public static void addCarport(Carport carport, Shed shed) {
-        System.out.println("addCarportLogicFacade");
         CarportMapper cm = new CarportMapper();
         cm.addCarport(carport, shed);
     }
@@ -154,7 +158,7 @@ public class LogicFacade {
         Carport carport = cm.getCarportById(caportID);
         return carport;
     }
-    
+
     public static Customer getCustomerByID(int customerID) {
         CustomerMapper cm = new CustomerMapper();
         Customer customer = cm.getCustomerByID(customerID);
@@ -267,9 +271,12 @@ public class LogicFacade {
      * @param value
      * @return Returns a double with two decimals after the comma.
      */
-//    public static double roundDoubleToTwoDecimalPoints(double value) {
-//        return DoubleRounder.round(value, 2);
-//    }
+    public static double roundDoubleToTwoDecimalPoints(double value) {
+//        String value_String =  String.format("%.2f", value);
+//        double newValue = Double.parseDouble(value_String);
+//        return newValue;
+        return DoubleRounder.round(value, 2);
+    }
 
     /**
      * This method takes a list of parts, loop through the list and add each
@@ -284,8 +291,8 @@ public class LogicFacade {
         for (Product produkt : stykliste) {
             totalPriceOfCarport += produkt.getTotalPriceOfOrder();
         }
-        return totalPriceOfCarport;
-        //return roundDoubleToTwoDecimalPoints(totalPriceOfCarport);
+        //return totalPriceOfCarport;
+        return roundDoubleToTwoDecimalPoints(totalPriceOfCarport);
     }
 
 }

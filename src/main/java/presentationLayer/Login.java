@@ -32,10 +32,12 @@ public class Login extends Command {
             User user = LogicFacade.login(email, password);
             session.setAttribute("user", user);
             session.setAttribute("role", user.getRole());
+            String ipAddress = request.getRemoteAddr();
+            System.out.println("Ipaddresse: "+ ipAddress);
             return "../index";
         } catch (FogException ex) {
             System.out.println(ex.getMessage() +" "+ Login.class.getName());
-            request.setAttribute("error", "Wrong username or password");
+            request.setAttribute("error", ex.getMessage());
             System.out.println("Login failed");
             DefaultLogger.getMyLogger().log(Level.WARNING, "Login failed " + email + " : " + password);
             return "login";

@@ -77,7 +77,7 @@ public class CalcRoof {
             }
             return p;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() +" "+ CalcRoof.class.getName());
             return p = new Product();
 
         }
@@ -121,7 +121,7 @@ public class CalcRoof {
             }
             return p;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() +" "+ CalcRoof.class.getName());
             return p = new Product();
 
         }

@@ -52,8 +52,13 @@ public class CarportMapper {
             pstmt.close();
             
 
+<<<<<<< HEAD
         } catch (SQLException ex) {
             System.out.println(ex.getMessage() + " addCarport in carportMapper failed");
+=======
+        } catch (SQLException  ex) {
+            System.out.println(ex.getMessage() +" "+ CarportMapper.class.getName());
+>>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
         }
     }
 
@@ -76,7 +81,11 @@ public class CarportMapper {
             return shed;
 
         } catch (SQLException ex) {
+<<<<<<< HEAD
             System.out.println(ex.getMessage() + " addShed in carportMapper");
+=======
+            System.out.println(ex.getMessage() +" "+ CarportMapper.class.getName());
+>>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
         }
         return null;
     }
@@ -96,7 +105,11 @@ public class CarportMapper {
                 return shed;
             }
         } catch (SQLException ex) {
+<<<<<<< HEAD
             ex.getMessage();
+=======
+            System.out.println(ex.getMessage() +" "+ CarportMapper.class.getName());
+>>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
         }
         return null;
     }
@@ -129,7 +142,11 @@ public class CarportMapper {
             }
             return carportList;
         } catch (SQLException ex) {
+<<<<<<< HEAD
             System.out.println(ex.getMessage());
+=======
+            System.out.println(ex.getMessage() +" "+ CarportMapper.class.getName());
+>>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
         }
         return null;
     }
@@ -160,7 +177,11 @@ public class CarportMapper {
             }
             return carportList;
         } catch (SQLException ex) {
+<<<<<<< HEAD
             System.out.println(ex.getMessage());
+=======
+            System.out.println(ex.getMessage() +" "+ CarportMapper.class.getName());
+>>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
         }
         return null;
     }
@@ -178,7 +199,11 @@ public class CarportMapper {
             pstmt.close();
 
         } catch (SQLException ex) {
+<<<<<<< HEAD
             System.out.println(ex.getMessage());
+=======
+            System.out.println(ex.getMessage() +" "+ CarportMapper.class.getName());
+>>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
         }
 
     }
@@ -209,7 +234,11 @@ public class CarportMapper {
                 return carport;
             }
         } catch (SQLException ex) {
+<<<<<<< HEAD
             System.out.println(ex.getMessage());  
+=======
+            System.out.println(ex.getMessage() +" "+ CarportMapper.class.getName());
+>>>>>>> 5060ab8ffa2b2f6c275890baaca4ac88bc1a56ff
         }
         return null;
     }

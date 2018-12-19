@@ -45,7 +45,7 @@ public class CalcBeam {
             }
             return p;
         } catch (Exception e) {
-            e.getMessage();
+            System.out.println(e.getMessage() +" "+ CalcBeam.class.getName());
             return p = new Product();
         }
 
@@ -73,7 +73,7 @@ public class CalcBeam {
             }
             return p;
         } catch (Exception e) {
-            e.getMessage();
+           System.out.println(e.getMessage() +" "+ CalcBeam.class.getName());
             return p = new Product();
         }
 

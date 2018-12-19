@@ -22,7 +22,7 @@ public class UserMapper {
     private final String GET_USER = "SELECT * FROM `user` WHERE email = ? AND password = ?;";
     private final String CREATE_USER = "INSERT INTO `user`(password, email, role, customer_id) VALUES (?, ?, ?, ?);";
 
-    public User getUser(String email, String password) throws FogException, ClassNotFoundException {
+    public User getUser(String email, String password) throws FogException {
         User user = null;
         try {
             Connection con = Connector.connection();
@@ -43,12 +43,12 @@ public class UserMapper {
                 throw new FogException("Could not validate user");
             }
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            throw new FogException("Could not validate user");
+            System.out.println(ex.getMessage() + " " + UserMapper.class.getName());
         }
+        return null;
     }
 
-    public void createUser(User user) throws ClassNotFoundException {
+    public void createUser(User user) throws FogException {
         try {
             Connection con = Connector.connection();
             String query = CREATE_USER;
@@ -61,7 +61,7 @@ public class UserMapper {
             pstmt.close();
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            System.out.println(ex.getMessage() + " " + UserMapper.class.getName());
             System.out.println("Error");
         }
     }
