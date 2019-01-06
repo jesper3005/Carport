@@ -8,57 +8,61 @@ package presentationLayer;
 import functionLayer.Customer;
 import functionLayer.LogicFacade;
 import functionLayer.User;
+import java.util.logging.Level;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import logging.DefaultLogger;
+import logging.LoggerConfig;
 
 /**
  *
  * @author Jesper
  */
-<span class="nc" id="L19">public class Registration extends Command {</span>
+<span class="nc" id="L22">public class Registration extends Command {</span>
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) {
 
         try {
-<span class="nc" id="L25">            HttpSession session = request.getSession();</span>
+<span class="nc" id="L28">            HttpSession session = request.getSession();</span>
 
-<span class="nc" id="L27">            String email = request.getParameter(&quot;email&quot;);</span>
-<span class="nc" id="L28">            String password1 = request.getParameter(&quot;password1&quot;);</span>
-<span class="nc" id="L29">            String password2 = request.getParameter(&quot;password2&quot;);</span>
-<span class="nc" id="L30">            String firstName = request.getParameter(&quot;firstName&quot;);</span>
-<span class="nc" id="L31">            String lastName = request.getParameter(&quot;lastName&quot;);</span>
-<span class="nc" id="L32">            String address = request.getParameter(&quot;address&quot;);</span>
-<span class="nc" id="L33">            String town = request.getParameter(&quot;town&quot;);</span>
-<span class="nc" id="L34">            String zipCode = request.getParameter(&quot;zipCode&quot;);</span>
-<span class="nc" id="L35">            String phone = request.getParameter(&quot;phone&quot;);</span>
+<span class="nc" id="L30">            String email = request.getParameter(&quot;email&quot;);</span>
+<span class="nc" id="L31">            String password1 = request.getParameter(&quot;password1&quot;);</span>
+<span class="nc" id="L32">            String password2 = request.getParameter(&quot;password2&quot;);</span>
+<span class="nc" id="L33">            String firstName = request.getParameter(&quot;firstName&quot;);</span>
+<span class="nc" id="L34">            String lastName = request.getParameter(&quot;lastName&quot;);</span>
+<span class="nc" id="L35">            String address = request.getParameter(&quot;address&quot;);</span>
+<span class="nc" id="L36">            String town = request.getParameter(&quot;town&quot;);</span>
+<span class="nc" id="L37">            String zipCode = request.getParameter(&quot;zipCode&quot;);</span>
+<span class="nc" id="L38">            String phone = request.getParameter(&quot;phone&quot;);</span>
             
-<span class="nc" id="L37">            Customer c = LogicFacade.getCustomerByEmail(email);</span>
-<span class="nc bnc" id="L38" title="All 2 branches missed.">            if(!password1.equals(password2)){</span>
-<span class="nc" id="L39">                request.setAttribute(&quot;error&quot;, &quot;Password doesn't match!&quot;);</span>
+<span class="nc" id="L40">            Customer c = LogicFacade.getCustomerByEmail(email);</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">            if(!password1.equals(password2)){</span>
+<span class="nc" id="L42">                request.setAttribute(&quot;error&quot;, &quot;Password doesn't match!&quot;);</span>
             }
-<span class="nc bnc" id="L41" title="All 4 branches missed.">            if(c != null &amp;&amp; email.equals(c.getEmail())){</span>
-<span class="nc" id="L42">                request.setAttribute(&quot;error&quot;, &quot;Email is allready on file.&quot;);</span>
+<span class="nc bnc" id="L44" title="All 4 branches missed.">            if(c != null &amp;&amp; email.equals(c.getEmail())){</span>
+<span class="nc" id="L45">                request.setAttribute(&quot;error&quot;, &quot;Email is allready on file.&quot;);</span>
             }
-<span class="nc bnc" id="L44" title="All 4 branches missed.">            else if (c == null &amp;&amp; password1.equals(password2)){</span>
-<span class="nc" id="L45">                password2 = LogicFacade.createHashedPassword(password2);</span>
-<span class="nc" id="L46">                Customer customer = new Customer(firstName, lastName, email, address, town, zipCode, phone, town);</span>
-<span class="nc" id="L47">                int id = LogicFacade.createCustomer(customer);</span>
-<span class="nc" id="L48">                System.out.println(id + &quot; customer_id&quot;);</span>
+<span class="nc bnc" id="L47" title="All 4 branches missed.">            else if (c == null &amp;&amp; password1.equals(password2)){</span>
+<span class="nc" id="L48">                password2 = LogicFacade.createHashedPassword(password2);</span>
+<span class="nc" id="L49">                Customer customer = new Customer(firstName, lastName, email, address, town, zipCode, phone, town);</span>
+<span class="nc" id="L50">                int id = LogicFacade.createCustomer(customer);</span>
+<span class="nc" id="L51">                System.out.println(id + &quot; customer_id&quot;);</span>
                 User user;
-<span class="nc" id="L50">                user = LogicFacade.createUser(email, password2, id);</span>
-<span class="nc" id="L51">                session.setAttribute(&quot;user&quot;, user);</span>
-<span class="nc" id="L52">                return &quot;../index&quot;;</span>
+<span class="nc" id="L53">                user = LogicFacade.createUser(email, password2, id);</span>
+<span class="nc" id="L54">                session.setAttribute(&quot;user&quot;, user);</span>
+<span class="nc" id="L55">                return &quot;../index&quot;;</span>
                 
             }
             
 
-<span class="nc" id="L57">        } catch (Exception e) {</span>
-<span class="nc" id="L58">            System.out.println(e.getMessage() + &quot; &quot; + Registration.class.getName());</span>
-<span class="nc" id="L59">            return &quot;registration&quot;;</span>
-<span class="nc" id="L60">        }</span>
-<span class="nc" id="L61">        return &quot;registration&quot;;</span>
+<span class="nc" id="L60">        } catch (Exception e) {</span>
+<span class="nc" id="L61">            System.out.println(e.getMessage() + &quot; &quot; + Registration.class.getName());</span>
+<span class="nc" id="L62">            DefaultLogger.getLogger(LoggerConfig.PRODUCTION, false).log(Level.WARNING,e.getMessage() +&quot; &quot;+ Registration.class.getName() + System.lineSeparator());</span>
+<span class="nc" id="L63">            return &quot;registration&quot;;</span>
+<span class="nc" id="L64">        }</span>
+<span class="nc" id="L65">        return &quot;registration&quot;;</span>
 
     }
 }

@@ -11,14 +11,14 @@ presentationLayer\Navigator.class
 presentationLayer\AddProduct.class
 logging\DefaultLogger.class
 functionLayer\calculation\CalcScrew.class
+logging\DefaultLogger$withStackTraceFormatter.class
 presentationLayer\PointedRoof.class
 functionLayer\calculation\CalcBeam.class
 functionLayer\calculation\CalcBattens.class
+logging\DefaultLogger$1.class
 functionLayer\calculation\CalcPointedRoofTriangle.class
 presentationLayer\Command.class
 dbAccess\ProductMapper.class
-logging\LoggerConfig$VerySimpleFormatter.class
-logging\LoggerConfig$1.class
 presentationLayer\UnknownCommand.class
 presentationLayer\CustomerOrderInfo.class
 logging\LoggerConfig.class
@@ -34,6 +34,7 @@ functionLayer\calculation\CalcRoof.class
 functionLayer\SVGTop.class
 functionLayer\calculation\CarportPointedRoofProductListe.class
 functionLayer\calculation\CarportFlatProductListe.class
+logging\DefaultLogger$VerySimpleFormatter.class
 presentationLayer\CreateOrderPointedRoof.class
 presentationLayer\UpdateProduct.class
 functionLayer\Shed.class

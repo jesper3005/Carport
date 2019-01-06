@@ -8,29 +8,33 @@ package presentationLayer;
 import functionLayer.LogicFacade;
 import functionLayer.Product;
 import java.util.List;
+import java.util.logging.Level;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import logging.DefaultLogger;
+import logging.LoggerConfig;
 
 /**
  *
  * @author oerte
  */
-<span class="nc" id="L19">public class FlatRoof extends Command {</span>
+<span class="nc" id="L22">public class FlatRoof extends Command {</span>
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) {
-<span class="nc" id="L23">            HttpSession session = request.getSession();</span>
+<span class="nc" id="L26">            HttpSession session = request.getSession();</span>
 
         try {
-<span class="nc" id="L26">            List&lt;Product&gt; orderByLengthRemList = LogicFacade.remOrderedByLength();</span>
-<span class="nc" id="L27">            session.setAttribute(&quot;orderByLengthRemList&quot;, orderByLengthRemList);</span>
+<span class="nc" id="L29">            List&lt;Product&gt; orderByLengthRemList = LogicFacade.remOrderedByLength();</span>
+<span class="nc" id="L30">            session.setAttribute(&quot;orderByLengthRemList&quot;, orderByLengthRemList);</span>
             
-<span class="nc" id="L29">            return &quot;carportFlatRoof&quot;;</span>
+<span class="nc" id="L32">            return &quot;carportFlatRoof&quot;;</span>
 
-<span class="nc" id="L31">        } catch (Exception e) {</span>
-<span class="nc" id="L32">            System.out.println(e.getMessage() +&quot; &quot;+ FlatRoof.class.getName());</span>
-<span class="nc" id="L33">            return &quot;../index&quot;;</span>
+<span class="nc" id="L34">        } catch (Exception e) {</span>
+<span class="nc" id="L35">            System.out.println(e.getMessage() +&quot; &quot;+ FlatRoof.class.getName());</span>
+<span class="nc" id="L36">            DefaultLogger.getLogger(LoggerConfig.PRODUCTION, false).log(Level.WARNING,e.getMessage() +&quot; &quot;+ FlatRoof.class.getName() + System.lineSeparator());</span>
+<span class="nc" id="L37">            return &quot;../index&quot;;</span>
         }
     }
 

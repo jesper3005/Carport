@@ -13,17 +13,17 @@ import java.util.Date;
  */
 public class Carport {
 
-    private int id;
-    private Date date;
+    private double total_price;
     private double carport_length;
     private double carport_width;
     private double degrees;
-    private String roof;
-    private String roofMaterial;
-    private double total_price;
-    private String status_of_order;
+    private int id;
     private int shed_id;
     private int customer_id;
+    private String roof;
+    private String roofMaterial;
+    private String status_of_order;
+    private Date date;
     private Shed shed;
 
 <span class="fc" id="L29">    public Carport(double carport_length, double carport_width, double degrees, String roof, String roofMaterial, double total_price, int shed_id, int customer_id) {</span>
@@ -52,65 +52,61 @@ public class Carport {
 <span class="fc" id="L52">        this.shed = shed;</span>
 <span class="fc" id="L53">    }</span>
 
-    public void setTotal_price(double total_price) {
-<span class="nc" id="L56">        this.total_price = total_price;</span>
-<span class="nc" id="L57">    }</span>
-
     public void setCustomer_id(int customer_id) {
-<span class="nc" id="L60">        this.customer_id = customer_id;</span>
-<span class="nc" id="L61">    }</span>
+<span class="nc" id="L56">        this.customer_id = customer_id;</span>
+<span class="nc" id="L57">    }</span>
 
     @Override
     public String toString() {
-<span class="fc" id="L65">        return &quot;Carport{&quot; + &quot;id=&quot; + id + &quot;, date=&quot; + date + &quot;, carport_length=&quot; + carport_length + &quot;, carport_width=&quot; + carport_width + &quot;, degrees=&quot; + degrees + &quot;, roof=&quot; + roof + &quot;, roofMaterial=&quot; + roofMaterial + &quot;, total_price=&quot; + total_price + &quot;, status_of_order=&quot; + status_of_order + &quot;, shed_id=&quot; + shed_id + &quot;, customer_id=&quot; + customer_id + &quot;, shed=&quot; + shed + '}';</span>
+<span class="fc" id="L61">        return &quot;Carport{&quot; + &quot;id=&quot; + id + &quot;, date=&quot; + date + &quot;, carport_length=&quot; + carport_length + &quot;, carport_width=&quot; + carport_width + &quot;, degrees=&quot; + degrees + &quot;, roof=&quot; + roof + &quot;, roofMaterial=&quot; + roofMaterial + &quot;, total_price=&quot; + total_price + &quot;, status_of_order=&quot; + status_of_order + &quot;, shed_id=&quot; + shed_id + &quot;, customer_id=&quot; + customer_id + &quot;, shed=&quot; + shed + '}';</span>
     }
 
     public Shed getShed() {
-<span class="nc" id="L69">        return shed;</span>
+<span class="nc" id="L65">        return shed;</span>
     }
 
     public String getRoof() {
-<span class="fc" id="L73">        return roof;</span>
+<span class="fc" id="L69">        return roof;</span>
     }
 
     public double getDegrees() {
-<span class="fc" id="L77">        return degrees;</span>
+<span class="fc" id="L73">        return degrees;</span>
     }
 
     public int getId() {
-<span class="fc" id="L81">        return id;</span>
+<span class="fc" id="L77">        return id;</span>
     }
 
     public Date getDate() {
-<span class="nc" id="L85">        return date;</span>
+<span class="nc" id="L81">        return date;</span>
     }
 
     public double getCarport_length() {
-<span class="fc" id="L89">        return carport_length;</span>
+<span class="fc" id="L85">        return carport_length;</span>
     }
 
     public double getCarport_width() {
-<span class="fc" id="L93">        return carport_width;</span>
+<span class="fc" id="L89">        return carport_width;</span>
     }
 
     public String getRoofMaterial() {
-<span class="fc" id="L97">        return roofMaterial;</span>
+<span class="fc" id="L93">        return roofMaterial;</span>
     }
 
     public double getTotal_price() {
-<span class="fc" id="L101">        return total_price;</span>
+<span class="fc" id="L97">        return total_price;</span>
     }
 
     public String getStatus_of_order() {
-<span class="fc" id="L105">        return status_of_order;</span>
+<span class="fc" id="L101">        return status_of_order;</span>
     }
 
     public int getShed_id() {
-<span class="nc" id="L109">        return shed_id;</span>
+<span class="nc" id="L105">        return shed_id;</span>
     }
 
     public int getCustomer_id() {
-<span class="fc" id="L113">        return customer_id;</span>
+<span class="fc" id="L109">        return customer_id;</span>
     }
 
 }

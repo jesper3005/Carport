@@ -5,7 +5,6 @@
  */
 package functionLayer.calculation;
 
-import functionLayer.LogicFacade;
 import functionLayer.Product;
 import functionLayer.Rules;
 import java.util.List;
@@ -14,36 +13,36 @@ import java.util.List;
  *
  * @author oerte
  */
-<span class="nc" id="L17">public class CalcLøsholt {</span>
+<span class="nc" id="L16">public class CalcLøsholt {</span>
     
     
 
     public Product calcAntalPointedRoof(double length, double width, double degree, List allProducts) {
 
-<span class="nc bnc" id="L23" title="All 6 branches missed.">        if (length &lt;= 0 || width &lt;= 0 || degree &lt;= 0) {</span>
-<span class="nc" id="L24">            throw new IllegalArgumentException();</span>
+<span class="nc bnc" id="L22" title="All 6 branches missed.">        if (length &lt;= 0 || width &lt;= 0 || degree &lt;= 0) {</span>
+<span class="nc" id="L23">            throw new IllegalArgumentException();</span>
         }
-<span class="nc bnc" id="L26" title="All 2 branches missed.">        if (allProducts == null) {</span>
-<span class="nc" id="L27">            throw new NullPointerException();</span>
+<span class="nc bnc" id="L25" title="All 2 branches missed.">        if (allProducts == null) {</span>
+<span class="nc" id="L26">            throw new NullPointerException();</span>
         }
 
-<span class="nc" id="L30">        Product p = null;</span>
-<span class="nc" id="L31">        List&lt;Product&gt; productList = allProducts;</span>
+<span class="nc" id="L29">        Product p = null;</span>
+<span class="nc" id="L30">        List&lt;Product&gt; productList = allProducts;</span>
         try {
-<span class="nc" id="L33">            double løsholtLengthB = CalcPointedRoofTriangle.CalcKatete(length, width, degree) + Rules.POINTED_ROOF_SURPLUS;</span>
-<span class="nc" id="L34">            double antal = 4;</span>
+<span class="nc" id="L32">            double løsholtLengthB = CalcPointedRoofTriangle.CalcKatete(length, width, degree) + Rules.POINTED_ROOF_SURPLUS;</span>
+<span class="nc" id="L33">            double antal = 4;</span>
 
-<span class="nc bnc" id="L36" title="All 2 branches missed.">            for (Product product : productList) {</span>
-<span class="nc bnc" id="L37" title="All 4 branches missed.">                if (product.getCategory().equals(&quot;løsholt&quot;) &amp;&amp; product.getLength() &gt;= løsholtLengthB) {</span>
-<span class="nc" id="L38">                    p = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), antal, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">            for (Product product : productList) {</span>
+<span class="nc bnc" id="L36" title="All 4 branches missed.">                if (product.getCategory().equals(&quot;løsholt&quot;) &amp;&amp; product.getLength() &gt;= løsholtLengthB) {</span>
+<span class="nc" id="L37">                    p = new Product(product.getId(), product.getProductName(), product.getCategory(), product.getPrice(), antal, product.getPriceLine(), product.getLength(), product.getWidth(), product.getHeight());</span>
 
                 }
-<span class="nc" id="L41">            }</span>
-<span class="nc" id="L42">            return p;</span>
+<span class="nc" id="L40">            }</span>
+<span class="nc" id="L41">            return p;</span>
 
-<span class="nc" id="L44">        } catch (Exception e) {</span>
-<span class="nc" id="L45">            System.out.println(e.getMessage() +&quot; &quot;+ CalcLøsholt.class.getName());</span>
-<span class="nc" id="L46">            return p = new Product();</span>
+<span class="nc" id="L43">        } catch (Exception e) {</span>
+<span class="nc" id="L44">            System.out.println(e.getMessage() +&quot; &quot;+ CalcLøsholt.class.getName());</span>
+<span class="nc" id="L45">            return p = new Product();</span>
 
         }
 

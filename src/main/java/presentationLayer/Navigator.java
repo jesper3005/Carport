@@ -5,9 +5,12 @@
  */
 package presentationLayer;
 
+import java.util.logging.Level;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import logging.DefaultLogger;
+import logging.LoggerConfig;
 
 /**
  *
@@ -37,6 +40,7 @@ public class Navigator extends Command {
             }
         } catch (Exception e) {
             System.out.println(e.getMessage() +" "+ Navigator.class.getName());
+            DefaultLogger.getLogger(LoggerConfig.PRODUCTION, false).log(Level.WARNING,e.getMessage() +" "+ Navigator.class.getName() + System.lineSeparator());
         }
 
         return "login";

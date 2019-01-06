@@ -5,49 +5,16 @@
  */
 package logging;
 
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Formatter;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.FileHandler;
-import java.util.logging.LogRecord;
 
 /**
  *
  * @author oerte
  */
-<span class="nc" id="L20">public class LoggerConfig {</span>
+<span class="nc" id="L13">public class LoggerConfig {</span>
 
-    public static void setUpLogger() {
+    public static final boolean PRODUCTION = true;
+    //public static final String LOG_FILE_PATH = &quot;/var/log/tomcat8/demoApp.log&quot;;
+    public static final String LOG_FILE_PATH_DEVELOP = &quot;C:\\temp\\loggingdemo.log&quot;;
 
-<span class="nc" id="L24">        ConsoleHandler handler = new ConsoleHandler();</span>
-
-        if (DefaultLogger.PRODUCTION) {
-            try {
-<span class="nc" id="L28">                DefaultLogger.getMyLogger().addHandler(handler);</span>
-<span class="nc" id="L29">                FileHandler fileHandler = new FileHandler(DefaultLogger.LOGFILEPATH);</span>
-<span class="nc" id="L30">                fileHandler.setFormatter(new VerySimpleFormatter());</span>
-<span class="nc" id="L31">                fileHandler.close();</span>
-<span class="nc" id="L32">            } catch (IOException | SecurityException ex) {</span>
-<span class="nc" id="L33">                System.out.println(ex.getMessage() +&quot; &quot;+ LoggerConfig.class.getName());</span>
-<span class="nc" id="L34">            }</span>
-        }
-<span class="nc" id="L36">    }</span>
-
-<span class="nc" id="L38">    private static class VerySimpleFormatter extends Formatter {</span>
-
-        private static final String PATTERN = &quot;yyyy-MM-dd'T'HH:mm:ss.SSSXXX&quot;;
-
-        @Override
-        public String format(final LogRecord record) {
-<span class="nc" id="L44">            return String.format(</span>
-                    &quot;%1$s %2$-7s %3$s\n&quot;,
-<span class="nc" id="L46">                    new SimpleDateFormat(PATTERN).format(</span>
-<span class="nc" id="L47">                            new Date(record.getMillis())),</span>
-<span class="nc" id="L48">                    record.getLevel().getName(),</span>
-<span class="nc" id="L49">                    formatMessage(record));</span>
-        }
-    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

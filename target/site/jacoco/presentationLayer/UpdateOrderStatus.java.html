@@ -8,40 +8,44 @@ package presentationLayer;
 import functionLayer.Carport;
 import functionLayer.LogicFacade;
 import java.util.List;
+import java.util.logging.Level;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import logging.DefaultLogger;
+import logging.LoggerConfig;
 
 /**
  *
  * @author Jesper
  */
-<span class="nc" id="L19">public class UpdateOrderStatus extends Command {</span>
+<span class="nc" id="L22">public class UpdateOrderStatus extends Command {</span>
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response)  {
 
         try {
-<span class="nc" id="L25">            HttpSession session = request.getSession();</span>
-<span class="nc" id="L26">            String status = request.getParameter(&quot;status&quot;);</span>
-<span class="nc" id="L27">            String enumValue = request.getParameter(&quot;selectOrder&quot;);</span>
-<span class="nc" id="L28">            int id = Integer.parseInt(request.getParameter(&quot;id&quot;));</span>
-<span class="nc" id="L29">            LogicFacade.updateOrderStatus(status, id);</span>
+<span class="nc" id="L28">            HttpSession session = request.getSession();</span>
+<span class="nc" id="L29">            String status = request.getParameter(&quot;status&quot;);</span>
+<span class="nc" id="L30">            String enumValue = request.getParameter(&quot;selectOrder&quot;);</span>
+<span class="nc" id="L31">            int id = Integer.parseInt(request.getParameter(&quot;id&quot;));</span>
+<span class="nc" id="L32">            LogicFacade.updateOrderStatus(status, id);</span>
             List&lt;Carport&gt; allOrders;
 
-<span class="nc bnc" id="L32" title="All 4 branches missed.">            if (enumValue == null || enumValue.equals(&quot;allOrdre&quot;)) {</span>
-<span class="nc" id="L33">                allOrders = LogicFacade.getAllCarportOrders();</span>
-<span class="nc" id="L34">                session.setAttribute(&quot;allOrders&quot;, allOrders);</span>
+<span class="nc bnc" id="L35" title="All 4 branches missed.">            if (enumValue == null || enumValue.equals(&quot;allOrdre&quot;)) {</span>
+<span class="nc" id="L36">                allOrders = LogicFacade.getAllCarportOrders();</span>
+<span class="nc" id="L37">                session.setAttribute(&quot;allOrders&quot;, allOrders);</span>
             } else {
-<span class="nc" id="L36">                System.out.println(enumValue);</span>
-<span class="nc" id="L37">                allOrders = LogicFacade.getOrdresFromCarportByEnum(enumValue);</span>
-<span class="nc" id="L38">                session.setAttribute(&quot;allOrders&quot;, allOrders);</span>
+<span class="nc" id="L39">                System.out.println(enumValue);</span>
+<span class="nc" id="L40">                allOrders = LogicFacade.getOrdresFromCarportByEnum(enumValue);</span>
+<span class="nc" id="L41">                session.setAttribute(&quot;allOrders&quot;, allOrders);</span>
             }
 
-<span class="nc" id="L41">        } catch (Exception e) {</span>
-<span class="nc" id="L42">            System.out.println(e.getMessage() +&quot; &quot;+ UpdateOrderStatus.class.getName());</span>
-<span class="nc" id="L43">        }</span>
-<span class="nc" id="L44">        return &quot;manageOrders&quot;;</span>
+<span class="nc" id="L44">        } catch (Exception e) {</span>
+<span class="nc" id="L45">            System.out.println(e.getMessage() +&quot; &quot;+ UpdateOrderStatus.class.getName());</span>
+<span class="nc" id="L46">            DefaultLogger.getLogger(LoggerConfig.PRODUCTION, false).log(Level.WARNING,e.getMessage() +&quot; &quot;+ UpdateOrderStatus.class.getName() + System.lineSeparator());</span>
+<span class="nc" id="L47">        }</span>
+<span class="nc" id="L48">        return &quot;manageOrders&quot;;</span>
     }
 
 }

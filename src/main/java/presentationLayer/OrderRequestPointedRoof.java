@@ -45,14 +45,12 @@ public class OrderRequestPointedRoof extends Command {
             String roofMaterial = request.getParameter("Tag");
 
             Shed shed;
-            LoggerConfig.setUpLogger();
             String error = "Skurets bredde og/eller længde må ikke være størrer end selve carporten.";
 
             if (shedLength > length || shedWidth > width) {
                 request.setAttribute("error", error);
-                LoggerConfig.setUpLogger();
-                DefaultLogger.getMyLogger().log(Level.SEVERE, error);
-                return "carportFlatRoof";
+                DefaultLogger.getLogger(LoggerConfig.PRODUCTION, false).log(Level.SEVERE, error + System.lineSeparator());
+                return "carportPointedRoof";
             }
 
             if (redskabsskur != null) {
@@ -69,7 +67,6 @@ public class OrderRequestPointedRoof extends Command {
             session.setAttribute("carportPeak", carport);
             session.setAttribute("shedPeak", shed);
 
-
             //------------SVG-------------
             //Rules (Tempoarily)
             double height = 230;
@@ -78,14 +75,15 @@ public class OrderRequestPointedRoof extends Command {
             //Carport from top
             SVGTop topSVG = new SVGTop(carport, shed);
             request.setAttribute("drawingTop", topSVG.getMySVG());
-            
+
             //Carport from side.
             SVGSide sSVG = new SVGSide(carport, shed, height);
             request.setAttribute("drawingSide", sSVG.getMySVG());
 
             return "orderRequestPointedRoof";
         } catch (Exception e) {
-            System.out.println(e.getMessage() +" "+ OrderRequestPointedRoof.class.getName());
+            System.out.println(e.getMessage() + " " + OrderRequestPointedRoof.class.getName());
+            DefaultLogger.getLogger(LoggerConfig.PRODUCTION, false).log(Level.WARNING,e.getMessage() +" "+ OrderRequestPointedRoof.class.getName() + System.lineSeparator());
             return "carportPointedRoof";
         }
     }

@@ -9,52 +9,56 @@ import functionLayer.Carport;
 import functionLayer.Customer;
 import functionLayer.LogicFacade;
 import functionLayer.Shed;
+import java.util.logging.Level;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import logging.DefaultLogger;
+import logging.LoggerConfig;
 
 /**
  *
  * @author Jesper
  */
-<span class="nc" id="L20">public class CreateOrderFlatRoof extends Command {</span>
+<span class="nc" id="L23">public class CreateOrderFlatRoof extends Command {</span>
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response)  {
 
-<span class="nc" id="L25">        HttpSession session = request.getSession();</span>
+<span class="nc" id="L28">        HttpSession session = request.getSession();</span>
         Customer customer;
         try {
             //Customer information
-<span class="nc" id="L29">            String firstName = request.getParameter(&quot;fornavn&quot;);</span>
-<span class="nc" id="L30">            String lastName = request.getParameter(&quot;efternavn&quot;);</span>
-<span class="nc" id="L31">            String addresse = request.getParameter(&quot;addresse&quot;);</span>
-<span class="nc" id="L32">            String zipCode = request.getParameter(&quot;postnummer&quot;).trim();</span>
-<span class="nc" id="L33">            String town = request.getParameter(&quot;by&quot;);</span>
-<span class="nc" id="L34">            String tel = request.getParameter(&quot;telefon&quot;);</span>
-<span class="nc" id="L35">            String email = request.getParameter(&quot;email&quot;);</span>
-<span class="nc" id="L36">            String comment = request.getParameter(&quot;comment&quot;);</span>
+<span class="nc" id="L32">            String firstName = request.getParameter(&quot;fornavn&quot;);</span>
+<span class="nc" id="L33">            String lastName = request.getParameter(&quot;efternavn&quot;);</span>
+<span class="nc" id="L34">            String addresse = request.getParameter(&quot;addresse&quot;);</span>
+<span class="nc" id="L35">            String zipCode = request.getParameter(&quot;postnummer&quot;).trim();</span>
+<span class="nc" id="L36">            String town = request.getParameter(&quot;by&quot;);</span>
+<span class="nc" id="L37">            String tel = request.getParameter(&quot;telefon&quot;);</span>
+<span class="nc" id="L38">            String email = request.getParameter(&quot;email&quot;);</span>
+<span class="nc" id="L39">            String comment = request.getParameter(&quot;comment&quot;);</span>
             
-<span class="nc" id="L38">            Carport carportFlat = (Carport) session.getAttribute(&quot;carportFlat&quot;);</span>
-<span class="nc" id="L39">            Shed shedFlat = (Shed) session.getAttribute(&quot;shedFlat&quot;);</span>
+<span class="nc" id="L41">            Carport carportFlat = (Carport) session.getAttribute(&quot;carportFlat&quot;);</span>
+<span class="nc" id="L42">            Shed shedFlat = (Shed) session.getAttribute(&quot;shedFlat&quot;);</span>
 
-<span class="nc" id="L41">            customer = LogicFacade.getCustomerByEmail(email);</span>
+<span class="nc" id="L44">            customer = LogicFacade.getCustomerByEmail(email);</span>
 
-<span class="nc bnc" id="L43" title="All 4 branches missed.">            if (customer != null &amp;&amp; email.equals(customer.getEmail())) {</span>
-<span class="nc" id="L44">               carportFlat.setCustomer_id(customer.getId());</span>
-<span class="nc" id="L45">               LogicFacade.addCarport(carportFlat, shedFlat);</span>
+<span class="nc bnc" id="L46" title="All 4 branches missed.">            if (customer != null &amp;&amp; email.equals(customer.getEmail())) {</span>
+<span class="nc" id="L47">               carportFlat.setCustomer_id(customer.getId());</span>
+<span class="nc" id="L48">               LogicFacade.addCarport(carportFlat, shedFlat);</span>
             } else {
-<span class="nc" id="L47">                Customer newCustomer = new Customer(firstName, lastName, email, addresse, town, zipCode, tel, comment);</span>
-<span class="nc" id="L48">                LogicFacade.addCustomer(newCustomer);</span>
-<span class="nc" id="L49">                Customer c = LogicFacade.getCustomerByEmail(email);</span>
-<span class="nc" id="L50">                carportFlat.setCustomer_id(c.getId());</span>
-<span class="nc" id="L51">                LogicFacade.addCarport(carportFlat, shedFlat);</span>
+<span class="nc" id="L50">                Customer newCustomer = new Customer(firstName, lastName, email, addresse, town, zipCode, tel, comment);</span>
+<span class="nc" id="L51">                LogicFacade.addCustomer(newCustomer);</span>
+<span class="nc" id="L52">                Customer c = LogicFacade.getCustomerByEmail(email);</span>
+<span class="nc" id="L53">                carportFlat.setCustomer_id(c.getId());</span>
+<span class="nc" id="L54">                LogicFacade.addCarport(carportFlat, shedFlat);</span>
            }
-<span class="nc" id="L53">            return &quot;orderComplete&quot;;</span>
+<span class="nc" id="L56">            return &quot;orderComplete&quot;;</span>
             
-<span class="nc" id="L55">        } catch (Exception e) {</span>
-<span class="nc" id="L56">            System.out.println(e.getMessage() +&quot; &quot;+ CreateOrderFlatRoof.class.getName());</span>
-<span class="nc" id="L57">            return &quot;orderRequestFlatRoof&quot;;</span>
+<span class="nc" id="L58">        } catch (Exception e) {</span>
+<span class="nc" id="L59">            System.out.println(e.getMessage() +&quot; &quot;+ CreateOrderFlatRoof.class.getName());</span>
+<span class="nc" id="L60">            DefaultLogger.getLogger(LoggerConfig.PRODUCTION, false).log(Level.WARNING,e.getMessage() +&quot; &quot;+ CreateOrderFlatRoof.class.getName() + System.lineSeparator());</span>
+<span class="nc" id="L61">            return &quot;orderRequestFlatRoof&quot;;</span>
         }
 
     }

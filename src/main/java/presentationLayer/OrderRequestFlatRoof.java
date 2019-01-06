@@ -24,10 +24,10 @@ import logging.LoggerConfig;
  * @author oerte
  */
 public class OrderRequestFlatRoof extends Command {
-
+    
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) {
-
+        
         try {
             HttpSession session = request.getSession();
             List<Product> stykliste;
@@ -46,12 +46,10 @@ public class OrderRequestFlatRoof extends Command {
             Shed shed;
             if (shedLength > length || shedWidth > width) {
                 request.setAttribute("error", error);
-                LoggerConfig.setUpLogger();
-                DefaultLogger.getMyLogger().log(Level.SEVERE, error);
+                DefaultLogger.getLogger(LoggerConfig.PRODUCTION, false).log(Level.SEVERE, error + System.lineSeparator());
                 return "carportFlatRoof";
             }
-
-
+            
             if (redskabsskur != null) {
                 stykliste = LogicFacade.carportCalculaterFlatRoofIncludingShed(length, width, shedLength, shedWidth, roofMaterial);
                 shed = new Shed(shedLength, shedWidth);
@@ -59,7 +57,7 @@ public class OrderRequestFlatRoof extends Command {
                 stykliste = LogicFacade.carportCalculaterFlatRoof(length, width, roofMaterial);
                 shed = new Shed(0.0, 0.0);
             }
-
+            
             double totalPriceOfCarport = LogicFacade.totalPriceOfCarport(stykliste);
 
             //Set styklisten, bredde, længde and totalPriceOfCarport in session
@@ -67,10 +65,7 @@ public class OrderRequestFlatRoof extends Command {
             session.setAttribute("carportFlat", carport);
             session.setAttribute("shedFlat", shed);
 
-            
-
             //------------SVG-------------
-
             //Rules (Tempoarily)
             double height = 230;
 
@@ -78,17 +73,18 @@ public class OrderRequestFlatRoof extends Command {
             //Carport fra toppen.
             SVGTop topSVG = new SVGTop(carport, shed);
             request.setAttribute("drawingTop", topSVG.getMySVG());
-            
+
             //Carport fra siden.
             SVGSide sSVG = new SVGSide(carport, shed, height);
             request.setAttribute("drawingSide", sSVG.getMySVG());
-
+            
             return "orderRequestFlatRoof";
-
+            
         } catch (Exception e) {
-            System.out.println(e.getMessage() +" "+ OrderRequestFlatRoof.class.getName());
+            System.out.println(e.getMessage() + " " + OrderRequestFlatRoof.class.getName());
+            DefaultLogger.getLogger(LoggerConfig.PRODUCTION, false).log(Level.WARNING,e.getMessage() +" "+ OrderRequestFlatRoof.class.getName() + System.lineSeparator());
             return "carportFlatRoof";
         }
     }
-
+    
 }

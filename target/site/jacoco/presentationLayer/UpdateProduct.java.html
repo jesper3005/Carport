@@ -9,38 +9,42 @@ import dbAccess.ProductMapper;
 import functionLayer.LogicFacade;
 import functionLayer.Product;
 import java.util.List;
+import java.util.logging.Level;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import logging.DefaultLogger;
+import logging.LoggerConfig;
 
 /**
  *
  * @author oerte
  */
-<span class="nc" id="L20">public class UpdateProduct extends Command {</span>
+<span class="nc" id="L23">public class UpdateProduct extends Command {</span>
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response)  {
 
         try {
-<span class="nc" id="L26">            HttpSession session = request.getSession();</span>
-<span class="nc" id="L27">            String action = request.getParameter(&quot;action&quot;);</span>
-<span class="nc bnc" id="L28" title="All 2 branches missed.">            if (&quot;Update&quot;.equals(action)) {</span>
-<span class="nc" id="L29">                double price = Double.parseDouble(request.getParameter(&quot;price&quot;));</span>
-<span class="nc" id="L30">                int id = Integer.parseInt(request.getParameter(&quot;id&quot;));</span>
-<span class="nc" id="L31">                LogicFacade.updatePrice(id, price);</span>
-<span class="nc" id="L32">            } else {</span>
-<span class="nc" id="L33">                int product_id = Integer.parseInt(request.getParameter(&quot;product_id&quot;));</span>
-<span class="nc" id="L34">                LogicFacade.deleteProduct(product_id);</span>
+<span class="nc" id="L29">            HttpSession session = request.getSession();</span>
+<span class="nc" id="L30">            String action = request.getParameter(&quot;action&quot;);</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">            if (&quot;Update&quot;.equals(action)) {</span>
+<span class="nc" id="L32">                double price = Double.parseDouble(request.getParameter(&quot;price&quot;));</span>
+<span class="nc" id="L33">                int id = Integer.parseInt(request.getParameter(&quot;id&quot;));</span>
+<span class="nc" id="L34">                LogicFacade.updatePrice(id, price);</span>
+<span class="nc" id="L35">            } else {</span>
+<span class="nc" id="L36">                int product_id = Integer.parseInt(request.getParameter(&quot;product_id&quot;));</span>
+<span class="nc" id="L37">                LogicFacade.deleteProduct(product_id);</span>
             }
             
-<span class="nc" id="L37">            List&lt;Product&gt; allProducts = LogicFacade.getAllProductsFromDatabase();</span>
-<span class="nc" id="L38">            session.setAttribute(&quot;allProduct&quot;, allProducts);</span>
-<span class="nc" id="L39">            return &quot;manageProducts&quot;;</span>
-<span class="nc" id="L40">        } catch (Exception e) {</span>
-<span class="nc" id="L41">            System.out.println(e.getMessage() +&quot; &quot;+ UpdateProduct.class.getName());</span>
+<span class="nc" id="L40">            List&lt;Product&gt; allProducts = LogicFacade.getAllProductsFromDatabase();</span>
+<span class="nc" id="L41">            session.setAttribute(&quot;allProduct&quot;, allProducts);</span>
+<span class="nc" id="L42">            return &quot;manageProducts&quot;;</span>
+<span class="nc" id="L43">        } catch (Exception e) {</span>
+<span class="nc" id="L44">            System.out.println(e.getMessage() +&quot; &quot;+ UpdateProduct.class.getName());</span>
+<span class="nc" id="L45">            DefaultLogger.getLogger(LoggerConfig.PRODUCTION, false).log(Level.WARNING,e.getMessage() +&quot; &quot;+ UpdateProduct.class.getName() + System.lineSeparator());</span>
         }
-<span class="nc" id="L43">        return &quot;manageProducts&quot;;</span>
+<span class="nc" id="L47">        return &quot;manageProducts&quot;;</span>
 
     }
 

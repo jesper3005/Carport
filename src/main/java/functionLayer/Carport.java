@@ -13,17 +13,17 @@ import java.util.Date;
  */
 public class Carport {
 
-    private int id;
-    private Date date;
+    private double total_price;
     private double carport_length;
     private double carport_width;
     private double degrees;
-    private String roof;
-    private String roofMaterial;
-    private double total_price;
-    private String status_of_order;
+    private int id;
     private int shed_id;
     private int customer_id;
+    private String roof;
+    private String roofMaterial;
+    private String status_of_order;
+    private Date date;
     private Shed shed;
 
     public Carport(double carport_length, double carport_width, double degrees, String roof, String roofMaterial, double total_price, int shed_id, int customer_id) {
@@ -50,10 +50,6 @@ public class Carport {
         this.shed_id = shed_id;
         this.customer_id = customer_id;
         this.shed = shed;
-    }
-
-    public void setTotal_price(double total_price) {
-        this.total_price = total_price;
     }
 
     public void setCustomer_id(int customer_id) {

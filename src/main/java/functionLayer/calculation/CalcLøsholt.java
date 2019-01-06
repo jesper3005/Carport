@@ -5,7 +5,6 @@
  */
 package functionLayer.calculation;
 
-import functionLayer.LogicFacade;
 import functionLayer.Product;
 import functionLayer.Rules;
 import java.util.List;

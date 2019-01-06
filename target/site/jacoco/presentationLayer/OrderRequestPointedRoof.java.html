@@ -45,48 +45,46 @@ import logging.LoggerConfig;
 <span class="nc" id="L45">            String roofMaterial = request.getParameter(&quot;Tag&quot;);</span>
 
             Shed shed;
-<span class="nc" id="L48">            LoggerConfig.setUpLogger();</span>
-<span class="nc" id="L49">            String error = &quot;Skurets bredde og/eller længde må ikke være størrer end selve carporten.&quot;;</span>
+<span class="nc" id="L48">            String error = &quot;Skurets bredde og/eller længde må ikke være størrer end selve carporten.&quot;;</span>
 
-<span class="nc bnc" id="L51" title="All 4 branches missed.">            if (shedLength &gt; length || shedWidth &gt; width) {</span>
-<span class="nc" id="L52">                request.setAttribute(&quot;error&quot;, error);</span>
-<span class="nc" id="L53">                LoggerConfig.setUpLogger();</span>
-<span class="nc" id="L54">                DefaultLogger.getMyLogger().log(Level.SEVERE, error);</span>
-<span class="nc" id="L55">                return &quot;carportFlatRoof&quot;;</span>
+<span class="nc bnc" id="L50" title="All 4 branches missed.">            if (shedLength &gt; length || shedWidth &gt; width) {</span>
+<span class="nc" id="L51">                request.setAttribute(&quot;error&quot;, error);</span>
+<span class="nc" id="L52">                DefaultLogger.getLogger(LoggerConfig.PRODUCTION, false).log(Level.SEVERE, error + System.lineSeparator());</span>
+<span class="nc" id="L53">                return &quot;carportPointedRoof&quot;;</span>
             }
 
-<span class="nc bnc" id="L58" title="All 2 branches missed.">            if (redskabsskur != null) {</span>
-<span class="nc" id="L59">                stykliste = LogicFacade.carportCalculatorPointedRoofIncludingShed(length, width, degree, shedLength, shedWidth, roofMaterial);</span>
-<span class="nc" id="L60">                shed = new Shed(shedLength, shedWidth);</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">            if (redskabsskur != null) {</span>
+<span class="nc" id="L57">                stykliste = LogicFacade.carportCalculatorPointedRoofIncludingShed(length, width, degree, shedLength, shedWidth, roofMaterial);</span>
+<span class="nc" id="L58">                shed = new Shed(shedLength, shedWidth);</span>
             } else {
-<span class="nc" id="L62">                stykliste = LogicFacade.carportCalculatorPointedRoof(length, width, degree, roofMaterial);</span>
-<span class="nc" id="L63">                shed = new Shed(0.0, 0.0);</span>
+<span class="nc" id="L60">                stykliste = LogicFacade.carportCalculatorPointedRoof(length, width, degree, roofMaterial);</span>
+<span class="nc" id="L61">                shed = new Shed(0.0, 0.0);</span>
             }
 
-<span class="nc" id="L66">            double totalPriceOfCarport = LogicFacade.totalPriceOfCarport(stykliste);</span>
+<span class="nc" id="L64">            double totalPriceOfCarport = LogicFacade.totalPriceOfCarport(stykliste);</span>
 
-<span class="nc" id="L68">            Carport carport = new Carport(length, width, degree, &quot;PEAK&quot;, roofMaterial, totalPriceOfCarport, shed.getShed_id(), 0);</span>
-<span class="nc" id="L69">            session.setAttribute(&quot;carportPeak&quot;, carport);</span>
-<span class="nc" id="L70">            session.setAttribute(&quot;shedPeak&quot;, shed);</span>
-
+<span class="nc" id="L66">            Carport carport = new Carport(length, width, degree, &quot;PEAK&quot;, roofMaterial, totalPriceOfCarport, shed.getShed_id(), 0);</span>
+<span class="nc" id="L67">            session.setAttribute(&quot;carportPeak&quot;, carport);</span>
+<span class="nc" id="L68">            session.setAttribute(&quot;shedPeak&quot;, shed);</span>
 
             //------------SVG-------------
             //Rules (Tempoarily)
-<span class="nc" id="L75">            double height = 230;</span>
+<span class="nc" id="L72">            double height = 230;</span>
 
             //Inserting svg of the carport
             //Carport from top
-<span class="nc" id="L79">            SVGTop topSVG = new SVGTop(carport, shed);</span>
-<span class="nc" id="L80">            request.setAttribute(&quot;drawingTop&quot;, topSVG.getMySVG());</span>
-            
-            //Carport from side.
-<span class="nc" id="L83">            SVGSide sSVG = new SVGSide(carport, shed, height);</span>
-<span class="nc" id="L84">            request.setAttribute(&quot;drawingSide&quot;, sSVG.getMySVG());</span>
+<span class="nc" id="L76">            SVGTop topSVG = new SVGTop(carport, shed);</span>
+<span class="nc" id="L77">            request.setAttribute(&quot;drawingTop&quot;, topSVG.getMySVG());</span>
 
-<span class="nc" id="L86">            return &quot;orderRequestPointedRoof&quot;;</span>
-<span class="nc" id="L87">        } catch (Exception e) {</span>
-<span class="nc" id="L88">            System.out.println(e.getMessage() +&quot; &quot;+ OrderRequestPointedRoof.class.getName());</span>
-<span class="nc" id="L89">            return &quot;carportPointedRoof&quot;;</span>
+            //Carport from side.
+<span class="nc" id="L80">            SVGSide sSVG = new SVGSide(carport, shed, height);</span>
+<span class="nc" id="L81">            request.setAttribute(&quot;drawingSide&quot;, sSVG.getMySVG());</span>
+
+<span class="nc" id="L83">            return &quot;orderRequestPointedRoof&quot;;</span>
+<span class="nc" id="L84">        } catch (Exception e) {</span>
+<span class="nc" id="L85">            System.out.println(e.getMessage() + &quot; &quot; + OrderRequestPointedRoof.class.getName());</span>
+<span class="nc" id="L86">            DefaultLogger.getLogger(LoggerConfig.PRODUCTION, false).log(Level.WARNING,e.getMessage() +&quot; &quot;+ OrderRequestPointedRoof.class.getName() + System.lineSeparator());</span>
+<span class="nc" id="L87">            return &quot;carportPointedRoof&quot;;</span>
         }
     }
 }

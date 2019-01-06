@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logging.DefaultLogger;
+import logging.LoggerConfig;
 
 /**
  *
@@ -39,7 +40,7 @@ public class Login extends Command {
             System.out.println(ex.getMessage() +" "+ Login.class.getName());
             request.setAttribute("error", ex.getMessage());
             System.out.println("Login failed");
-            DefaultLogger.getMyLogger().log(Level.WARNING, "Login failed " + email + " : " + password);
+            DefaultLogger.getLogger(LoggerConfig.PRODUCTION, false).log(Level.SEVERE, "Login failed. Email: " + email + " Password: " + password + System.lineSeparator());
             return "login";
         }
 

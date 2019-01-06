@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="8" failures="0" name="DataLayer.ProductMapperTest" time="1.284" errors="0" skipped="0">
+<testsuite tests="8" failures="0" name="DataLayer.ProductMapperTest" time="2.165" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_161\jre\bin"/>
@@ -29,7 +29,7 @@
     <property name="maven.ext.class.path" value="C:\Program Files\NetBeans 8.2\java\maven-nblib\netbeans-eventspy.jar"/>
     <property name="classworlds.conf" value="C:\Program Files\NetBeans 8.2\java\maven\bin\m2.conf"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_161\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Airtame;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Users\oerte\AppData\Local\Microsoft\WindowsApps;C:\Users\oerte\AppData\Local\atom\bin;C:\Users\oerte\AppData\Local\Programs\Microsoft VS Code\bin;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_161\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Airtame;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\nodejs\;C:\Users\oerte\AppData\Local\Microsoft\WindowsApps;C:\Users\oerte\AppData\Local\atom\bin;C:\Users\oerte\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\oerte\AppData\Roaming\npm;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
@@ -61,12 +61,12 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="DataLayer.ProductMapperTest" name="testGetAllRemLength" time="0.267"/>
-  <testcase classname="DataLayer.ProductMapperTest" name="testSearchProduct" time="0.14"/>
-  <testcase classname="DataLayer.ProductMapperTest" name="testUpdatePrice" time="0.149"/>
-  <testcase classname="DataLayer.ProductMapperTest" name="testAddProduct" time="0.177"/>
-  <testcase classname="DataLayer.ProductMapperTest" name="testGetProductById" time="0.132"/>
-  <testcase classname="DataLayer.ProductMapperTest" name="testDeleteProduct" time="0.176"/>
-  <testcase classname="DataLayer.ProductMapperTest" name="testGetAllProducts" time="0.131"/>
-  <testcase classname="DataLayer.ProductMapperTest" name="testSetUpOK" time="0.111"/>
+  <testcase classname="DataLayer.ProductMapperTest" name="testGetAllRemLength" time="0.446"/>
+  <testcase classname="DataLayer.ProductMapperTest" name="testSearchProduct" time="0.245"/>
+  <testcase classname="DataLayer.ProductMapperTest" name="testUpdatePrice" time="0.245"/>
+  <testcase classname="DataLayer.ProductMapperTest" name="testAddProduct" time="0.307"/>
+  <testcase classname="DataLayer.ProductMapperTest" name="testGetProductById" time="0.235"/>
+  <testcase classname="DataLayer.ProductMapperTest" name="testDeleteProduct" time="0.282"/>
+  <testcase classname="DataLayer.ProductMapperTest" name="testGetAllProducts" time="0.214"/>
+  <testcase classname="DataLayer.ProductMapperTest" name="testSetUpOK" time="0.189"/>
 </testsuite>

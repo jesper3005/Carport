@@ -7,30 +7,34 @@ package presentationLayer;
 
 import functionLayer.Customer;
 import functionLayer.LogicFacade;
+import java.util.logging.Level;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import logging.DefaultLogger;
+import logging.LoggerConfig;
 
 /**
  *
  * @author Jesper
  */
-<span class="nc" id="L18">public class CustomerOrderInfo extends Command {</span>
+<span class="nc" id="L21">public class CustomerOrderInfo extends Command {</span>
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) {
 
         try {
 
-<span class="nc" id="L25">            HttpSession session = request.getSession();</span>
-<span class="nc" id="L26">            int customerID = Integer.parseInt(request.getParameter(&quot;customerID&quot;));</span>
-<span class="nc" id="L27">            Customer customer = LogicFacade.getCustomerByID(customerID);</span>
-<span class="nc" id="L28">            session.setAttribute(&quot;customerInfo&quot;, customer);</span>
+<span class="nc" id="L28">            HttpSession session = request.getSession();</span>
+<span class="nc" id="L29">            int customerID = Integer.parseInt(request.getParameter(&quot;customerID&quot;));</span>
+<span class="nc" id="L30">            Customer customer = LogicFacade.getCustomerByID(customerID);</span>
+<span class="nc" id="L31">            session.setAttribute(&quot;customerInfo&quot;, customer);</span>
 
-<span class="nc" id="L30">            return &quot;customerOrderInfo&quot;;</span>
-<span class="nc" id="L31">        } catch (Exception e) {</span>
-<span class="nc" id="L32">            System.out.println(e.getMessage() + &quot; &quot; + CustomerOrderInfo.class.getName());</span>
 <span class="nc" id="L33">            return &quot;customerOrderInfo&quot;;</span>
+<span class="nc" id="L34">        } catch (Exception e) {</span>
+<span class="nc" id="L35">            System.out.println(e.getMessage() + &quot; &quot; + CustomerOrderInfo.class.getName());</span>
+<span class="nc" id="L36">            DefaultLogger.getLogger(LoggerConfig.PRODUCTION, false).log(Level.WARNING,e.getMessage() +&quot; &quot;+ CustomerOrderInfo.class.getName() + System.lineSeparator());</span>
+<span class="nc" id="L37">            return &quot;customerOrderInfo&quot;;</span>
         }
     }
 

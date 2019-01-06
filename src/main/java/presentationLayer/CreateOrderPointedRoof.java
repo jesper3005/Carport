@@ -9,9 +9,12 @@ import functionLayer.Carport;
 import functionLayer.Customer;
 import functionLayer.LogicFacade;
 import functionLayer.Shed;
+import java.util.logging.Level;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import logging.DefaultLogger;
+import logging.LoggerConfig;
 
 /**
  *
@@ -59,6 +62,7 @@ public class CreateOrderPointedRoof extends Command {
 
         } catch (Exception e) {
             System.out.println(e.getMessage() +" "+ CreateOrderPointedRoof.class.getName());
+            DefaultLogger.getLogger(LoggerConfig.PRODUCTION, false).log(Level.WARNING,e.getMessage() +" "+ CreateOrderPointedRoof.class.getName() + System.lineSeparator());
             return "orderRequestPointedRoof";
         }
 

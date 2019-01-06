@@ -92,8 +92,7 @@ public class SVGSide {
         double y = 0;
         
         sb.append("<rect x=\"").append(startPosXY).append("\" y=\"").append(y).append("\" height=\"").append(lengthOfLægte).append("\" width=\"").append(BATTEN_WIDTH).append("\" style=\"stroke: #292929; fill:none;\"/>");
-        
-        
+
         
         return sb.toString();
     }

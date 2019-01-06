@@ -26,8 +26,9 @@ public class ProductMapper {
     private final String ALL_REM_BY_LENGTH = "SELECT `category`,`length` FROM `product` ORDER BY `length`;";
     private final String SEARCH_IN_PRODUCT_TABLE = "SELECT * FROM product WHERE CONCAT(product_name, '', category, '',length,'',width,'',height,'') LIKE ?;";
     private final String GET_PRODUCT_BY_ID = "SELECT * FROM `product` WHERE `product_id` = ?;";
+    
+    
 
-    // private final String Update_PRODUCT = "SELECT `*` FROM `product` WHERE produkt_id=?;";
     public List<Product> allProducts() {
         try {
             List<Product> productList = new ArrayList<>();

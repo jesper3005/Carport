@@ -82,10 +82,6 @@ public class Product {
         return this.totalPriceOfOrder += this.priceLine;
     }
 
-    public void setQty(double qty) {
-        this.qty = qty;
-    }
-
     public int getId() {
         return id;
     }

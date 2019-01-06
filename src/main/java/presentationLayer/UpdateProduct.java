@@ -9,9 +9,12 @@ import dbAccess.ProductMapper;
 import functionLayer.LogicFacade;
 import functionLayer.Product;
 import java.util.List;
+import java.util.logging.Level;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import logging.DefaultLogger;
+import logging.LoggerConfig;
 
 /**
  *
@@ -39,6 +42,7 @@ public class UpdateProduct extends Command {
             return "manageProducts";
         } catch (Exception e) {
             System.out.println(e.getMessage() +" "+ UpdateProduct.class.getName());
+            DefaultLogger.getLogger(LoggerConfig.PRODUCTION, false).log(Level.WARNING,e.getMessage() +" "+ UpdateProduct.class.getName() + System.lineSeparator());
         }
         return "manageProducts";
 

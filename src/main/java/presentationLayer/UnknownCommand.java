@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package presentationLayer;
-import exceptions.FogException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 

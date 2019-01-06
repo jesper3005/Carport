@@ -22,25 +22,25 @@
        <%if(user == null) { %>
         <header>
             <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
-            <a class="active" href="/Carport/FrontController?command=toNavigator&site=registration">Sign up</a>
-            <a class="active" href="/Carport/FrontController?command=toNavigator&site=login">Login</a>
-            <a class="active" href="/Carport/FrontController?command=toNavigator&site=home">Home</a>
+            <a class="active" href="./FrontController?command=toNavigator&site=registration">Sign up</a>
+            <a class="active" href="./FrontController?command=toNavigator&site=login">Login</a>
+            <a class="active" href="./FrontController?command=toNavigator&site=home">Home</a>
         </header>
 
         <%} else if (user.getRole().equals("admin")) {%> 
         <header>
             <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
-            <a class="active" href="/Carport/FrontController?command=toNavigator&site=logout">Sign out</a>
-            <a class="active" href="/Carport/FrontController?command=Admin">Admin</a>
-            <a class="active" href="/Carport/FrontController?command=manageOrders">Se Ordre</a>
-            <a class="active" href="/Carport/FrontController?command=toNavigator&site=home">Home</a>
+            <a class="active" href="./FrontController?command=toNavigator&site=logout">Sign out</a>
+            <a class="active" href="./FrontController?command=Admin">Admin</a>
+            <a class="active" href="./FrontController?command=manageOrders">Se Ordre</a>
+            <a class="active" href="./FrontController?command=toNavigator&site=home">Home</a>
         </header>
         <%} else if (user.getRole().equals("customer")) { %>
         <header>
             <img id="fog" src="./IMAGES/FogLogo.png" alt="logo">
-            <a class="active" href="/Carport/FrontController?command=toNavigator&site=logout">Sign out</a>
+            <a class="active" href="./FrontController?command=toNavigator&site=logout">Sign out</a>
             <a class="active" href="">Profile</a>
-            <a class="active" href="/Carport/FrontController?command=toNavigator&site=home">Home</a>
+            <a class="active" href="./FrontController?command=toNavigator&site=home">Home</a>
         </header>
         <%}%>
         

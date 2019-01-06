@@ -12,9 +12,9 @@ package functionLayer;
 public class Shed {
 
     private int shed_id;
+    private int shed_facade_id;
     private double shed_length;
     private double shed_width;
-    private int shed_facade_id;
 
     public Shed(double shed_length, double shed_width) {
         this.shed_length = shed_length;
