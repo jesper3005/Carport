@@ -124,7 +124,7 @@
 
                     <form action="FrontController" method="POST">
                         <div class="control-groupManageOrders">
-                            <h4>Ændre status på odren</h4>
+                            <h4>Ændre status på ordren</h4>
                             <br>
                             <input type="checkbox" name="status" value="approved"> Approved
                             <br>

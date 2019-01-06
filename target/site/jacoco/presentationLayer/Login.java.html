@@ -40,7 +40,7 @@ import logging.LoggerConfig;
 <span class="nc" id="L40">            System.out.println(ex.getMessage() +&quot; &quot;+ Login.class.getName());</span>
 <span class="nc" id="L41">            request.setAttribute(&quot;error&quot;, ex.getMessage());</span>
 <span class="nc" id="L42">            System.out.println(&quot;Login failed&quot;);</span>
-<span class="nc" id="L43">            DefaultLogger.getLogger(LoggerConfig.PRODUCTION, false).log(Level.SEVERE, &quot;Login failed &quot; + email + &quot; : &quot; + password + System.lineSeparator());</span>
+<span class="nc" id="L43">            DefaultLogger.getLogger(LoggerConfig.PRODUCTION, false).log(Level.SEVERE, &quot;Login failed. Email: &quot; + email + &quot; Password: &quot; + password + System.lineSeparator());</span>
 <span class="nc" id="L44">            return &quot;login&quot;;</span>
         }
 

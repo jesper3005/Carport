@@ -43,7 +43,7 @@ import logging.LoggerConfig;
             
 <span class="nc" id="L44">        } catch (Exception e) {</span>
 <span class="nc" id="L45">            System.out.println(e.getMessage() + &quot; &quot; + AddProduct.class.getName());</span>
-<span class="nc" id="L46">            DefaultLogger.getLogger(LoggerConfig.PRODUCTION, false).log(Level.SEVERE,e.getMessage() + &quot; &quot; + AddProduct.class.getName() + System.lineSeparator());</span>
+<span class="nc" id="L46">            DefaultLogger.getLogger(LoggerConfig.PRODUCTION, false).log(Level.WARNING,e.getMessage() + &quot; &quot; + AddProduct.class.getName() + System.lineSeparator());</span>
 <span class="nc" id="L47">            return &quot;manageProducts&quot;;</span>
         }
 

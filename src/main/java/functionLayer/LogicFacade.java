@@ -291,7 +291,6 @@ public class LogicFacade {
         for (Product produkt : stykliste) {
             totalPriceOfCarport += produkt.getTotalPriceOfOrder();
         }
-        //return totalPriceOfCarport;
         return roundDoubleToTwoDecimalPoints(totalPriceOfCarport);
     }
 

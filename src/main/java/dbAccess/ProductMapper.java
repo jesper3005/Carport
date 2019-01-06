@@ -131,7 +131,7 @@ public class ProductMapper {
             System.out.println(ex.getMessage() + " " + ProductMapper.class.getName());
         }
     }
-
+    //private final String SEARCH_IN_PRODUCT_TABLE = "SELECT * FROM product WHERE CONCAT(product_name, '', category, '',length,'',width,'',height,'') LIKE ?;";
     public List<Product> searchInProductTable(String value) {
         value = "%" + value + "%";
         try {

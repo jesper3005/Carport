@@ -13,7 +13,7 @@ package logging;
 public class LoggerConfig {
 
     public static final boolean PRODUCTION = true;
-    //public static final String LOG_FILE_PATH = "/var/log/tomcat8/demoApp.log";
+    //public static final String LOG_FILE_PATH_DEVELOP = "/var/log/tomcat8/demoApp.log";
     public static final String LOG_FILE_PATH_DEVELOP = "C:\\temp\\loggingdemo.log";
 
 }

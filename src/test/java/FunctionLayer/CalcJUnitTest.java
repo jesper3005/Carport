@@ -14,7 +14,6 @@ import functionLayer.calculation.CalcPoles;
 import functionLayer.Product;
 import functionLayer.calculation.CalcNails;
 import functionLayer.calculation.CalcOuterLayerOfShed;
-import functionLayer.calculation.CalcPointedRoofTriangle;
 import functionLayer.calculation.CalcShedSkeletton;
 import functionLayer.calculation.CarportFlatProductListe;
 import java.util.ArrayList;
@@ -290,30 +289,6 @@ public class CalcJUnitTest {
         //Act
         colos.calcAntalDoor(null);
     }
-
-//    @Test
-//    public void calcPointedRoofTriangleKatete() {
-//        //Arrange
-//        Product p;
-//        CalcPointedRoofTriangle cprt = new CalcPointedRoofTriangle();
-//        //Act
-//        double actual = cprt.CalcKatete(240, 240, 15);
-//        double expected = 202.86;
-//        //Assert
-//        assertEquals(expected, actual, 0.5);
-//    }
-
-//    @Test
-//    public void calcPointedRoofTriangleAreal() {
-//        //Arrange
-//        Product p;
-//        CalcPointedRoofTriangle cprt = new CalcPointedRoofTriangle();
-//        //Act
-//        double actual = cprt.CalcArealTriangle(240, 240, 15);
-//        double expected = 322.86;
-//        //Assert
-//        assertEquals(expected, actual, 0.5);
-//    }
 
     @Test
     public void CalcShedSkeletton() {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="8" failures="0" name="DataLayer.ProductMapperTest" time="2.165" errors="0" skipped="0">
+<testsuite tests="8" failures="0" name="DataLayer.ProductMapperTest" time="1.822" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_161\jre\bin"/>
@@ -33,6 +33,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="skipTests" value="false"/>
     <property name="os.version" value="10.0"/>
     <property name="user.home" value="C:\Users\oerte"/>
     <property name="user.timezone" value="Europe/Paris"/>
@@ -44,7 +45,7 @@
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_161\jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dmaven.ext.class.path=C:\Program Files\NetBeans 8.2\java\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 clean install"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -DskipTests=false -Dmaven.ext.class.path=C:\Program Files\NetBeans 8.2\java\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 clean verify"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -61,12 +62,12 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="DataLayer.ProductMapperTest" name="testGetAllRemLength" time="0.446"/>
-  <testcase classname="DataLayer.ProductMapperTest" name="testSearchProduct" time="0.245"/>
-  <testcase classname="DataLayer.ProductMapperTest" name="testUpdatePrice" time="0.245"/>
-  <testcase classname="DataLayer.ProductMapperTest" name="testAddProduct" time="0.307"/>
-  <testcase classname="DataLayer.ProductMapperTest" name="testGetProductById" time="0.235"/>
-  <testcase classname="DataLayer.ProductMapperTest" name="testDeleteProduct" time="0.282"/>
-  <testcase classname="DataLayer.ProductMapperTest" name="testGetAllProducts" time="0.214"/>
-  <testcase classname="DataLayer.ProductMapperTest" name="testSetUpOK" time="0.189"/>
+  <testcase classname="DataLayer.ProductMapperTest" name="testGetAllRemLength" time="0.384"/>
+  <testcase classname="DataLayer.ProductMapperTest" name="testSearchProduct" time="0.187"/>
+  <testcase classname="DataLayer.ProductMapperTest" name="testUpdatePrice" time="0.212"/>
+  <testcase classname="DataLayer.ProductMapperTest" name="testAddProduct" time="0.26"/>
+  <testcase classname="DataLayer.ProductMapperTest" name="testGetProductById" time="0.184"/>
+  <testcase classname="DataLayer.ProductMapperTest" name="testDeleteProduct" time="0.24"/>
+  <testcase classname="DataLayer.ProductMapperTest" name="testGetAllProducts" time="0.194"/>
+  <testcase classname="DataLayer.ProductMapperTest" name="testSetUpOK" time="0.16"/>
 </testsuite>

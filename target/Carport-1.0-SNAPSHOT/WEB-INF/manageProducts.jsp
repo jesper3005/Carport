@@ -129,7 +129,7 @@
                         <td><%=list.getWidth()%></td>
                         <td><%=list.getHeight()%></td>
                     </form>
-                    <td><%out.println("<a href=\"http:/Carport/FrontController?command=UpdateProduct&product_id=" + list.getId() + "\")>");%>Slet</td>
+                    <td><%out.println("<a href=\"http:\\FrontController?command=UpdateProduct&product_id=" + list.getId() + "\")>");%>Slet</td>
                     </tr>
                     <%}%>
                     </tbody>

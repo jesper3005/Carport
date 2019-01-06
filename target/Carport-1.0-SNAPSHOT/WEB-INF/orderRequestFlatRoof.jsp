@@ -142,7 +142,7 @@
                     <h4>Telefon</h4>
                     <input type="text" name="telefon" required="">
                     <h4>Email-addresse</h4>
-                    <input type="text" name="email" required="">
+                    <input type="email" name="email" required="">
                     <h4>Evt. bemærkninger</h4>            
                     <textarea name="comment" form="usrform"></textarea>
                     <button type="submit" name="request">Send forspørgelse</button>

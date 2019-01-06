@@ -23,62 +23,66 @@ import java.util.logging.Logger;
 <span class="nc" id="L23">    private final static Logger LOGGER = Logger.getLogger(DefaultLogger.class.getName());</span>
 
     /**
+     * 1. A message is logged via Logger. 
+     * 2. The message is forwarded to the Handler.
+     * 3. A Handler uses a Formatter to format the message.
+     *
+     * FileHandler --&gt; writes all messages to a file.
      *
      * @param production set location for log file depending on whether program
      * is deployed to production server or if running in development mode.
      * @return the Logger to use from anywhere in the application.
      */
     public static Logger getLogger(boolean production, boolean withStackTrace) {
-<span class="nc" id="L32">        LOGGER.addHandler(new ConsoleHandler());</span>
+<span class="nc" id="L37">        LOGGER.addHandler(new ConsoleHandler());</span>
         try {
-<span class="nc bnc" id="L34" title="All 2 branches missed.">            if (production) {</span>
-<span class="nc" id="L35">                FileHandler handler = new FileHandler(LoggerConfig.LOG_FILE_PATH_DEVELOP);</span>
-//          handler.setFormatter(new SimpleFormatter());
-<span class="nc bnc" id="L37" title="All 2 branches missed.">                if (withStackTrace) {</span>
-<span class="nc" id="L38">                    handler.setFormatter(new withStackTraceFormatter());</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">            if (production) {</span>
+<span class="nc" id="L40">                FileHandler handler = new FileHandler(LoggerConfig.LOG_FILE_PATH_DEVELOP);</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">                if (withStackTrace) {</span>
+<span class="nc" id="L42">                    handler.setFormatter(new withStackTraceFormatter());</span>
                 } else {
-<span class="nc" id="L40">                    handler.setFormatter(new VerySimpleFormatter());</span>
+<span class="nc" id="L44">                    handler.setFormatter(new VerySimpleFormatter());</span>
                 }
-<span class="nc" id="L42">                LOGGER.addHandler(handler);</span>
+<span class="nc" id="L46">                LOGGER.addHandler(handler);</span>
             }
-<span class="nc" id="L44">        } catch (IOException e) {</span>
-<span class="nc" id="L45">            e.printStackTrace();</span>
-<span class="nc" id="L46">        }</span>
-<span class="nc" id="L47">        return LOGGER;</span>
+<span class="nc" id="L48">        } catch (IOException e) {</span>
+<span class="nc" id="L49">            e.printStackTrace();</span>
+<span class="nc" id="L50">        }</span>
+<span class="nc" id="L51">        return LOGGER;</span>
     }
 
-<span class="nc" id="L50">    private static class VerySimpleFormatter extends Formatter {</span>
+<span class="nc" id="L54">    private static class VerySimpleFormatter extends Formatter {</span>
 
-        private static final String PATTERN = &quot;yyyy-MM-dd'T'HH:mm:ss.SSSXXX&quot;;
+        private static final String PATTERN = &quot;yyyy-MM-dd'T'  HH:mm:ss.SSS  XXX&quot;;
 
         @Override
         public String format(final LogRecord record) {
-<span class="nc" id="L56">            return String.format(</span>
+<span class="nc" id="L60">            return String.format(</span>
                     &quot;%1$s %2$-7s %3$s\n&quot;,
-<span class="nc" id="L58">                    new SimpleDateFormat(PATTERN).format(</span>
-<span class="nc" id="L59">                            new Date(record.getMillis())),</span>
-<span class="nc" id="L60">                    record.getLevel().getName(),</span>
-<span class="nc" id="L61">                    formatMessage(record));</span>
+<span class="nc" id="L62">                    new SimpleDateFormat(PATTERN).format(</span>
+<span class="nc" id="L63">                            new Date(record.getMillis())),</span>
+<span class="nc" id="L64">                    record.getLevel().getName(),</span>
+<span class="nc" id="L65">                    formatMessage(record));</span>
         }
     }
 
-<span class="nc" id="L65">    private static class withStackTraceFormatter extends Formatter {</span>
+<span class="nc" id="L69">    private static class withStackTraceFormatter extends Formatter {</span>
 
         private static final String PATTERN = &quot;yyyy-MM-dd'T'HH:mm:ss.SSSXXX&quot;;
 
         @Override
         public String format(final LogRecord record) {
-<span class="nc" id="L71">            StackTraceElement[] traces = record.getThrown().getStackTrace();</span>
-<span class="nc" id="L72">            StringBuilder sb = new StringBuilder(&quot;Stacktrace: \n--------------------------------------------------------\n&quot;);</span>
-<span class="nc bnc" id="L73" title="All 2 branches missed.">            for (StackTraceElement trace : traces) {</span>
-<span class="nc" id="L74">                sb.append(&quot;Line number: &quot; + trace.getLineNumber() + &quot;in Method: &quot; + trace.getMethodName() + &quot; in class &quot; + trace.getClassName() + &quot; in file: &quot; + trace.getFileName() + &quot;\n&quot;);</span>
+<span class="nc" id="L75">            StackTraceElement[] traces = record.getThrown().getStackTrace();</span>
+<span class="nc" id="L76">            StringBuilder sb = new StringBuilder(&quot;Stacktrace: \n--------------------------------------------------------\n&quot;);</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">            for (StackTraceElement trace : traces) {</span>
+<span class="nc" id="L78">                sb.append(&quot;Line number: &quot; + trace.getLineNumber() + &quot;in Method: &quot; + trace.getMethodName() + &quot; in class &quot; + trace.getClassName() + &quot; in file: &quot; + trace.getFileName() + &quot;\n&quot;);</span>
             }
-<span class="nc" id="L76">            return String.format(</span>
+<span class="nc" id="L80">            return String.format(</span>
                     &quot;%1$s %2$-7s %3$s %4$s\n&quot;,
-<span class="nc" id="L78">                    new SimpleDateFormat(PATTERN).format(new Date(record.getMillis())),</span>
-<span class="nc" id="L79">                    record.getLevel().getName(),</span>
-<span class="nc" id="L80">                    formatMessage(record),</span>
-<span class="nc" id="L81">                    sb.toString()</span>
+<span class="nc" id="L82">                    new SimpleDateFormat(PATTERN).format(new Date(record.getMillis())),</span>
+<span class="nc" id="L83">                    record.getLevel().getName(),</span>
+<span class="nc" id="L84">                    formatMessage(record),</span>
+<span class="nc" id="L85">                    sb.toString()</span>
             );
         }
     }

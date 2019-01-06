@@ -32,9 +32,9 @@ public class CalcBeam {
             if (allProducts != null) {
                 double antal = 0;
                 if (width >= 510) {
-                    antal = Rules.AMOUNT_OF_BEAMS_OVER_OR_EQUAL_540;
+                    antal = Rules.AMOUNT_OF_BEAMS_OVER_OR_EQUAL_540;//5
                 } else {
-                    antal = Rules.AMOUNT_OF_BEAMS_UNDER_540;
+                    antal = Rules.AMOUNT_OF_BEAMS_UNDER_540;//4
                 }
                 for (Product product : productList) {
                     if (product.getCategory().equals("rem") && product.getLength() == length) {
@@ -46,7 +46,7 @@ public class CalcBeam {
             return p;
         } catch (Exception e) {
             System.out.println(e.getMessage() +" "+ CalcBeam.class.getName());
-            return p = new Product();
+            return p = new Product();//Default Product
         }
 
     }
@@ -74,7 +74,7 @@ public class CalcBeam {
             return p;
         } catch (Exception e) {
            System.out.println(e.getMessage() +" "+ CalcBeam.class.getName());
-            return p = new Product();
+            return p = new Product();//Default Product
         }
 
     }

@@ -9,6 +9,9 @@ import functionLayer.LogicFacade;
 import functionLayer.Product;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import logging.DefaultLogger;
+import logging.LoggerConfig;
 
 /**
  *
@@ -16,31 +19,31 @@ import java.util.List;
  */
 public class CarportPointedRoofProductListe {
 
-    private  List<Product> list = LogicFacade.getAllProductsFromDatabase();
-    private  CalcBattens battens = new CalcBattens();
-    private  CalcBeam beam = new CalcBeam();//rem
-    private  CalcRoof roof = new CalcRoof();
-    private  CalcPoles poles = new CalcPoles();//stolper
-    private  CalcNails nail = new CalcNails(); //søm
-    private  CalcAngleBracket angleBracket = new CalcAngleBracket();//vinkelbeslag
-    private  CalcScrew screw = new CalcScrew();//skrue
-    private  CalcOuterLayerOfShed shedOuterLayer = new CalcOuterLayerOfShed();
-    private  CalcShedSkeletton shed_InnerLayer = new CalcShedSkeletton();
-    private  CalcLøsholt løsholdt = new CalcLøsholt();
-    private  CalcFrontAndBackBeklædning arealTriangleBackAndFront = new CalcFrontAndBackBeklædning();
+    private List<Product> list = LogicFacade.getAllProductsFromDatabase();
 
-    private  Product pBattens;
-    private  Product pBeam;
-    private  Product pRoof;
-    private  Product pPoles;
-    private  Product pshed_innerLayer;
-    private  Product pOuterLayer;
-    private  Product pLøsholdt;
-    private  Product pArealTriangleBackAndFront;
+    private CalcBattens battens = new CalcBattens();
+    private CalcBeam beam = new CalcBeam();//rem
+    private CalcRoof roof = new CalcRoof();
+    private CalcPoles poles = new CalcPoles();//stolper
+    private CalcNails nail = new CalcNails(); //søm
+    private CalcAngleBracket angleBracket = new CalcAngleBracket();//vinkelbeslag
+    private CalcScrew screw = new CalcScrew();//skrue
+    private CalcOuterLayerOfShed shedOuterLayer = new CalcOuterLayerOfShed();
+    private CalcShedSkeletton shed_InnerLayer = new CalcShedSkeletton();
+    private CalcLøsholt løsholdt = new CalcLøsholt();
+    private CalcFrontAndBackBeklædning arealTriangleBackAndFront = new CalcFrontAndBackBeklædning();
 
+    private Product pBattens;
+    private Product pBeam;
+    private Product pRoof;
+    private Product pPoles;
+    private Product pshed_innerLayer;
+    private Product pOuterLayer;
+    private Product pLøsholdt;
+    private Product pArealTriangleBackAndFront;
 
     public List<Product> carportCalculaterPointedRoof(double length, double width, double degree, String roofMaterial) {
-        
+
         if (length <= 0 || width <= 0 || degree <= 0) {
             throw new IllegalArgumentException();
         }
@@ -80,15 +83,17 @@ public class CarportPointedRoofProductListe {
             stykliste.add(beam.calcAntalPointedRoofTOP(length, width, list));
 
             return stykliste;
+
         } catch (Exception e) {
-            System.out.println(e.getMessage() +" "+ CarportPointedRoofProductListe.class.getName());
+            System.out.println(e.getMessage() + " " + CarportPointedRoofProductListe.class.getName());
+            DefaultLogger.getLogger(LoggerConfig.PRODUCTION, false).log(Level.WARNING, e.getMessage() + " " + CarportPointedRoofProductListe.class.getName() + System.lineSeparator());
         }
         return null;
 
     }
 
     public List<Product> carportCalculaterPointedRoofIncludingShed(double length, double width, double degree, double shedLength, double shedWidth, String roofMaterial) {
-        
+
         if (length <= 0 || width <= 0 || degree <= 0) {
             throw new IllegalArgumentException();
         }
@@ -110,7 +115,6 @@ public class CarportPointedRoofProductListe {
             pLøsholdt = løsholdt.calcAntalPointedRoof(length, width, degree, list);
             pArealTriangleBackAndFront = arealTriangleBackAndFront.calcAntal(length, width, degree, list);
 
-            
             //4 nails per battens ('36', 'NKT FIRKANT SØM 1,6X25MM VARMFORZINKET', 'søm', '36', '0', '0', '0')
             stykliste.add(nail.calcAntal_25mm_Varmforzinket(pPoles.getQty(), list));
             /*
@@ -143,8 +147,10 @@ public class CarportPointedRoofProductListe {
             stykliste.add(shedOuterLayer.calAntal(length, width, list));
 
             return stykliste;
+
         } catch (Exception e) {
-            System.out.println(e.getMessage() +" "+ CarportPointedRoofProductListe.class.getName());
+            System.out.println(e.getMessage() + " " + CarportPointedRoofProductListe.class.getName());
+            DefaultLogger.getLogger(LoggerConfig.PRODUCTION, false).log(Level.WARNING, e.getMessage() + " " + CarportPointedRoofProductListe.class.getName() + System.lineSeparator());
 
         }
         return null;

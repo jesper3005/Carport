@@ -14,6 +14,9 @@ import functionLayer.calculation.CalcBattens;
 import functionLayer.Product;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import logging.DefaultLogger;
+import logging.LoggerConfig;
 
 /**
  *
@@ -22,6 +25,7 @@ import java.util.List;
 public class CarportFlatProductListe {
 
     private List<Product> list = LogicFacade.getAllProductsFromDatabase();
+    
     private CalcBattens battens = new CalcBattens();
     private CalcBeam beam = new CalcBeam();//rem
     private CalcRoof roof = new CalcRoof();
@@ -42,6 +46,8 @@ public class CarportFlatProductListe {
     private Product pSternUnder;
     private Product pshed_innerLayer;
     private Product pOuterLayer;
+    
+    
 
     public List<Product> carportCalculaterFlatRoof(double length, double width, String roofMaterial) {
         
@@ -64,11 +70,12 @@ public class CarportFlatProductListe {
             pSternOver = stern.calcAntalOverbrædt(length, width, list);
             pSternMellem = stern.calcAntalMellembrædt(length, width, list);
             pSternUnder = stern.calcAntalUnderbrædt(length, width, list);
-            System.out.println(roof.getAntalScrews());
+            
             if (!roofMaterial.equals("Tagpap")) {
                 //20 screws per m2 of roof plus 50 ekstra
                 stykliste.add(screw.calcAntal_3X25MM(roof.getAntalScrews(), list));
             }
+            
             //4 nails per battens ('36', 'NKT FIRKANT SØM 1,6X25MM VARMFORZINKET', 'søm', '36', '0', '0', '0')
             stykliste.add(nail.calcAntal_25mm_Varmforzinket(pPoles.getQty(), list));
 //            //4 screws per stern ('32', 'NKT FRANSK SKRUE 8X120MM VFZ 50 STK/PK', 'skrue', '29.9', '0', '0', '0')
@@ -92,8 +99,10 @@ public class CarportFlatProductListe {
             stykliste.add(pPoles);
 
             return stykliste;
+            
         } catch (Exception e) {
             System.out.println(e.getMessage() +" "+ CarportFlatProductListe.class.getName());
+            DefaultLogger.getLogger(LoggerConfig.PRODUCTION, false).log(Level.WARNING,e.getMessage() +" "+ CarportFlatProductListe.class.getName() + System.lineSeparator());
         }
         return null;
 
@@ -163,6 +172,7 @@ public class CarportFlatProductListe {
             return stykliste;
         } catch (Exception e) {
             System.out.println(e.getMessage() +" "+ CarportFlatProductListe.class.getName());
+            DefaultLogger.getLogger(LoggerConfig.PRODUCTION, false).log(Level.WARNING,e.getMessage() +" "+ CarportFlatProductListe.class.getName() + System.lineSeparator());
 
         }
         return null;

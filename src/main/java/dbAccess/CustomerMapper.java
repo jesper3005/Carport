@@ -96,7 +96,7 @@ public class CustomerMapper {
             pstmt.executeUpdate();
             ResultSet ids = pstmt.getGeneratedKeys();
             ids.next();
-            id = ids.getInt(1);
+            id = ids.getInt(1);//key i position 1
             pstmt.close();
             return id;
 
